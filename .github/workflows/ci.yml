@@ -49,7 +49,7 @@ jobs:
           set -euo pipefail
           echo "ANDROID_HOME=$ANDROID_HOME" >> "$GITHUB_ENV"
           # Pin the official CLI archive; hosted runner PATH/SDK contents change.
-          curl -fsSL --retry 3 https://dl.google.com/android/repository/commandlinetools-linux-16111833_latest.zip -o .local/tools/android-tools.zip
+          curl --http1.1 -fsSL --retry 3 --retry-all-errors https://dl.google.com/android/repository/commandlinetools-linux-16111833_latest.zip -o .local/tools/android-tools.zip
           printf '0877a1d048fe4a24efe2eff536ca4223f7adeb58648bb81909d33c446918cfa8  .local/tools/android-tools.zip\n' | sha256sum --check
           mkdir -p "$ANDROID_HOME/cmdline-tools" "$RUNNER_TEMP/mochi-android-unpack"
           unzip -q .local/tools/android-tools.zip -d "$RUNNER_TEMP/mochi-android-unpack"

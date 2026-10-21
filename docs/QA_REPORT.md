@@ -47,10 +47,11 @@ boot attempts failed on disk space. Revised standard AOSP environment awaits exe
 | Debug APK signature | PASS, debug only | v2/v3 schemes; certificate 2207476872571c99d83537c73a9e3b38d9b66c5d04bef7ad3ccd5ebbe122b0ab |
 | APK metadata | PASS | io.github.seiya058904.mochiarcade, min API 24, target 36, arm64-v8a+x86_64; VIBRATE only |
 | Android install / launch / touch | BLOCKED | No online device; not claimed verified |
-| Audible quality / physical-device performance | NOT_RUN | Requires actual listening and Android runtime |
+| Audio output | PASS measured Windows mixer / phone UNVERIFIED | evidence/audio-output.json: 48 kHz captured output, eight tone peaks 0.101-0.103, eight-voice burst 0.438, music peak 0.0090, muted/paused output exactly zero. No subjective listening or phone-speaker claim. |
+| Repository credential/provenance review | PASS bounded static audit | evidence/security-audit.json: 13 commits, 259 text blobs, known credential patterns; 80 binary/large blobs counted separately. No findings or runtime network/process calls; not exhaustive secret detection. |
 | CI / release | PASS for da1d397 / NOT_PUBLISHED | [Run 39647458113](https://github.com/seiya058904/mochi-arcade/actions/runs/39647458113): all eight-game checks and debug Android build passed. Later hosted runtime attempts fail on disk, as retained below. |
 | Collection lifecycle / adverse saves | PASS, 934 checks | evidence/collection-audit.json: 40 scene switches, primary touch and background freeze, restart/unload, malformed nested sessions/metadata, 360x640 / 360x800 / 640x800 layouts |
-| Complete desktop visual matrix | PASS, 33 captures reviewed | evidence/visual-review.json and matrix-*.png; two languages, three screen ratios, eight games, settings, overlays and merge feedback. Not Android proof. |
+| Complete desktop visual matrix | PASS, 34 captures reviewed | evidence/visual-review.json and matrix-*.png; two languages, three screen ratios, eight games, settings, overlays and merge feedback. Not Android proof. |
 | Required suite runner | PASS, 17 suites | evidence/required-checks.json; rejects engine runtime errors even when process exit code is zero |
 
 ## Found and fixed
@@ -196,3 +197,20 @@ rendered and headless runs, but chaotic rigid-body contacts diverged: rendered
 Both reached tier 7 and restarted empty. Separate original reports are preserved
 as fruit-playthrough-rendered.json and fruit-playthrough-headless.json. This is
 not a claim of bit-identical physics across rendering backends.
+
+## Signing and package candidate
+
+The 1.0.0 local candidate uses the persistent external RSA-3072 release identity,
+not the debug certificate. DPAPI password reopening and protected ACLs were verified.
+`apksigner` verifies v2/v3; `zipalign -c -P 16 -v 4` passes. Metadata is package
+io.github.seiya058904.mochiarcade, version code 1, min 24 / target 36, arm64-v8a and
+x86_64, VIBRATE only. Both OFL texts and all eight game scene remaps are present;
+tests, docs, source art and private signing files are absent. The external launch
+entry is GodotAppLauncher; its target GodotApp is intentionally not exported. The
+smoke and build instructions now use the observed alias. Installation is still pending.
+
+The AOSP r04 archive's source.properties declares revision 2, despite repository
+metadata revision 4. Runs 39651418664/39651874434 retained this mismatch; validation
+now reads the installed package.xml revision. Run 39652355709 failed earlier on a
+transient Google HTTP/2 download error; the CLI download now uses HTTP/1.1 and bounded
+retry-all-errors. These are environment failures, never counted as Android success.

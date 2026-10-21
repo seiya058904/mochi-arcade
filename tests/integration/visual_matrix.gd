@@ -38,6 +38,9 @@ func run() -> void:
 		await shot(profile[1] + "-home")
 		app.show_settings()
 		await shot(profile[1] + "-settings")
+		if profile[1] == "phone":
+			app.show_licenses()
+			await shot("phone-licenses")
 		for index in range(8):
 			app.open_game(index, true, 2047 + index)
 			app.resume()

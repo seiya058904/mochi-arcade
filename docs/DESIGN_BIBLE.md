@@ -12,7 +12,7 @@ were rejected to keep controls and landing targets readable.
 | Cream | #FCF7EE | Quiet paper background |
 | Paper | #FFFDF8 | Controls, dialogs and light tiles |
 | Cocoa | #634B40 | Primary text and outlines |
-| Muted | #947C6E | Secondary captions |
+| Muted | #6E564A | Secondary captions |
 | Peach | #F6D4C5 | Fruit Drop / Jelly Slice |
 | Sky | #D7E9EF | Bubble Garden |
 | Rose | #F0CBD0 | Cake Stack |
@@ -38,5 +38,6 @@ were rejected to keep controls and landing targets readable.
 
 Actual 450x800, 360x640 and 360x800 viewport captures reviewed. Fixed thin Latin
 and Chinese variable fonts, clipped bunny sprite, and long dialog text sizing.
-Long-screen home has deliberate spare whitespace; all cards remain reachable.
-The full eight-game review and Android safe-area review are still pending.
+The complete 34-screen matrix now covers all eight games, three portrait ratios,
+both languages, overlays, settings and offline licenses. Tall home cards fill the
+available area; the wide 2048 board fits its footer. Android safe-area review is pending.

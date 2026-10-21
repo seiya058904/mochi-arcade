@@ -36,7 +36,7 @@ for Godot import, tests and a development APK. All eight games are available
 from first launch; no accounts, advertisements or purchases are required.
 
 The required runner executes **17 suites**, including **934** collection lifecycle,
-damaged-save and layout checks. A **33-screen** desktop matrix covers both languages
+damaged-save and layout checks. A **34-screen** desktop matrix covers both languages
 and three portrait ratios.
 
 Game checks: **14,278** logic assertions and **47** integration assertions,

@@ -56,6 +56,8 @@ func _resize() -> void:
 		show_home()
 	elif page == "settings":
 		show_settings()
+	elif page == "licenses":
+		show_licenses()
 	elif is_instance_valid(game):
 		# Freeze the current world rather than rebuilding/losing a run.
 		layout_shell()
@@ -242,7 +244,35 @@ func show_settings() -> void:
 		Save.set_setting("language", "zh" if Save.setting("language") == "en" else "en")
 		show_settings(), P.LILAC)
 	button(ui, C.words("Reset my records", "重置我的纪录"), Rect2(36, top_safe + 858, size.x - 72, 88), confirm_reset, P.CREAM)
+	button(ui, C.words("Credits & licenses", "制作与许可"), Rect2(36, top_safe + 966, size.x - 72, 76), show_licenses, P.PAPER, 25)
 	label(ui, "Mochi Arcade  ·  " + str(ProjectSettings.get_setting("application/config/version")), Rect2(36, size.y - bottom_safe - 60, size.x - 72, 40), 22, P.MUTED, HORIZONTAL_ALIGNMENT_CENTER)
+
+func show_licenses() -> void:
+	clear_page()
+	page = "licenses"
+	button(ui, "‹", Rect2(36, top_safe, 80, 80), show_settings, P.PAPER, 46)
+	label(ui, C.words("Credits & licenses", "制作与许可"), Rect2(140, top_safe + 12, size.x - 176, 64), 34, P.INK, HORIZONTAL_ALIGNMENT_LEFT, true)
+	var notices := RichTextLabel.new()
+	notices.position = Vector2(42, top_safe + 120)
+	notices.size = Vector2(size.x - 84, size.y - top_safe - bottom_safe - 140)
+	notices.add_theme_font_override("normal_font", font)
+	notices.add_theme_font_size_override("normal_font_size", 23)
+	notices.add_theme_color_override("default_color", P.INK)
+	notices.text = C.words("Mochi Arcade\nOriginal game code, vector art and synthesized audio. Character illustrations created for this project with OpenAI image generation.\n\nFonts: Nunito and Noto Sans SC, SIL Open Font License.\n\n", "Mochi Arcade\n原创游戏代码、矢量绘图及合成音效。角色插画使用 OpenAI 图像生成工具为本项目制作。\n\n字体：Nunito 和思源黑体，采用 SIL 开源字体许可。\n\n")
+	for path in ["res://assets/fonts/Nunito-OFL.txt", "res://assets/fonts/NotoSansSC-OFL.txt"]:
+		notices.text += path.get_file() + "\n" + FileAccess.get_file_as_string(path) + "\n\n"
+	notices.text += "Godot Engine " + Engine.get_version_info().string + "\n\n" + Engine.get_license_text() + "\n\n"
+	for component in Engine.get_copyright_info():
+		notices.text += str(component.name) + "\n"
+		for part in component.parts:
+			notices.text += "\n".join(part.copyright) + "\nLicense: " + str(part.license) + "\n"
+		notices.text += "\n"
+	var licenses: Dictionary = Engine.get_license_info()
+	var names := licenses.keys()
+	names.sort()
+	for name in names:
+		notices.text += str(name) + "\n" + str(licenses[name]) + "\n\n"
+	ui.add_child(notices)
 
 func confirm_reset() -> void:
 	show_dialog(C.words("A fresh little start?", "重新开始？"), C.words("This clears game progress and records. Your sound and comfort settings stay.", "这会清除游戏进度和纪录，保留声音等偏好设置。"), [[C.words("Keep my records", "保留纪录"), dismiss_overlay], [C.words("Yes, reset records", "确认重置"), func(): Save.reset_records(); dismiss_overlay()]])
@@ -449,6 +479,8 @@ func back() -> void:
 		show_pause()
 	elif page == "settings":
 		show_home()
+	elif page == "licenses":
+		show_settings()
 	else:
 		show_dialog(C.words("See you in a little while?", "下次再一起玩？"), C.words("Your records are tucked away safely.", "你的纪录已经妥善保存。"), [[C.words("Stay here", "再玩一会儿"), dismiss_overlay], [C.words("Close the app", "退出应用"), exit_application]])
 

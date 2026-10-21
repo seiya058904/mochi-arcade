@@ -1,7 +1,7 @@
 {
   "status": "PASS_DESKTOP_VISUAL_REVIEW",
   "date": "2026-10-22",
-  "captures": 33,
+  "captures": 34,
   "scope": "Actual Godot Compatibility renderer; not Android acceptance",
   "profiles": [
     [
@@ -23,7 +23,8 @@
   "review": [
     "All eight games in each profile plus home/settings",
     "Phone help, pause and visible Number Bloom merge settlement",
-    "Rechecked final contrast on home/settings/number screens; geometry unchanged from complete 32-screen review"
+    "Rechecked final contrast on home/settings/number screens; geometry unchanged from complete 32-screen review",
+    "Offline licenses and final settings button reviewed in actual renderer"
   ],
   "fixed": [
     "Wide portrait 2048 board/footer clipping",

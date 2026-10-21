@@ -34,7 +34,7 @@ directory. It records desktop viewport images, not Android installation proof.
 ```powershell
 adb devices -l
 adb install -r dist/MochiArcade-dev.apk
-adb shell am start -n io.github.seiya058904.mochiarcade/com.godot.game.GodotApp
+adb shell am start -n io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher
 ```
 
 The latter two commands have **not yet succeeded**: the available AVD remains
@@ -46,10 +46,27 @@ standard AOSP emulator with full graphics and KVM; see QA_REPORT for actual outc
 
 ## Stable publication gates
 
-No stable release key has been generated yet. Before release, generate and keep
-a private external keystore, protect its password using Windows DPAPI, inject
-`GODOT_ANDROID_KEYSTORE_RELEASE_PATH/USER/PASSWORD` at export, verify the actual
-certificate and never commit keys. The final file must be `dist/MochiArcade.apk`.
+The release identity has been created outside Git under the current Windows user's
+`.mochi-arcade/signing` directory. ACL inheritance is disabled; only that user and
+SYSTEM have access. The random 256-bit password is stored using Windows DPAPI
+CurrentUser protection. The key is reusable and must be preserved for updates.
+Do not move the DPAPI file to another account and expect it to decrypt; a secure
+external backup/recovery arrangement remains the owner's responsibility.
+
+Public certificate SHA-256:
+`de1458f30ad0f2a758b9c6f3de82c00b608723eaa75de22d3cf853e351f7657b`
+
+```powershell
+# Reopen the existing protected key and export; never reinitialize an existing key.
+./scripts_tools/sign_release.ps1 -Build
+```
+
+The helper supports `-SigningDirectory` and `-Keytool` for an explicitly selected
+secure location/tool. `-InitializeKey` refuses existing material and is only for
+first-time setup of a new signing identity. It restores all process environment
+variables after use and does not persist plaintext credentials. Never add the
+key or protected password to Git, logs, APK assets or release attachments.
+The current local 1.0.0 candidate is signed, but is not an accepted stable release.
 
 All eight games, Android touch/lifecycle acceptance and final-SHA CI must pass
 before tagging. Then export the final SHA, compute SHA256SUMS, create a draft

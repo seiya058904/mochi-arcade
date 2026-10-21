@@ -61,7 +61,8 @@ def main():
         (output / f"{name}.png").write_bytes(data)
 
     def launch():
-        result = shell("am", "start", "-W", "-n", f"{package}/com.godot.game.GodotApp")
+        # Godot 4.7 exposes this launcher alias; the target activity is private.
+        result = shell("am", "start", "-W", "-n", f"{package}/com.godot.game.GodotAppLauncher")
         if "Error:" in result or "Status: ok" not in result:
             raise RuntimeError(f"Launch did not succeed: {result}")
         time.sleep(2)

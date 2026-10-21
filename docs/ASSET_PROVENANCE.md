@@ -28,4 +28,9 @@ https://github.com/google/fonts/tree/main/ofl/notosanssc
 
 Generated assets are original project outputs, not a claim of exclusive rights
 or a legal trademark clearance. No commercial game logos, sprites, music or
-levels have been imported. Further gameplay sprites will be recorded as made.
+levels have been imported. The complete production atlas set is recorded above.
+
+Font copyright/license texts are explicitly included by the Android export filter.
+Settings > Credits & licenses reads those bundled files and the running Godot binary's
+engine/component notices and license texts, offline. This follows the engine's
+[license guidance](https://docs.godotengine.org/en/latest/about/complying_with_licenses.html).
