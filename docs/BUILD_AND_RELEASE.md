@@ -37,12 +37,20 @@ adb install -r dist/MochiArcade-dev.apk
 adb shell am start -n io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher
 ```
 
-The latter two commands have **not yet succeeded**: the available AVD remains
-offline. `emulator -accel-check` reports missing hypervisor driver. Hardware
-acceleration disabled, software renderer and direct long-running launch were
-also tried without obtaining an online Android system. No OS driver or boot
-security setting has been changed. A connected Android device can unblock this. CI also prepares a dedicated API 34
-standard AOSP emulator with full graphics and KVM; see QA_REPORT for actual outcomes.
+Hosted Android 14 now successfully installs and starts the development package
+using the exported `GodotAppLauncher` alias. The original SwiftShader GLES backend
+failed shader compilation; the ANGLE-based rerun is tracked in QA_REPORT. Full
+rendered touch/lifecycle acceptance and final signed-byte acceptance remain pending.
+The local Windows AVD cannot accelerate (missing hypervisor driver); software-only
+attempts never reached an online device and this task's failed process was stopped.
+No OS driver or boot security setting was changed.
+
+Actual audio mixer checks require a non-headless run:
+
+```powershell
+./scripts_tools/godot.ps1 --script tests/integration/audio_output.gd
+python scripts_tools/audit_repository.py
+```
 
 ## Stable publication gates
 
@@ -72,3 +80,20 @@ All eight games, Android touch/lifecycle acceptance and final-SHA CI must pass
 before tagging. Then export the final SHA, compute SHA256SUMS, create a draft
 release, independently download/verify bytes and signature, and publish.
 Never replace an existing published tag or APK silently.
+
+## Prepared manual CI release path (permission pending)
+
+The local workflow draft defaults to development builds. Its optional manual
+`release_candidate` input would consume two repository encrypted secrets:
+`MOCHI_RELEASE_KEYSTORE_BASE64` and `MOCHI_RELEASE_PASSWORD`. Neither has been
+uploaded. User approval is pending because this transfers private signing material
+to GitHub. The local key and DPAPI password remain the authoritative copy.
+
+The reviewed `build_ci_release.py` creates an exclusive mode-0600 temporary key,
+exports a non-debuggable release APK, checks the expected public certificate, then
+removes only that transient key in `finally`. It never writes the password to disk
+or logs. The same helper was exercised locally, producing an APK signed by the
+expected identity and leaving no transient keystore. The Android `--release`
+verification path keeps the production sandbox intact; all eight game captures and
+persisted setting screens require visual review, since `run-as` is unavailable.
+No workflow or script creates a tag or publishes a Release automatically.

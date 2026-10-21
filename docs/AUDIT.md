@@ -36,7 +36,7 @@ Owner: current Codex session; no delegated agents.
 | Signing continuity | Private external keystore + OS-protected password; certificate fingerprint |
 | Overclaiming emulator results | Label emulator evidence; physical-device performance remains UNVERIFIED |
 
-## Current gaps
+## Initial gaps (2026-10-21 snapshot)
 
 Godot executable location, Android templates, SDK 35 tools, runtime boot,
 production artwork, all game implementations and release signing still require verification.
@@ -49,3 +49,27 @@ production artwork, all game implementations and release signing still require v
 The 4.7 Android guide specifies JDK 17, platform/build tools 35/35.0.1 and
 supports signing overrides through environment variables. The simple prebuilt
 APK export path is preferred; custom Gradle/NDK work is not required by this app.
+
+## Candidate audit update — 2026-10-22
+
+All eight scenes, original production atlases and shared offline shell exist and
+have actual desktop render/input evidence. The required runner now has 18 suites.
+The 34-screen visual matrix covers EN/ZH and three portrait ratios. Measured real
+48 kHz mixer output confirms tone balance, headroom and mute/pause behavior.
+
+A bounded known-credential-pattern scan covered 13 reachable commits / 259 text
+blobs and the working tree, with no matches. Large/binary objects were counted
+separately; this is not an exhaustive security proof. Runtime scripts contain no
+network or external-process APIs. The signed candidate has only VIBRATE permission,
+no debug flag, two intended ABIs, eight game scenes and both bundled OFL notices.
+Offline settings expose actual running-engine notices as well as font licenses.
+
+The release key is external, protected by a user/SYSTEM-only ACL and a DPAPI
+CurrentUser password. Reopening and local export/signature validation passed.
+Private material has not been committed or uploaded. Optional repository encrypted
+secret configuration requires the explicit approval currently requested from the user.
+
+Hosted Android installs/starts the development APK, but the first legacy SwiftShader
+renderer failed. Retained screenshots/logs establish the failure. Swangle rendering,
+all-eight Android touch/restore acceptance and final signed-byte acceptance remain
+pending. No stable tag/release exists, and there is no claim of phone performance.

@@ -54,3 +54,49 @@ Jelly Slice verifies fast segment swipes, single-cut ownership and bounded fruit
 halves and trails; a 60-second actual-input replay slices 150 fruit and exercises
 the voluntary Zen results and replay controls.
 The [release checklist](docs/RELEASE_CHECKLIST.md) deliberately retains pending gates.
+
+## Build and test
+
+Use Godot **4.7.2 stable** with its matching official Android export templates,
+JDK 17, Android SDK/Build Tools 36 and Python 3.12+. Set `MOCHI_GODOT` to the
+engine executable. From PowerShell in the project root:
+
+```powershell
+./scripts_tools/godot.ps1 --headless --editor --import
+python scripts_tools/run_checks.py --engine $env:MOCHI_GODOT
+./scripts_tools/godot.ps1 --headless --export-debug Android dist/MochiArcade-dev.apk
+```
+
+The test runner fails on script/runtime errors even if Godot exits with code zero.
+Development APKs use a debug identity; they are not long-term update releases.
+See [build and signing details](docs/BUILD_AND_RELEASE.md) for the private release
+identity, actual Android acceptance status and final publication gates.
+
+## Project layout
+
+| Path | Purpose |
+| --- | --- |
+| `scenes/app`, `scripts/app` | Shared navigation, local saves and audio |
+| `scenes/games`, `scripts/games` | Eight isolated scenes and their rules |
+| `scripts/shared` | Input lifecycle, palette, feedback and geometry |
+| `assets/art`, `assets/fonts` | Production art and licensed fonts |
+| `assets/source` | Image-generation prompts and concept provenance |
+| `tests`, `scripts_tools` | Rules, input replays, visual/audio audits and build tools |
+| `docs/evidence` | Actual reports and clearly labelled desktop/Android captures |
+
+## Privacy and credits
+
+Everything plays offline. There are no accounts, ads, purchases, analytics or
+network permissions. Progress and preferences stay in local app storage. Settings
+include music, sound, reduced motion, vibration, language and record reset.
+Credits and bundled font/engine notices are readable offline inside the app.
+See [asset provenance](docs/ASSET_PROVENANCE.md) for generated artwork and font sources.
+
+## Install and releases
+
+**No stable release is currently published.** The final accepted asset will be named
+`MochiArcade.apk`. This repository is private, so its releases require repository
+access. When a verified release is available, download that APK to an Android
+7.0+ ARM64 or x86_64 device and open it with Android's package installer. Updates
+must retain the same package and release signing identity to preserve app data.
+Physical-device performance remains unverified until tested on a phone.

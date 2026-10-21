@@ -25,6 +25,7 @@ def main():
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--serial", default="emulator-5554")
     parser.add_argument("--emulator-pid", type=int)
+    parser.add_argument("--release", action="store_true", help="Non-debuggable APK: persisted content requires screenshot review")
     args = parser.parse_args()
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
@@ -33,7 +34,7 @@ def main():
     report = {"status": "FAIL", "commit": os.environ.get("GITHUB_SHA", "local"),
               "apk_sha256": hashlib.sha256(args.apk.read_bytes()).hexdigest(),
               "environment": "Dedicated GitHub-hosted Android API 34 x86_64 emulator; not a physical phone",
-              "visual_review": "PENDING", "commands": commands}
+              "visual_review": "PENDING", "commands": commands, "release_candidate": args.release}
 
     def adb(*parts, binary=False, timeout=30, check=True):
         command = ["adb", "-s", args.serial, *map(str, parts)]
@@ -177,10 +178,11 @@ def main():
             time.sleep(0.3)
             screenshot(f"{index + 1:02d}-{game}-after-back")
             park()
-            state = saved_state()
-            if not state.get("seen", {}).get(game):
-                raise RuntimeError(f"The real home tap never entered {game}")
-            (output / f"{index + 1:02d}-{game}-save.json").write_text(json.dumps(state, indent=2), encoding="utf-8")
+            if not args.release:
+                state = saved_state()
+                if not state.get("seen", {}).get(game):
+                    raise RuntimeError(f"The real home tap never entered {game}")
+                (output / f"{index + 1:02d}-{game}-save.json").write_text(json.dumps(state, indent=2), encoding="utf-8")
         launch()
         tap(650, 70)
         tap(608, 360)  # Music off.
@@ -189,14 +191,20 @@ def main():
         park()
         launch()
         screenshot("10-restarted-home-zh")
-        state = saved_state()
-        if state["settings"]["music"] is not False or state["settings"]["language"] != "zh":
-            raise RuntimeError("Settings did not survive background + force-stop + launch")
-        if set(GAMES) - set(state["seen"]):
-            raise RuntimeError("Not all eight games were actually entered")
-        report["seen_games"] = list(state["seen"])
-        report["records"] = state["records"]
-        report["settings_persisted"] = True
+        tap(650, 70)
+        screenshot("11-restarted-settings-zh")
+        if not args.release:
+            state = saved_state()
+            if state["settings"]["music"] is not False or state["settings"]["language"] != "zh":
+                raise RuntimeError("Settings did not survive background + force-stop + launch")
+            if set(GAMES) - set(state["seen"]):
+                raise RuntimeError("Not all eight games were actually entered")
+            report["seen_games"] = list(state["seen"])
+            report["records"] = state["records"]
+            report["settings_persisted"] = True
+        else:
+            # Production stays non-debuggable; never weaken its sandbox for test access.
+            report["scene_and_persistence_validation"] = "REQUIRES_SCREENSHOT_REVIEW"
         (output / "meminfo.txt").write_text(shell("dumpsys", "meminfo", package), encoding="utf-8")
         logs = adb("logcat", "-d", "-v", "threadtime")
         (output / "logcat.txt").write_text(logs, encoding="utf-8")

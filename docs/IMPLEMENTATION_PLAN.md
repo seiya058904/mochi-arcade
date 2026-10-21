@@ -89,3 +89,7 @@ an evidenced external blocker prevents all meaningful progress.
 All A01-A15 from `SOURCE_TASK.md` have direct evidence. Eight complete offline
 games in one Android APK; no P0/P1 or blocking P2; accurate build/install docs;
 matching final local/remote/tag/build commit; verified release-download bytes.
+
+- Prepared a manual-only signed CI path and tested its certificate/temporary-key
+  cleanup locally. Awaiting user approval to upload two encrypted repository secrets;
+  no private material has left this computer. Developer APK Android QA continues.
