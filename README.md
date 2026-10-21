@@ -5,17 +5,19 @@ A cozy, offline collection of eight original 2D pocket games for Android.
 **In development. No verified release is available yet.**
 
 All eight games are playable in the current development build. A hosted Android 14
-emulator installs, starts and renders the collection. Full touch, lifecycle and
-load acceptance is still in progress after a system-Back fix. No stable release
-is published until the signed final APK passes that acceptance.
+emulator completed all eight games' touch, pause, round restore and restart checks,
+plus settings persistence and same-signature reinstall. A later run reproduced an
+intermittent black screen on background return, which remains a release blocker.
+Software-emulator load measurements and final signed-APK acceptance are still under review.
 
 <p>
-  <img src="docs/evidence/matrix-phone-home.png" width="220" alt="Actual Godot home screen" />
-  <img src="docs/evidence/matrix-phone-cake_stack.png" width="220" alt="Actual Cake Stack game" />
-  <img src="docs/evidence/matrix-phone-number_bloom.png" width="220" alt="Actual Number Bloom game" />
+  <img src="docs/evidence/android-lifecycle-0f27910/00-home.png" width="220" alt="Actual Android home screen" />
+  <img src="docs/evidence/android-lifecycle-0f27910/03-cake_stack-after-input.png" width="220" alt="Cake Stack after Android touch input" />
+  <img src="docs/evidence/android-lifecycle-0f27910/07-number_bloom-after-input.png" width="220" alt="Number Bloom after Android swipes" />
 </p>
 
-These are real desktop Godot viewport captures, not Android device screenshots.
+Actual Android 14 emulator captures at 720x1280, reviewed alongside 84 other
+native captures. This is development-build evidence, not a physical-phone performance claim.
 
 | Game | Play |
 | --- | --- |

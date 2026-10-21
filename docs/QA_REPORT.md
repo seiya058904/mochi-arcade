@@ -416,3 +416,51 @@ Jelly was not reached. Sampling now lasts at least 12 seconds, up to 30 seconds,
 without reducing the minimum. Each case retains its own failure and the second case
 still runs. Restoration now verifies both primary and backup save bytes. These are
 software-renderer observations, never evidence of physical-phone frame rate.
+
+Manual review of this run is complete: 87 actual Android captures were inspected
+in 12 labeled contact sheets, covering all eight games through ten stages plus
+home/settings/licenses/reinstall. All tested views are readable, the pause/Resume
+transitions are visible, and no blank return or blocking control overlap appears.
+Game state changes agree with the saved observations. The sheets, source-image
+digests and 12 unaltered original captures are retained in
+evidence/android-lifecycle-0f27910/. This passes visual review of these tested paths;
+it does not change the failed overall job or count as final signed-byte acceptance.
+
+## Intermittent surface failure and measured maximum pools
+
+Run 39667082209 (e688600, development APK SHA-256
+392fdf015715cf69716a628313a243d486492f918a37ad79f3e07f0521e54d1c)
+passes Fruit lifecycle, then Bubble returns completely black. Its failure capture
+is also black. Keep android-intermittent-background.* and the selected guest/host
+log. The previous full success cannot establish reliable recovery.
+
+At 20:09:29.152 the old buffer queue is abandoned; at .153 the activity resumes;
+the GL thread reports EGL_BAD_SURFACE at .154 and !readyToDraw at .291. No later
+presentation statistics appear for that process before capture. The emulator
+also reports a missing ColorBuffer. Godot 4.7.2's GLSurfaceView sets mSurfaceIsBad
+on swap failure and clears it only when its worker observes a lost surface;
+surface callbacks asynchronously replace mHasSurface. A lost transition during
+slow rendering/quick return is SUSPECTED, not confirmed without internal-state
+instrumentation. Primary source:
+https://github.com/godotengine/godot/blob/4.7.2-stable/platform/android/java/lib/src/main/java/org/godotengine/godot/gl/GLSurfaceView.java .
+No engine, native activity or renderer change is introduced. Failure diagnostics
+will retain a later passive frame and a new Home/foreground cycle with PID equality;
+these observations cannot convert the original failure to a pass.
+
+Both synthetic load cases now complete and their ten captures have been reviewed:
+64 balls visibly damage bricks; 12 fruit generate actual halves and combos. Both
+original save files are restored byte-for-byte. Actual presentations are slow:
+Balls 34 frames/12.102 s, 2.73 FPS, p95 803.792 ms; Jelly 54 frames/11.801 s,
+4.49 FPS, p95 434.592 ms. They are execution/measurement evidence, not a smoothness
+or phone-performance pass. Raw report and reviewed matrix are android-maximum-load-*.
+
+## Batched ball rendering
+
+Optional real-renderer balls_render_profile.gd observes static synthetic 1/64-ball
+scenes, 60 frames each, full/reduced motion. Before repair the full-motion scene
+requires 121/247 draw submissions; interleaved trails split the shared-atlas batch.
+One multiline pass behind the sprites reduces both counts to 121. Reduced motion
+stays at 120/120. The regression fails on the original and passes on the change.
+The full 64-ball fixture's before/after RGB pixels are identical and both actual
+captures are retained. This proves fewer draw submissions on the desktop GPU,
+not Android speed. All 18 required suites pass; hosted timing comparison is pending.

@@ -39,10 +39,14 @@ adb shell am start -n io.github.seiya058904.mochiarcade/com.godot.game.GodotAppL
 
 Hosted Android 14 now successfully installs and starts the development package
 using the exported `GodotAppLauncher` alias. The original SwiftShader GLES backend
-failed shader compilation; the ANGLE-based swangle backend renders all eight games.
-The first manual lifecycle review found a system-Back defect, now fixed with a
-desktop regression. Full Android lifecycle/load and final signed-byte acceptance
-remain pending; preserved failures and current runs are tracked in QA_REPORT.
+failed shader compilation; swangle rendered but lost surfaces on background return.
+The pinned emulator's ANGLE/Lavapipe backend now passes all eight native lifecycle,
+round-restore/restart and settings/reinstall checks after the Back and synchronous
+checkpoint repairs in one complete run. All 87 captured native views were reviewed.
+Run 39667082209 then reproduced an intermittent black background return in Bubble;
+stability is not accepted. Maximum-pool execution is measured but software-renderer
+smoothness is not passed. Launcher and final signed-byte acceptance remain pending;
+both successful and adverse runs stay in QA_REPORT.
 The local Windows AVD cannot accelerate (missing hypervisor driver); software-only
 attempts never reached an online device and this task's failed process was stopped.
 No OS driver or boot security setting was changed.

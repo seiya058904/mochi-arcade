@@ -17,7 +17,7 @@ an evidenced external blocker prevents all meaningful progress.
 | 4f. Jelly Slice | PASS (desktop) | 7,224 checks; 108,000 stress swipe events; real-input 60-second Zen round slices 150 fruit, naturally misses 7, finishes/retries via buttons; original whole/half art reviewed |
 | 5. Integration / lifecycle / stress audit | PASS (desktop) | 18 required suites; 980 full-collection checks, 40 switches, immediate lifecycle persistence, damaged-save recovery and three viewport profiles |
 | 6. Complete visual reviews + targeted fixes | PASS (desktop) | 34 actual renderer captures; EN/ZH, home, eight games, settings, help/pause; board fit, mipmaps and text contrast fixed |
-| 7. Signed Android acceptance | IN_PROGRESS | All eight development-APK lifecycle/state checks pass on Lavapipe; visual review, launcher/load rerun and signed-byte runtime pending; signing-secret approval pending |
+| 7. Signed Android acceptance | IN_PROGRESS / background BLOCKED | All eight paths and 87 views passed once; a later Bubble return is black. Both loads measured but slow; renderer diagnosis, launcher and signed-byte runtime pending; signing-secret approval pending |
 | 8. CI / final audit / remote sync | TODO | Clean local/upstream/default SHA match, final-SHA CI green |
 | 9. Release and download verification | TODO | Annotated tag, draft assets, independent hash match, publish |
 
@@ -144,3 +144,20 @@ matching final local/remote/tag/build commit; verified release-download bytes.
   lowering the sample minimum, and execute Jelly independently even if Balls fails.
   Latest local signed candidate is built from 0f27910 and statically verified;
   it has not been installed. No signing secret has been uploaded.
+- The 87-view native review is complete. Ten stages per game and seven shared
+  pages show readable controls, expected boards/records and visible lifecycle
+  transitions. Preserve 12 labeled review sheets, all source digests and 12 original
+  PNGs; README now uses actual Android screenshots. Run 39667082209 is testing
+  launcher/load harness changes on e688600; no production code changed afterward.
+- Run 39667082209 reproduces a black Bubble background return on Lavapipe after
+  the previous complete success. Treat this as an intermittent blocker. Preserve
+  the black frame and guest/host logs; the engine GL thread stops presenting after
+  EGL_BAD_SURFACE. Next failure diagnostics wait without input, then observe a new
+  surface lifecycle with the same process; the original run must remain FAIL.
+  Move the independent launcher check before game testing, retaining any failure.
+- Both maximum-pool tests now execute with visible movement/cut halves and exact
+  primary/backup restoration. Software-emulator presentation: Balls 2.73 FPS,
+  Jelly 4.49 FPS; this is not a performance pass. A desktop render diagnostic
+  identifies interleaved ball trails/sprites: 247 draw calls at 64 balls versus
+  121 at one ball. Batch trails behind shared-atlas sprites: 121 at both counts,
+  unchanged full fixture pixels; reduced-motion remains 120. All 18 suites pass.

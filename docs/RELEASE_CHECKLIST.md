@@ -5,21 +5,21 @@ Updated 2026-10-22. Desktop acceptance does not satisfy Android gates.
 | Gate | State | Evidence / remaining work |
 | --- | --- | --- |
 | A01 One app / APK | PARTIAL | Development APK contains all eight; final signed package pending |
-| A02 Eight complete games | PASS desktop / Android PENDING | Eight implemented loops, natural-action replays, results/retry and 34-screen matrix |
+| A02 Eight complete games | PASS desktop + Android development smoke | Eight implemented loops, natural-action replays and actual Android input/boards; final signed-byte confirmation pending |
 | A03 Correct gameplay | PASS desktop | 18 required suites; rules, collision, save, lifecycle and real scene input |
 | A04 Valid procedural content | PASS | Independent Trio solver: 1,500 boards; Hop: 2,000 seeds / 50,000 targets |
-| A05 Android controls | PARTIAL / background render FAIL | Back/pause/restart/force-stop restore pass on first four games; background return is black despite frozen save; actual graphics recovery and remaining games pending |
-| A06 Cohesive art | PASS desktop / Android PENDING | Original AI production art integrated; three ratios, EN/ZH, all games and overlays reviewed |
+| A05 Android controls | BLOCKED intermittent background black | All eight paths passed once in 39664379571; 39667082209 reproduces a blank Bubble return. Previous good frames do not establish stability |
+| A06 Cohesive art | PASS desktop + tested Android viewport | Original production art; three desktop ratios; 87 actual 720x1280 Android views reviewed in labeled sheets, with selected original captures retained |
 | A07 Audio | PASS tested Android development path / final signed pending | Native first-loop crash repaired and Android loop survives in 39659761708; nine mixer-boundary regressions and real desktop mute/pause/output checks pass |
-| A08 Persistence | PASS desktop / Android PARTIAL | Four individual round restores and background freezes pass; remaining rounds and same-signature reinstall await strengthened run |
-| A09 Compatibility / performance | Android FAIL / diagnostic pending | Swangle loses the graphics surface on background return; same-version Lavapipe comparison prepared; maximum Android pools pending |
+| A08 Persistence | PASS tested development path / signed pending | All eight freezes/round restores, five settings and exact complete-save preservation after same-signature reinstall; damaged-save recovery suite passes |
+| A09 Compatibility / performance | BLOCKED | Intermittent background black remains. Both maximum pools visibly execute, but software-renderer FPS is 2.73 / 4.49; performance is not passed and phone FPS is unverified |
 | A10 Security / provenance | PASS bounded candidate audit | Known credential-pattern history scan, documented original art/fonts, bundled offline notices; candidate has only VIBRATE and excludes private/dev files |
 | A11 Reproducible build | PASS development | Pinned engine/template, SDK CLI checksum, local + hosted debug export; signed rebuild pending |
-| A12 Verified installable APK | PARTIAL | Development APK installs/starts/renders on actual API 34; lifecycle repair and final signed-byte runtime acceptance pending |
+| A12 Verified installable APK | PARTIAL | Development APK installs/starts/renders and passes all eight lifecycle checks on API 34; launcher navigation and final signed-byte acceptance pending |
 | A13 Clean synchronized Git | IN_PROGRESS | Milestone commits/pushes; final clean state pending |
 | A14 Final-SHA CI | NOT_RUN | All-eight checkpoint da1d397 passed 39647458113; current/final SHA awaits CI |
 | A15 Release | NOT_PUBLISHED | No tag or stable assets until preceding hard gates pass |
 
-Current unresolved release blockers: Android execution, exact-final-commit CI/download checks and final package/runtime confirmation.
+Current unresolved release blockers: intermittent Android background black, performance acceptance, launcher proof, exact-final-commit CI/download checks and final signed-package/runtime confirmation.
 Secure local release signing and measured desktop audio verification have passed.
 Physical-phone performance will remain explicitly unverified if acceptance uses an emulator.

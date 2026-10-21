@@ -337,10 +337,18 @@ func _draw() -> void:
 		var color: Color = P.MINT if i == 0 else P.LILAC
 		rounded(gates[i].grow(4 if gate_glow[i] > 0 and not reduced_motion else 0), color, 17, color.darkened(0.14))
 		text_at("×" + str(i + 2), gates[i].get_center() + Vector2(0, 9), 27, P.INK, true)
+	# Draw trails together behind the shared-atlas sprites. Interleaving each
+	# line with a sprite prevented batching and added two submissions per ball.
+	if not reduced_motion:
+		var trails := PackedVector2Array()
+		for ball in pool:
+			if ball.active:
+				trails.append(ball.p - ball.v.normalized() * 19)
+				trails.append(ball.p)
+		if not trails.is_empty():
+			draw_multiline(trails, Color(1, 1, 1, 0.7), 8, true)
 	for ball in pool:
 		if ball.active:
-			if not reduced_motion:
-				draw_line(ball.p - ball.v.normalized() * 19, ball.p, Color(1, 1, 1, 0.7), 8, true)
 			draw_texture_rect(sprites[ball.color], Rect2(ball.p - Vector2.ONE * RADIUS, Vector2.ONE * RADIUS * 2), false)
 	rounded(paddle_rect().grow(3), Color("dfbda0"), 13)
 	rounded(paddle_rect(), P.PAPER, 10)

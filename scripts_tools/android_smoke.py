@@ -140,6 +140,46 @@ def main():
             time.sleep(1)
         raise RuntimeError("Android fullscreen instruction stayed visible after its actual button was tapped")
 
+    def check_launcher_icon():
+        shell("input", "keyevent", "KEYCODE_HOME")
+        deadline = time.monotonic() + 15
+        workspace_visible = False
+        while time.monotonic() < deadline:
+            shell("uiautomator", "dump", "/sdcard/mochi-launcher.xml")
+            launcher = shell("cat", "/sdcard/mochi-launcher.xml")
+            (output / "launcher-home.xml").write_text(launcher, encoding="utf-8")
+            workspace_visible = any(node.get("resource-id") == "com.android.launcher3:id/workspace"
+                                    for node in ET.fromstring(launcher).iter("node"))
+            if workspace_visible:
+                break
+            time.sleep(0.5)
+        if not workspace_visible:
+            raise RuntimeError("Android Home did not show the actual Launcher workspace")
+        # This empty workspace area is visible in the retained AOSP home frame.
+        # The former y=1180 start was at the bottom navigation boundary.
+        swipe(540, 950, 540, 300, 700)
+        deadline = time.monotonic() + 15
+        icons = []
+        while time.monotonic() < deadline:
+            shell("uiautomator", "dump", "/sdcard/mochi-launcher.xml")
+            launcher = shell("cat", "/sdcard/mochi-launcher.xml")
+            (output / "launcher.xml").write_text(launcher, encoding="utf-8")
+            icons = [node for node in ET.fromstring(launcher).iter("node")
+                     if node.get("text") == "Mochi Arcade" or node.get("content-desc") == "Mochi Arcade"]
+            if icons:
+                break
+            time.sleep(0.5)
+        if not icons:
+            raise RuntimeError("Actual Android launcher did not expose the Mochi Arcade icon")
+        screenshot("15-android-launcher-icon")
+        bounds = [int(n) for n in re.findall(r"\d+", icons[0].attrib["bounds"])]
+        tap((bounds[0] + bounds[2]) // 2, (bounds[1] + bounds[3]) // 2)
+        time.sleep(5)
+        if not shell("pidof", package, check=False):
+            raise RuntimeError("Launcher icon did not start the app")
+        screenshot("16-launcher-icon-opened-app")
+        report["launcher_icon_tapped"] = True
+
     def runtime_errors(logs):
         return [line for line in logs.splitlines() if
                 "SCRIPT ERROR:" in line or "FATAL EXCEPTION" in line or "Fatal signal" in line or
@@ -197,6 +237,15 @@ def main():
         if initial_errors:
             report["runtime_errors"] = initial_errors
             raise RuntimeError("Android renderer or script failed during initial launch")
+        # Check the independent launcher path before a later game failure can
+        # prevent it. A launcher failure remains an overall failure, even while
+        # independent game checks continue from a direct activity launch.
+        try:
+            check_launcher_icon()
+        except Exception as launcher_error:
+            report["launcher_error"] = str(launcher_error)
+            screenshot("launcher-failure", allow_blank=True)
+            launch()
         for index, game in enumerate(GAMES):
             if index:
                 launch()
@@ -358,44 +407,6 @@ def main():
             raise RuntimeError("Same-signature reinstall did not preserve app data")
         report["same_signature_reinstall_preserves_save"] = True
         screenshot("14-reinstalled-home-zh")
-        shell("input", "keyevent", "KEYCODE_HOME")
-        deadline = time.monotonic() + 15
-        workspace_visible = False
-        while time.monotonic() < deadline:
-            shell("uiautomator", "dump", "/sdcard/mochi-launcher.xml")
-            launcher = shell("cat", "/sdcard/mochi-launcher.xml")
-            (output / "launcher-home.xml").write_text(launcher, encoding="utf-8")
-            workspace_visible = any(node.get("resource-id") == "com.android.launcher3:id/workspace"
-                                    for node in ET.fromstring(launcher).iter("node"))
-            if workspace_visible:
-                break
-            time.sleep(0.5)
-        if not workspace_visible:
-            raise RuntimeError("Android Home did not show the actual Launcher workspace")
-        # This empty workspace area is visible in the retained AOSP home frame.
-        # The former y=1180 start was at the bottom navigation boundary.
-        swipe(540, 950, 540, 300, 700)
-        deadline = time.monotonic() + 15
-        icons = []
-        while time.monotonic() < deadline:
-            shell("uiautomator", "dump", "/sdcard/mochi-launcher.xml")
-            launcher = shell("cat", "/sdcard/mochi-launcher.xml")
-            (output / "launcher.xml").write_text(launcher, encoding="utf-8")
-            icons = [node for node in ET.fromstring(launcher).iter("node")
-                     if node.get("text") == "Mochi Arcade" or node.get("content-desc") == "Mochi Arcade"]
-            if icons:
-                break
-            time.sleep(0.5)
-        if not icons:
-            raise RuntimeError("Actual Android launcher did not expose the Mochi Arcade icon")
-        screenshot("15-android-launcher-icon")
-        bounds = [int(n) for n in re.findall(r"\d+", icons[0].attrib["bounds"])]
-        tap((bounds[0] + bounds[2]) // 2, (bounds[1] + bounds[3]) // 2)
-        time.sleep(5)
-        if not shell("pidof", package, check=False):
-            raise RuntimeError("Launcher icon did not start the app")
-        screenshot("16-launcher-icon-opened-app")
-        report["launcher_icon_tapped"] = True
         (output / "meminfo.txt").write_text(shell("dumpsys", "meminfo", package), encoding="utf-8")
         logs = adb("logcat", "-d", "-v", "threadtime")
         (output / "logcat.txt").write_text(logs, encoding="utf-8")
@@ -404,6 +415,8 @@ def main():
         report["graphics_swap_warnings"] = [line for line in logs.splitlines() if "eglSwapBuffers failed" in line]
         if errors:
             raise RuntimeError("Android runtime errors were recorded")
+        if report.get("launcher_error"):
+            raise RuntimeError(report["launcher_error"])
         report["status"] = "PASS_SMOKE_AWAITING_VISUAL_REVIEW"
     except Exception as error:
         report["error"] = str(error)
@@ -413,6 +426,25 @@ def main():
                 (output / "failure-save.json").write_text(json.dumps(saved_state(), indent=2), encoding="utf-8")
             except Exception as save_error:
                 report["failure_save_error"] = str(save_error)
+            if "background-return is blank" in str(error):
+                # Diagnostics cannot turn the original failed return into PASS.
+                # Observe without input first, then test a new surface lifecycle
+                # while retaining PID continuity and every adverse frame.
+                diagnostic = report["surface_failure_diagnostic"] = {}
+                try:
+                    diagnostic["pid_before"] = shell("pidof", package, check=False)
+                    time.sleep(5)
+                    screenshot("diagnostic-delayed-return", allow_blank=True)
+                    diagnostic["visible_after_extra_5_seconds"] = report["frame_checks"]["diagnostic-delayed-return"]["has_visible_content"]
+                    (output / "failure-surface-layers.txt").write_text(shell("dumpsys", "SurfaceFlinger", "--list"), encoding="utf-8")
+                    shell("input", "keyevent", "KEYCODE_HOME")
+                    time.sleep(5)
+                    launch()
+                    screenshot("diagnostic-new-surface-return", allow_blank=True)
+                    diagnostic["visible_after_new_surface_cycle"] = report["frame_checks"]["diagnostic-new-surface-return"]["has_visible_content"]
+                    diagnostic["same_process"] = diagnostic["pid_before"] == shell("pidof", package, check=False)
+                except Exception as diagnostic_error:
+                    diagnostic["error"] = str(diagnostic_error)
             logs = adb("logcat", "-d", "-v", "threadtime")
             (output / "logcat.txt").write_text(logs, encoding="utf-8")
             report["runtime_errors"] = runtime_errors(logs)
