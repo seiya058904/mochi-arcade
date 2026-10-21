@@ -279,3 +279,19 @@ background return, every round after force-stop, settings and same-signature
 reinstall. Release-APK saves can be inspected via adb root only on the isolated
 AOSP userdebug emulator; the installed APK remains non-debuggable. Signing-secret
 transfer still awaits explicit user approval.
+
+Run 39657194383 passed cold launch after boot settling, but failed before entering
+Fruit: its fullscreen confirmation remained visible after ADB acknowledged the
+dismissal tap. The next tap was consumed by that system layer. Its screenshot and
+report are retained as android-fullscreen-dismissal-delay.png and
+android-overlay-timing-failure.json. The harness now polls the actual system UI
+until the prompt is gone and waits for each first entry to appear in saved state.
+This run does not validate the Back fix, since gameplay was never entered.
+
+The maximum-load harness uses synthetic saves through unchanged production restore:
+64 balls and 12 fruit, verified against actual Godot scene construction locally.
+It gathers Android SurfaceFlinger actual-present timestamps, memory and screenshots
+during genuine ADB paddle/slicing input, then restores the original test save bytes.
+Timestamp parsing/deduplication/units and Python/YAML/Bash syntax pass locally.
+Hosted measurements and visual review remain NOT_RUN. Software-rendered emulator
+presentation is explicitly separated from physical-phone performance.

@@ -7,7 +7,7 @@ an evidenced external blocker prevents all meaningful progress.
 | --- | --- | --- |
 | 0. Boundary / environment / risk audit | PASS | Empty boundary verified; official engine/template checksums; SDK/JDK/device inventory |
 | 1. Git / private remote / CI scaffold | PASS | Private origin/main synced; full CI 39638293273 green on 3099316 including Android debug build |
-| 2. Art direction / shared shell / early Android | IN_PROGRESS | Production art and shell rendered; debug APK exported; Android install BLOCKED by offline AVD |
+| 2. Art direction / shared shell / early Android | PASS | Production art and shell rendered; actual hosted Android install and eight rendered views confirmed |
 | 3. Cake Stack + Number Bloom vertical slices | PASS (desktop) | 14,278 logic + 47 integration assertions pass; screenshots and native input recheck |
 | 4a. Fruit Drop | PASS (desktop) | 29 physics/rule checks PASS; 251 normal-action drops reach tier 7 and natural overflow; rendered art and native aim/release checked |
 | 4b. Bubble Garden | PASS (desktop) | 1,364 checks; 5 gardens cleared in 33 hinted shots; 73 shots reach natural loss; alpha art and footer reviewed |
@@ -15,9 +15,9 @@ an evidenced external blocker prevents all meaningful progress.
 | 4d. Tile Trio | PASS (desktop) | 1,500 solver-verified boards, 439,506 rule + 23 runtime checks; 5 shops / 187 input picks / natural full tray / free result undo / restart; actual screenshots |
 | 4e. Bouncy Balls | PASS (desktop) | 236,650 checks; real x2/x3 gates; 60-second 64-ball stress; normal input clears 4 waves, reaches 64 balls, naturally loses/retries; rendered captures |
 | 4f. Jelly Slice | PASS (desktop) | 7,224 checks; 108,000 stress swipe events; real-input 60-second Zen round slices 150 fruit, naturally misses 7, finishes/retries via buttons; original whole/half art reviewed |
-| 5. Integration / lifecycle / stress audit | PASS (desktop) | 18 required suites; 934 full-collection checks, 40 switches, damaged-save recovery and three viewport profiles |
+| 5. Integration / lifecycle / stress audit | PASS (desktop) | 18 required suites; 935 full-collection checks, 40 switches, damaged-save recovery and three viewport profiles |
 | 6. Complete visual reviews + targeted fixes | PASS (desktop) | 34 actual renderer captures; EN/ZH, home, eight games, settings, help/pause; board fit, mipmaps and text contrast fixed |
-| 7. Signed Android acceptance | IN_PROGRESS | Secure key and signed candidate verified statically; hosted Android debug install/start PASS, legacy GLES rendering FAIL; swangle rerun pending |
+| 7. Signed Android acceptance | IN_PROGRESS | Secure local signing verified; Android swangle rendering PASS; stronger Back/lifecycle plus maximum-pool acceptance pending; signing secret approval pending |
 | 8. CI / final audit / remote sync | TODO | Clean local/upstream/default SHA match, final-SHA CI green |
 | 9. Release and download verification | TODO | Annotated tag, draft assets, independent hash match, publish |
 
@@ -101,3 +101,10 @@ matching final local/remote/tag/build commit; verified release-download bytes.
 - Run 39655181653 failed its first launch during initial AVD input-device setup;
   retained separately. Allow first boot to settle and use complete non-incremental
   installs. Do not count the previous green smoke as full Android acceptance.
+- Run 39657194383 now starts reliably but caught a delayed fullscreen overlay:
+  the first game tap was consumed while the system prompt closed. Wait for its
+  actual UI disappearance and verify saved scene entry before sending gestures.
+- Maximum-pool Android harness prepared: production restore of 64 balls / 12 fruit,
+  actual ADB swipes, SurfaceFlinger presentation timestamps and per-load memory.
+  Synthetic fixtures and pre-test save restoration are explicit. Fixture restore
+  and timing-unit checks pass locally; Android load measurements remain NOT_RUN.

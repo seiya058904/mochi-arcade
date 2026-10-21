@@ -148,6 +148,13 @@ jobs:
           smoke_args=(--apk "$MOCHI_APK" --output .local/android-runtime --emulator-pid "$emulator_pid")
           if [[ "${{ inputs.release_candidate }}" == 'true' ]]; then smoke_args+=(--release); fi
           python3 scripts_tools/android_smoke.py "${smoke_args[@]}"
+      - name: Measure maximum-pool Android render bursts
+        shell: bash
+        run: |
+          set -euo pipefail
+          load_args=(--apk "$MOCHI_APK" --output .local/android-runtime/load)
+          if [[ "${{ inputs.release_candidate }}" == 'true' ]]; then load_args+=(--release); fi
+          python3 scripts_tools/android_load.py "${load_args[@]}"
       - name: Upload Android runtime evidence
         if: always()
         uses: actions/upload-artifact@v4

@@ -94,6 +94,17 @@ def main():
 
     def open_card(index):
         tap(190 if index % 2 == 0 else 530, 412 + (index // 2) * 208)
+        time.sleep(0.7)
+
+    def wait_for_entry(game):
+        deadline = time.monotonic() + 15
+        while time.monotonic() < deadline:
+            raw = (shell("cat", f"/data/user/0/{package}/files/save.json", check=False) if args.release else
+                   shell("run-as", package, "cat", "files/save.json", check=False))
+            if raw and json.loads(raw).get("seen", {}).get(game):
+                return
+            time.sleep(0.5)
+        raise RuntimeError(f"Home input did not actually enter {game} within 15 seconds")
 
     def install_apk():
         # Complete the install before launch; incremental delivery can still change
@@ -105,15 +116,25 @@ def main():
 
     def dismiss_fullscreen_tip():
         # Inspect the real Android system UI; never tap a presumed overlay blindly.
-        shell("uiautomator", "dump", "/sdcard/mochi-window.xml")
-        document = shell("cat", "/sdcard/mochi-window.xml")
-        for node in ET.fromstring(document).iter("node"):
-            if node.get("text", "").upper() == "GOT IT":
+        deadline = time.monotonic() + 25
+        tapped = False
+        while time.monotonic() < deadline:
+            shell("uiautomator", "dump", "/sdcard/mochi-window.xml")
+            document = shell("cat", "/sdcard/mochi-window.xml")
+            (output / "fullscreen-window.xml").write_text(document, encoding="utf-8")
+            buttons = [node for node in ET.fromstring(document).iter("node")
+                       if node.get("text", "").upper() == "GOT IT"]
+            if not buttons:
+                report["fullscreen_tip_dismissed"] = tapped
+                time.sleep(1)
+                return
+            if not tapped:
+                node = buttons[0]
                 bounds = [int(n) for n in re.findall(r"\d+", node.attrib["bounds"])]
                 tap((bounds[0] + bounds[2]) // 2, (bounds[1] + bounds[3]) // 2)
-                time.sleep(1)
-                report["fullscreen_tip_dismissed"] = True
-                return
+                tapped = True
+            time.sleep(1)
+        raise RuntimeError("Android fullscreen instruction stayed visible after its actual button was tapped")
 
     def runtime_errors(logs):
         return [line for line in logs.splitlines() if
@@ -170,6 +191,7 @@ def main():
             if index:
                 launch()
             open_card(index)
+            wait_for_entry(game)
             time.sleep(0.3)
             screenshot(f"{index + 1:02d}-{game}-help")
             tap(360, 775)
@@ -291,6 +313,25 @@ def main():
             raise RuntimeError("Same-signature reinstall did not preserve app data")
         report["same_signature_reinstall_preserves_save"] = True
         screenshot("14-reinstalled-home-zh")
+        shell("input", "keyevent", "KEYCODE_HOME")
+        time.sleep(1)
+        shell("input", "swipe", 360, 1180, 360, 250, 500)
+        time.sleep(1)
+        shell("uiautomator", "dump", "/sdcard/mochi-launcher.xml")
+        launcher = shell("cat", "/sdcard/mochi-launcher.xml")
+        (output / "launcher.xml").write_text(launcher, encoding="utf-8")
+        icons = [node for node in ET.fromstring(launcher).iter("node")
+                 if node.get("text") == "Mochi Arcade" or node.get("content-desc") == "Mochi Arcade"]
+        if not icons:
+            raise RuntimeError("Actual Android launcher did not expose the Mochi Arcade icon")
+        screenshot("15-android-launcher-icon")
+        bounds = [int(n) for n in re.findall(r"\d+", icons[0].attrib["bounds"])]
+        tap((bounds[0] + bounds[2]) // 2, (bounds[1] + bounds[3]) // 2)
+        time.sleep(5)
+        if not shell("pidof", package, check=False):
+            raise RuntimeError("Launcher icon did not start the app")
+        screenshot("16-launcher-icon-opened-app")
+        report["launcher_icon_tapped"] = True
         (output / "meminfo.txt").write_text(shell("dumpsys", "meminfo", package), encoding="utf-8")
         logs = adb("logcat", "-d", "-v", "threadtime")
         (output / "logcat.txt").write_text(logs, encoding="utf-8")
