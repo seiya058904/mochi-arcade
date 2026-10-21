@@ -108,3 +108,12 @@ matching final local/remote/tag/build commit; verified release-download bytes.
   actual ADB swipes, SurfaceFlinger presentation timestamps and per-load memory.
   Synthetic fixtures and pre-test save restoration are explicit. Fixture restore
   and timing-unit checks pass locally; Android load measurements remain NOT_RUN.
+- Run 39658177429 passed actual entry but exposed a native AudioTrack SIGSEGV at
+  the first music loop. The source endpoint was one frame beyond allocated PCM;
+  the crash address and sample-index register match that exact boundary. Changed
+  `loop_end` to the final valid frame. Regression fails on old code, passes on the
+  fix; all 18 suites pass, including 14,288 logic/audio assertions. Android rerun
+  now explicitly waits through the first complete music loop before gameplay.
+- Packaged themed-icon inspection found the template Godot glyph despite the
+  correct normal icon. Added the original bunny's matching monochrome mark and
+  explicit export setting; actual packaged before/after resources are retained.

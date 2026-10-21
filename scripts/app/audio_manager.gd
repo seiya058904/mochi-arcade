@@ -77,7 +77,9 @@ func melody() -> AudioStreamWAV:
 	wave.data = bytes
 	wave.loop_mode = AudioStreamWAV.LOOP_FORWARD
 	wave.loop_begin = 0
-	wave.loop_end = count
+	# Godot 4.7.2 decodes loop_end inclusively. Using the frame count reads one
+	# PCM sample out of bounds and crashed Android's AudioTrack at the first wrap.
+	wave.loop_end = count - 1
 	return wave
 
 func apply_settings() -> void:

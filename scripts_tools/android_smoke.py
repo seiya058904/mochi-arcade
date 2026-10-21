@@ -183,6 +183,12 @@ def main():
         report["cold_launch"] = launch()
         dismiss_fullscreen_tip()
         screenshot("00-home")
+        # The original WAV endpoint crashed AudioTrack on its first 16-second
+        # loop. Exercise the real Android mixer before entering any game.
+        time.sleep(20)
+        if not shell("pidof", package, check=False):
+            raise RuntimeError("Android app exited while the first background-music loop played")
+        report["first_music_loop_survived"] = True
         initial_errors = runtime_errors(adb("logcat", "-d", "-v", "threadtime"))
         if initial_errors:
             report["runtime_errors"] = initial_errors
@@ -278,6 +284,7 @@ def main():
                 raise RuntimeError(f"{game} did not restart with zero score")
             screenshot(f"{index + 1:02d}-{game}-restarted")
             game_check["restart_zero_score"] = True
+            print(json.dumps({"game": game, "checks": game_check}), flush=True)
             tap(360, 871)  # Back to my pocket from pause.
             park()
         launch()
@@ -344,7 +351,9 @@ def main():
         report["error"] = str(error)
         try:
             screenshot("failure-screen")
-            (output / "logcat.txt").write_text(adb("logcat", "-d", "-v", "threadtime"), encoding="utf-8")
+            logs = adb("logcat", "-d", "-v", "threadtime")
+            (output / "logcat.txt").write_text(logs, encoding="utf-8")
+            report["runtime_errors"] = runtime_errors(logs)
         except Exception as capture_error:
             report["capture_error"] = str(capture_error)
     finally:

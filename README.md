@@ -4,9 +4,10 @@ A cozy, offline collection of eight original 2D pocket games for Android.
 
 **In development. No verified release is available yet.**
 
-All eight games are playable in the current development build. A hosted Android 14 emulator installs and starts the development APK; full rendered
-touch acceptance is still pending a software-renderer compatibility fix. No stable
-release is published until the signed final APK passes that acceptance.
+All eight games are playable in the current development build. A hosted Android 14
+emulator installs, starts and renders the collection. Full touch, lifecycle and
+load acceptance is still in progress after a system-Back fix. No stable release
+is published until the signed final APK passes that acceptance.
 
 <p>
   <img src="docs/evidence/matrix-phone-home.png" width="220" alt="Actual Godot home screen" />
@@ -35,11 +36,11 @@ and [QA report](docs/QA_REPORT.md). Follow the verified [build instructions](doc
 for Godot import, tests and a development APK. All eight games are available
 from first launch; no accounts, advertisements or purchases are required.
 
-The required runner executes **18 suites**, including **934** collection lifecycle,
+The required runner executes **18 suites**, including **935** collection lifecycle,
 damaged-save and layout checks. A **34-screen** desktop matrix covers both languages
 and three portrait ratios.
 
-Game checks: **14,278** logic assertions and **47** integration assertions,
+Game checks: **14,288** logic/audio-boundary assertions and **47** integration assertions,
 including standard 2048 merges, seeded spawn distribution, cake overlap boundaries,
 atomic-save recovery, undo with RNG restoration, lifecycle handling and 30 scene switches.
 Fruit adds **29** physics checks; Bubble adds **1,364** geometry/runtime checks and

@@ -2,8 +2,8 @@
   "status": "PASS_STATIC_SIGNED_CANDIDATE_ANDROID_RUNTIME_PENDING",
   "version": "1.0.0",
   "version_code": 1,
-  "apk_sha256": "c379910b698169b675a2dded94b26bd32e7ddd0b61e604a97b819305a77a65bb",
-  "bytes": 77955233,
+  "apk_sha256": "49397209b29f14173acba7aff4886327f38a4af2a62f8c986b04b27555e2b03b",
+  "bytes": 78016973,
   "certificate_sha256": "de1458f30ad0f2a758b9c6f3de82c00b608723eaa75de22d3cf853e351f7657b",
   "certificate_key": "RSA-3072",
   "schemes": [
@@ -24,6 +24,6 @@
   "eight_scenes": true,
   "font_notices_bundled": true,
   "private_and_development_files_excluded": true,
-  "scope": "Local candidate after Cake footer fix; game sources match 0d7d490; final CI and Android signed-byte acceptance pending",
+  "scope": "Local candidate after system Back, WAV loop endpoint and themed icon repairs; final-commit signed-byte Android acceptance pending",
   "local_ci_signing_helper": "PASS: correct certificate and transient key absent after build"
 }

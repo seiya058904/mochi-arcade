@@ -39,8 +39,10 @@ adb shell am start -n io.github.seiya058904.mochiarcade/com.godot.game.GodotAppL
 
 Hosted Android 14 now successfully installs and starts the development package
 using the exported `GodotAppLauncher` alias. The original SwiftShader GLES backend
-failed shader compilation; the ANGLE-based rerun is tracked in QA_REPORT. Full
-rendered touch/lifecycle acceptance and final signed-byte acceptance remain pending.
+failed shader compilation; the ANGLE-based swangle backend renders all eight games.
+The first manual lifecycle review found a system-Back defect, now fixed with a
+desktop regression. Full Android lifecycle/load and final signed-byte acceptance
+remain pending; preserved failures and current runs are tracked in QA_REPORT.
 The local Windows AVD cannot accelerate (missing hypervisor driver); software-only
 attempts never reached an online device and this task's failed process was stopped.
 No OS driver or boot security setting was changed.

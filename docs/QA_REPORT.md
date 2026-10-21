@@ -17,6 +17,8 @@ Local Android emulator: BLOCKED by absent acceleration. Hosted API 34 now render
 all eight games with swangle. Manual review rejected its first green smoke result:
 system Back exited instead of pausing, and Trio tapped covered tiles. The Back
 fix passes all 18 desktop suites; strengthened Android acceptance is pending.
+The next run exposed a native audio-loop overread. Its endpoint repair is locally
+verified; Android acceptance is still blocked until the repaired mixer survives.
 
 ## Executed checks
 
@@ -295,3 +297,32 @@ during genuine ADB paddle/slicing input, then restores the original test save by
 Timestamp parsing/deduplication/units and Python/YAML/Bash syntax pass locally.
 Hosted measurements and visual review remain NOT_RUN. Software-rendered emulator
 presentation is explicitly separated from physical-phone performance.
+
+## First music-loop crash and bounded endpoint fix
+
+Run 39658177429 entered Fruit correctly, then crashed in the native AudioTrack
+thread after 24 seconds of process uptime. The retained tombstone excerpt is
+evidence/android-audio-crash.txt; the corresponding report records the APK hash.
+Register RSI contains 0x56220 (352800 frames), exactly the generated 16-second
+22050 Hz music length. The fault address minus the PCM buffer base is 705600,
+exactly its allocated byte count. The source assigned loop_end = count.
+
+Godot 4.7.2's WAV mixer uses loop_end as an inclusive decode limit, computes a
+limit-inclusive sample count, then reads p_src[pos]. Consequently that endpoint
+reads one sample past this buffer. Source inspection:
+https://github.com/godotengine/godot/blob/4.7.2-stable/scene/resources/audio_stream_wav.cpp .
+The related upstream boundary inconsistency is recorded at
+https://github.com/godotengine/godot/issues/119778 . No engine update is introduced.
+
+The project uses count - 1, keeping every decoded index within the PCM buffer.
+The new guard failed against the original code; the repaired engine playback
+passes nine rate/block-size boundary combinations, with finite bounded samples.
+All 18 suites pass; the logic/audio suite now has 14,288 assertions. Real mixer
+capture additionally tests three seek-across-wraps and two uninterrupted full loops.
+The Android harness keeps music enabled through its first full loop before entry;
+Android repair verification remains PENDING, not inferred from desktop success.
+
+Packaged launcher inspection separately found Godot's default monochrome glyph.
+The normal bunny icon was correct. An explicit matching monochrome SVG now replaces
+that template resource; raw packaged before/after WebP images are retained. This
+is APK resource inspection, not a claim that a phone's themed-icon mode was tested.

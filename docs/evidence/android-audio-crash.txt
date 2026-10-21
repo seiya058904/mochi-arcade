@@ -1,0 +1,31 @@
+10-21 19:06:09.270  2293  2341 F libc    : Fatal signal 11 (SIGSEGV), code 2 (SEGV_ACCERR), fault addr 0x7a303419f000 in tid 2341 (AudioTrack), pid 2293 (904.mochiarcade)
+10-21 19:06:09.793  2448  2448 F DEBUG   : *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+10-21 19:06:09.793  2448  2448 F DEBUG   : Build fingerprint: 'Android/sdk_phone64_x86_64/emu64x:14/UE1A.230829.036.A1/11228894:userdebug/test-keys'
+10-21 19:06:09.793  2448  2448 F DEBUG   : Revision: '0'
+10-21 19:06:09.793  2448  2448 F DEBUG   : ABI: 'x86_64'
+10-21 19:06:09.793  2448  2448 F DEBUG   : Timestamp: 2026-10-21 19:06:09.345717441+0000
+10-21 19:06:09.793  2448  2448 F DEBUG   : Process uptime: 24s
+10-21 19:06:09.793  2448  2448 F DEBUG   : Cmdline: io.github.seiya058904.mochiarcade
+10-21 19:06:09.793  2448  2448 F DEBUG   : pid: 2293, tid: 2341, name: AudioTrack  >>> io.github.seiya058904.mochiarcade <<<
+10-21 19:06:09.793  2448  2448 F DEBUG   : uid: 10141
+10-21 19:06:09.793  2448  2448 F DEBUG   : signal 11 (SIGSEGV), code 2 (SEGV_ACCERR), fault addr 0x00007a303419f000
+10-21 19:06:09.793  2448  2448 F DEBUG   :     rax 00007a317287cfc0  rbx 0000000000000021  rcx 0000000000000000  rdx 0000000000000020
+10-21 19:06:09.793  2448  2448 F DEBUG   :     r8  000000000000001e  r9  0000000000000001  r10 0000000000000000  r11 0000000000056220
+10-21 19:06:09.793  2448  2448 F DEBUG   :     r12 00007a317287cfb8  r13 00007a30340f2bc0  r14 00007a317287d548  r15 0000000000000080
+10-21 19:06:09.793  2448  2448 F DEBUG   :     rdi 00007a317287ce30  rsi 0000000000056220
+10-21 19:06:09.793  2448  2448 F DEBUG   :     rbp 00007a30365166f0  rsp 00007a3036516640  rip 00007a3039a23ebb
+10-21 19:06:09.793  2448  2448 F DEBUG   : 13 total frames
+10-21 19:06:09.793  2448  2448 F DEBUG   : backtrace:
+10-21 19:06:09.793  2448  2448 F DEBUG   :       #00 pc 0000000003205ebb  /data/app/~~BzOuDjuyNHCaBhJ6G_0AyQ==/io.github.seiya058904.mochiarcade-zP9WgzfiKpr0SH1npXMByQ==/lib/x86_64/libgodot_android.so (BuildId: f0c5138191a465a56ba55d32ef7ba7d2ea4a7762)
+10-21 19:06:09.793  2448  2448 F DEBUG   :       #01 pc 00000000037cb8a3  /data/app/~~BzOuDjuyNHCaBhJ6G_0AyQ==/io.github.seiya058904.mochiarcade-zP9WgzfiKpr0SH1npXMByQ==/lib/x86_64/libgodot_android.so (BuildId: f0c5138191a465a56ba55d32ef7ba7d2ea4a7762)
+10-21 19:06:09.793  2448  2448 F DEBUG   :       #02 pc 00000000037a464c  /data/app/~~BzOuDjuyNHCaBhJ6G_0AyQ==/io.github.seiya058904.mochiarcade-zP9WgzfiKpr0SH1npXMByQ==/lib/x86_64/libgodot_android.so (BuildId: f0c5138191a465a56ba55d32ef7ba7d2ea4a7762)
+10-21 19:06:09.793  2448  2448 F DEBUG   :       #03 pc 00000000037a211e  /data/app/~~BzOuDjuyNHCaBhJ6G_0AyQ==/io.github.seiya058904.mochiarcade-zP9WgzfiKpr0SH1npXMByQ==/lib/x86_64/libgodot_android.so (BuildId: f0c5138191a465a56ba55d32ef7ba7d2ea4a7762)
+10-21 19:06:09.793  2448  2448 F DEBUG   :       #04 pc 0000000001218bbd  /data/app/~~BzOuDjuyNHCaBhJ6G_0AyQ==/io.github.seiya058904.mochiarcade-zP9WgzfiKpr0SH1npXMByQ==/lib/x86_64/libgodot_android.so (BuildId: f0c5138191a465a56ba55d32ef7ba7d2ea4a7762)
+10-21 19:06:09.793  2448  2448 F DEBUG   :       #05 pc 000000000001de2f  /system/lib64/libwilhelm.so (audioTrack_handleMoreData_lockPlay(CAudioPlayer_struct*, android::AudioTrack::Buffer const&)+127) (BuildId: 6c2ebe375a7ee22daad9d3fb2327752b)
+10-21 19:06:09.793  2448  2448 F DEBUG   :       #06 pc 0000000000020b77  /system/lib64/libwilhelm.so (android::AudioTrackCallback::onMoreData(android::AudioTrack::Buffer const&)+39) (BuildId: 6c2ebe375a7ee22daad9d3fb2327752b)
+10-21 19:06:09.793  2448  2448 F DEBUG   :       #07 pc 00000000000a06f9  /system/lib64/libaudioclient.so (android::AudioTrack::processAudioBuffer()+3353) (BuildId: fb58c945492a20e9ef91efdf72274f94)
+10-21 19:06:09.793  2448  2448 F DEBUG   :       #08 pc 000000000009f692  /system/lib64/libaudioclient.so (android::AudioTrack::AudioTrackThread::threadLoop()+274) (BuildId: fb58c945492a20e9ef91efdf72274f94)
+10-21 19:06:09.793  2448  2448 F DEBUG   :       #09 pc 00000000000105b2  /system/lib64/libutils.so (android::Thread::_threadLoop(void*)+210) (BuildId: c777bd164e6d4a5c070cb5e2d9bb92e0)
+10-21 19:06:09.793  2448  2448 F DEBUG   :       #10 pc 00000000000ebe72  /system/lib64/libandroid_runtime.so (android::AndroidRuntime::javaThreadShell(void*)+146) (BuildId: b9f4a1ef04fb0c02d8363f85b5b5ba9e)
+10-21 19:06:09.793  2448  2448 F DEBUG   :       #11 pc 00000000000cd06a  /apex/com.android.runtime/lib64/bionic/libc.so (__pthread_start(void*)+58) (BuildId: fa337969c798946280caa45e2d71a2e7)
+10-21 19:06:09.793  2448  2448 F DEBUG   :       #12 pc 0000000000062d88  /apex/com.android.runtime/lib64/bionic/libc.so (__start_thread+56) (BuildId: fa337969c798946280caa45e2d71a2e7)

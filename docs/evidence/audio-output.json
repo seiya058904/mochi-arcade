@@ -4,7 +4,7 @@
   "observations": {
     "all_muted": {
       "clipped": false,
-      "frames": 15360,
+      "frames": 15872,
       "peak": 0.0,
       "rms": 0.0
     },
@@ -14,17 +14,41 @@
       "peak": 0.438314229249954,
       "rms": 0.0614507678564152
     },
+    "music_after_two_full_loops": {
+      "clipped": false,
+      "frames": 57856,
+      "peak": 0.00903606135398149,
+      "rms": 0.00240344075286264
+    },
     "music_disabled": {
       "clipped": false,
-      "frames": 15360,
+      "frames": 15872,
       "peak": 0.0,
       "rms": 0.0
     },
     "music_enabled": {
       "clipped": false,
-      "frames": 58368,
+      "frames": 57856,
       "peak": 0.00903269089758396,
-      "rms": 0.00239840463352056
+      "rms": 0.00240186174315765
+    },
+    "music_loop_boundary_0": {
+      "clipped": false,
+      "frames": 38400,
+      "peak": 0.00901829358190298,
+      "rms": 0.00213845321215642
+    },
+    "music_loop_boundary_1": {
+      "clipped": false,
+      "frames": 38400,
+      "peak": 0.00901829358190298,
+      "rms": 0.00213468083592547
+    },
+    "music_loop_boundary_2": {
+      "clipped": false,
+      "frames": 38400,
+      "peak": 0.00901829358190298,
+      "rms": 0.00213468083592547
     },
     "paused": {
       "clipped": false,
@@ -35,8 +59,8 @@
     "resumed": {
       "clipped": false,
       "frames": 57856,
-      "peak": 0.00903533771634102,
-      "rms": 0.00179514873652971
+      "peak": 0.00906612258404493,
+      "rms": 0.00180090714418721
     },
     "sfx_disabled": {
       "clipped": false,
@@ -88,9 +112,9 @@
     },
     "tone_7": {
       "clipped": false,
-      "frames": 15872,
+      "frames": 15360,
       "peak": 0.102434456348419,
-      "rms": 0.0218687248423714
+      "rms": 0.0222302158582802
     }
   },
   "scope": "Actual Windows Godot mixer output captured through AudioEffectCapture; not a claim about phone speakers or subjective preference",

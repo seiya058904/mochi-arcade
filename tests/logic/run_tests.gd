@@ -15,11 +15,25 @@ func _initialize() -> void:
 	call_deferred("run")
 
 func run() -> void:
-	# The logic suite exercises no audio. Stop the autoload before the dummy
+	var melody: AudioStreamWAV = root.get_node("Sound").music.stream
+	var frame_count := melody.data.size() / 2
+	check(melody.loop_begin >= 0 and melody.loop_begin < melody.loop_end and melody.loop_end < frame_count, "WAV loop decode endpoint stays inside the PCM buffer")
+	# Stop the autoload before the dummy
 	# headless audio backend shuts down, and let the playback reference drain.
 	root.get_node("Sound").music.stop()
 	root.get_node("Sound").music.stream = null
 	await process_frame
+	if melody.loop_end < frame_count:
+		for rate in [0.5, 1.0, 2.0]:
+			for block_size in [256, 1024, 4096]:
+				var playback := melody.instantiate_playback()
+				playback.start(15.997)
+				var samples: PackedVector2Array = playback.mix_audio(rate, block_size)
+				var bounded: bool = samples.size() == block_size
+				for sample in samples:
+					bounded = bounded and sample.is_finite() and maxf(absf(sample.x), absf(sample.y)) < 0.21
+				check(bounded, "Music loop boundary remains finite and bounded at rate " + str(rate) + " block " + str(block_size))
+				playback.stop()
 	var rows := [
 		[[2, 2, 2, 2], [4, 4, 0, 0], 8],
 		[[4, 4, 8, 8], [8, 16, 0, 0], 24],
