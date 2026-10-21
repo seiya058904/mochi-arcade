@@ -144,6 +144,13 @@ Android input, backgrounds/force-stops/restarts, checks persisted settings/seen 
 and retains screenshots, save observations, logcat and memory data. Script syntax has
 been checked locally; Android execution and visual acceptance remain PENDING.
 
+First hosted attempt [39648255774](https://github.com/seiya058904/mochi-arcade/actions/runs/39648255774)
+passed engine/tests/build/SDK/KVM but the emulator exited before creating a device:
+its default userdata partition needed 12,288 MB, while the temporary runner had
+4,928.71 MB free. The retained emulator log establishes this disk failure, not a KVM
+failure. The dedicated AVD now requests a 2 GB userdata partition, no SD card, and
+the smoke detects early emulator process exit instead of waiting the entire boot timeout.
+
 This uses [documented hosted Linux KVM support](https://github.blog/changelog/2024-04-02-github-actions-hardware-accelerated-android-virtualization-now-available/)
 and the [official emulator CLI](https://developer.android.com/studio/run/emulator-commandline).
 KVM permissions change only on the temporary hosted VM, never on the user's computer.

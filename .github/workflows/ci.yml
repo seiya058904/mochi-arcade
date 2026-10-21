@@ -111,11 +111,12 @@ jobs:
           from pathlib import Path
           path = Path(os.environ['ANDROID_AVD_HOME']) / 'Mochi_CI_API34.avd/config.ini'
           values = dict(line.split('=', 1) for line in path.read_text().splitlines() if '=' in line)
-          values.update({'hw.lcd.width': '720', 'hw.lcd.height': '1280', 'hw.lcd.density': '320', 'hw.ramSize': '2048', 'hw.cpu.ncore': '2'})
+          values.update({'hw.lcd.width': '720', 'hw.lcd.height': '1280', 'hw.lcd.density': '320', 'hw.ramSize': '2048', 'hw.cpu.ncore': '2', 'disk.dataPartition.size': '2G', 'disk.cachePartition.size': '128M', 'hw.sdCard': 'no'})
           path.write_text('\n'.join(f'{key}={value}' for key,value in values.items()) + '\n')
           PY
-          "$ANDROID_HOME/emulator/emulator" -avd Mochi_CI_API34 -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader -accel on -memory 2048 -cores 2 -camera-back none -camera-front none > .local/android-runtime/emulator.log 2>&1 &
-          python3 scripts_tools/android_smoke.py --apk dist/MochiArcade-dev.apk --output .local/android-runtime
+          "$ANDROID_HOME/emulator/emulator" -avd Mochi_CI_API34 -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader -accel on -memory 2048 -cores 2 -partition-size 2048 -camera-back none -camera-front none > .local/android-runtime/emulator.log 2>&1 &
+          emulator_pid=$!
+          python3 scripts_tools/android_smoke.py --apk dist/MochiArcade-dev.apk --output .local/android-runtime --emulator-pid "$emulator_pid"
       - name: Upload Android runtime evidence
         if: always()
         uses: actions/upload-artifact@v4

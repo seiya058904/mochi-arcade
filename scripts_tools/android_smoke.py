@@ -22,6 +22,7 @@ def main():
     parser.add_argument("--apk", required=True, type=Path)
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--serial", default="emulator-5554")
+    parser.add_argument("--emulator-pid", type=int)
     args = parser.parse_args()
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
@@ -80,6 +81,11 @@ def main():
     try:
         deadline = time.monotonic() + 240
         while time.monotonic() < deadline:
+            if args.emulator_pid:
+                try:
+                    os.kill(args.emulator_pid, 0)
+                except ProcessLookupError:
+                    raise RuntimeError("Emulator process exited before boot; inspect emulator.log")
             boot = shell("getprop", "sys.boot_completed", timeout=10, check=False)
             if boot == "1":
                 break
