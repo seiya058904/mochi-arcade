@@ -1,10 +1,10 @@
 # QA report
 
-Status: **PARTIAL** — seven playable games, 2026-10-22.
+Status: **PARTIAL** — eight playable games, 2026-10-22.
 
 Initial read-only audit on 2026-10-21 confirmed an empty work directory, no Git
 root, Java 17, SDK 34 and an offline Android 34 AVD. Since then an actual Godot
-project, production art, shared shell, seven playable scenes and a debug APK have
+project, production art, shared shell, eight playable scenes and a debug APK have
 been built. No stable release has been published.
 
 Evidence must include command, actual environment, case counts, pass/fail,
@@ -37,6 +37,8 @@ Android emulator: BLOCKED; every observed `adb devices -l` shows offline.
 | Balls collision / pool / lifecycle | PASS, 236,650 checks | evidence/bouncy-balls-tests.json; 1,000 independently checked sweeps, 2,000 outward curved rebounds, x2/x3 actual offspring, claim inheritance, excess +5 scoring, paddle endpoints at 30/60/120 Hz, pause/save/changed viewport/clear/loss/retry/unload; fixed 64-slot pool |
 | Balls sustained stress | PASS, Windows simulation | 60 simulated seconds maintaining 64 balls; finite motion, bounded speed/effects, zero exhausted collision iterations, 27 to 28 nodes (one shared toast). Measured headless physics p50 705 us / p95 1726 us / max 4844 us on this run. These are not rendering frame times or Android performance. |
 | Balls ordinary-input replay | PASS, rendered + headless | evidence/balls-playthrough-*.json; seed 881, actual Godot mouse press/drag, 4 waves, 134 catches, 241 brick hits, x2/x3 gate crossings 77/67, real max 64 balls, 164 recycled, score 4820, natural loss/retry. Outcomes agree; screenshot synchronization differs by one frame. Five desktop captures visually reviewed. |
+| Jelly rules / lifecycle / stress | PASS, 7,224 checks | evidence/jelly-slice-tests.json; 600px single-segment sweep, release-segment multi-cut, one-shot claim, x5 combo cap/expiry, invalid coordinates, pause/cancel/secondary finger, analytic trajectory at 30/60/120 Hz, save/RNG, no-penalty misses, explicit finish/retry, reduced motion, full unload. Saturation: 60 seconds / 108,000 swipe events, exact caps 12 fruit/32 halves/24 trail/64 particles, no node growth. |
+| Jelly ordinary-input replay | PASS, rendered + headless | evidence/jelly-playthrough-*.json; seed 2047, 60 seconds, 157 launched / 150 sliced / 7 naturally missed, score 2400, max 7 fruit / 16 halves. Actual Finish break and One more go button clicks succeed. Four rendered captures reviewed, including original matching whole/cut surfaces. |
 | Audio shutdown | PASS on desktop reruns | evidence/audio-shutdown.json; verbose baseline identified 3 AudioStreamWAV + 8 AudioStreamPlaybackWAV resources. Explicit player stop plus real-time mixer drain produced zero leaked instances on Trio, and no warning on Hop. |
 | Desktop rendering | PASS for current screens | evidence/desktop-*.png files, AMD RX 7900 XT Compatibility renderer |
 | Native desktop input | PASS for current four games | Actual home/settings clicks, 2048 left/up swipes and merge score 4, Cake placement/cut and score 1, Fruit aim/release and next preview, focus-loss pause/resume; Bubble real mouse drag/release pops four and scores 40 (desktop-bubble-native.png) |
@@ -45,9 +47,20 @@ Android emulator: BLOCKED; every observed `adb devices -l` shows offline.
 | APK metadata | PASS | io.github.seiya058904.mochiarcade, min API 24, target 36, arm64-v8a+x86_64; VIBRATE only |
 | Android install / launch / touch | BLOCKED | No online device; not claimed verified |
 | Audible quality / physical-device performance | NOT_RUN | Requires actual listening and Android runtime |
-| CI / release | PASS for d609cb4 / NOT_PUBLISHED | [Run 39643643457](https://github.com/seiya058904/mochi-arcade/actions/runs/39643643457): all six-game checks and debug Android build passed. Balls checkpoint awaits its own CI run. |
+| CI / release | PASS for dd211e8 / NOT_PUBLISHED | [Run 39645713022](https://github.com/seiya058904/mochi-arcade/actions/runs/39645713022): all seven-game checks and debug Android build passed. Jelly checkpoint awaits its own CI run. |
 
 ## Found and fixed
+
+- Jelly's first multi-finger fixture sent touch-down only to `_input`; the app starts
+  gestures in `_unhandled_input`. Corrected the fixture to match the actual event route;
+  assertions still require primary ownership and canceled-release suppression.
+- Added a shared clipping Control around each game so thrown fruit/halves cannot draw
+  over the footer or header. Existing game rule/runtime regressions all pass after the change.
+- Jelly headless stress initially measured isolated 321,749 us and 208,727 us maxima.
+  Those adverse observations are preserved. Instrumented independent follow-ups measured
+  maxima 4,016 us and 3,296 us, with no >16,667 us sample; latest p50/p95 are 257/398 us.
+  The initial outlier cause remains UNVERIFIED, not attributed to a code fix. These are
+  simulation + synthetic-swipe timings, not Android render frame time or performance acceptance.
 
 - Balls stress initially exhausted collision iterations seven times. A grazing bumper
   reflection had its small vertical speed increased back into the bumper. The original

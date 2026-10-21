@@ -14,7 +14,7 @@ an evidenced external blocker prevents all meaningful progress.
 | 4c. Mochi Hop | PASS (desktop) | 2,000 seeds / 50,000 platforms; 550,008 rule + 47 runtime assertions; 40-hop real-scene input replay, natural miss/retry, screenshots |
 | 4d. Tile Trio | PASS (desktop) | 1,500 solver-verified boards, 439,506 rule + 23 runtime checks; 5 shops / 187 input picks / natural full tray / free result undo / restart; actual screenshots |
 | 4e. Bouncy Balls | PASS (desktop) | 236,650 checks; real x2/x3 gates; 60-second 64-ball stress; normal input clears 4 waves, reaches 64 balls, naturally loses/retries; rendered captures |
-| 4f. Jelly Slice | TODO | Continuous swipe/one-shot/pool/Zen runtime proof |
+| 4f. Jelly Slice | PASS (desktop) | 7,224 checks; 108,000 stress swipe events; real-input 60-second Zen round slices 150 fruit, naturally misses 7, finishes/retries via buttons; original whole/half art reviewed |
 | 5. Integration / lifecycle / stress audit | TODO | 30 switches, corrupt save, pause/back/restart, adverse samples |
 | 6. Complete visual reviews + targeted fixes | TODO | Home + 8 games + overlays + settings + aspect ratio matrix |
 | 7. Signed Android acceptance | TODO | Signature, package, ABI, hash, install, touch and lifecycle logs |
@@ -23,7 +23,7 @@ an evidenced external blocker prevents all meaningful progress.
 
 ## Current checkpoint
 
-- Latest synchronized implementation commit: d609cb4b1fdc71e98d0091d3924a1c643407923a (Tile Trio); CI 39643643457 PASS.
+- Latest synchronized implementation commit: dd211e8488aa074a03eec78cd6a6f61c15b9d55c (Bouncy Balls); CI 39645713022 PASS.
 - Engine verified: 4.7.2.stable.official.ed1daf0bf; official Android templates;
   JDK 17.0.20.1; SDK/Build Tools 36 for the actual target-36 template.
 - Two concepts generated; cream stationery selected; transparent card atlas and
@@ -60,9 +60,15 @@ an evidenced external blocker prevents all meaningful progress.
   speed, two-second/lifecycle saves, persistent waves. Stress exposed a grazing-bumper
   correction pointing inward; regression retained and fixed. Rendered ordinary-input
   run clears four waves, catches 134 times, reaches 64 balls, scores 4820 and retries.
-- Next: commit/push Balls, then Jelly Slice production whole/half art, continuous
-  swipe collision, one-cut ownership, bounded fruit/halves/trails and Zen round controls.
-- Remaining one game, full visual/performance/security audit, release key and
+- Jelly Slice: four original whole/left/right fruit sets, exact segment swipes,
+  claimed-before-feedback single cuts, bounded 12 fruit / 32 halves / 24 trail samples,
+  capped combo, analytic flight, Zen misses without penalty, voluntary result/retry.
+  All eight now playable; shared clipping contains moving objects inside the play area.
+  Earlier stress outliers 321/208 ms remain recorded; two isolated follow-ups had no
+  >16.667 ms sample. Cause is unverified; no Android performance inference is made.
+- Next: commit/push Jelly; full eight-game lifecycle and visual matrix. Investigate
+  a GitHub-hosted Android emulator as an alternative to this offline local AVD.
+- Full visual/performance/security audit, release key and
   final signed APK/Android acceptance/Release are not done. Goal remains active.
 
 ## Success criteria

@@ -5,6 +5,7 @@ const C := preload("res://scripts/app/catalog.gd")
 var ui: Control
 var overlay: Control
 var game: MochiGame
+var game_clip: Control
 var current_index := -1
 var page := "home"
 var font: Font
@@ -94,9 +95,13 @@ func clear_page() -> void:
 	if is_instance_valid(game):
 		game.checkpoint()
 		game.cancel_pointer()
-		remove_child(game)
+		game.get_parent().remove_child(game)
 		game.queue_free()
 		game = null
+	if is_instance_valid(game_clip):
+		remove_child(game_clip)
+		game_clip.queue_free()
+		game_clip = null
 	if is_instance_valid(ui):
 		remove_child(ui)
 		ui.queue_free()
@@ -247,12 +252,17 @@ func open_game(index: int, fresh: bool = false, seed_value: int = -1) -> void:
 	game = packed.instantiate()
 	layout_shell()
 	game.setup(id, play_rect.size, font, seed_value)
-	game.position = play_rect.position
+	game_clip = Control.new()
+	game_clip.position = play_rect.position
+	game_clip.size = play_rect.size
+	game_clip.clip_contents = true
+	game_clip.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(game_clip)
+	move_child(game_clip, 0)
 	game.score_changed.connect(update_score)
 	game.ended.connect(show_result)
 	game.toast_requested.connect(toast)
-	add_child(game)
-	move_child(game, 0)
+	game_clip.add_child(game)
 	update_score(game.score)
 	if not Save.data.seen.get(id, false):
 		Save.data.seen[id] = true
@@ -280,18 +290,24 @@ func layout_shell() -> void:
 	if is_instance_valid(game) and game.is_inside_tree():
 		var factor := minf(play_rect.size.x / game.area.x, play_rect.size.y / game.area.y)
 		game.scale = Vector2.ONE * factor
-		game.position = play_rect.position + (play_rect.size - game.area * factor) * 0.5
+		game_clip.position = play_rect.position
+		game_clip.size = play_rect.size
+		game.position = (play_rect.size - game.area * factor) * 0.5
 	var y := size.y - bottom_safe - 84
 	button(ui, C.words("How to play", "怎么玩"), Rect2(30, y, 214, 76), show_help, P.PAPER, 24)
 	var action_name := C.words("Undo", "撤回") if current_index in [4, 6] else C.words("Restart", "重开")
 	if current_index == 1:
 		action_name = C.words("Hint", "免费提示")
+	elif current_index == 7:
+		action_name = C.words("Finish break", "结束小憩")
 	var action_width := (size.x - 296) / 2 if current_index == 4 else size.x - 284
 	button(ui, action_name, Rect2(254, y, action_width, 76), func():
 		if current_index in [4, 6]:
 			game.action("undo")
 		elif current_index == 1:
 			game.action("hint")
+		elif current_index == 7:
+			game.action("finish")
 		else:
 			confirm_restart(), P.ACCENTS[current_index], 25)
 	if current_index == 4:

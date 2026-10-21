@@ -4,8 +4,7 @@ A cozy, offline collection of eight original 2D pocket games for Android.
 
 **In development. No verified release is available yet.**
 
-The shared app, Fruit Drop, Bubble Garden, Cake Stack, Bouncy Balls, Tile Trio, Mochi Hop and Number Bloom
-are playable in the current development build. Jelly Slice is in progress. Android installation
+All eight games are playable in the current development build. Android installation
 acceptance is pending an online device; a successful APK export alone is not
 an installation test.
 
@@ -47,4 +46,7 @@ Tile Trio independently solves **1,500 seeded boards** and verifies five consecu
 levels plus full-tray recovery through actual scene input.
 Bouncy Balls reaches the real 64-ball cap during a four-wave input replay; sustained
 pool stress and swept collisions have dedicated regression checks.
+Jelly Slice verifies fast segment swipes, single-cut ownership and bounded fruit,
+halves and trails; a 60-second actual-input replay slices 150 fruit and exercises
+the voluntary Zen results and replay controls.
 The [release checklist](docs/RELEASE_CHECKLIST.md) deliberately retains pending gates.
