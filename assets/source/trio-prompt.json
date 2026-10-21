@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen",
+  "date": "2026-10-22",
+  "prompt": "Create a clean production icon sprite atlas for Mochi Arcade's Tile Trio matching game. Exactly EIGHT original isolated object icons in an evenly spaced FOUR columns by TWO rows grid, true transparent background. Row 1 left to right: a pair of coral-red cherries with a tiny stem; a fresh mint-green leaf; a sky-blue teacup; a golden-yellow star-shaped butter cookie. Row 2 left to right: a lavender ball of yarn; a peach-pink butterfly; a turquoise little fish; a pink five-petal flower with golden center. Delicate cream-stationery gouache illustration style, restrained textured soft pastel fills, legible warm cocoa contours, extremely clear distinct silhouettes readable at 45 pixels. Every object alone with generous transparent spacing within its cell, same visual scale and visual weight. No tile backgrounds, no squares, no frames, no text, no numbers, no logos, no decorative scatter, no cast shadows. Flat near-front view, no scene, no duplicates. Smooth clean alpha edges without fringe speckles. Original cohesive casual game icons suitable for placing on cream rounded game tiles.",
+  "output": "assets/art/trio-icons.png"
+}

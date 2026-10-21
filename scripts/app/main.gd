@@ -20,6 +20,7 @@ var top_safe := 36.0
 var bottom_safe := 28.0
 var switching := false
 var lifecycle_suspend_pending := false
+var exiting := false
 
 func _ready() -> void:
 	get_tree().auto_accept_quit = false
@@ -285,13 +286,16 @@ func layout_shell() -> void:
 	var action_name := C.words("Undo", "撤回") if current_index in [4, 6] else C.words("Restart", "重开")
 	if current_index == 1:
 		action_name = C.words("Hint", "免费提示")
-	button(ui, action_name, Rect2(254, y, size.x - 284, 76), func():
+	var action_width := (size.x - 296) / 2 if current_index == 4 else size.x - 284
+	button(ui, action_name, Rect2(254, y, action_width, 76), func():
 		if current_index in [4, 6]:
 			game.action("undo")
 		elif current_index == 1:
 			game.action("hint")
 		else:
 			confirm_restart(), P.ACCENTS[current_index], 25)
+	if current_index == 4:
+		button(ui, C.words("Hint", "提示"), Rect2(266 + action_width, y, action_width, 76), func(): game.action("hint"), P.MINT, 25)
 
 func update_score(value: int) -> void:
 	if is_instance_valid(score_label):
@@ -334,7 +338,10 @@ func restart() -> void:
 	open_game(index, true)
 
 func show_result(message: String) -> void:
-	show_dialog(C.words("A lovely little round", "又一局小快乐"), message + "\n" + C.words("Your score  ", "本局得分  ") + str(game.score), [[C.words("One more go", "再玩一次"), restart], [C.words("Back to my pocket", "返回首页"), leave_game]])
+	var actions := [[C.words("One more go", "再玩一次"), restart], [C.words("Back to my pocket", "返回首页"), leave_game]]
+	if current_index == 4 and game.can_undo():
+		actions.push_front([C.words("Undo last tile", "撤回最后一块"), func(): dismiss_overlay(); game.action("undo")])
+	show_dialog(C.words("A lovely little round", "又一局小快乐"), message + "\n" + C.words("Your score  ", "本局得分  ") + str(game.score), actions)
 
 func show_dialog(title: String, body: String, actions: Array) -> void:
 	dismiss_overlay()
@@ -385,10 +392,16 @@ func _notification(what: int) -> void:
 	elif what == NOTIFICATION_WM_GO_BACK_REQUEST:
 		back()
 	elif what == NOTIFICATION_WM_CLOSE_REQUEST:
-		if is_instance_valid(game):
-			game.checkpoint()
-		Save.flush()
-		get_tree().quit()
+		exit_application()
+
+func exit_application() -> void:
+	if exiting:
+		return
+	exiting = true
+	pause_game(true)
+	Save.flush()
+	await Sound.shutdown()
+	get_tree().quit()
 
 func _suspend_from_lifecycle() -> void:
 	lifecycle_suspend_pending = false
@@ -411,7 +424,7 @@ func back() -> void:
 	elif page == "settings":
 		show_home()
 	else:
-		show_dialog(C.words("See you in a little while?", "下次再一起玩？"), C.words("Your records are tucked away safely.", "你的纪录已经妥善保存。"), [[C.words("Stay here", "再玩一会儿"), dismiss_overlay], [C.words("Close the app", "退出应用"), func(): get_tree().quit()]])
+		show_dialog(C.words("See you in a little while?", "下次再一起玩？"), C.words("Your records are tucked away safely.", "你的纪录已经妥善保存。"), [[C.words("Stay here", "再玩一会儿"), dismiss_overlay], [C.words("Close the app", "退出应用"), exit_application]])
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:

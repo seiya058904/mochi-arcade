@@ -63,6 +63,7 @@ func run() -> void:
 	file.store_string(JSON.stringify(result, "  ") + "\n")
 	result.erase("drop_x")
 	print(JSON.stringify(result))
+	await root.get_node("Sound").shutdown()
 	app.queue_free()
 	await process_frame
 	quit(0 if result.status == "PASS" and result.restart_empty else 1)

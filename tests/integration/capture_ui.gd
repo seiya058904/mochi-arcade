@@ -56,6 +56,7 @@ func run() -> void:
 	app.open_game(6)
 	app.resume()
 	await shot("desktop-bloom-small")
+	await root.get_node("Sound").shutdown()
 	app.queue_free()
 	await process_frame
 	quit()

@@ -1,10 +1,10 @@
 # QA report
 
-Status: **PARTIAL** — five playable games, 2026-10-22.
+Status: **PARTIAL** — six playable games, 2026-10-22.
 
 Initial read-only audit on 2026-10-21 confirmed an empty work directory, no Git
 root, Java 17, SDK 34 and an offline Android 34 AVD. Since then an actual Godot
-project, production art, shared shell, five playable scenes and a debug APK have
+project, production art, shared shell, six playable scenes and a debug APK have
 been built. No stable release has been published.
 
 Evidence must include command, actual environment, case counts, pass/fail,
@@ -31,6 +31,10 @@ Android emulator: BLOCKED; every observed `adb devices -l` shows offline.
 | Hop runtime/input | PASS, 47 checks | evidence/mochi-hop-tests.json; short/center/long holds, explicit edge margin, streak scoring, no airborne duplicate launch, pause/cancel/multitouch/background/reload, three frame rates and three viewport sizes |
 | Hop actual scene input replay | PASS, rendered + headless | evidence/hop-playthrough-*.json; seed 1729, real Godot mouse-down/up routing, 40 successful hops / score 130, natural short-hold miss and immediate playable retry. Per-hop measured charge/frame trace retained. |
 | Hop native desktop smoke | PASS for entry/short hold/miss/retry | Native window entered from home, mouse drag-hold/release visibly launched, too-short hold naturally missed, One more go restored the ready platform. desktop-hop-native.png retains the miss. Successful calibrated holds are covered by the separate input replay, not claimed as manual phone play. |
+| Trio construction/solver | PASS, 439,506 assertions | evidence/trio-solver-tests.json; 500 seeds at levels 1/4/10 (1,500 boards), construction witness plus independent search replay, independent rectangle occlusion and modulo-three tray oracle; max 176 search nodes; seventh matching tile clears before the capacity check |
+| Trio runtime/recovery | PASS, 23 checks | evidence/tile-trio-tests.json; covered corners, rapid duplicate taps, paused transit, atomic undo of a completed match, persisted history, solver-confirmed hint, natural full tray, free result-button undo, next level and restart |
+| Trio actual input replay | PASS, rendered + headless | evidence/trio-playthrough-*.json; seed 701, 180 normal hinted picks clear five shops for 2100 points; seven further legal low-match picks fill the tray; real result-button click recovers six slots; restart playable. Full trace retained. |
+| Audio shutdown | PASS on desktop reruns | evidence/audio-shutdown.json; verbose baseline identified 3 AudioStreamWAV + 8 AudioStreamPlaybackWAV resources. Explicit player stop plus real-time mixer drain produced zero leaked instances on Trio, and no warning on Hop. |
 | Desktop rendering | PASS for current screens | evidence/desktop-*.png files, AMD RX 7900 XT Compatibility renderer |
 | Native desktop input | PASS for current four games | Actual home/settings clicks, 2048 left/up swipes and merge score 4, Cake placement/cut and score 1, Fruit aim/release and next preview, focus-loss pause/resume; Bubble real mouse drag/release pops four and scores 40 (desktop-bubble-native.png) |
 | Debug APK export | PASS | dist/MochiArcade-dev.apk, local ignored artifact |
@@ -38,7 +42,7 @@ Android emulator: BLOCKED; every observed `adb devices -l` shows offline.
 | APK metadata | PASS | io.github.seiya058904.mochiarcade, min API 24, target 36, arm64-v8a+x86_64; VIBRATE only |
 | Android install / launch / touch | BLOCKED | No online device; not claimed verified |
 | Audible quality / physical-device performance | NOT_RUN | Requires actual listening and Android runtime |
-| CI / release | PASS for 3099316 / NOT_PUBLISHED | [Run 39638293273](https://github.com/seiya058904/mochi-arcade/actions/runs/39638293273): engine/template verification, import/tests, SDK setup, debug Android build and artifact upload all passed. Hop checkpoint still needs its own CI run. |
+| CI / release | PASS for 7faa254 / NOT_PUBLISHED | [Run 39640559280](https://github.com/seiya058904/mochi-arcade/actions/runs/39640559280): all five-game checks and debug Android build passed. Trio checkpoint still needs its own CI run. |
 
 ## Found and fixed
 
@@ -61,10 +65,11 @@ Android emulator: BLOCKED; every observed `adb devices -l` shows offline.
   their original run seed. Rendered/headless bubble action traces now agree exactly.
 - Small generated bubbles shimmered when downsampled: enabled mipmaps and inspected
   the actual 450x800 result. Moved the next-shot label above its preview to clear the footer.
-- Rendered long-play shutdown still occasionally reports two ObjectDB instances;
-  Hop's accelerated run also reported twelve once; a verbose rerun was clean.
-  Headless runs are clean. This intermittent desktop audio/resource teardown warning remains open
-  for the integration audit; no crash or persistent in-game node growth observed here.
+- Rendered accelerated runs retained audio resources at shutdown. Trio reproduced
+  eleven leaks (3 WAV streams, 8 playbacks). Stopping streams in `_exit_tree` was too late
+  for the mixer thread. App exit now stops playback and waits 60-250 ms of actual wall time
+  for the mixer before quitting; rendered test harnesses use the same drain. Trio verbose
+  and Hop reruns exit cleanly. Pausing stops short sound effects instead of resuming old tails.
 - Reproduced canceled-touch launch: `InputEventScreenTouch.canceled` previously took the
   normal release path. Shared input now cancels the owned gesture instead. A right mouse
   button release also cannot terminate an active left-button hold. Regression retained.
@@ -73,6 +78,24 @@ Android emulator: BLOCKED; every observed `adb devices -l` shows offline.
 - The reachability test initially compared float32 Vector2's 1.2000000477 endpoint to a
   float64 1.2 literal. Corrected that endpoint comparison with approximate equality;
   unchanged sampled landings, geometric oracle and minimum-window assertions all pass.
+- Trio's first runtime fixture incorrectly assumed the independent solver's first three
+  picks always form a trio; it may legally mix motifs. The atomic-match fixture now uses
+  the known legal constructed triple; the full independent-solver replay remains required.
+- Trio's initial result-button assertion ran before deferred GUI activation. The screenshot
+  already showed the correct six-slot recovery; the test now waits two scene iterations
+  and still requires a dismissed result overlay and a playable six-slot tray.
+
+## Tile Trio construction and recovery
+
+Every board has 36 tiles on three genuinely overlapping layers. A seeded legal removal
+order is constructed first, then each consecutive triple receives one motif. The player
+does not see that witness. An independent memoized search uses only blockers, occupancy
+and tray counts; tests replay both solutions and independently check rectangle overlaps
+and modulo-three counts. Levels use 6-8 distinct original motifs. Seven unmatched slots
+end the round; a completing trio clears before that limit is evaluated. Free undo restores
+the entire preceding board/tray/score snapshot, even after a match or a full-tray result.
+History persists across reload. Free hints only mark the first move of a verified solution;
+an unsolved/budget-limited state suggests undo rather than inventing a safe move.
 
 ## Hop rules and persistence
 

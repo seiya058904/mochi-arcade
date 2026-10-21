@@ -69,6 +69,7 @@ func run() -> void:
 	output.store_string(JSON.stringify(report, "  ") + "\n")
 	report.erase("input_trace")
 	print(JSON.stringify(report))
+	await root.get_node("Sound").shutdown()
 	app.queue_free()
 	await process_frame
 	quit(0 if report.status == "PASS" else 1)

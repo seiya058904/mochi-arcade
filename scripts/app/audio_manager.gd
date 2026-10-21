@@ -5,14 +5,30 @@ var voices: Array[AudioStreamPlayer] = []
 var music: AudioStreamPlayer
 var next_voice := 0
 var tones: Array[AudioStreamWAV] = []
+var shutting_down := false
 
 func _exit_tree() -> void:
+	stop_players()
+
+func stop_players() -> void:
 	if is_instance_valid(music):
 		music.stop()
 		music.stream = null
 	for voice in voices:
 		voice.stop()
 		voice.stream = null
+
+func shutdown() -> void:
+	shutting_down = true
+	stop_players()
+	if DisplayServer.get_name() == "headless":
+		return
+	# Playback removal is consumed by the audio mixer thread. Scene frames may
+	# run faster than real time in replay tests, so drain against a real clock.
+	var drain_ms := ceili(clampf(AudioServer.get_output_latency() + 0.04, 0.06, 0.25) * 1000)
+	var deadline := Time.get_ticks_msec() + drain_ms
+	while is_inside_tree() and Time.get_ticks_msec() < deadline:
+		await get_tree().process_frame
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -65,7 +81,7 @@ func melody() -> AudioStreamWAV:
 	return wave
 
 func apply_settings() -> void:
-	if not is_instance_valid(music):
+	if shutting_down or not is_instance_valid(music):
 		return
 	# A headless rules runner has no audible output. Do not enqueue playback
 	# into the dummy backend, whose asynchronous shutdown can retain streams.
@@ -80,7 +96,7 @@ func apply_settings() -> void:
 			voice.stop()
 
 func play(note: int = 0) -> void:
-	if DisplayServer.get_name() == "headless" or not Save.setting("sfx") or voices.is_empty():
+	if shutting_down or DisplayServer.get_name() == "headless" or not Save.setting("sfx") or voices.is_empty():
 		return
 	var voice := voices[next_voice]
 	next_voice = (next_voice + 1) % voices.size()
@@ -90,4 +106,5 @@ func play(note: int = 0) -> void:
 func suspend(value: bool) -> void:
 	music.stream_paused = value
 	for voice in voices:
-		voice.stream_paused = value
+		if value:
+			voice.stop()

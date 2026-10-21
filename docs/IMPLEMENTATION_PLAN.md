@@ -12,7 +12,7 @@ an evidenced external blocker prevents all meaningful progress.
 | 4a. Fruit Drop | PASS (desktop) | 29 physics/rule checks PASS; 251 normal-action drops reach tier 7 and natural overflow; rendered art and native aim/release checked |
 | 4b. Bubble Garden | PASS (desktop) | 1,364 checks; 5 gardens cleared in 33 hinted shots; 73 shots reach natural loss; alpha art and footer reviewed |
 | 4c. Mochi Hop | PASS (desktop) | 2,000 seeds / 50,000 platforms; 550,008 rule + 47 runtime assertions; 40-hop real-scene input replay, natural miss/retry, screenshots |
-| 4d. Tile Trio | TODO | Solver-verified seed batches, undo/tray/input runtime proof |
+| 4d. Tile Trio | PASS (desktop) | 1,500 solver-verified boards, 439,506 rule + 23 runtime checks; 5 shops / 187 input picks / natural full tray / free result undo / restart; actual screenshots |
 | 4e. Bouncy Balls | TODO | Paddle/multiplier/pool/collision/stress proof |
 | 4f. Jelly Slice | TODO | Continuous swipe/one-shot/pool/Zen runtime proof |
 | 5. Integration / lifecycle / stress audit | TODO | 30 switches, corrupt save, pause/back/restart, adverse samples |
@@ -23,7 +23,7 @@ an evidenced external blocker prevents all meaningful progress.
 
 ## Current checkpoint
 
-- Latest synchronized implementation commit: 3099316eea687828b506baeb107e9109f87c2e66 (Bubble Garden); full CI PASS.
+- Latest synchronized implementation commit: 7faa254ab169aabb551386cf25b8a679562dbfc8 (Mochi Hop); CI 39640559280 PASS.
 - Engine verified: 4.7.2.stable.official.ed1daf0bf; official Android templates;
   JDK 17.0.20.1; SDK/Build Tools 36 for the actual target-36 template.
 - Two concepts generated; cream stationery selected; transparent card atlas and
@@ -51,9 +51,13 @@ an evidenced external blocker prevents all meaningful progress.
   robust cancel/pause/restore. 2,000 seeds / 50,000 platforms passed, minimum valid
   hold interval 0.385934 s. 40-hop replay scored 130 then naturally missed and retried.
   Shared touch cancel and toast placement fixes passed current game regressions.
-- Next: commit/push Hop; Tile Trio reversible layered generation, independent solver,
-  seven-slot tray, undo/hints, real clearing/failure/retry inputs and art.
-- Remaining three games, full visual/performance/security audit, release key and
+- Tile Trio now passes full desktop acceptance: 36 layered tiles, seven-slot tray,
+  exact triples, persistent atomic undo and solver-backed free hints. Five shops clear
+  for 2100 points; 187 actual input picks reach full-tray results and recover via Undo.
+  Audio shutdown warnings were identified as pending WAV playbacks and fixed by mixer drain.
+- Next: commit/push Trio, then Bouncy Balls paddle, swept collisions, real multipliers,
+  strict pool cap, natural wave/loss/retry play and sustained load verification.
+- Remaining two games, full visual/performance/security audit, release key and
   final signed APK/Android acceptance/Release are not done. Goal remains active.
 
 ## Success criteria
