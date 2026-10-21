@@ -15,9 +15,9 @@ an evidenced external blocker prevents all meaningful progress.
 | 4d. Tile Trio | PASS (desktop) | 1,500 solver-verified boards, 439,506 rule + 23 runtime checks; 5 shops / 187 input picks / natural full tray / free result undo / restart; actual screenshots |
 | 4e. Bouncy Balls | PASS (desktop) | 236,650 checks; real x2/x3 gates; 60-second 64-ball stress; normal input clears 4 waves, reaches 64 balls, naturally loses/retries; rendered captures |
 | 4f. Jelly Slice | PASS (desktop) | 7,224 checks; 108,000 stress swipe events; real-input 60-second Zen round slices 150 fruit, naturally misses 7, finishes/retries via buttons; original whole/half art reviewed |
-| 5. Integration / lifecycle / stress audit | PASS (desktop) | 17 required suites; 934 full-collection checks, 40 switches, damaged-save recovery and three viewport profiles |
+| 5. Integration / lifecycle / stress audit | PASS (desktop) | 18 required suites; 934 full-collection checks, 40 switches, damaged-save recovery and three viewport profiles |
 | 6. Complete visual reviews + targeted fixes | PASS (desktop) | 34 actual renderer captures; EN/ZH, home, eight games, settings, help/pause; board fit, mipmaps and text contrast fixed |
-| 7. Signed Android acceptance | TODO | Signature, package, ABI, hash, install, touch and lifecycle logs |
+| 7. Signed Android acceptance | IN_PROGRESS | Secure key and signed candidate verified statically; hosted Android debug install/start PASS, legacy GLES rendering FAIL; swangle rerun pending |
 | 8. CI / final audit / remote sync | TODO | Clean local/upstream/default SHA match, final-SHA CI green |
 | 9. Release and download verification | TODO | Annotated tag, draft assets, independent hash match, publish |
 
@@ -72,7 +72,10 @@ an evidenced external blocker prevents all meaningful progress.
 - Visual matrix: 34 desktop captures at 450x800, 360x800 and 640x800. All layouts
   reviewed; original art mipmaps, tall-home spacing and 4.58:1 minimum muted-text
   contrast on the eight theme surfaces verified. This is not a full accessibility audit.
-- Next: execute the revised hosted API 34 standard AOSP AVD. The Google APIs image
+- Hosted API 34 now boots, installs and starts the app. Legacy SwiftShader GLES
+  fails shader linking, retained in android-first-launch.json and real screenshots.
+  Next: swangle (ANGLE/Vulkan) rerun, actual fullscreen-tip dismissal, offline input.
+- The Google APIs image
   required at least 7,372.80 MB despite the requested 2 GB partition. Standard AOSP
   retains full graphics without Google apps; only three extracted job-owned download
   archives are removed to make room. No local files or unrelated runner tools are deleted.

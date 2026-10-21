@@ -115,6 +115,7 @@ func _draw() -> void:
 		draw_line(Vector2(moving_x + layers[-1].w / 2.0, y + 46), Vector2(moving_x + layers[-1].w / 2.0, y + 65), P.MUTED, 2)
 	if feedback_life > 0:
 		text_at(feedback + ("  ×" + str(combo) if combo > 1 else ""), Vector2(area.x / 2, 210), 34, P.INK, true)
+	rounded(Rect2(24, area.y - 76, area.x - 48, 56), P.PAPER, 20)
 	text_at(MochiCatalog.words("Tap anywhere to place a layer", "点击放下这一层"), Vector2(area.x / 2, area.y - 40), 25, P.MUTED, true)
 	draw_effects()
 

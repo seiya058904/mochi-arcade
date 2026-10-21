@@ -13,8 +13,8 @@ seed/action sequence, screenshot/log path and unresolved limitations.
 ## Gate register
 
 A01-A15 details: RELEASE_CHECKLIST.md. Physical Android: DEVICE_UNAVAILABLE.
-Local Android emulator: BLOCKED by absent acceleration. Hosted KVM passes; two
-boot attempts failed on disk space. Revised standard AOSP environment awaits execution.
+Local Android emulator: BLOCKED by absent acceleration. Hosted API 34 now boots and installs/launches the APK. The first rendered attempt
+failed on the legacy SwiftShader GLES compiler; full Android acceptance remains pending.
 
 ## Executed checks
 
@@ -46,7 +46,7 @@ boot attempts failed on disk space. Revised standard AOSP environment awaits exe
 | Debug APK export | PASS | dist/MochiArcade-dev.apk, local ignored artifact |
 | Debug APK signature | PASS, debug only | v2/v3 schemes; certificate 2207476872571c99d83537c73a9e3b38d9b66c5d04bef7ad3ccd5ebbe122b0ab |
 | APK metadata | PASS | io.github.seiya058904.mochiarcade, min API 24, target 36, arm64-v8a+x86_64; VIBRATE only |
-| Android install / launch / touch | BLOCKED | No online device; not claimed verified |
+| Android install / launch / touch | PASS install/start; FAIL rendering; touch NOT_VERIFIED | Run 39653014044 boots API 34, installs and launches. Legacy SwiftShader cannot link Godot shaders; first-run fullscreen system tip also blocks input. |
 | Audio output | PASS measured Windows mixer / phone UNVERIFIED | evidence/audio-output.json: 48 kHz captured output, eight tone peaks 0.101-0.103, eight-voice burst 0.438, music peak 0.0090, muted/paused output exactly zero. No subjective listening or phone-speaker claim. |
 | Repository credential/provenance review | PASS bounded static audit | evidence/security-audit.json: 13 commits, 259 text blobs, known credential patterns; 80 binary/large blobs counted separately. No findings or runtime network/process calls; not exhaustive secret detection. |
 | CI / release | PASS for da1d397 / NOT_PUBLISHED | [Run 39647458113](https://github.com/seiya058904/mochi-arcade/actions/runs/39647458113): all eight-game checks and debug Android build passed. Later hosted runtime attempts fail on disk, as retained below. |
@@ -214,3 +214,36 @@ metadata revision 4. Runs 39651418664/39651874434 retained this mismatch; valida
 now reads the installed package.xml revision. Run 39652355709 failed earlier on a
 transient Google HTTP/2 download error; the CLI download now uses HTTP/1.1 and bounded
 retry-all-errors. These are environment failures, never counted as Android success.
+
+## Android first actual execution and retained failure
+
+[Run 39653014044](https://github.com/seiya058904/mochi-arcade/actions/runs/39653014044)
+booted Android 14 / API 34 (AOSP x86_64), installed its actual development APK
+successfully and cold-started the exported launcher in 2,149 ms. KVM/disk/tool
+setup now work. The black frame and fullscreen-tip captures are retained under
+`evidence/android-first-launch-*`; `android-first-launch.json` links the exact
+commit/APK digest. No game-entry or persistence success is claimed from these taps.
+
+Logcat shows SceneShaderGLES3 and CanvasShaderGLES3 failing the legacy SwiftShader
+GLES uniform limit (261). This matches [Godot issue 109550](https://github.com/godotengine/godot/issues/109550),
+including a report for 4.7.2. The next runner uses the documented
+[swangle graphics mode](https://developer.android.com/studio/run/emulator-acceleration),
+which routes GLES through ANGLE and SwiftShader's Vulkan driver. Production still
+uses Compatibility; no gameplay or engine version is changed to hide the failure.
+The smoke now inspects/dismisses the actual Android fullscreen tip through UI XML,
+waits for rendering beyond native activity visibility, disables Wi-Fi/mobile data,
+and fails on Godot renderer errors as well as script crashes. Save reads use the
+ADB shell exit status, so missing files cannot be reported as successful reads.
+
+## Vertical games ordinary-action completion
+
+Rendered and headless reports agree: Cake reaches 60 consecutive perfect layers,
+350 points and exactly 24 retained layers; three ordinary trims then a natural
+miss give 353 points. The actual result button starts a fresh playable round.
+2048 seed 2048 / input seed 44 makes 63 legal swipes, reaches score 368 / tile 32,
+then naturally has no moves and retries. No board, moving position, score or
+terminal state is injected. The first harness observed at 0.20 s, before the
+production 0.22 s result delay; its unchanged action trace passes with a 0.267 s
+observation. This was a fixture timing correction, not a gameplay fix.
+Tall Cake review found layers behind the bottom instruction; a paper backing now
+keeps that instruction readable. `vertical_playthrough.gd` is the 18th required suite.

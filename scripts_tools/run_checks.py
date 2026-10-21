@@ -11,6 +11,7 @@ SUITES = [
     ("tests/logic/hop_reachability.gd", False),
     ("tests/logic/trio_solver.gd", False),
     ("tests/integration/vertical_slices.gd", False),
+    ("tests/integration/vertical_playthrough.gd", True),
     ("tests/integration/fruit_drop.gd", False),
     ("tests/integration/bubble_garden.gd", True),
     ("tests/integration/bubble_playthrough.gd", True),

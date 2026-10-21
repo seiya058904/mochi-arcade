@@ -8,9 +8,11 @@ import argparse
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
 import subprocess
 import time
+import xml.etree.ElementTree as ET
 
 
 GAMES = ["fruit_drop", "bubble_garden", "cake_stack", "bouncy_balls",
@@ -65,7 +67,7 @@ def main():
         result = shell("am", "start", "-W", "-n", f"{package}/com.godot.game.GodotAppLauncher")
         if "Error:" in result or "Status: ok" not in result:
             raise RuntimeError(f"Launch did not succeed: {result}")
-        time.sleep(2)
+        time.sleep(5)  # Native activity visibility precedes first Godot/font rendering.
         if not shell("pidof", package):
             raise RuntimeError("App process exited after launch")
         return result
@@ -76,8 +78,25 @@ def main():
         shell("am", "force-stop", package)
 
     def saved_state():
-        raw = adb("exec-out", "run-as", package, "cat", "files/save.json")
+        raw = shell("run-as", package, "cat", "files/save.json")
         return json.loads(raw)
+
+    def dismiss_fullscreen_tip():
+        # Inspect the real Android system UI; never tap a presumed overlay blindly.
+        shell("uiautomator", "dump", "/sdcard/mochi-window.xml")
+        document = shell("cat", "/sdcard/mochi-window.xml")
+        for node in ET.fromstring(document).iter("node"):
+            if node.get("text", "").upper() == "GOT IT":
+                bounds = [int(n) for n in re.findall(r"\d+", node.attrib["bounds"])]
+                tap((bounds[0] + bounds[2]) // 2, (bounds[1] + bounds[3]) // 2)
+                time.sleep(1)
+                report["fullscreen_tip_dismissed"] = True
+                return
+
+    def runtime_errors(logs):
+        return [line for line in logs.splitlines() if
+                "SCRIPT ERROR:" in line or "FATAL EXCEPTION" in line or "Fatal signal" in line or
+                re.search(r"\bE godot\s*:\s*ERROR:", line)]
 
     try:
         deadline = time.monotonic() + 240
@@ -100,13 +119,21 @@ def main():
             raise RuntimeError("This explicit coordinate test requires a 720x1280 dedicated AVD")
         shell("input", "keyevent", "KEYCODE_WAKEUP")
         shell("wm", "dismiss-keyguard")
+        shell("svc", "wifi", "disable")
+        shell("svc", "data", "disable")
+        report["network_disabled_for_test"] = True
         adb("logcat", "-c")
         install = adb("install", "-r", str(args.apk.resolve()), timeout=120)
         if "Success" not in install:
             raise RuntimeError(f"Install failed: {install}")
         report["install"] = install
         report["cold_launch"] = launch()
+        dismiss_fullscreen_tip()
         screenshot("00-home")
+        initial_errors = runtime_errors(adb("logcat", "-d", "-v", "threadtime"))
+        if initial_errors:
+            report["runtime_errors"] = initial_errors
+            raise RuntimeError("Android renderer or script failed during initial launch")
         for index, game in enumerate(GAMES):
             if index:
                 launch()
@@ -173,8 +200,7 @@ def main():
         (output / "meminfo.txt").write_text(shell("dumpsys", "meminfo", package), encoding="utf-8")
         logs = adb("logcat", "-d", "-v", "threadtime")
         (output / "logcat.txt").write_text(logs, encoding="utf-8")
-        errors = [line for line in logs.splitlines() if
-                  ("SCRIPT ERROR:" in line or "FATAL EXCEPTION" in line or "Fatal signal" in line)]
+        errors = runtime_errors(logs)
         report["runtime_errors"] = errors
         if errors:
             raise RuntimeError("Android runtime errors were recorded")

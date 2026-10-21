@@ -1,0 +1,20 @@
+{
+  "status": "PASS_INSTALL_START_FAIL_RENDER",
+  "commit": "0b871f33e2e457ad9e3a85f52d381eeb51cc0d0b",
+  "apk_sha256": "e9a8cf5c689bacd23aae6ae7dc6224e45a74cbc0634ce4dd05f83844d770d087",
+  "environment": "Dedicated GitHub-hosted Android API 34 x86_64 emulator; not a physical phone",
+  "visual_review": "FAIL: black frame and Android immersive tip; no observed gameplay",
+  "device": {
+    "ro.product.model": "Android SDK built for x86_64",
+    "ro.build.version.release": "14",
+    "ro.build.version.sdk": "34",
+    "ro.product.cpu.abi": "x86_64",
+    "ro.build.fingerprint": "Android/sdk_phone64_x86_64/emu64x:14/UE1A.230829.036.A1/11228894:userdebug/test-keys"
+  },
+  "display": "Physical size: 720x1280",
+  "install": "Serving...\nPerforming Incremental Install\nSuccess\nInstall command complete in 8878 ms",
+  "cold_launch": "Starting: Intent { cmp=io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher }\nStatus: ok\nLaunchState: COLD\nActivity: io.github.seiya058904.mochiarcade/com.godot.game.GodotApp\nTotalTime: 2149\nWaitTime: 2324\nComplete",
+  "error": "Expecting value: line 1 column 1 (char 0)",
+  "run_url": "https://github.com/seiya058904/mochi-arcade/actions/runs/39653014044",
+  "runtime_error": "SceneShaderGLES3 / CanvasShaderGLES3: Fragment shader active uniforms exceed GL_MAX_FRAGMENT_UNIFORM_VECTORS (261)"
+}

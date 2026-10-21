@@ -6,9 +6,9 @@
   "stress": {
     "max_fruit": 12,
     "max_halves": 32,
-    "physics_and_swipes_us_max": 3333,
-    "physics_and_swipes_us_p50": 259,
-    "physics_and_swipes_us_p95": 350,
+    "physics_and_swipes_us_max": 3818,
+    "physics_and_swipes_us_p50": 260,
+    "physics_and_swipes_us_p95": 349,
     "prior_max_us": [
       321749,
       208727
