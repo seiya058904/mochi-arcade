@@ -51,7 +51,7 @@
 10-21 20:09:09.574  2642  2667 D 904.mochiarcade: PlayerBase::PlayerBase()
 10-21 20:09:09.574  2642  2667 D 904.mochiarcade: TrackPlayerBase::TrackPlayerBase()
 10-21 20:09:09.574  2642  2667 I libOpenSLES: Emulating old channel mask behavior (ignoring positional mask 0x3, using default mask 0x3 based on channel count of 2)
-10-21 20:09:09.580  2642  2667 I godot   : 
+10-21 20:09:09.580  2642  2667 I godot   :
 10-21 20:09:09.723  2642  2661 D EGL_emulation: app_time_stats: avg=143.84ms min=2.90ms max=1235.77ms count=11
 10-21 20:09:10.382  2642  2667 V Godot   : OnGodotSetupCompleted
 10-21 20:09:11.172  2642  2667 V Godot   : OnGodotMainLoopStarted
