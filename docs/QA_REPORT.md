@@ -326,3 +326,21 @@ Packaged launcher inspection separately found Godot's default monochrome glyph.
 The normal bunny icon was correct. An explicit matching monochrome SVG now replaces
 that template resource; raw packaged before/after WebP images are retained. This
 is APK resource inspection, not a claim that a phone's themed-icon mode was tested.
+
+## Android music and first four lifecycle repairs verified
+
+Run 39659761708 survives the real first music loop without native or script errors.
+Fruit, Bubble, Cake and Balls pass actual system Back process survival, paused-state
+freeze, background freeze, force-stop restore and UI restart. Reviewed Fruit pause
+and Balls restored screenshots show the actual three-button pause sheet. Balls also
+naturally ends and successfully retries through the result button. This verifies
+these repairs on the development APK in the dedicated Android emulator only.
+
+The run stops at Trio: the screenshot shows three top tiles selected, with the
+lower center cup still present. The second tap followed the first checkpoint before
+its 0.18-second animation finished. Subsequent spaced taps were accepted. The test
+now waits for exactly one history/mask change per tap and allows the animation to
+finish before proceeding. It retains per-touch observations and a failure save;
+the four-top-tile assertion is unchanged. Remaining games, settings/reinstall and
+maximum loads still await execution. The failed report and screenshot are retained
+as android-trio-animation-timing.json and android-trio-animation-timing.png.

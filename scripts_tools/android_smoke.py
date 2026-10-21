@@ -219,12 +219,33 @@ def main():
                 # The generated top layer can shift one column. The common
                 # center column is always exposed; its removed bit identifies
                 # which other column is visible, without modifying the board.
-                tap(360, 510)
-                first_mask = int(saved_state()["sessions"][game]["mask"])
+                picks = report["trio_touch_observations"] = []
+
+                def pick_trio(x, y):
+                    before = saved_state()["sessions"][game]
+                    tap(x, y)
+                    deadline = time.monotonic() + 5
+                    while time.monotonic() < deadline:
+                        after = saved_state()["sessions"][game]
+                        if len(after["history"]) != len(before["history"]):
+                            break
+                        time.sleep(0.2)
+                    removed = int(before["mask"]) ^ int(after["mask"])
+                    picks.append({"point": [x, y], "before_mask": before["mask"],
+                                  "after_mask": after["mask"], "removed_bits": removed,
+                                  "history_count": len(after["history"])})
+                    if len(after["history"]) != len(before["history"]) + 1 or removed.bit_count() != 1:
+                        raise RuntimeError(f"Trio touch at {(x, y)} did not select exactly one tile: {picks[-1]}")
+                    # The checkpoint precedes the 0.18-second flight animation.
+                    # Give the software-rendered AVD time to commit that animation
+                    # before the next touch; an ADB acknowledgement is not readiness.
+                    time.sleep(0.6)
+                    return after
+
+                first_mask = int(pick_trio(360, 510)["mask"])
                 other_x = 460 if not first_mask & (1 << 32) else 260
                 for point in [(360, 610), (other_x, 510), (other_x, 610)]:
-                    tap(*point)
-                    time.sleep(0.5)
+                    pick_trio(*point)
                 trio = saved_state()["sessions"][game]
                 if len(trio["history"]) != 4 or int(trio["mask"]) >> 32:
                     raise RuntimeError("Trio touches did not remove the four exposed top tiles")
@@ -351,6 +372,10 @@ def main():
         report["error"] = str(error)
         try:
             screenshot("failure-screen")
+            try:
+                (output / "failure-save.json").write_text(json.dumps(saved_state(), indent=2), encoding="utf-8")
+            except Exception as save_error:
+                report["failure_save_error"] = str(save_error)
             logs = adb("logcat", "-d", "-v", "threadtime")
             (output / "logcat.txt").write_text(logs, encoding="utf-8")
             report["runtime_errors"] = runtime_errors(logs)

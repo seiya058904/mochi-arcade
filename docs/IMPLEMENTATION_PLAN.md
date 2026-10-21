@@ -117,3 +117,8 @@ matching final local/remote/tag/build commit; verified release-download bytes.
 - Packaged themed-icon inspection found the template Godot glyph despite the
   correct normal icon. Added the original bunny's matching monochrome mark and
   explicit export setting; actual packaged before/after resources are retained.
+- Run 39659761708 verifies Android music-loop survival and all strengthened lifecycle
+  checks for Fruit, Bubble, Cake and Balls. Trio's second test tap arrived during
+  its tile-flight animation; three picks were visible. Preserve the failed run,
+  observe each actual mask/history change, and space inputs after animation.
+  Remaining Android games/settings/reinstall/load and signed-byte acceptance are pending.
