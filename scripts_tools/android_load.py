@@ -134,73 +134,93 @@ def main():
         original_backup = private_command("cat", "save.backup.json", binary=True)
         (output / "pre-load-save.json").write_bytes(original)
         cases = fixtures(json.loads(original))
+        failed_cases = []
         for name, fixture in cases.items():
-            shell("am", "force-stop", PACKAGE)
-            fixture_bytes = json.dumps(fixture).encode("utf-8")
-            write_private("save.json", fixture_bytes)
-            (output / f"{name}-fixture.json").write_bytes(fixture_bytes)
-            launch = shell("am", "start", "-W", "-n", f"{PACKAGE}/com.godot.game.GodotAppLauncher")
-            if "Status: ok" not in launch:
-                raise RuntimeError(f"Load-test launch failed: {launch}")
-            time.sleep(5)
-            tap(530, 620 if name == "bouncy_balls" else 1036)
-            time.sleep(0.15)
-            pause()
-            paused = state()["sessions"][name]
-            pool = "balls" if name == "bouncy_balls" else "fruit"
-            expected = 64 if pool == "balls" else 12
-            if len(paused[pool]) != expected or paused["seed"] != fixture["sessions"][name]["seed"]:
-                raise RuntimeError(f"Production restore did not activate the {expected}-item {name} fixture")
-            load = report["loads"][name] = {"initial_active": len(paused[pool]), "fixture": "synthetic production save restore", "memory_before": memory(name + "-before")}
-            screenshot(name + "-maximum-paused")
-            layers = shell("dumpsys", "SurfaceFlinger", "--list")
-            (output / f"{name}-layers.txt").write_text(layers, encoding="utf-8")
-            candidates = [line for line in layers.splitlines() if PACKAGE in line and "SurfaceView" in line and "BLAST" in line]
-            if not candidates:
-                candidates = [line for line in layers.splitlines() if PACKAGE in line and "SurfaceView" in line]
-            if not candidates:
-                raise RuntimeError("No actual game SurfaceView found for presentation measurement")
-            layer = candidates[-1]
-            load["layer"] = layer
-            shell("dumpsys", "SurfaceFlinger", "--latency-clear")
-            tap(360, 679)  # Resume via the actual pause button.
-            stamps = []
-            started = time.monotonic()
-            for sample in range(10):
-                if pool == "balls":
-                    # Real paddle input under the 64-ball starting load.
-                    x = [210, 510, 360][sample % 3]
-                    shell("input", "swipe", 360, 1060, x, 1060, 180)
-                else:
-                    # Real fast sweeps create cut halves, capped trails and particles.
-                    y = [620, 740, 880][sample % 3]
-                    shell("input", "swipe", 80, y, 640, y, 100)
-                time.sleep(0.12)
-                raw = shell("dumpsys", "SurfaceFlinger", "--latency", shlex.quote(layer))
-                (output / f"{name}-latency-{sample:02d}.txt").write_text(raw, encoding="utf-8")
-                for line in raw.splitlines()[1:]:
-                    fields = line.split()
-                    if len(fields) == 3 and all(value.isdigit() for value in fields):
-                        presented = int(fields[1])
-                        if 0 < presented < (1 << 63) - 1:
-                            stamps.append(presented)
-                if sample in (0, 2, 5):
-                    screenshot(f"{name}-running-{sample:02d}")
-            load["input_burst_seconds"] = round(time.monotonic() - started, 3)
-            load["presentation"] = presentation_summary(stamps)
-            load["memory_after"] = memory(name + "-after")
-            pause()
-            after = state()["sessions"].get(name)
-            load["natural_round_ended"] = after is None
-            if after:
-                load.update(final_active=len(after[pool]), score=after["score"])
-                if pool == "fruit":
-                    load["sliced"] = after["sliced"]
-                    if after["sliced"] < 1:
-                        raise RuntimeError("Jelly stress sweeps never cut a fruit")
-            if load["presentation"]["status"] != "MEASURED":
-                raise RuntimeError("Frame presentation measurement is unavailable; inspect raw SurfaceFlinger evidence")
-            screenshot(name + "-after-load")
+            try:
+                shell("am", "force-stop", PACKAGE)
+                fixture_bytes = json.dumps(fixture).encode("utf-8")
+                write_private("save.json", fixture_bytes)
+                (output / f"{name}-fixture.json").write_bytes(fixture_bytes)
+                launch = shell("am", "start", "-W", "-n", f"{PACKAGE}/com.godot.game.GodotAppLauncher")
+                if "Status: ok" not in launch:
+                    raise RuntimeError(f"Load-test launch failed: {launch}")
+                time.sleep(5)
+                tap(530, 620 if name == "bouncy_balls" else 1036)
+                time.sleep(0.15)
+                pause()
+                paused = state()["sessions"][name]
+                pool = "balls" if name == "bouncy_balls" else "fruit"
+                expected = 64 if pool == "balls" else 12
+                if len(paused[pool]) != expected or paused["seed"] != fixture["sessions"][name]["seed"]:
+                    raise RuntimeError(f"Production restore did not activate the {expected}-item {name} fixture")
+                load = report["loads"][name] = {"initial_active": len(paused[pool]), "fixture": "synthetic production save restore", "memory_before": memory(name + "-before")}
+                screenshot(name + "-maximum-paused")
+                layers = shell("dumpsys", "SurfaceFlinger", "--list")
+                (output / f"{name}-layers.txt").write_text(layers, encoding="utf-8")
+                candidates = [line for line in layers.splitlines() if PACKAGE in line and "SurfaceView" in line and "BLAST" in line]
+                if not candidates:
+                    candidates = [line for line in layers.splitlines() if PACKAGE in line and "SurfaceView" in line]
+                if not candidates:
+                    raise RuntimeError("No actual game SurfaceView found for presentation measurement")
+                layer = candidates[-1]
+                load["layer"] = layer
+                shell("dumpsys", "SurfaceFlinger", "--latency-clear")
+                tap(360, 679)  # Resume via the actual pause button.
+                stamps = []
+                started = time.monotonic()
+                # A fixed five-second burst produced only 11 presentations on this
+                # software renderer. Observe up to 30 seconds without weakening the
+                # minimum sample count or treating slow frames as phone performance.
+                for sample in range(80):
+                    if pool == "balls":
+                        # Real paddle input under the 64-ball starting load.
+                        x = [210, 510, 360][sample % 3]
+                        shell("input", "swipe", 360, 1060, x, 1060, 180)
+                    else:
+                        # Real fast sweeps create cut halves, capped trails and particles.
+                        y = [620, 740, 880][sample % 3]
+                        shell("input", "swipe", 80, y, 640, y, 100)
+                    time.sleep(0.12)
+                    raw = shell("dumpsys", "SurfaceFlinger", "--latency", shlex.quote(layer))
+                    (output / f"{name}-latency-{sample:02d}.txt").write_text(raw, encoding="utf-8")
+                    for line in raw.splitlines()[1:]:
+                        fields = line.split()
+                        if len(fields) == 3 and all(value.isdigit() for value in fields):
+                            presented = int(fields[1])
+                            if 0 < presented < (1 << 63) - 1:
+                                stamps.append(presented)
+                    if sample in (0, 2, 5):
+                        screenshot(f"{name}-running-{sample:02d}")
+                    elapsed = time.monotonic() - started
+                    if elapsed >= 30 or (elapsed >= 12 and len(set(stamps)) >= 21):
+                        break
+                load["input_burst_seconds"] = round(time.monotonic() - started, 3)
+                load["input_samples"] = sample + 1
+                load["presentation"] = presentation_summary(stamps)
+                load["memory_after"] = memory(name + "-after")
+                pause()
+                after = state()["sessions"].get(name)
+                load["natural_round_ended"] = after is None
+                if after:
+                    load.update(final_active=len(after[pool]), score=after["score"])
+                    if pool == "fruit":
+                        load["sliced"] = after["sliced"]
+                        if after["sliced"] < 1:
+                            raise RuntimeError("Jelly stress sweeps never cut a fruit")
+                screenshot(name + "-after-load")
+                if load["presentation"]["status"] != "MEASURED":
+                    raise RuntimeError("Frame presentation measurement is unavailable; inspect raw SurfaceFlinger evidence")
+                load["status"] = "PASS_LOAD_EXECUTION_AWAITING_VISUAL_REVIEW"
+            except Exception as error:
+                load = report["loads"].setdefault(name, {})
+                load.update(status="FAIL", error=str(error))
+                failed_cases.append(name)
+                try:
+                    screenshot(name + "-failure")
+                except Exception as capture_error:
+                    load["capture_error"] = str(capture_error)
+        if failed_cases:
+            raise RuntimeError("Load cases failed: " + ", ".join(failed_cases))
         report["status"] = "PASS_LOAD_EXECUTION_AWAITING_VISUAL_REVIEW"
     except Exception as error:
         report["error"] = str(error)
@@ -213,7 +233,10 @@ def main():
                 write_private("save.backup.json", original_backup)
             if original is not None and private_command("cat", "save.json", binary=True) != original:
                 raise RuntimeError("Pre-load save restoration bytes do not match")
+            if original_backup is not None and private_command("cat", "save.backup.json", binary=True) != original_backup:
+                raise RuntimeError("Pre-load backup restoration bytes do not match")
             report["original_save_restored"] = original is not None
+            report["original_backup_restored"] = original_backup is not None
             logs = adb("logcat", "-d", "-v", "threadtime")
             (output / "load-logcat.txt").write_text(logs, encoding="utf-8")
             errors = [line for line in logs.splitlines() if "SCRIPT ERROR:" in line or "FATAL EXCEPTION" in line or "Fatal signal" in line or re.search(r"\bE godot\s*:\s*ERROR:", line)]

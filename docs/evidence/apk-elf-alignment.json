@@ -1,5 +1,5 @@
 {
-  "apk_sha256": "49397209b29f14173acba7aff4886327f38a4af2a62f8c986b04b27555e2b03b",
+  "apk_sha256": "8925cb88cc17986503eb133b0fc895c36a6df7ba84a8bcd4e552ff02da61043c",
   "status": "PASS_STATIC_ELF_ALIGNMENT",
   "libraries": [
     {
@@ -35,5 +35,5 @@
       ]
     }
   ],
-  "scope": "ELF PT_LOAD alignment and ZIP alignment are static checks; Android 16 KB page runtime is not tested."
+  "scope": "ELF PT_LOAD and ZIP alignment are static checks; Android 16 KB page runtime is not tested."
 }

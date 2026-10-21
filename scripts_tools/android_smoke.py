@@ -359,14 +359,33 @@ def main():
         report["same_signature_reinstall_preserves_save"] = True
         screenshot("14-reinstalled-home-zh")
         shell("input", "keyevent", "KEYCODE_HOME")
-        time.sleep(1)
-        shell("input", "swipe", 360, 1180, 360, 250, 500)
-        time.sleep(1)
-        shell("uiautomator", "dump", "/sdcard/mochi-launcher.xml")
-        launcher = shell("cat", "/sdcard/mochi-launcher.xml")
-        (output / "launcher.xml").write_text(launcher, encoding="utf-8")
-        icons = [node for node in ET.fromstring(launcher).iter("node")
-                 if node.get("text") == "Mochi Arcade" or node.get("content-desc") == "Mochi Arcade"]
+        deadline = time.monotonic() + 15
+        workspace_visible = False
+        while time.monotonic() < deadline:
+            shell("uiautomator", "dump", "/sdcard/mochi-launcher.xml")
+            launcher = shell("cat", "/sdcard/mochi-launcher.xml")
+            (output / "launcher-home.xml").write_text(launcher, encoding="utf-8")
+            workspace_visible = any(node.get("resource-id") == "com.android.launcher3:id/workspace"
+                                    for node in ET.fromstring(launcher).iter("node"))
+            if workspace_visible:
+                break
+            time.sleep(0.5)
+        if not workspace_visible:
+            raise RuntimeError("Android Home did not show the actual Launcher workspace")
+        # This empty workspace area is visible in the retained AOSP home frame.
+        # The former y=1180 start was at the bottom navigation boundary.
+        swipe(540, 950, 540, 300, 700)
+        deadline = time.monotonic() + 15
+        icons = []
+        while time.monotonic() < deadline:
+            shell("uiautomator", "dump", "/sdcard/mochi-launcher.xml")
+            launcher = shell("cat", "/sdcard/mochi-launcher.xml")
+            (output / "launcher.xml").write_text(launcher, encoding="utf-8")
+            icons = [node for node in ET.fromstring(launcher).iter("node")
+                     if node.get("text") == "Mochi Arcade" or node.get("content-desc") == "Mochi Arcade"]
+            if icons:
+                break
+            time.sleep(0.5)
         if not icons:
             raise RuntimeError("Actual Android launcher did not expose the Mochi Arcade icon")
         screenshot("15-android-launcher-icon")

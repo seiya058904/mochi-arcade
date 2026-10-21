@@ -391,3 +391,28 @@ transitions, fatal/native/script failures and checkpoint differences still fail.
 The exact before/after background saves and PNG digests will be retained per game.
 The independent maximum-pool step now runs even when smoke fails, without changing
 the failed smoke/job result or claiming that performance supersedes lifecycle QA.
+
+## All eight native lifecycle checks and retained harness limits
+
+Run 39664379571 on source 0f27910 passes the strengthened checks for every game:
+actual entry and input, Back process survival and freeze, synchronous background
+checkpoint equality, visible Resume/Back transitions, force-stop restore and
+UI restart. Settings survive restart; a same-signature development-APK reinstall
+preserves the complete save exactly. No native/script crash is recorded. The
+unchanged raw report is android-eight-lifecycle.json; full visual review is pending.
+
+The smoke remains FAIL: its final launcher swipe starts at y=1180 beside Android's
+navigation boundary. Retained screenshot/XML show Launcher home, not the app drawer.
+The revised harness observes the workspace first, swipes through the visible empty
+area (540,950 to 540,300), then waits for the actual Mochi Arcade icon node.
+
+The independent synthetic 64-ball restore visibly renders a full pool and responds
+to paddle input. At burst end it has 59 balls and score 695; PSS is 195746 to 187539
+KiB. The 5.358-second burst yields only 11 unique actual-present timestamps over
+4.922 seconds, below the required 20 intervals. This is insufficient measurement,
+not a performance pass. All ten raw latency dumps and the failed report are retained
+in android-load-short-window*.json; the actual full-pool frame is android-load-64-balls.png.
+Jelly was not reached. Sampling now lasts at least 12 seconds, up to 30 seconds,
+without reducing the minimum. Each case retains its own failure and the second case
+still runs. Restoration now verifies both primary and backup save bytes. These are
+software-renderer observations, never evidence of physical-phone frame rate.

@@ -17,7 +17,7 @@ an evidenced external blocker prevents all meaningful progress.
 | 4f. Jelly Slice | PASS (desktop) | 7,224 checks; 108,000 stress swipe events; real-input 60-second Zen round slices 150 fruit, naturally misses 7, finishes/retries via buttons; original whole/half art reviewed |
 | 5. Integration / lifecycle / stress audit | PASS (desktop) | 18 required suites; 980 full-collection checks, 40 switches, immediate lifecycle persistence, damaged-save recovery and three viewport profiles |
 | 6. Complete visual reviews + targeted fixes | PASS (desktop) | 34 actual renderer captures; EN/ZH, home, eight games, settings, help/pause; board fit, mipmaps and text contrast fixed |
-| 7. Signed Android acceptance | IN_PROGRESS | Secure local signing verified; Android swangle rendering PASS; stronger Back/lifecycle plus maximum-pool acceptance pending; signing secret approval pending |
+| 7. Signed Android acceptance | IN_PROGRESS | All eight development-APK lifecycle/state checks pass on Lavapipe; visual review, launcher/load rerun and signed-byte runtime pending; signing-secret approval pending |
 | 8. CI / final audit / remote sync | TODO | Clean local/upstream/default SHA match, final-SHA CI green |
 | 9. Release and download verification | TODO | Annotated tag, draft assets, independent hash match, publish |
 
@@ -134,3 +134,13 @@ matching final local/remote/tag/build commit; verified release-download bytes.
   on the old code and pass on the repair; all 18 suites pass (980 collection checks).
   Native rerun and later games remain pending. Maximum-load checks now run even
   after an independent smoke failure, while preserving that failed job result.
+- Run 39664379571 passes all eight Android input/lifecycle/round-restore/restart
+  assertions, settings persistence and identical-save preservation after reinstall.
+  Overall smoke still fails at launcher navigation: the app drawer never opened.
+  Wait for actual Launcher workspace, swipe within its observed empty area, then
+  inspect the actual icon. All game screenshots still require full manual review.
+  The 64-ball load visibly runs; its 5.358-second burst supplies only 11 presentation
+  timestamps. Keep the failed sample, extend observation to 12-30 seconds without
+  lowering the sample minimum, and execute Jelly independently even if Balls fails.
+  Latest local signed candidate is built from 0f27910 and statically verified;
+  it has not been installed. No signing secret has been uploaded.
