@@ -135,6 +135,21 @@ Workflow context constraint checked against
 
 ## Android blocker evidence
 
+An alternative runtime attempt is now prepared in CI: a dedicated API 34 Google APIs
+x86_64 AVD, 720x1280 / density 320 / 2 cores / 2048 MB, stable emulator 37.2.12 and
+system image revision 14. Those revisions were read from Google's repository metadata;
+the workflow checks them and fails on drift. The existing pinned SDK CLI installs them.
+ADB smoke installs the actual job APK, launches it, taps all eight cards, performs real
+Android input, backgrounds/force-stops/restarts, checks persisted settings/seen games,
+and retains screenshots, save observations, logcat and memory data. Script syntax has
+been checked locally; Android execution and visual acceptance remain PENDING.
+
+This uses [documented hosted Linux KVM support](https://github.blog/changelog/2024-04-02-github-actions-hardware-accelerated-android-virtualization-now-available/)
+and the [official emulator CLI](https://developer.android.com/studio/run/emulator-commandline).
+KVM permissions change only on the temporary hosted VM, never on the user's computer.
+The smoke's success status explicitly requires subsequent screenshot review; issuing
+coordinates is not by itself a claim that every gameplay interaction was accepted.
+
 Existing API 34 x86_64 AVD; emulator 37.1.11. `-accel-check` exits 1 with
 code 6: "Android Emulator hypervisor driver is not installed on this machine".
 Default acceleration fails. Software renderer with `-accel off`, no snapshots,

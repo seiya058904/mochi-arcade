@@ -9,7 +9,7 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-24.04
-    timeout-minutes: 25
+    timeout-minutes: 35
     env:
       GODOT_VERSION: 4.7.2
     steps:
@@ -84,7 +84,47 @@ jobs:
         run: |
           mkdir -p dist
           Godot_v${GODOT_VERSION}-stable_linux.x86_64 --headless --path . --export-debug Android dist/MochiArcade-dev.apk
+      - name: Install pinned Android runtime tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" "emulator" "system-images;android-34;google_apis;x86_64"
+          # Versions verified against Google's stable repository metadata on 2026-10-22.
+          # Fail on drift rather than silently adopting a different test environment.
+          grep -Fx 'Pkg.Revision=37.2.12' "$ANDROID_HOME/emulator/source.properties"
+          grep -Fx 'Pkg.Revision=14' "$ANDROID_HOME/system-images/android-34/google_apis/x86_64/source.properties"
+          echo "$ANDROID_HOME/platform-tools" >> "$GITHUB_PATH"
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-mochi-kvm.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          "$ANDROID_HOME/emulator/emulator" -accel-check
+      - name: Boot dedicated AVD and run Android input smoke
+        env:
+          ANDROID_AVD_HOME: ${{ runner.temp }}/mochi-avd
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$ANDROID_AVD_HOME" .local/android-runtime
+          printf 'no\n' | "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd -n Mochi_CI_API34 -k 'system-images;android-34;google_apis;x86_64' -d pixel_2
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          path = Path(os.environ['ANDROID_AVD_HOME']) / 'Mochi_CI_API34.avd/config.ini'
+          values = dict(line.split('=', 1) for line in path.read_text().splitlines() if '=' in line)
+          values.update({'hw.lcd.width': '720', 'hw.lcd.height': '1280', 'hw.lcd.density': '320', 'hw.ramSize': '2048', 'hw.cpu.ncore': '2'})
+          path.write_text('\n'.join(f'{key}={value}' for key,value in values.items()) + '\n')
+          PY
+          "$ANDROID_HOME/emulator/emulator" -avd Mochi_CI_API34 -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader -accel on -memory 2048 -cores 2 -camera-back none -camera-front none > .local/android-runtime/emulator.log 2>&1 &
+          python3 scripts_tools/android_smoke.py --apk dist/MochiArcade-dev.apk --output .local/android-runtime
+      - name: Upload Android runtime evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-runtime-evidence
+          path: .local/android-runtime/
+          retention-days: 14
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: development-apk-and-tests
           path: |
@@ -95,4 +135,6 @@ jobs:
             docs/evidence/bubble-playthrough-*.json
             docs/evidence/hop-playthrough-*.json
             docs/evidence/trio-playthrough-*.json
+            docs/evidence/balls-playthrough-*.json
+            docs/evidence/jelly-playthrough-*.json
           retention-days: 14

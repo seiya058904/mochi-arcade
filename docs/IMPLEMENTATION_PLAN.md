@@ -15,7 +15,7 @@ an evidenced external blocker prevents all meaningful progress.
 | 4d. Tile Trio | PASS (desktop) | 1,500 solver-verified boards, 439,506 rule + 23 runtime checks; 5 shops / 187 input picks / natural full tray / free result undo / restart; actual screenshots |
 | 4e. Bouncy Balls | PASS (desktop) | 236,650 checks; real x2/x3 gates; 60-second 64-ball stress; normal input clears 4 waves, reaches 64 balls, naturally loses/retries; rendered captures |
 | 4f. Jelly Slice | PASS (desktop) | 7,224 checks; 108,000 stress swipe events; real-input 60-second Zen round slices 150 fruit, naturally misses 7, finishes/retries via buttons; original whole/half art reviewed |
-| 5. Integration / lifecycle / stress audit | TODO | 30 switches, corrupt save, pause/back/restart, adverse samples |
+| 5. Integration / lifecycle / stress audit | IN_PROGRESS | Eight individual suites pass; full-collection lifecycle and adverse save audit next |
 | 6. Complete visual reviews + targeted fixes | TODO | Home + 8 games + overlays + settings + aspect ratio matrix |
 | 7. Signed Android acceptance | TODO | Signature, package, ABI, hash, install, touch and lifecycle logs |
 | 8. CI / final audit / remote sync | TODO | Clean local/upstream/default SHA match, final-SHA CI green |
@@ -23,7 +23,7 @@ an evidenced external blocker prevents all meaningful progress.
 
 ## Current checkpoint
 
-- Latest synchronized implementation commit: dd211e8488aa074a03eec78cd6a6f61c15b9d55c (Bouncy Balls); CI 39645713022 PASS.
+- Latest synchronized implementation commit: da1d397c29134fd18ec29b26a8cbfdeedeae0f4c (all eight games); its CI is pending. Previous seven-game CI 39645713022 PASS.
 - Engine verified: 4.7.2.stable.official.ed1daf0bf; official Android templates;
   JDK 17.0.20.1; SDK/Build Tools 36 for the actual target-36 template.
 - Two concepts generated; cream stationery selected; transparent card atlas and
@@ -66,8 +66,8 @@ an evidenced external blocker prevents all meaningful progress.
   All eight now playable; shared clipping contains moving objects inside the play area.
   Earlier stress outliers 321/208 ms remain recorded; two isolated follow-ups had no
   >16.667 ms sample. Cause is unverified; no Android performance inference is made.
-- Next: commit/push Jelly; full eight-game lifecycle and visual matrix. Investigate
-  a GitHub-hosted Android emulator as an alternative to this offline local AVD.
+- Next: run full eight-game lifecycle and visual matrix while CI attempts a dedicated
+  720x1280 API 34 AVD. Hosted Linux KVM is documented; success is not yet established.
 - Full visual/performance/security audit, release key and
   final signed APK/Android acceptance/Release are not done. Goal remains active.
 
