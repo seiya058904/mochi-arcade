@@ -70,7 +70,8 @@ def main():
     output.mkdir(parents=True, exist_ok=True)
     report = {"status": "FAIL", "commit": os.environ.get("GITHUB_SHA", "local"),
               "apk_sha256": hashlib.sha256(args.apk.read_bytes()).hexdigest(),
-              "scope": "Synthetic maximum-pool bursts on isolated AOSP API 34 x86_64 / lavapipe software renderer",
+              "scope": "Synthetic maximum-pool bursts on isolated AOSP API 34 x86_64; inspect emulator.log for actual graphics adapter",
+              "graphics_backend_requested": os.environ.get("MOCHI_EMULATOR_GPU", "unrecorded"),
               "timing_source": "https://android.googlesource.com/platform/frameworks/native/+/refs/tags/android-14.0.0_r1/services/surfaceflinger/FrameTracker.cpp",
               "physical_phone_performance": "UNVERIFIED", "loads": {}}
     original = None

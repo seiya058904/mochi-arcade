@@ -161,3 +161,11 @@ matching final local/remote/tag/build commit; verified release-download bytes.
   identifies interleaved ball trails/sprites: 247 draw calls at 64 balls versus
   121 at one ball. Batch trails behind shared-atlas sprites: 121 at both counts,
   unchanged full fixture pixels; reduced-motion remains 120. All 18 suites pass.
+- Run 39669849881 tests the batching change on the unchanged Lavapipe backend.
+  A separate manual host-GLES/Mesa diagnostic is prepared with preinstalled Xvfb,
+  explicit software rendering, identical APK/acceptance paths and recorded adapter
+  details. Default CI remains Lavapipe until evidence warrants a change. No engine
+  patch, dependency update or signing-secret upload is introduced.
+  The fresh local a2a3bd7 release export is 78016973 bytes, SHA-256
+  3597bc5020d5ec545e87a837b03a7a2a7a375a24cde002d44c0c47d1aaa42901;
+  signature/package/static alignment checks pass, exact-byte Android runtime pending.

@@ -1,5 +1,5 @@
 {
-  "apk_sha256": "8925cb88cc17986503eb133b0fc895c36a6df7ba84a8bcd4e552ff02da61043c",
+  "apk_sha256": "3597bc5020d5ec545e87a837b03a7a2a7a375a24cde002d44c0c47d1aaa42901",
   "status": "PASS_STATIC_ELF_ALIGNMENT",
   "libraries": [
     {

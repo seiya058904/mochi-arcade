@@ -2,7 +2,7 @@
   "status": "PASS_STATIC_SIGNED_CANDIDATE_ANDROID_RUNTIME_PENDING",
   "version": "1.0.0",
   "version_code": 1,
-  "apk_sha256": "8925cb88cc17986503eb133b0fc895c36a6df7ba84a8bcd4e552ff02da61043c",
+  "apk_sha256": "3597bc5020d5ec545e87a837b03a7a2a7a375a24cde002d44c0c47d1aaa42901",
   "bytes": 78016973,
   "certificate_sha256": "de1458f30ad0f2a758b9c6f3de82c00b608723eaa75de22d3cf853e351f7657b",
   "certificate_key": "RSA-3072",
@@ -24,7 +24,7 @@
   "eight_scenes": true,
   "font_notices_bundled": true,
   "private_and_development_files_excluded": true,
-  "scope": "Local release candidate including synchronous Android lifecycle freeze/checkpoint; exact signed-byte Android acceptance pending",
+  "scope": "Local release export after batched ball trails and synchronous lifecycle checkpoint; exact signed-byte Android acceptance pending, intermittent background black unresolved in development tests",
   "local_ci_signing_helper": "PASS: correct certificate and transient key absent after build",
-  "source_commit": "0f279105ea33bc471b670b31fb501b4c7285efeb"
+  "source_commit": "a2a3bd7f92c958524cfd8d5f7357960bad98db0e"
 }

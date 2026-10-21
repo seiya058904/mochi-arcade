@@ -104,3 +104,18 @@ verification path keeps the APK non-debuggable. Only the dedicated AOSP userdebu
 emulator uses `adb root` to inspect its test saves; ordinary developer builds use
 `run-as`. All eight captures still require visual review in addition to save checks.
 No workflow or script creates a tag or publishes a Release automatically.
+
+## Emulator graphics diagnostic
+
+Manual workflow runs can select `graphics_backend=host` to compare the emulator's
+host GLES route with the default `lavapipe` route. Both remain software-rendered
+on the hosted runner. The host experiment starts the image's existing Xvfb and
+sets Mesa's `LIBGL_ALWAYS_SOFTWARE=true` and `GALLIUM_DRIVER=llvmpipe`; it installs
+no new package, preserves all runtime assertions, and records the requested mode
+plus actual adapter details in emulator.log. This is a diagnostic, not an accepted
+configuration or a physical-GPU benchmark until the resulting evidence is reviewed.
+It does not enable release signing or consume signing secrets by default.
+
+Sources: [Android emulator graphics modes](https://developer.android.com/studio/run/emulator-acceleration),
+[Mesa environment variables](https://docs.mesa3d.org/envvars.html), and the
+[hosted Ubuntu image inventory](https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md).

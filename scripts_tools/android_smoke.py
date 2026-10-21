@@ -35,6 +35,7 @@ def main():
     report = {"status": "FAIL", "commit": os.environ.get("GITHUB_SHA", "local"),
               "apk_sha256": hashlib.sha256(args.apk.read_bytes()).hexdigest(),
               "environment": "Dedicated GitHub-hosted Android API 34 x86_64 emulator; not a physical phone",
+              "graphics_backend_requested": os.environ.get("MOCHI_EMULATOR_GPU", "unrecorded"),
               "visual_review": "PENDING", "commands": commands, "release_candidate": args.release,
               "game_checks": {}}
 

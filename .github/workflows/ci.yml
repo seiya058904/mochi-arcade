@@ -9,6 +9,11 @@ on:
         description: Build and test using the explicitly authorized release signing secrets
         type: boolean
         default: false
+      graphics_backend:
+        description: Emulator graphics diagnostic; both choices use software rendering on this runner
+        type: choice
+        options: [lavapipe, host]
+        default: lavapipe
 permissions:
   contents: read
 jobs:
@@ -17,6 +22,7 @@ jobs:
     timeout-minutes: 35
     env:
       GODOT_VERSION: 4.7.2
+      MOCHI_EMULATOR_GPU: ${{ inputs.graphics_backend || 'lavapipe' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -140,6 +146,24 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "$ANDROID_AVD_HOME" .local/android-runtime
+          case "$MOCHI_EMULATOR_GPU" in lavapipe|host) ;; *) exit 1 ;; esac
+          if [[ "$MOCHI_EMULATOR_GPU" == 'host' ]]; then
+            # Compare native host GLES/Mesa with ANGLE/Vulkan software rendering.
+            # Xvfb is preinstalled on the hosted image; install no new package.
+            command -v Xvfb
+            dpkg-query -W xvfb libgl1-mesa-dri
+            Xvfb -displayfd 3 -screen 0 720x1280x24 -nolisten tcp 3>.local/android-runtime/xvfb-display.txt >.local/android-runtime/xvfb.log 2>&1 &
+            mochi_xvfb_pid=$!
+            for attempt in {1..20}; do
+              if [[ -s .local/android-runtime/xvfb-display.txt ]]; then break; fi
+              kill -0 "$mochi_xvfb_pid"
+              sleep 0.25
+            done
+            read -r mochi_display_number < .local/android-runtime/xvfb-display.txt
+            [[ "$mochi_display_number" =~ ^[0-9]+$ ]]
+            export DISPLAY=":$mochi_display_number" LIBGL_ALWAYS_SOFTWARE=true GALLIUM_DRIVER=llvmpipe
+            printf 'Xvfb PID=%s DISPLAY=%s; host GLES explicitly forced to Mesa software\n' "$mochi_xvfb_pid" "$DISPLAY"
+          fi
           printf 'no\n' | "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd -n Mochi_CI_API34 -k 'system-images;android-34;default;x86_64' -d pixel_2
           python3 - <<'PY'
           import os
@@ -149,7 +173,7 @@ jobs:
           values.update({'hw.lcd.width': '720', 'hw.lcd.height': '1280', 'hw.lcd.density': '320', 'hw.ramSize': '2048', 'hw.cpu.ncore': '2', 'disk.dataPartition.size': '2G', 'disk.cachePartition.size': '128M', 'hw.sdCard': 'no'})
           path.write_text('\n'.join(f'{key}={value}' for key,value in values.items()) + '\n')
           PY
-          "$ANDROID_HOME/emulator/emulator" -avd Mochi_CI_API34 -no-window -no-audio -no-boot-anim -no-snapshot -gpu lavapipe -accel on -memory 2048 -cores 2 -partition-size 2048 -camera-back none -camera-front none > .local/android-runtime/emulator.log 2>&1 &
+          "$ANDROID_HOME/emulator/emulator" -avd Mochi_CI_API34 -no-window -no-audio -no-boot-anim -no-snapshot -gpu "$MOCHI_EMULATOR_GPU" -accel on -memory 2048 -cores 2 -partition-size 2048 -camera-back none -camera-front none > .local/android-runtime/emulator.log 2>&1 &
           emulator_pid=$!
           smoke_args=(--apk "$MOCHI_APK" --output .local/android-runtime --emulator-pid "$emulator_pid")
           if [[ "${{ inputs.release_candidate }}" == 'true' ]]; then smoke_args+=(--release); fi
