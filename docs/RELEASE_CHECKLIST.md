@@ -3,8 +3,8 @@
 | Gate | State | Evidence / remaining work |
 | --- | --- | --- |
 | A01 One app / APK | PARTIAL | Early debug APK has one package; not all games implemented |
-| A02 Eight complete games | NOT_RUN | Two playable vertical slices; six pending |
-| A03 Correct gameplay | PARTIAL | 14,278 logic assertions + 47 integration checks for current slices |
+| A02 Eight complete games | NOT_RUN | Three playable games; five pending |
+| A03 Correct gameplay | PARTIAL | 14,278 logic + 47 slice + 29 Fruit checks; normal-drop playthroughs |
 | A04 Valid procedural content | NOT_RUN | Tile solver / Hop reachability pending |
 | A05 Android controls | BLOCKED | Existing AVD offline; no connected device |
 | A06 Cohesive art | PARTIAL | Two concepts, production sprites, first desktop review |
@@ -15,5 +15,5 @@
 | A11 Reproducible build | PARTIAL | Local debug export succeeds; CI pending |
 | A12 Verified installable APK | BLOCKED | APK metadata inspected, Android install not run |
 | A13 Clean synchronized Git | IN_PROGRESS | Milestone synchronization in progress |
-| A14 Final-SHA CI | NOT_RUN | Workflow authored, first execution pending |
+| A14 Final-SHA CI | NOT_RUN | First run failed SDK setup; pinned tool installation fix pending rerun |
 | A15 Release | NOT_PUBLISHED | Withheld until all preceding gates pass |

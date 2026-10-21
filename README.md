@@ -4,8 +4,8 @@ A cozy, offline collection of eight original 2D pocket games for Android.
 
 **In development. No verified release is available yet.**
 
-The shared app, Cake Stack and Number Bloom are playable in the current
-development build. The remaining six games are in progress. Android installation
+The shared app, Fruit Drop, Cake Stack and Number Bloom are playable in the current
+development build. The remaining five games are in progress. Android installation
 acceptance is pending an online device; a successful APK export alone is not
 an installation test.
 

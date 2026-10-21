@@ -1,0 +1,16 @@
+{
+  "drops": 251,
+  "evidence": "Normal press/release drops in a fixed 60 Hz Godot physics simulation. No level/score/loss injection.",
+  "highest_level": 7,
+  "input_seed": 4182,
+  "natural_failure": true,
+  "nodes_after_unload": 60,
+  "nodes_before_play": 33,
+  "peak_fruit_count": 45,
+  "restart_empty": true,
+  "score": 23220,
+  "seed": 817,
+  "status": "PASS",
+  "backend": "rendered",
+  "source": "Actual render-run console log; full input stream can be regenerated from input_seed 4182."
+}

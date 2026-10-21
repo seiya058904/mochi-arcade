@@ -67,6 +67,10 @@ func melody() -> AudioStreamWAV:
 func apply_settings() -> void:
 	if not is_instance_valid(music):
 		return
+	# A headless rules runner has no audible output. Do not enqueue playback
+	# into the dummy backend, whose asynchronous shutdown can retain streams.
+	if DisplayServer.get_name() == "headless":
+		return
 	if Save.setting("music") and not music.playing:
 		music.play()
 	elif not Save.setting("music"):
@@ -76,7 +80,7 @@ func apply_settings() -> void:
 			voice.stop()
 
 func play(note: int = 0) -> void:
-	if not Save.setting("sfx") or voices.is_empty():
+	if DisplayServer.get_name() == "headless" or not Save.setting("sfx") or voices.is_empty():
 		return
 	var voice := voices[next_voice]
 	next_voice = (next_voice + 1) % voices.size()

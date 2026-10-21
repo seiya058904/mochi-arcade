@@ -10,6 +10,7 @@ The tool did not identify its model version. Exact prompts are retained in
 | concept-garden.png | image_gen, 2026-10-21; rejected dense scenery | Concept only; excluded from APK |
 | game-icons.png | image_gen original eight-object atlas | 1774x887 RGBA; alpha 0-255; transparent corner. Individual runtime atlas regions inspected and corrected. Used on all eight home cards. |
 | mochi-bunny.png | image_gen original bunny/macaron | 1536x1024 RGBA; alpha 0-254; transparent corner. Original alpha retained. Used on home and Cake Stack. |
+| fruit-characters.png | image_gen original eight-fruit atlas, 2026-10-22 | 1774x887 RGBA; alpha 0-255. Inspected individual bounds, runtime cropping only, foliage above circular body. Used by real RigidBody2D fruit. Prompt: assets/source/fruit-prompt.json. |
 | app-icon.svg / icon-background.svg | Original project vector illustration | Editable geometric bunny icon; no third-party tracing |
 | Cake layers / UI / particle shapes | Original GDScript vector drawing | Resolution-independent game geometry and decoration |
 | BGM / SFX | Original code synthesis in audio_manager.gd | No third-party samples; one music voice and eight pooled SFX voices |

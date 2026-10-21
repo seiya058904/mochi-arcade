@@ -12,6 +12,7 @@ jobs:
     timeout-minutes: 25
     env:
       GODOT_VERSION: 4.7.2
+      ANDROID_HOME: ${{ runner.temp }}/mochi-android-sdk
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -42,11 +43,21 @@ jobs:
           "$engine" --headless --editor --path . --import
           "$engine" --headless --path . --script tests/logic/run_tests.gd
           "$engine" --headless --path . --script tests/integration/vertical_slices.gd
+          "$engine" --headless --path . --script tests/integration/fruit_drop.gd
+          "$engine" --headless --fixed-fps 60 --path . --script tests/integration/fruit_playthrough.gd
       - name: Configure Android tools and debug signing
         shell: bash
         run: |
           set -euo pipefail
-          sdkmanager "platforms;android-36" "build-tools;36.0.0"
+          # Pin the official CLI archive; hosted runner PATH/SDK contents change.
+          curl -fsSL --retry 3 https://dl.google.com/android/repository/commandlinetools-linux-16111833_latest.zip -o .local/tools/android-tools.zip
+          printf '0877a1d048fe4a24efe2eff536ca4223f7adeb58648bb81909d33c446918cfa8  .local/tools/android-tools.zip\n' | sha256sum --check
+          mkdir -p "$ANDROID_HOME/cmdline-tools" "$RUNNER_TEMP/mochi-android-unpack"
+          unzip -q .local/tools/android-tools.zip -d "$RUNNER_TEMP/mochi-android-unpack"
+          mv "$RUNNER_TEMP/mochi-android-unpack/cmdline-tools" "$ANDROID_HOME/cmdline-tools/latest"
+          sdkmanager="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          for i in {1..100}; do printf 'y\n'; done | "$sdkmanager" --sdk_root="$ANDROID_HOME" --licenses > .local/android-licenses.log
+          "$sdkmanager" --sdk_root="$ANDROID_HOME" "platform-tools" "platforms;android-36" "build-tools;36.0.0"
           mkdir -p .local/android
           keytool -genkeypair -keystore .local/android/debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
           mkdir -p "$HOME/.config/godot"
@@ -66,4 +77,5 @@ jobs:
             dist/MochiArcade-dev.apk
             docs/evidence/*tests.json
             docs/evidence/vertical-slices.json
+            docs/evidence/fruit-playthrough-*.json
           retention-days: 14

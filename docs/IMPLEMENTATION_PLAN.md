@@ -9,7 +9,7 @@ an evidenced external blocker prevents all meaningful progress.
 | 1. Git / private remote / CI scaffold | IN_PROGRESS | Private origin/main created and initial commit synced; first full CI queued next |
 | 2. Art direction / shared shell / early Android | IN_PROGRESS | Production art and shell rendered; debug APK exported; Android install BLOCKED by offline AVD |
 | 3. Cake Stack + Number Bloom vertical slices | PASS (desktop) | 14,278 logic + 47 integration assertions pass; screenshots and native input recheck |
-| 4a. Fruit Drop | TODO | Merge/overflow tests, runtime gestures and checkpoint |
+| 4a. Fruit Drop | PASS (desktop) | 29 physics/rule checks PASS; 251 normal-action drops reach tier 7 and natural overflow; rendered art and native aim/release checked |
 | 4b. Bubble Garden | TODO | Hex/attachment/pop/fall/color pool tests and runtime proof |
 | 4c. Mochi Hop | TODO | 1000+ seed reachability, hold/cancel/landing tests and runtime proof |
 | 4d. Tile Trio | TODO | Solver-verified seed batches, undo/tray/input runtime proof |
@@ -23,7 +23,7 @@ an evidenced external blocker prevents all meaningful progress.
 
 ## Current checkpoint
 
-- Initial synchronized commit: d88eaf1 (scope/audit only). Current slice checkpoint being prepared.
+- Latest synchronized implementation commit: 75b05739e96e38bf7cee6717e932496db1279856 (shell + Cake + 2048).
 - Engine verified: 4.7.2.stable.official.ed1daf0bf; official Android templates;
   JDK 17.0.20.1; SDK/Build Tools 36 for the actual target-36 template.
 - Two concepts generated; cream stationery selected; transparent card atlas and
@@ -34,9 +34,16 @@ an evidenced external blocker prevents all meaningful progress.
   it, regression added, native Number Bloom upward merge now scores 4 correctly.
 - Android AVD remains offline in three boot configurations; no hypervisor driver.
   User asked about a USB-debugging phone; Android proof stays BLOCKED, not passed.
-- Next: commit/push first playable milestone and inspect
-  CI; then Fruit Drop (atomic physics merge, overflow grace, art, rules and actual gestures).
-- Remaining six games, full visual/performance/security audit, release key and
+- First CI on 75b0573 passed Godot import and all then-current tests, failed because
+  sdkmanager was absent from runner PATH. Workflow now installs a pinned official
+  CLI archive (build 16111833) with verified SHA256; next push will exercise it.
+- Fruit Drop implemented: atomic contact claims, actual circle physics, eight original
+  sprites, overflow grace, seeded drop stream and mid-round persistence. 29 tests PASS.
+  Normal-action seed 817 / input seed 4182: 251 drops, score 23220, tier 7, natural
+  overflow, max 45 fruit, restart empty. Actual rendered captures reviewed.
+- Next: commit/push Fruit + CI fix;
+  then Bubble Garden hex attachment/connectivity/active-color pool and runtime proof.
+- Remaining five games, full visual/performance/security audit, release key and
   final signed APK/Android acceptance/Release are not done. Goal remains active.
 
 ## Success criteria
