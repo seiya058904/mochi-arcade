@@ -12,7 +12,6 @@ jobs:
     timeout-minutes: 25
     env:
       GODOT_VERSION: 4.7.2
-      ANDROID_HOME: ${{ runner.temp }}/mochi-android-sdk
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -44,11 +43,16 @@ jobs:
           "$engine" --headless --path . --script tests/logic/run_tests.gd
           "$engine" --headless --path . --script tests/integration/vertical_slices.gd
           "$engine" --headless --path . --script tests/integration/fruit_drop.gd
+          "$engine" --headless --fixed-fps 60 --path . --script tests/integration/bubble_garden.gd
+          "$engine" --headless --fixed-fps 60 --path . --script tests/integration/bubble_playthrough.gd
           "$engine" --headless --fixed-fps 60 --path . --script tests/integration/fruit_playthrough.gd
       - name: Configure Android tools and debug signing
+        env:
+          ANDROID_HOME: ${{ runner.temp }}/mochi-android-sdk
         shell: bash
         run: |
           set -euo pipefail
+          echo "ANDROID_HOME=$ANDROID_HOME" >> "$GITHUB_ENV"
           # Pin the official CLI archive; hosted runner PATH/SDK contents change.
           curl -fsSL --retry 3 https://dl.google.com/android/repository/commandlinetools-linux-16111833_latest.zip -o .local/tools/android-tools.zip
           printf '0877a1d048fe4a24efe2eff536ca4223f7adeb58648bb81909d33c446918cfa8  .local/tools/android-tools.zip\n' | sha256sum --check
@@ -78,4 +82,5 @@ jobs:
             docs/evidence/*tests.json
             docs/evidence/vertical-slices.json
             docs/evidence/fruit-playthrough-*.json
+            docs/evidence/bubble-playthrough-*.json
           retention-days: 14

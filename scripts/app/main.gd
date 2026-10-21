@@ -231,7 +231,7 @@ func show_settings() -> void:
 func confirm_reset() -> void:
 	show_dialog(C.words("A fresh little start?", "重新开始？"), C.words("This clears game progress and records. Your sound and comfort settings stay.", "这会清除游戏进度和纪录，保留声音等偏好设置。"), [[C.words("Keep my records", "保留纪录"), dismiss_overlay], [C.words("Yes, reset records", "确认重置"), func(): Save.reset_records(); dismiss_overlay()]])
 
-func open_game(index: int, fresh: bool = false) -> void:
+func open_game(index: int, fresh: bool = false, seed_value: int = -1) -> void:
 	var id := str(C.GAMES[index][0])
 	var scene_path := "res://scenes/games/" + id + ".tscn"
 	if not ResourceLoader.exists(scene_path):
@@ -245,7 +245,7 @@ func open_game(index: int, fresh: bool = false) -> void:
 	var packed: PackedScene = load(scene_path)
 	game = packed.instantiate()
 	layout_shell()
-	game.setup(id, play_rect.size, font)
+	game.setup(id, play_rect.size, font, seed_value)
 	game.position = play_rect.position
 	game.score_changed.connect(update_score)
 	game.ended.connect(show_result)
@@ -283,9 +283,13 @@ func layout_shell() -> void:
 	var y := size.y - bottom_safe - 84
 	button(ui, C.words("How to play", "怎么玩"), Rect2(30, y, 214, 76), show_help, P.PAPER, 24)
 	var action_name := C.words("Undo", "撤回") if current_index in [4, 6] else C.words("Restart", "重开")
+	if current_index == 1:
+		action_name = C.words("Hint", "免费提示")
 	button(ui, action_name, Rect2(254, y, size.x - 284, 76), func():
 		if current_index in [4, 6]:
 			game.action("undo")
+		elif current_index == 1:
+			game.action("hint")
 		else:
 			confirm_restart(), P.ACCENTS[current_index], 25)
 

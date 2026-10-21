@@ -44,6 +44,9 @@ func run() -> void:
 		app.game.slide(direction)
 		await create_timer(0.17).timeout
 	await shot("desktop-number-bloom")
+	app.open_game(1, true, 5402)
+	app.resume()
+	await shot("desktop-bubble-opening")
 	root.size = Vector2i(360, 800)
 	await process_frame
 	app.show_home()

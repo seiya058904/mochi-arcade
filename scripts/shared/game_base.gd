@@ -23,7 +23,10 @@ func setup(id: String, bounds: Vector2, game_font: Font, seed_value: int = -1) -
 	game_id = id
 	area = bounds
 	font = game_font
-	run_seed = seed_value if seed_value >= 0 else int(Time.get_unix_time_from_system() * 1000.0) % 2147483647
+	var saved_seed := int(Save.session(id).get("seed", -1))
+	run_seed = seed_value if seed_value >= 0 else saved_seed
+	if run_seed < 0:
+		run_seed = int(Time.get_unix_time_from_system() * 1000.0) % 2147483647
 	rng.seed = run_seed
 	effects_rng.seed = run_seed ^ 0x4D4F4348
 	reduced_motion = bool(Save.setting("reduced_motion"))

@@ -22,6 +22,9 @@ Godot Editor Settings > Export > Android with the installed JDK and SDK paths.
 ./scripts_tools/godot.ps1 --headless --editor --import
 ./scripts_tools/godot.ps1 --headless --script tests/logic/run_tests.gd
 ./scripts_tools/godot.ps1 --headless --script tests/integration/vertical_slices.gd
+./scripts_tools/godot.ps1 --headless --script tests/integration/fruit_drop.gd
+./scripts_tools/godot.ps1 --headless --fixed-fps 60 --script tests/integration/bubble_garden.gd
+./scripts_tools/godot.ps1 --headless --fixed-fps 60 --script tests/integration/bubble_playthrough.gd
 ./scripts_tools/godot.ps1 --script tests/integration/capture_ui.gd
 ./scripts_tools/godot.ps1 --headless --export-debug Android dist/MochiArcade-dev.apk
 ```

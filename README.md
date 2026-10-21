@@ -4,8 +4,8 @@ A cozy, offline collection of eight original 2D pocket games for Android.
 
 **In development. No verified release is available yet.**
 
-The shared app, Fruit Drop, Cake Stack and Number Bloom are playable in the current
-development build. The remaining five games are in progress. Android installation
+The shared app, Fruit Drop, Bubble Garden, Cake Stack and Number Bloom are playable in the current
+development build. The remaining four games are in progress. Android installation
 acceptance is pending an online device; a successful APK export alone is not
 an installation test.
 
@@ -39,4 +39,6 @@ from first launch in the finished collection.
 Current checks: **14,278** logic assertions and **47** integration assertions,
 including standard 2048 merges, seeded spawn distribution, cake overlap boundaries,
 atomic-save recovery, undo with RNG restoration, lifecycle handling and 30 scene switches.
+Fruit adds **29** physics checks; Bubble adds **1,364** geometry/runtime checks and
+a normal-action replay clearing five gardens before a natural loss and retry.
 The [release checklist](docs/RELEASE_CHECKLIST.md) deliberately retains pending gates.

@@ -1,0 +1,6 @@
+{
+  "tool": "image_gen",
+  "prompt": "Use case: stylized-concept. Production sprites for original Mochi Arcade Bubble Garden. Exactly FIVE isolated circular soap-bubble characters arranged in one evenly spaced horizontal row on a TRUE TRANSPARENT alpha background. No text, no numbers, no frame, no landscape. All have same circular diameter, soft delicate hand-painted gouache kawaii stationery style, thin warm cocoa rim, gentle luminous upper-left crescent reflection and very subtle inner pastel shading, clear crisp alpha silhouette. Five colors from left to right: peach-pink, sky-blue, butter-yellow, pistachio-green, lavender. Each contains one simple highly legible centered botanical symbol, respectively a five-petal flower, a teardrop, a five-point star, one pointed leaf, and a heart. The symbols are cocoa lines with lighter fill and must remain legible at 48 pixels diameter. Avoid duplicated symbols. No human face needed. Generous equal gutters between circles with entire silhouettes uncropped and no outer glow bleeding into neighboring cells. Original game-ready transparent 2D bubbles, not 3D photorealistic renders and not a complete game screenshot. Approximately 2560 x 640 canvas. Style cohesive with cream paper, warm cocoa ink and gentle pastel mochi fruit illustrations.",
+  "output": "assets/art/bubble-characters.png",
+  "date": "2026-10-22"
+}

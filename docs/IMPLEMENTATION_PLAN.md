@@ -10,7 +10,7 @@ an evidenced external blocker prevents all meaningful progress.
 | 2. Art direction / shared shell / early Android | IN_PROGRESS | Production art and shell rendered; debug APK exported; Android install BLOCKED by offline AVD |
 | 3. Cake Stack + Number Bloom vertical slices | PASS (desktop) | 14,278 logic + 47 integration assertions pass; screenshots and native input recheck |
 | 4a. Fruit Drop | PASS (desktop) | 29 physics/rule checks PASS; 251 normal-action drops reach tier 7 and natural overflow; rendered art and native aim/release checked |
-| 4b. Bubble Garden | TODO | Hex/attachment/pop/fall/color pool tests and runtime proof |
+| 4b. Bubble Garden | PASS (desktop) | 1,364 checks; 5 gardens cleared in 33 hinted shots; 73 shots reach natural loss; alpha art and footer reviewed |
 | 4c. Mochi Hop | TODO | 1000+ seed reachability, hold/cancel/landing tests and runtime proof |
 | 4d. Tile Trio | TODO | Solver-verified seed batches, undo/tray/input runtime proof |
 | 4e. Bouncy Balls | TODO | Paddle/multiplier/pool/collision/stress proof |
@@ -23,7 +23,7 @@ an evidenced external blocker prevents all meaningful progress.
 
 ## Current checkpoint
 
-- Latest synchronized implementation commit: 75b05739e96e38bf7cee6717e932496db1279856 (shell + Cake + 2048).
+- Latest synchronized implementation commit: 2eef964e2170209c9632da7b96e9d11caae5b706 (Fruit Drop).
 - Engine verified: 4.7.2.stable.official.ed1daf0bf; official Android templates;
   JDK 17.0.20.1; SDK/Build Tools 36 for the actual target-36 template.
 - Two concepts generated; cream stationery selected; transparent card atlas and
@@ -41,9 +41,15 @@ an evidenced external blocker prevents all meaningful progress.
   sprites, overflow grace, seeded drop stream and mid-round persistence. 29 tests PASS.
   Normal-action seed 817 / input seed 4182: 251 drops, score 23220, tier 7, natural
   overflow, max 45 fruit, restart empty. Actual rendered captures reviewed.
-- Next: commit/push Fruit + CI fix;
-  then Bubble Garden hex attachment/connectivity/active-color pool and runtime proof.
-- Remaining five games, full visual/performance/security audit, release key and
+- Bubble Garden: hex-grid sweep collisions, true rebounds, triple pops, roof-connectivity
+  drops, live-color pool, free hint and persistent stages. 1,364 checks PASS, including
+  15 angle/frame-rate pairs. Rendered/headless normal-action reports agree exactly.
+  Fixed expanded-viewport side gaps; downsampled production sprites and footer reviewed.
+- Second CI (39635500243) rejected a job-level runner context before execution.
+  Moved Android path to step env and persisted through GITHUB_ENV; next push pending.
+- Next: commit/push Bubble + validated workflow fix, then Mochi Hop hold/release,
+  deterministic landing and 1000+ seed reachability proof.
+- Remaining four games, full visual/performance/security audit, release key and
   final signed APK/Android acceptance/Release are not done. Goal remains active.
 
 ## Success criteria

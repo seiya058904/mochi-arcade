@@ -11,6 +11,7 @@ The tool did not identify its model version. Exact prompts are retained in
 | game-icons.png | image_gen original eight-object atlas | 1774x887 RGBA; alpha 0-255; transparent corner. Individual runtime atlas regions inspected and corrected. Used on all eight home cards. |
 | mochi-bunny.png | image_gen original bunny/macaron | 1536x1024 RGBA; alpha 0-254; transparent corner. Original alpha retained. Used on home and Cake Stack. |
 | fruit-characters.png | image_gen original eight-fruit atlas, 2026-10-22 | 1774x887 RGBA; alpha 0-255. Inspected individual bounds, runtime cropping only, foliage above circular body. Used by real RigidBody2D fruit. Prompt: assets/source/fruit-prompt.json. |
+| bubble-characters.png | image_gen original five-symbol bubble atlas, 2026-10-22 | 1983x793 RGBA; alpha 0-255. Inspected square regions, mipmapped downsampling for small in-game circles. Symbols distinguish colors. Prompt: assets/source/bubble-prompt.json. |
 | app-icon.svg / icon-background.svg | Original project vector illustration | Editable geometric bunny icon; no third-party tracing |
 | Cake layers / UI / particle shapes | Original GDScript vector drawing | Resolution-independent game geometry and decoration |
 | BGM / SFX | Original code synthesis in audio_manager.gd | No third-party samples; one music voice and eight pooled SFX voices |
