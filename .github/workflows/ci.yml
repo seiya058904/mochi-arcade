@@ -76,8 +76,18 @@ jobs:
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" "emulator" "system-images;android-34;default;x86_64"
           # Versions verified against Google's stable repository metadata on 2026-10-22.
           # Fail on drift rather than silently adopting a different test environment.
-          grep -Fx 'Pkg.Revision=37.2.12' "$ANDROID_HOME/emulator/source.properties"
-          grep -Fx 'Pkg.Revision=4' "$ANDROID_HOME/system-images/android-34/default/x86_64/source.properties"
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          sdk = Path(os.environ['ANDROID_HOME'])
+          for relative, expected in [('emulator', (37, 2, 12)), ('system-images/android-34/default/x86_64', (4, 0, 0))]:
+              props = dict(line.split('=', 1) for line in (sdk / relative / 'source.properties').read_text().splitlines() if '=' in line)
+              revision = props['Pkg.Revision'].strip()
+              parts = tuple(int(n) for n in revision.split('.'))
+              normalized = parts + (0,) * (3 - len(parts))
+              print(f'{relative}: revision {revision!r}')
+              assert normalized == expected, f'Unexpected tool revision: {normalized} != {expected}'
+          PY
           echo "$ANDROID_HOME/platform-tools" >> "$GITHUB_PATH"
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-mochi-kvm.rules
           sudo udevadm control --reload-rules
