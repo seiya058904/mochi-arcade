@@ -22,7 +22,7 @@
       "status": "PASS",
       "exit_code": 0,
       "runtime_errors": [],
-      "seconds": 2.375
+      "seconds": 2.391
     },
     {
       "script": "tests/integration/vertical_slices.gd",
@@ -36,28 +36,28 @@
       "status": "PASS",
       "exit_code": 0,
       "runtime_errors": [],
-      "seconds": 2.844
+      "seconds": 2.843
     },
     {
       "script": "tests/integration/fruit_drop.gd",
       "status": "PASS",
       "exit_code": 0,
       "runtime_errors": [],
-      "seconds": 4.594
+      "seconds": 4.61
     },
     {
       "script": "tests/integration/bubble_garden.gd",
       "status": "PASS",
       "exit_code": 0,
       "runtime_errors": [],
-      "seconds": 0.718
+      "seconds": 0.734
     },
     {
       "script": "tests/integration/bubble_playthrough.gd",
       "status": "PASS",
       "exit_code": 0,
       "runtime_errors": [],
-      "seconds": 3.219
+      "seconds": 3.125
     },
     {
       "script": "tests/integration/mochi_hop.gd",
@@ -78,21 +78,21 @@
       "status": "PASS",
       "exit_code": 0,
       "runtime_errors": [],
-      "seconds": 0.813
+      "seconds": 0.812
     },
     {
       "script": "tests/integration/trio_playthrough.gd",
       "status": "PASS",
       "exit_code": 0,
       "runtime_errors": [],
-      "seconds": 2.39
+      "seconds": 2.485
     },
     {
       "script": "tests/integration/bouncy_balls.gd",
       "status": "PASS",
       "exit_code": 0,
       "runtime_errors": [],
-      "seconds": 3.391
+      "seconds": 3.39
     },
     {
       "script": "tests/integration/balls_playthrough.gd",
@@ -106,7 +106,7 @@
       "status": "PASS",
       "exit_code": 0,
       "runtime_errors": [],
-      "seconds": 1.922
+      "seconds": 2.016
     },
     {
       "script": "tests/integration/jelly_playthrough.gd",
@@ -127,7 +127,7 @@
       "status": "PASS",
       "exit_code": 0,
       "runtime_errors": [],
-      "seconds": 5.156
+      "seconds": 5.078
     }
   ]
 }

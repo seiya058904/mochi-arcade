@@ -438,11 +438,16 @@ func toast(message: String) -> void:
 
 func _notification(what: int) -> void:
 	if what in [NOTIFICATION_APPLICATION_PAUSED, NOTIFICATION_APPLICATION_FOCUS_OUT]:
-		# Notifications may arrive while the tree is adding/removing children.
-		# Defer both state and overlay changes to keep a paused run recoverable.
-		if is_inside_tree() and not lifecycle_suspend_pending:
-			lifecycle_suspend_pending = true
-			_suspend_from_lifecycle.call_deferred()
+		# Android may stop the render loop immediately after this notification.
+		# Freeze and persist now; only child-tree mutations may wait for a frame.
+		if is_inside_tree():
+			active_pointer = -2
+			if page == "game" and is_instance_valid(game) and game.is_inside_tree() and not game.stopped:
+				pause_game(true)
+			Sound.suspend(true)
+			if not lifecycle_suspend_pending:
+				lifecycle_suspend_pending = true
+				_show_lifecycle_pause.call_deferred()
 	elif what == NOTIFICATION_APPLICATION_FOCUS_IN:
 		if page != "game":
 			Sound.suspend(false)
@@ -462,13 +467,11 @@ func exit_application() -> void:
 	await Sound.shutdown()
 	get_tree().quit()
 
-func _suspend_from_lifecycle() -> void:
+func _show_lifecycle_pause() -> void:
 	lifecycle_suspend_pending = false
-	if page == "game" and is_instance_valid(game) and game.is_inside_tree() and not game.stopped:
-		pause_game(true)
+	if page == "game" and is_instance_valid(game) and game.is_inside_tree() and game.suspended and not game.stopped:
 		if not is_instance_valid(overlay):
 			show_pause()
-	Sound.suspend(true)
 
 func back() -> void:
 	if is_instance_valid(overlay):

@@ -1,0 +1,72 @@
+{
+  "checks": 980,
+  "failures": [
+    "Lifecycle notification freezes input and simulation before another frame 0",
+    "Lifecycle notification freezes input and simulation before another frame 1",
+    "Lifecycle notification freezes input and simulation before another frame 2",
+    "Lifecycle notification persists the live clock before another frame 2",
+    "Lifecycle notification freezes input and simulation before another frame 3",
+    "Lifecycle notification freezes input and simulation before another frame 4",
+    "Lifecycle notification freezes input and simulation before another frame 5",
+    "Lifecycle notification freezes input and simulation before another frame 6",
+    "Lifecycle notification freezes input and simulation before another frame 7",
+    "Lifecycle notification freezes input and simulation before another frame 8",
+    "Lifecycle notification freezes input and simulation before another frame 9",
+    "Lifecycle notification freezes input and simulation before another frame 10",
+    "Lifecycle notification persists the live clock before another frame 10",
+    "Lifecycle notification freezes input and simulation before another frame 11",
+    "Lifecycle notification freezes input and simulation before another frame 12",
+    "Lifecycle notification freezes input and simulation before another frame 13",
+    "Lifecycle notification freezes input and simulation before another frame 14",
+    "Lifecycle notification freezes input and simulation before another frame 15",
+    "Lifecycle notification freezes input and simulation before another frame 16",
+    "Lifecycle notification freezes input and simulation before another frame 17",
+    "Lifecycle notification freezes input and simulation before another frame 18",
+    "Lifecycle notification persists the live clock before another frame 18",
+    "Lifecycle notification freezes input and simulation before another frame 19",
+    "Lifecycle notification freezes input and simulation before another frame 20",
+    "Lifecycle notification freezes input and simulation before another frame 21",
+    "Lifecycle notification freezes input and simulation before another frame 22",
+    "Lifecycle notification freezes input and simulation before another frame 23",
+    "Lifecycle notification freezes input and simulation before another frame 24",
+    "Lifecycle notification freezes input and simulation before another frame 25",
+    "Lifecycle notification freezes input and simulation before another frame 26",
+    "Lifecycle notification persists the live clock before another frame 26",
+    "Lifecycle notification freezes input and simulation before another frame 27",
+    "Lifecycle notification freezes input and simulation before another frame 28",
+    "Lifecycle notification freezes input and simulation before another frame 29",
+    "Lifecycle notification freezes input and simulation before another frame 30",
+    "Lifecycle notification freezes input and simulation before another frame 31",
+    "Lifecycle notification freezes input and simulation before another frame 32",
+    "Lifecycle notification freezes input and simulation before another frame 33",
+    "Lifecycle notification freezes input and simulation before another frame 34",
+    "Lifecycle notification persists the live clock before another frame 34",
+    "Lifecycle notification freezes input and simulation before another frame 35",
+    "Lifecycle notification freezes input and simulation before another frame 36",
+    "Lifecycle notification freezes input and simulation before another frame 37",
+    "Lifecycle notification freezes input and simulation before another frame 38",
+    "Lifecycle notification freezes input and simulation before another frame 39"
+  ],
+  "preserved_baseline_failures": [
+    "Cake layers=[{}] accesses missing width and breaks round",
+    "2048 non-numeric cell produces an invalid int cast",
+    "640x800 portrait clips the bottom of the 2048 board"
+  ],
+  "scope": "Full collection desktop lifecycle/geometry; not Android proof",
+  "status": "FAIL",
+  "switches": 40,
+  "viewports": [
+    [
+      360,
+      640
+    ],
+    [
+      360,
+      800
+    ],
+    [
+      640,
+      800
+    ]
+  ]
+}

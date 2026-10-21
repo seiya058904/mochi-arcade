@@ -46,7 +46,13 @@ func run() -> void:
 		down.index = 0
 		down.pressed = true
 		app._unhandled_input(down)
+		if index == 2:
+			app.game.moving_time = 0.375 # The live clock differs from its last input checkpoint.
+			app.game.update_moving()
 		app._notification(Node.NOTIFICATION_APPLICATION_PAUSED)
+		check(app.game.suspended and app.active_pointer == -2, "Lifecycle notification freezes input and simulation before another frame " + str(cycle))
+		if index == 2:
+			check(is_equal_approx(float(save.session("cake_stack").time), 0.375), "Lifecycle notification persists the live clock before another frame " + str(cycle))
 		await process_frame
 		check(app.game.suspended and is_instance_valid(app.overlay) and app.active_pointer == -2, "Background cancels owned gesture and creates recoverable pause " + str(cycle))
 		var time_before: float = app.game.game_time

@@ -359,9 +359,35 @@ Capture now converts the same raw Android frame to PNG and rejects blank frames;
 it also records pixel statistics. Eight real-frame roundtrips preserve all RGB
 pixels, reject the retained black sample, and three malformed inputs are rejected.
 Foreground return additionally exercises Resume then Back, with actual captures.
-The visual review is still mandatory. EGL swap failures now fail log acceptance.
+The visual review is still mandatory. EGL swap warnings are retained for review.
 
 Run 39661719966 passed all 18 suites and APK export, but the emulator download
 connection closed before runtime setup. SDK transfers now retry at most three
 times and still verify the pinned package version. App launches/tests never retry
 automatically. Android input/load execution for that run is NOT_RUN.
+
+## Immediate lifecycle checkpoint regression
+
+Run 39662679600 uses ANGLE over Mesa llvmpipe 25.2.4 / LLVM 21.0.0. Fruit and
+Bubble now visibly return to pause, Resume to a live view, and Back to pause;
+actual return/resume PNGs are retained. Cake also returns visibly but its saved
+background and returned rounds differ. The overall run is still FAIL.
+
+The app deferred both freezing/checkpointing and overlay creation. Android may
+halt its rendering loop immediately after the lifecycle notification, leaving that
+checkpoint queued until foreground return. Freeze/checkpoint and audio suspension
+now happen synchronously; only child-tree mutation is deferred. The latter checks
+that the current game is still suspended, and cannot re-suspend resumed home audio.
+Forty synchronous freeze assertions and five live Cake clock-persistence assertions
+fail against the old code and pass after repair. The adverse 980-check report is
+retained in lifecycle-sync-baseline.json. All 18 required suites pass after repair;
+collection acceptance now totals 980 checks. Android verification remains pending.
+
+Lavapipe still records EGL_BAD_SURFACE while old surfaces are being destroyed:
+for Cake the warning is at 19:39:26.393, before OnResume at 19:39:26.566; valid
+presentation then resumes. These warnings remain in the report instead of being
+treated as proof of a permanent black screen. Blank captures, unchanged visual
+transitions, fatal/native/script failures and checkpoint differences still fail.
+The exact before/after background saves and PNG digests will be retained per game.
+The independent maximum-pool step now runs even when smoke fails, without changing
+the failed smoke/job result or claiming that performance supersedes lifecycle QA.

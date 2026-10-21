@@ -1,0 +1,305 @@
+{
+  "status": "FAIL",
+  "commit": "411a520abcbe5f640bcaea908a3c970e443120f4",
+  "apk_sha256": "a6aa7a7148f547f55e156697c86ce8264a16df3d2f363a12b61027deedf5d173",
+  "environment": "Dedicated GitHub-hosted Android API 34 x86_64 emulator; not a physical phone",
+  "visual_review": "PARTIAL: Fruit and Bubble visible return, Resume, Back verified; Cake return visible but checkpoint differs. Overall FAIL retained.",
+  "release_candidate": false,
+  "game_checks": {
+    "fruit_drop": {
+      "entered": true,
+      "system_back_keeps_process_and_freezes_round": true,
+      "background_freeze": true,
+      "background_render_and_input": true,
+      "round_restored_after_force_stop": true,
+      "restart_zero_score": true
+    },
+    "bubble_garden": {
+      "entered": true,
+      "system_back_keeps_process_and_freezes_round": true,
+      "background_freeze": true,
+      "background_render_and_input": true,
+      "round_restored_after_force_stop": true,
+      "restart_zero_score": true
+    },
+    "cake_stack": {
+      "entered": true,
+      "system_back_keeps_process_and_freezes_round": true
+    }
+  },
+  "device": {
+    "ro.product.model": "Android SDK built for x86_64",
+    "ro.build.version.release": "14",
+    "ro.build.version.sdk": "34",
+    "ro.product.cpu.abi": "x86_64",
+    "ro.build.fingerprint": "Android/sdk_phone64_x86_64/emu64x:14/UE1A.230829.036.A1/11228894:userdebug/test-keys"
+  },
+  "display": "Physical size: 720x1280",
+  "network_disabled_for_test": true,
+  "install": "Performing Streamed Install\nSuccess",
+  "cold_launch": "Starting: Intent { cmp=io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher }\nStatus: ok\nLaunchState: COLD\nActivity: io.github.seiya058904.mochiarcade/com.godot.game.GodotApp\nTotalTime: 1319\nWaitTime: 1386\nComplete",
+  "fullscreen_tip_dismissed": true,
+  "frame_checks": {
+    "00-home": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 574,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "01-fruit_drop-help": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 106,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "01-fruit_drop-ready": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 67,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "01-fruit_drop-after-input": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 93,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "01-fruit_drop-after-back": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 121,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "01-fruit_drop-resumed": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 93,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "01-fruit_drop-background-return": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 121,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "01-fruit_drop-background-resumed": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 94,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "01-fruit_drop-background-paused-again": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 122,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "01-fruit_drop-restored": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 123,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "01-fruit_drop-restarted": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 91,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "02-bubble_garden-help": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 299,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "02-bubble_garden-ready": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 349,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "02-bubble_garden-after-input": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 321,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "02-bubble_garden-after-back": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 113,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "02-bubble_garden-resumed": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 321,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "02-bubble_garden-background-return": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 113,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "02-bubble_garden-background-resumed": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 321,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "02-bubble_garden-background-paused-again": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 113,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "02-bubble_garden-restored": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 112,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "02-bubble_garden-restarted": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 111,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "03-cake_stack-help": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 104,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "03-cake_stack-ready": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 63,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "03-cake_stack-after-input": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 69,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "03-cake_stack-after-back": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 83,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "03-cake_stack-resumed": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 67,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "03-cake_stack-background-return": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 83,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "failure-screen": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 83,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    }
+  },
+  "first_music_loop_survived": true,
+  "error": "cake_stack advanced while backgrounded or resumed without a pause",
+  "runtime_errors": [
+    "10-21 19:37:43.159  2314  2350 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-21 19:38:36.056  2661  2684 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-21 19:39:26.393  2920  2943 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+  ],
+  "run_url": "https://github.com/seiya058904/mochi-arcade/actions/runs/39662679600",
+  "observed_renderer": "ANGLE over Mesa llvmpipe 25.2.4 / LLVM 21.0.0"
+}

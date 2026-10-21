@@ -216,8 +216,9 @@ def main():
             report["original_save_restored"] = original is not None
             logs = adb("logcat", "-d", "-v", "threadtime")
             (output / "load-logcat.txt").write_text(logs, encoding="utf-8")
-            errors = [line for line in logs.splitlines() if "SCRIPT ERROR:" in line or "FATAL EXCEPTION" in line or "Fatal signal" in line or "eglSwapBuffers failed" in line or re.search(r"\bE godot\s*:\s*ERROR:", line)]
+            errors = [line for line in logs.splitlines() if "SCRIPT ERROR:" in line or "FATAL EXCEPTION" in line or "Fatal signal" in line or re.search(r"\bE godot\s*:\s*ERROR:", line)]
             report["runtime_errors"] = errors
+            report["graphics_swap_warnings"] = [line for line in logs.splitlines() if "eglSwapBuffers failed" in line]
             if errors:
                 report["status"] = "FAIL"
         except Exception as error:

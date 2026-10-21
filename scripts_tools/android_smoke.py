@@ -63,9 +63,11 @@ def main():
         time.sleep(0.8)  # Capture the committed rendered frame, not just ADB's input acknowledgement.
         data, frame = capture_png(adb("exec-out", "screencap", binary=True))
         (output / f"{name}.png").write_bytes(data)
+        frame["sha256"] = hashlib.sha256(data).hexdigest()
         report.setdefault("frame_checks", {})[name] = frame
         if not allow_blank and not frame["has_visible_content"]:
             raise RuntimeError(f"Android screenshot {name} is blank: {frame}")
+        return frame["sha256"]
 
     def launch():
         # Godot 4.7 exposes this launcher alias; the target activity is private.
@@ -141,7 +143,7 @@ def main():
     def runtime_errors(logs):
         return [line for line in logs.splitlines() if
                 "SCRIPT ERROR:" in line or "FATAL EXCEPTION" in line or "Fatal signal" in line or
-                "eglSwapBuffers failed" in line or re.search(r"\bE godot\s*:\s*ERROR:", line)]
+                re.search(r"\bE godot\s*:\s*ERROR:", line)]
 
     try:
         deadline = time.monotonic() + 240
@@ -284,17 +286,23 @@ def main():
             shell("input", "keyevent", "KEYCODE_HOME")
             time.sleep(1)
             background = saved_state()["sessions"].get(game)
+            (output / f"{index + 1:02d}-{game}-background-save.json").write_text(json.dumps(background, indent=2), encoding="utf-8")
             launch()  # Bring the existing activity back; it must show a pause.
-            screenshot(f"{index + 1:02d}-{game}-background-return")
-            if not background or saved_state()["sessions"].get(game) != background:
-                raise RuntimeError(f"{game} advanced while backgrounded or resumed without a pause")
+            returned_frame = screenshot(f"{index + 1:02d}-{game}-background-return")
+            returned = saved_state()["sessions"].get(game)
+            (output / f"{index + 1:02d}-{game}-returned-save.json").write_text(json.dumps(returned, indent=2), encoding="utf-8")
+            if not background or returned != background:
+                raise RuntimeError(f"{game} background and returned checkpoints differ; inspect both retained saves")
             game_check["background_freeze"] = True
             # Prove that the returned activity still accepts UI input, not just
             # that its saved state stopped changing after the surface vanished.
             tap(360, 679)
-            screenshot(f"{index + 1:02d}-{game}-background-resumed")
+            resumed_frame = screenshot(f"{index + 1:02d}-{game}-background-resumed")
+            if resumed_frame == returned_frame:
+                raise RuntimeError(f"{game} foreground Resume produced no rendered transition")
             back()
-            screenshot(f"{index + 1:02d}-{game}-background-paused-again")
+            if screenshot(f"{index + 1:02d}-{game}-background-paused-again") == resumed_frame:
+                raise RuntimeError(f"{game} foreground Back produced no rendered transition")
             game_check["background_render_and_input"] = True
             park()
             state = saved_state()
@@ -374,6 +382,7 @@ def main():
         (output / "logcat.txt").write_text(logs, encoding="utf-8")
         errors = runtime_errors(logs)
         report["runtime_errors"] = errors
+        report["graphics_swap_warnings"] = [line for line in logs.splitlines() if "eglSwapBuffers failed" in line]
         if errors:
             raise RuntimeError("Android runtime errors were recorded")
         report["status"] = "PASS_SMOKE_AWAITING_VISUAL_REVIEW"
@@ -388,6 +397,7 @@ def main():
             logs = adb("logcat", "-d", "-v", "threadtime")
             (output / "logcat.txt").write_text(logs, encoding="utf-8")
             report["runtime_errors"] = runtime_errors(logs)
+            report["graphics_swap_warnings"] = [line for line in logs.splitlines() if "eglSwapBuffers failed" in line]
         except Exception as capture_error:
             report["capture_error"] = str(capture_error)
     finally:

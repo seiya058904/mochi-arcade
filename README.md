@@ -36,7 +36,7 @@ and [QA report](docs/QA_REPORT.md). Follow the verified [build instructions](doc
 for Godot import, tests and a development APK. All eight games are available
 from first launch; no accounts, advertisements or purchases are required.
 
-The required runner executes **18 suites**, including **935** collection lifecycle,
+The required runner executes **18 suites**, including **980** collection lifecycle,
 damaged-save and layout checks. A **34-screen** desktop matrix covers both languages
 and three portrait ratios.
 

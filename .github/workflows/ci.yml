@@ -133,6 +133,7 @@ jobs:
           PY
           df -h "$ANDROID_HOME" "$RUNNER_TEMP"
       - name: Boot dedicated AVD and run Android input smoke
+        id: android_smoke
         env:
           ANDROID_AVD_HOME: ${{ runner.temp }}/mochi-avd
         shell: bash
@@ -154,6 +155,7 @@ jobs:
           if [[ "${{ inputs.release_candidate }}" == 'true' ]]; then smoke_args+=(--release); fi
           python3 scripts_tools/android_smoke.py "${smoke_args[@]}"
       - name: Measure maximum-pool Android render bursts
+        if: ${{ !cancelled() && (steps.android_smoke.outcome == 'success' || steps.android_smoke.outcome == 'failure') }}
         shell: bash
         run: |
           set -euo pipefail

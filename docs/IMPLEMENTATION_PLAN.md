@@ -15,7 +15,7 @@ an evidenced external blocker prevents all meaningful progress.
 | 4d. Tile Trio | PASS (desktop) | 1,500 solver-verified boards, 439,506 rule + 23 runtime checks; 5 shops / 187 input picks / natural full tray / free result undo / restart; actual screenshots |
 | 4e. Bouncy Balls | PASS (desktop) | 236,650 checks; real x2/x3 gates; 60-second 64-ball stress; normal input clears 4 waves, reaches 64 balls, naturally loses/retries; rendered captures |
 | 4f. Jelly Slice | PASS (desktop) | 7,224 checks; 108,000 stress swipe events; real-input 60-second Zen round slices 150 fruit, naturally misses 7, finishes/retries via buttons; original whole/half art reviewed |
-| 5. Integration / lifecycle / stress audit | PASS (desktop) | 18 required suites; 935 full-collection checks, 40 switches, damaged-save recovery and three viewport profiles |
+| 5. Integration / lifecycle / stress audit | PASS (desktop) | 18 required suites; 980 full-collection checks, 40 switches, immediate lifecycle persistence, damaged-save recovery and three viewport profiles |
 | 6. Complete visual reviews + targeted fixes | PASS (desktop) | 34 actual renderer captures; EN/ZH, home, eight games, settings, help/pause; board fit, mipmaps and text contrast fixed |
 | 7. Signed Android acceptance | IN_PROGRESS | Secure local signing verified; Android swangle rendering PASS; stronger Back/lifecycle plus maximum-pool acceptance pending; signing secret approval pending |
 | 8. CI / final audit / remote sync | TODO | Clean local/upstream/default SHA match, final-SHA CI green |
@@ -127,3 +127,10 @@ matching final local/remote/tag/build commit; verified release-download bytes.
   Retain all adverse evidence, add blank-frame and resumed-input checks, and compare
   the same pinned emulator's documented Lavapipe backend. No app-code workaround is
   assumed. Run 39661719966 stopped at an interrupted SDK download, before Android tests.
+- Run 39662679600 on Lavapipe restores visible Fruit/Bubble views and accepts Resume
+  then Back. Cake exposes deferred lifecycle persistence: the background snapshot
+  differs from the returned one. Freeze/checkpoint now execute in the notification;
+  only pause-overlay tree mutation is deferred. All 45 new regression checks fail
+  on the old code and pass on the repair; all 18 suites pass (980 collection checks).
+  Native rerun and later games remain pending. Maximum-load checks now run even
+  after an independent smoke failure, while preserving that failed job result.
