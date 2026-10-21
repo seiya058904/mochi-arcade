@@ -57,17 +57,4 @@ static func colors(grid: Dictionary) -> Array[int]:
 	return result
 
 static func segment_circle(from: Vector2, to: Vector2, center: Vector2, radius: float) -> float:
-	var offset := from - center
-	var movement := to - from
-	var a := movement.length_squared()
-	if offset.length_squared() <= radius * radius:
-		return 0.0
-	if a <= 0.00001:
-		return INF
-	var b := 2.0 * offset.dot(movement)
-	var c := offset.length_squared() - radius * radius
-	var discriminant := b * b - 4.0 * a * c
-	if discriminant < 0:
-		return INF
-	var t := (-b - sqrt(discriminant)) / (2.0 * a)
-	return t if t >= 0 and t <= 1 else INF
+	return MochiSweep.circle(from, to, center, radius)

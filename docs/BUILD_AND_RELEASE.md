@@ -31,6 +31,8 @@ Godot Editor Settings > Export > Android with the installed JDK and SDK paths.
 ./scripts_tools/godot.ps1 --headless --script tests/logic/trio_solver.gd
 ./scripts_tools/godot.ps1 --headless --script tests/integration/tile_trio.gd
 ./scripts_tools/godot.ps1 --headless --fixed-fps 60 --script tests/integration/trio_playthrough.gd
+./scripts_tools/godot.ps1 --headless --script tests/integration/bouncy_balls.gd
+./scripts_tools/godot.ps1 --headless --fixed-fps 60 --script tests/integration/balls_playthrough.gd
 ./scripts_tools/godot.ps1 --script tests/integration/capture_ui.gd
 ./scripts_tools/godot.ps1 --headless --export-debug Android dist/MochiArcade-dev.apk
 ```

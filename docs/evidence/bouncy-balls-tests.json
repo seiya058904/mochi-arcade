@@ -1,0 +1,32 @@
+{
+  "checks": 236650,
+  "failures": [],
+  "preserved_adverse_sample": {
+    "cause": "Minimum vertical speed restored inward velocity after grazing bumper reflection",
+    "fix": "Outward-normal validation after speed correction, normal separation epsilon; 2000 additional curved contacts",
+    "incoming": [
+      -507.9101,
+      136.76
+    ],
+    "initial_collision_limit_hits": 7,
+    "normal": [
+      -0.13369,
+      -0.991023
+    ]
+  },
+  "status": "PASS",
+  "stress": {
+    "allowed_ui_toast_nodes": 1,
+    "collision_limit_hits": 0,
+    "maintained_pool_fixture": true,
+    "max_balls": 64,
+    "nodes_after": 28,
+    "nodes_before": 27,
+    "physics_us_max": 4844,
+    "physics_us_p50": 705,
+    "physics_us_p95": 1726,
+    "pool_size": 64,
+    "scope": "Windows headless GDScript simulation only; not Android FPS or rendering performance",
+    "simulated_seconds": 60
+  }
+}

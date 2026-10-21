@@ -51,6 +51,8 @@ jobs:
           "$engine" --headless --fixed-fps 60 --path . --script tests/integration/hop_playthrough.gd
           "$engine" --headless --path . --script tests/integration/tile_trio.gd
           "$engine" --headless --fixed-fps 60 --path . --script tests/integration/trio_playthrough.gd
+          "$engine" --headless --path . --script tests/integration/bouncy_balls.gd
+          "$engine" --headless --fixed-fps 60 --path . --script tests/integration/balls_playthrough.gd
           "$engine" --headless --fixed-fps 60 --path . --script tests/integration/fruit_playthrough.gd
       - name: Configure Android tools and debug signing
         env:

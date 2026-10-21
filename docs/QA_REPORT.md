@@ -1,10 +1,10 @@
 # QA report
 
-Status: **PARTIAL** — six playable games, 2026-10-22.
+Status: **PARTIAL** — seven playable games, 2026-10-22.
 
 Initial read-only audit on 2026-10-21 confirmed an empty work directory, no Git
 root, Java 17, SDK 34 and an offline Android 34 AVD. Since then an actual Godot
-project, production art, shared shell, six playable scenes and a debug APK have
+project, production art, shared shell, seven playable scenes and a debug APK have
 been built. No stable release has been published.
 
 Evidence must include command, actual environment, case counts, pass/fail,
@@ -34,6 +34,9 @@ Android emulator: BLOCKED; every observed `adb devices -l` shows offline.
 | Trio construction/solver | PASS, 439,506 assertions | evidence/trio-solver-tests.json; 500 seeds at levels 1/4/10 (1,500 boards), construction witness plus independent search replay, independent rectangle occlusion and modulo-three tray oracle; max 176 search nodes; seventh matching tile clears before the capacity check |
 | Trio runtime/recovery | PASS, 23 checks | evidence/tile-trio-tests.json; covered corners, rapid duplicate taps, paused transit, atomic undo of a completed match, persisted history, solver-confirmed hint, natural full tray, free result-button undo, next level and restart |
 | Trio actual input replay | PASS, rendered + headless | evidence/trio-playthrough-*.json; seed 701, 180 normal hinted picks clear five shops for 2100 points; seven further legal low-match picks fill the tray; real result-button click recovers six slots; restart playable. Full trace retained. |
+| Balls collision / pool / lifecycle | PASS, 236,650 checks | evidence/bouncy-balls-tests.json; 1,000 independently checked sweeps, 2,000 outward curved rebounds, x2/x3 actual offspring, claim inheritance, excess +5 scoring, paddle endpoints at 30/60/120 Hz, pause/save/changed viewport/clear/loss/retry/unload; fixed 64-slot pool |
+| Balls sustained stress | PASS, Windows simulation | 60 simulated seconds maintaining 64 balls; finite motion, bounded speed/effects, zero exhausted collision iterations, 27 to 28 nodes (one shared toast). Measured headless physics p50 705 us / p95 1726 us / max 4844 us on this run. These are not rendering frame times or Android performance. |
+| Balls ordinary-input replay | PASS, rendered + headless | evidence/balls-playthrough-*.json; seed 881, actual Godot mouse press/drag, 4 waves, 134 catches, 241 brick hits, x2/x3 gate crossings 77/67, real max 64 balls, 164 recycled, score 4820, natural loss/retry. Outcomes agree; screenshot synchronization differs by one frame. Five desktop captures visually reviewed. |
 | Audio shutdown | PASS on desktop reruns | evidence/audio-shutdown.json; verbose baseline identified 3 AudioStreamWAV + 8 AudioStreamPlaybackWAV resources. Explicit player stop plus real-time mixer drain produced zero leaked instances on Trio, and no warning on Hop. |
 | Desktop rendering | PASS for current screens | evidence/desktop-*.png files, AMD RX 7900 XT Compatibility renderer |
 | Native desktop input | PASS for current four games | Actual home/settings clicks, 2048 left/up swipes and merge score 4, Cake placement/cut and score 1, Fruit aim/release and next preview, focus-loss pause/resume; Bubble real mouse drag/release pops four and scores 40 (desktop-bubble-native.png) |
@@ -42,9 +45,16 @@ Android emulator: BLOCKED; every observed `adb devices -l` shows offline.
 | APK metadata | PASS | io.github.seiya058904.mochiarcade, min API 24, target 36, arm64-v8a+x86_64; VIBRATE only |
 | Android install / launch / touch | BLOCKED | No online device; not claimed verified |
 | Audible quality / physical-device performance | NOT_RUN | Requires actual listening and Android runtime |
-| CI / release | PASS for 7faa254 / NOT_PUBLISHED | [Run 39640559280](https://github.com/seiya058904/mochi-arcade/actions/runs/39640559280): all five-game checks and debug Android build passed. Trio checkpoint still needs its own CI run. |
+| CI / release | PASS for d609cb4 / NOT_PUBLISHED | [Run 39643643457](https://github.com/seiya058904/mochi-arcade/actions/runs/39643643457): all six-game checks and debug Android build passed. Balls checkpoint awaits its own CI run. |
 
 ## Found and fixed
+
+- Balls stress initially exhausted collision iterations seven times. A grazing bumper
+  reflection had its small vertical speed increased back into the bumper. The original
+  normal/velocity are retained in bouncy-balls-tests.json; outward-normal validation and
+  separation fix it. Two thousand randomized curved contacts and the unchanged 60-second
+  stress pass with zero exhaustion. Stress yields to the real scene loop to drain queued
+  toast replacements; its node assertion explicitly permits that one shared UI label.
 
 - Thin Latin/CJK fonts: set numeric OpenType weight tags and explicit CJK variable fallbacks.
 - Generated atlas cut the bunny ears: individually inspected sprite bounds replaced uniform grid assumption.

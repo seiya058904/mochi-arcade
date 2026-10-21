@@ -1,0 +1,484 @@
+{
+  "brick_hits": 241,
+  "bumper_hits": 174,
+  "catches": 134,
+  "collision_limit_hits": 0,
+  "evidence": "Actual Godot mouse press/drag events drive only the paddle. Predictive catches clear waves; deliberate misses cause natural loss. No score/ball/brick injection.",
+  "frames": 3901,
+  "gate_passes": [
+    77,
+    67
+  ],
+  "input_trace": [
+    {
+      "balls": 1,
+      "bricks": 24,
+      "frame": 0,
+      "wave": 1,
+      "x": 324.0
+    },
+    {
+      "balls": 1,
+      "bricks": 24,
+      "frame": 60,
+      "wave": 1,
+      "x": 194.26
+    },
+    {
+      "balls": 1,
+      "bricks": 24,
+      "frame": 120,
+      "wave": 1,
+      "x": 194.26
+    },
+    {
+      "balls": 2,
+      "bricks": 24,
+      "frame": 180,
+      "wave": 1,
+      "x": 271.68
+    },
+    {
+      "balls": 2,
+      "bricks": 23,
+      "frame": 240,
+      "wave": 1,
+      "x": 82.38
+    },
+    {
+      "balls": 2,
+      "bricks": 23,
+      "frame": 300,
+      "wave": 1,
+      "x": 371.0
+    },
+    {
+      "balls": 2,
+      "bricks": 22,
+      "frame": 360,
+      "wave": 1,
+      "x": 604.13
+    },
+    {
+      "balls": 4,
+      "bricks": 21,
+      "frame": 420,
+      "wave": 1,
+      "x": 578.87
+    },
+    {
+      "balls": 4,
+      "bricks": 21,
+      "frame": 480,
+      "wave": 1,
+      "x": 347.02
+    },
+    {
+      "balls": 4,
+      "bricks": 19,
+      "frame": 540,
+      "wave": 1,
+      "x": 266.34
+    },
+    {
+      "balls": 4,
+      "bricks": 17,
+      "frame": 600,
+      "wave": 1,
+      "x": 62.16
+    },
+    {
+      "balls": 4,
+      "bricks": 17,
+      "frame": 660,
+      "wave": 1,
+      "x": 399.08
+    },
+    {
+      "balls": 4,
+      "bricks": 16,
+      "frame": 720,
+      "wave": 1,
+      "x": 194.44
+    },
+    {
+      "balls": 4,
+      "bricks": 15,
+      "frame": 780,
+      "wave": 1,
+      "x": 194.44
+    },
+    {
+      "balls": 4,
+      "bricks": 12,
+      "frame": 840,
+      "wave": 1,
+      "x": 215.56
+    },
+    {
+      "balls": 4,
+      "bricks": 11,
+      "frame": 900,
+      "wave": 1,
+      "x": 611.38
+    },
+    {
+      "balls": 6,
+      "bricks": 11,
+      "frame": 960,
+      "wave": 1,
+      "x": 593.61
+    },
+    {
+      "balls": 6,
+      "bricks": 10,
+      "frame": 1020,
+      "wave": 1,
+      "x": 337.52
+    },
+    {
+      "balls": 6,
+      "bricks": 6,
+      "frame": 1080,
+      "wave": 1,
+      "x": 310.12
+    },
+    {
+      "balls": 6,
+      "bricks": 5,
+      "frame": 1140,
+      "wave": 1,
+      "x": 310.12
+    },
+    {
+      "balls": 6,
+      "bricks": 4,
+      "frame": 1200,
+      "wave": 1,
+      "x": 136.21
+    },
+    {
+      "balls": 6,
+      "bricks": 3,
+      "frame": 1260,
+      "wave": 1,
+      "x": 396.7
+    },
+    {
+      "balls": 6,
+      "bricks": 3,
+      "frame": 1320,
+      "wave": 1,
+      "x": 26.38
+    },
+    {
+      "balls": 6,
+      "bricks": 2,
+      "frame": 1380,
+      "wave": 1,
+      "x": 72.51
+    },
+    {
+      "balls": 5,
+      "bricks": 1,
+      "frame": 1440,
+      "wave": 1,
+      "x": 296.25
+    },
+    {
+      "balls": 5,
+      "bricks": 1,
+      "frame": 1500,
+      "wave": 1,
+      "x": 380.25
+    },
+    {
+      "balls": 5,
+      "bricks": 1,
+      "frame": 1560,
+      "wave": 1,
+      "x": 248.6
+    },
+    {
+      "balls": 5,
+      "bricks": 1,
+      "frame": 1620,
+      "wave": 1,
+      "x": 248.6
+    },
+    {
+      "balls": 5,
+      "bricks": 0,
+      "frame": 1680,
+      "wave": 1,
+      "x": 453.43
+    },
+    {
+      "balls": 11,
+      "bricks": 24,
+      "frame": 1740,
+      "wave": 2,
+      "x": 327.52
+    },
+    {
+      "balls": 11,
+      "bricks": 18,
+      "frame": 1800,
+      "wave": 2,
+      "x": 369.66
+    },
+    {
+      "balls": 12,
+      "bricks": 14,
+      "frame": 1860,
+      "wave": 2,
+      "x": 264.16
+    },
+    {
+      "balls": 12,
+      "bricks": 12,
+      "frame": 1920,
+      "wave": 2,
+      "x": 89.63
+    },
+    {
+      "balls": 12,
+      "bricks": 9,
+      "frame": 1980,
+      "wave": 2,
+      "x": 122.12
+    },
+    {
+      "balls": 12,
+      "bricks": 7,
+      "frame": 2040,
+      "wave": 2,
+      "x": 572.17
+    },
+    {
+      "balls": 13,
+      "bricks": 5,
+      "frame": 2100,
+      "wave": 2,
+      "x": 615.32
+    },
+    {
+      "balls": 15,
+      "bricks": 4,
+      "frame": 2160,
+      "wave": 2,
+      "x": 165.37
+    },
+    {
+      "balls": 18,
+      "bricks": 4,
+      "frame": 2220,
+      "wave": 2,
+      "x": 162.45
+    },
+    {
+      "balls": 18,
+      "bricks": 3,
+      "frame": 2280,
+      "wave": 2,
+      "x": 198.73
+    },
+    {
+      "balls": 20,
+      "bricks": 2,
+      "frame": 2340,
+      "wave": 2,
+      "x": 128.01
+    },
+    {
+      "balls": 21,
+      "bricks": 1,
+      "frame": 2400,
+      "wave": 2,
+      "x": 56.96
+    },
+    {
+      "balls": 21,
+      "bricks": 0,
+      "frame": 2460,
+      "wave": 2,
+      "x": 96.81
+    },
+    {
+      "balls": 32,
+      "bricks": 24,
+      "frame": 2520,
+      "wave": 3,
+      "x": 363.05
+    },
+    {
+      "balls": 32,
+      "bricks": 15,
+      "frame": 2580,
+      "wave": 3,
+      "x": 249.91
+    },
+    {
+      "balls": 50,
+      "bricks": 10,
+      "frame": 2640,
+      "wave": 3,
+      "x": 520.17
+    },
+    {
+      "balls": 53,
+      "bricks": 8,
+      "frame": 2700,
+      "wave": 3,
+      "x": 64.43
+    },
+    {
+      "balls": 54,
+      "bricks": 3,
+      "frame": 2760,
+      "wave": 3,
+      "x": 555.57
+    },
+    {
+      "balls": 57,
+      "bricks": 24,
+      "frame": 2820,
+      "wave": 4,
+      "x": 648.0
+    },
+    {
+      "balls": 64,
+      "bricks": 24,
+      "frame": 2880,
+      "wave": 4,
+      "x": 0.0
+    },
+    {
+      "balls": 61,
+      "bricks": 5,
+      "frame": 2940,
+      "wave": 4,
+      "x": 0.0
+    },
+    {
+      "balls": 54,
+      "bricks": 2,
+      "frame": 3000,
+      "wave": 4,
+      "x": 648.0
+    },
+    {
+      "balls": 48,
+      "bricks": 2,
+      "frame": 3060,
+      "wave": 4,
+      "x": 648.0
+    },
+    {
+      "balls": 39,
+      "bricks": 1,
+      "frame": 3120,
+      "wave": 4,
+      "x": 0.0
+    },
+    {
+      "balls": 32,
+      "bricks": 0,
+      "frame": 3180,
+      "wave": 4,
+      "x": 0.0
+    },
+    {
+      "balls": 45,
+      "bricks": 24,
+      "frame": 3240,
+      "wave": 5,
+      "x": 648.0
+    },
+    {
+      "balls": 51,
+      "bricks": 15,
+      "frame": 3300,
+      "wave": 5,
+      "x": 648.0
+    },
+    {
+      "balls": 56,
+      "bricks": 8,
+      "frame": 3360,
+      "wave": 5,
+      "x": 0.0
+    },
+    {
+      "balls": 35,
+      "bricks": 7,
+      "frame": 3420,
+      "wave": 5,
+      "x": 648.0
+    },
+    {
+      "balls": 34,
+      "bricks": 5,
+      "frame": 3480,
+      "wave": 5,
+      "x": 0.0
+    },
+    {
+      "balls": 29,
+      "bricks": 3,
+      "frame": 3540,
+      "wave": 5,
+      "x": 648.0
+    },
+    {
+      "balls": 21,
+      "bricks": 3,
+      "frame": 3600,
+      "wave": 5,
+      "x": 648.0
+    },
+    {
+      "balls": 15,
+      "bricks": 2,
+      "frame": 3660,
+      "wave": 5,
+      "x": 648.0
+    },
+    {
+      "balls": 11,
+      "bricks": 2,
+      "frame": 3720,
+      "wave": 5,
+      "x": 0.0
+    },
+    {
+      "balls": 8,
+      "bricks": 2,
+      "frame": 3780,
+      "wave": 5,
+      "x": 0.0
+    },
+    {
+      "balls": 4,
+      "bricks": 2,
+      "frame": 3840,
+      "wave": 5,
+      "x": 0.0
+    },
+    {
+      "balls": 1,
+      "bricks": 2,
+      "frame": 3900,
+      "wave": 5,
+      "x": 648.0
+    }
+  ],
+  "max_balls": 64,
+  "natural_loss": true,
+  "recycled": 164,
+  "retry_playable": true,
+  "score": 4820,
+  "seed": 881,
+  "status": "PASS",
+  "waves_cleared": 4
+}
