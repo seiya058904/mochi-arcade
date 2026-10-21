@@ -17,13 +17,14 @@ an evidenced external blocker prevents all meaningful progress.
 | 4f. Jelly Slice | PASS (desktop) | 7,224 checks; 108,000 stress swipe events; real-input 60-second Zen round slices 150 fruit, naturally misses 7, finishes/retries via buttons; original whole/half art reviewed |
 | 5. Integration / lifecycle / stress audit | PASS (desktop) | 18 required suites; 980 full-collection checks, 40 switches, immediate lifecycle persistence, damaged-save recovery and three viewport profiles |
 | 6. Complete visual reviews + targeted fixes | PASS (desktop) | 34 actual renderer captures; EN/ZH, home, eight games, settings, help/pause; board fit, mipmaps and text contrast fixed |
-| 7. Signed Android acceptance | IN_PROGRESS / background BLOCKED | All eight paths and 87 views passed once; a later Bubble return is black. Both loads measured but slow; renderer diagnosis, launcher and signed-byte runtime pending; signing-secret approval pending |
+| 7. Signed Android acceptance | IN_PROGRESS / background BLOCKED | Host GLES development run passes all eight paths and launcher; 99 captures reviewed. Same-source Lavapipe still black. Repeated lifecycle, performance and signed-byte runtime pending; signing-secret approval pending |
 | 8. CI / final audit / remote sync | TODO | Clean local/upstream/default SHA match, final-SHA CI green |
 | 9. Release and download verification | TODO | Annotated tag, draft assets, independent hash match, publish |
 
 ## Current checkpoint
 
-- All-eight-game checkpoint da1d397c29134fd18ec29b26a8cbfdeedeae0f4c passed CI 39647458113. Later hosted Android attempts 39648255774 and 39649666572 passed build/tests/KVM but failed on emulator disk allocation. Current changes add the collection audit and adjust the runtime environment.
+- Latest reviewed development checkpoint a032fde passes host-GLES CI 39670759820 and all 99 native views; same-source Lavapipe 39670750928 fails on black background return. Next run strengthens repeat coverage; signing-secret approval or a connected Android device is still required for signed-byte acceptance.
+- Earlier all-eight-game checkpoint da1d397c29134fd18ec29b26a8cbfdeedeae0f4c passed CI 39647458113. Hosted attempts 39648255774 and 39649666572 then exposed and retained emulator disk-allocation failures.
 - Engine verified: 4.7.2.stable.official.ed1daf0bf; official Android templates;
   JDK 17.0.20.1; SDK/Build Tools 36 for the actual target-36 template.
 - Two concepts generated; cream stationery selected; transparent card atlas and
@@ -169,3 +170,16 @@ matching final local/remote/tag/build commit; verified release-download bytes.
   The fresh local a2a3bd7 release export is 78016973 bytes, SHA-256
   3597bc5020d5ec545e87a837b03a7a2a7a375a24cde002d44c0c47d1aaa42901;
   signature/package/static alignment checks pass, exact-byte Android runtime pending.
+- Run 39669849881 verifies the actual bunny launcher entry and icon-tap launch.
+  Balls then reproduces the black return: five further passive seconds stay black;
+  a new five-second Home cycle restores visible pause with the same PID. Preserve
+  both states, keep the original job failed, and retain the suspected engine-surface
+  race classification. Load observations are 3.01 / 4.66 FPS, still software-only.
+  Same-source a032fde comparisons are running: Lavapipe 39670750928 and explicit
+  software host GLES 39670759820. No result is assumed before their logs/captures.
+- Same-source comparison is complete: Lavapipe fails on Fruit; host GLES passes
+  all eight game paths, launcher, settings/reinstall and load execution. All 99
+  host captures are reviewed, with unchanged originals and both raw results retained.
+  Actual host adapter is Mesa llvmpipe, not a hardware GPU. EGL/ColorBuffer warnings
+  remain and 6.01/8.91 FPS is not a performance pass. Use host for the next bounded
+  run and require three returns per game; keep the unresolved black-return blocker.

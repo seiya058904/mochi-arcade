@@ -12,8 +12,8 @@ on:
       graphics_backend:
         description: Emulator graphics diagnostic; both choices use software rendering on this runner
         type: choice
-        options: [lavapipe, host]
-        default: lavapipe
+        options: [host, lavapipe]
+        default: host
 permissions:
   contents: read
 jobs:
@@ -22,7 +22,7 @@ jobs:
     timeout-minutes: 35
     env:
       GODOT_VERSION: 4.7.2
-      MOCHI_EMULATOR_GPU: ${{ inputs.graphics_backend || 'lavapipe' }}
+      MOCHI_EMULATOR_GPU: ${{ inputs.graphics_backend || 'host' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4

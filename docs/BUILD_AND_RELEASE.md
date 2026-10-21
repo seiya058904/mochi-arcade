@@ -43,10 +43,11 @@ failed shader compilation; swangle rendered but lost surfaces on background retu
 The pinned emulator's ANGLE/Lavapipe backend now passes all eight native lifecycle,
 round-restore/restart and settings/reinstall checks after the Back and synchronous
 checkpoint repairs in one complete run. All 87 captured native views were reviewed.
-Run 39667082209 then reproduced an intermittent black background return in Bubble;
-stability is not accepted. Maximum-pool execution is measured but software-renderer
-smoothness is not passed. Launcher and final signed-byte acceptance remain pending;
-both successful and adverse runs stay in QA_REPORT.
+Later Lavapipe runs reproduced intermittent black background returns. Host-GLES
+run 39670759820 passes all eight paths and the actual launcher icon, with 99 native
+captures reviewed. Surface stability is still under repeated testing. Maximum-pool
+execution is measured but software-renderer smoothness is not passed. Final
+signed-byte acceptance remains pending; all successful and adverse runs stay in QA_REPORT.
 The local Windows AVD cannot accelerate (missing hypervisor driver); software-only
 attempts never reached an online device and this task's failed process was stopped.
 No OS driver or boot security setting was changed.
@@ -107,13 +108,15 @@ No workflow or script creates a tag or publishes a Release automatically.
 
 ## Emulator graphics diagnostic
 
-Manual workflow runs can select `graphics_backend=host` to compare the emulator's
-host GLES route with the default `lavapipe` route. Both remain software-rendered
-on the hosted runner. The host experiment starts the image's existing Xvfb and
+The default `graphics_backend=host` uses the emulator's host GLES route. Manual
+runs can select `lavapipe` to reproduce the retained failing comparison. Both
+remain software-rendered on the hosted runner. Host starts the image's existing Xvfb and
 sets Mesa's `LIBGL_ALWAYS_SOFTWARE=true` and `GALLIUM_DRIVER=llvmpipe`; it installs
 no new package, preserves all runtime assertions, and records the requested mode
-plus actual adapter details in emulator.log. This is a diagnostic, not an accepted
-configuration or a physical-GPU benchmark until the resulting evidence is reviewed.
+plus actual adapter details in emulator.log. Host's a032fde comparison passed all
+native paths and visual review, but still emitted EGL warnings; this is not proof
+of a product fix or physical-GPU performance. Each game now requires three
+background returns; repeated stability and final signed-byte acceptance remain open.
 It does not enable release signing or consume signing secrets by default.
 
 Sources: [Android emulator graphics modes](https://developer.android.com/studio/run/emulator-acceleration),

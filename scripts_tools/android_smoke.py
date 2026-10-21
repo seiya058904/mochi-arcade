@@ -354,6 +354,29 @@ def main():
             if screenshot(f"{index + 1:02d}-{game}-background-paused-again") == resumed_frame:
                 raise RuntimeError(f"{game} foreground Back produced no rendered transition")
             game_check["background_render_and_input"] = True
+            game_check["background_cycles"] = [{"cycle": 1, "visible": True, "checkpoint_equal": True,
+                                                  "resume_and_back_input": True}]
+            # A single successful return did not reveal the intermittent EGL
+            # surface failure. Repeat while paused so the probe measures surface
+            # recovery without turning a natural game-over into a false failure.
+            for cycle in (2, 3):
+                prefix = f"{index + 1:02d}-{game}-repeat-{cycle}"
+                checkpoint = saved_state()["sessions"].get(game)
+                pid_before = shell("pidof", package)
+                shell("input", "keyevent", "KEYCODE_HOME")
+                time.sleep(1)
+                launch()
+                screenshot(prefix + "-background-return")
+                observed = saved_state()["sessions"].get(game)
+                pid_after = shell("pidof", package)
+                cycle_check = {"cycle": cycle, "visible": True, "checkpoint_equal": observed == checkpoint,
+                               "pid_before": pid_before, "pid_after": pid_after,
+                               "same_process": bool(pid_before) and pid_before == pid_after}
+                game_check["background_cycles"].append(cycle_check)
+                (output / (prefix + "-checkpoints.json")).write_text(
+                    json.dumps({"before": checkpoint, "after": observed}, indent=2), encoding="utf-8")
+                if not checkpoint or not cycle_check["checkpoint_equal"] or not cycle_check["same_process"]:
+                    raise RuntimeError(f"{game} background cycle {cycle} changed its paused round or process")
             park()
             state = saved_state()
             (output / f"{index + 1:02d}-{game}-save.json").write_text(json.dumps(state, indent=2), encoding="utf-8")

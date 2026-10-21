@@ -1,0 +1,947 @@
+{
+  "status": "FAIL",
+  "commit": "a032fde4a4b45b236697f1cc6a6abb412a61cd9b",
+  "apk_sha256": "c737bfe782d17e088f82af0e35c91f54d2c049878693c40a2e46e38441ec6209",
+  "environment": "Dedicated GitHub-hosted Android API 34 x86_64 emulator; not a physical phone",
+  "graphics_backend_requested": "lavapipe",
+  "visual_review": "PENDING",
+  "commands": [
+    {
+      "args": [
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "exit": 1,
+      "seconds": 0.106
+    },
+    {
+      "args": [
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "exit": 1,
+      "seconds": 0.006
+    },
+    {
+      "args": [
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "exit": 1,
+      "seconds": 0.002
+    },
+    {
+      "args": [
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "exit": 1,
+      "seconds": 0.007
+    },
+    {
+      "args": [
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "exit": 1,
+      "seconds": 0.005
+    },
+    {
+      "args": [
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "exit": 0,
+      "seconds": 0.044
+    },
+    {
+      "args": [
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "exit": 0,
+      "seconds": 0.063
+    },
+    {
+      "args": [
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "exit": 0,
+      "seconds": 0.055
+    },
+    {
+      "args": [
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "exit": 0,
+      "seconds": 0.07
+    },
+    {
+      "args": [
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "exit": 0,
+      "seconds": 0.062
+    },
+    {
+      "args": [
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "exit": 0,
+      "seconds": 0.037
+    },
+    {
+      "args": [
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "exit": 0,
+      "seconds": 0.052
+    },
+    {
+      "args": [
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "exit": 0,
+      "seconds": 0.032
+    },
+    {
+      "args": [
+        "shell",
+        "getprop",
+        "sys.boot_completed"
+      ],
+      "exit": 0,
+      "seconds": 0.147
+    },
+    {
+      "args": [
+        "shell",
+        "getprop",
+        "ro.product.model"
+      ],
+      "exit": 0,
+      "seconds": 0.068
+    },
+    {
+      "args": [
+        "shell",
+        "getprop",
+        "ro.build.version.release"
+      ],
+      "exit": 0,
+      "seconds": 0.208
+    },
+    {
+      "args": [
+        "shell",
+        "getprop",
+        "ro.build.version.sdk"
+      ],
+      "exit": 0,
+      "seconds": 0.054
+    },
+    {
+      "args": [
+        "shell",
+        "getprop",
+        "ro.product.cpu.abi"
+      ],
+      "exit": 0,
+      "seconds": 0.09
+    },
+    {
+      "args": [
+        "shell",
+        "getprop",
+        "ro.build.fingerprint"
+      ],
+      "exit": 0,
+      "seconds": 0.197
+    },
+    {
+      "args": [
+        "shell",
+        "wm",
+        "size"
+      ],
+      "exit": 0,
+      "seconds": 0.147
+    },
+    {
+      "args": [
+        "shell",
+        "getprop",
+        "ro.kernel.qemu"
+      ],
+      "exit": 0,
+      "seconds": 0.031
+    },
+    {
+      "args": [
+        "shell",
+        "input",
+        "keyevent",
+        "KEYCODE_WAKEUP"
+      ],
+      "exit": 0,
+      "seconds": 0.022
+    },
+    {
+      "args": [
+        "shell",
+        "wm",
+        "dismiss-keyguard"
+      ],
+      "exit": 0,
+      "seconds": 0.019
+    },
+    {
+      "args": [
+        "shell",
+        "svc",
+        "wifi",
+        "disable"
+      ],
+      "exit": 0,
+      "seconds": 0.026
+    },
+    {
+      "args": [
+        "shell",
+        "svc",
+        "data",
+        "disable"
+      ],
+      "exit": 0,
+      "seconds": 0.034
+    },
+    {
+      "args": [
+        "logcat",
+        "-c"
+      ],
+      "exit": 0,
+      "seconds": 0.047
+    },
+    {
+      "args": [
+        "install",
+        "--no-incremental",
+        "-r",
+        "/home/runner/work/mochi-arcade/mochi-arcade/dist/MochiArcade-dev.apk"
+      ],
+      "exit": 0,
+      "seconds": 1.394
+    },
+    {
+      "args": [
+        "shell",
+        "am",
+        "start",
+        "-W",
+        "-n",
+        "io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher"
+      ],
+      "exit": 0,
+      "seconds": 1.46
+    },
+    {
+      "args": [
+        "shell",
+        "pidof",
+        "io.github.seiya058904.mochiarcade"
+      ],
+      "exit": 0,
+      "seconds": 0.088
+    },
+    {
+      "args": [
+        "shell",
+        "uiautomator",
+        "dump",
+        "/sdcard/mochi-window.xml"
+      ],
+      "exit": 0,
+      "seconds": 3.223
+    },
+    {
+      "args": [
+        "shell",
+        "cat",
+        "/sdcard/mochi-window.xml"
+      ],
+      "exit": 0,
+      "seconds": 0.054
+    },
+    {
+      "args": [
+        "shell",
+        "input",
+        "tap",
+        "552",
+        "401"
+      ],
+      "exit": 0,
+      "seconds": 0.06
+    },
+    {
+      "args": [
+        "shell",
+        "uiautomator",
+        "dump",
+        "/sdcard/mochi-window.xml"
+      ],
+      "exit": 0,
+      "seconds": 2.628
+    },
+    {
+      "args": [
+        "shell",
+        "cat",
+        "/sdcard/mochi-window.xml"
+      ],
+      "exit": 0,
+      "seconds": 0.041
+    },
+    {
+      "args": [
+        "exec-out",
+        "screencap"
+      ],
+      "exit": 0,
+      "seconds": 1.282
+    },
+    {
+      "args": [
+        "shell",
+        "pidof",
+        "io.github.seiya058904.mochiarcade"
+      ],
+      "exit": 0,
+      "seconds": 0.071
+    },
+    {
+      "args": [
+        "logcat",
+        "-d",
+        "-v",
+        "threadtime"
+      ],
+      "exit": 0,
+      "seconds": 0.056
+    },
+    {
+      "args": [
+        "shell",
+        "input",
+        "keyevent",
+        "KEYCODE_HOME"
+      ],
+      "exit": 0,
+      "seconds": 0.129
+    },
+    {
+      "args": [
+        "shell",
+        "uiautomator",
+        "dump",
+        "/sdcard/mochi-launcher.xml"
+      ],
+      "exit": 0,
+      "seconds": 3.455
+    },
+    {
+      "args": [
+        "shell",
+        "cat",
+        "/sdcard/mochi-launcher.xml"
+      ],
+      "exit": 0,
+      "seconds": 0.015
+    },
+    {
+      "args": [
+        "shell",
+        "input",
+        "swipe",
+        "540",
+        "950",
+        "540",
+        "300",
+        "700"
+      ],
+      "exit": 0,
+      "seconds": 1.159
+    },
+    {
+      "args": [
+        "shell",
+        "uiautomator",
+        "dump",
+        "/sdcard/mochi-launcher.xml"
+      ],
+      "exit": 0,
+      "seconds": 2.236
+    },
+    {
+      "args": [
+        "shell",
+        "cat",
+        "/sdcard/mochi-launcher.xml"
+      ],
+      "exit": 0,
+      "seconds": 0.015
+    },
+    {
+      "args": [
+        "exec-out",
+        "screencap"
+      ],
+      "exit": 0,
+      "seconds": 0.18
+    },
+    {
+      "args": [
+        "shell",
+        "input",
+        "tap",
+        "618",
+        "534"
+      ],
+      "exit": 0,
+      "seconds": 0.031
+    },
+    {
+      "args": [
+        "shell",
+        "pidof",
+        "io.github.seiya058904.mochiarcade"
+      ],
+      "exit": 0,
+      "seconds": 0.065
+    },
+    {
+      "args": [
+        "exec-out",
+        "screencap"
+      ],
+      "exit": 0,
+      "seconds": 1.461
+    },
+    {
+      "args": [
+        "shell",
+        "input",
+        "tap",
+        "190",
+        "412"
+      ],
+      "exit": 0,
+      "seconds": 0.084
+    },
+    {
+      "args": [
+        "shell",
+        "run-as",
+        "io.github.seiya058904.mochiarcade",
+        "cat",
+        "files/save.json"
+      ],
+      "exit": 0,
+      "seconds": 0.064
+    },
+    {
+      "args": [
+        "exec-out",
+        "screencap"
+      ],
+      "exit": 0,
+      "seconds": 0.872
+    },
+    {
+      "args": [
+        "shell",
+        "input",
+        "tap",
+        "360",
+        "775"
+      ],
+      "exit": 0,
+      "seconds": 0.098
+    },
+    {
+      "args": [
+        "exec-out",
+        "screencap"
+      ],
+      "exit": 0,
+      "seconds": 0.772
+    },
+    {
+      "args": [
+        "shell",
+        "input",
+        "swipe",
+        "360",
+        "520",
+        "280",
+        "520",
+        "300"
+      ],
+      "exit": 0,
+      "seconds": 0.376
+    },
+    {
+      "args": [
+        "shell",
+        "input",
+        "swipe",
+        "360",
+        "520",
+        "440",
+        "520",
+        "300"
+      ],
+      "exit": 0,
+      "seconds": 0.461
+    },
+    {
+      "args": [
+        "shell",
+        "input",
+        "swipe",
+        "360",
+        "520",
+        "280",
+        "520",
+        "300"
+      ],
+      "exit": 0,
+      "seconds": 0.371
+    },
+    {
+      "args": [
+        "exec-out",
+        "screencap"
+      ],
+      "exit": 0,
+      "seconds": 0.761
+    },
+    {
+      "args": [
+        "shell",
+        "run-as",
+        "io.github.seiya058904.mochiarcade",
+        "cat",
+        "files/save.json"
+      ],
+      "exit": 0,
+      "seconds": 0.103
+    },
+    {
+      "args": [
+        "shell",
+        "pidof",
+        "io.github.seiya058904.mochiarcade"
+      ],
+      "exit": 0,
+      "seconds": 0.044
+    },
+    {
+      "args": [
+        "shell",
+        "input",
+        "keyevent",
+        "KEYCODE_BACK"
+      ],
+      "exit": 0,
+      "seconds": 0.106
+    },
+    {
+      "args": [
+        "shell",
+        "pidof",
+        "io.github.seiya058904.mochiarcade"
+      ],
+      "exit": 0,
+      "seconds": 0.113
+    },
+    {
+      "args": [
+        "exec-out",
+        "screencap"
+      ],
+      "exit": 0,
+      "seconds": 1.171
+    },
+    {
+      "args": [
+        "shell",
+        "run-as",
+        "io.github.seiya058904.mochiarcade",
+        "cat",
+        "files/save.json"
+      ],
+      "exit": 0,
+      "seconds": 0.065
+    },
+    {
+      "args": [
+        "shell",
+        "run-as",
+        "io.github.seiya058904.mochiarcade",
+        "cat",
+        "files/save.json"
+      ],
+      "exit": 0,
+      "seconds": 0.074
+    },
+    {
+      "args": [
+        "shell",
+        "input",
+        "tap",
+        "360",
+        "679"
+      ],
+      "exit": 0,
+      "seconds": 0.148
+    },
+    {
+      "args": [
+        "exec-out",
+        "screencap"
+      ],
+      "exit": 0,
+      "seconds": 0.838
+    },
+    {
+      "args": [
+        "shell",
+        "input",
+        "keyevent",
+        "KEYCODE_HOME"
+      ],
+      "exit": 0,
+      "seconds": 0.053
+    },
+    {
+      "args": [
+        "shell",
+        "run-as",
+        "io.github.seiya058904.mochiarcade",
+        "cat",
+        "files/save.json"
+      ],
+      "exit": 0,
+      "seconds": 0.123
+    },
+    {
+      "args": [
+        "shell",
+        "am",
+        "start",
+        "-W",
+        "-n",
+        "io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher"
+      ],
+      "exit": 0,
+      "seconds": 0.344
+    },
+    {
+      "args": [
+        "shell",
+        "pidof",
+        "io.github.seiya058904.mochiarcade"
+      ],
+      "exit": 0,
+      "seconds": 0.029
+    },
+    {
+      "args": [
+        "exec-out",
+        "screencap"
+      ],
+      "exit": 0,
+      "seconds": 0.209
+    },
+    {
+      "args": [
+        "exec-out",
+        "screencap"
+      ],
+      "exit": 0,
+      "seconds": 0.225
+    },
+    {
+      "args": [
+        "shell",
+        "run-as",
+        "io.github.seiya058904.mochiarcade",
+        "cat",
+        "files/save.json"
+      ],
+      "exit": 0,
+      "seconds": 0.021
+    },
+    {
+      "args": [
+        "shell",
+        "pidof",
+        "io.github.seiya058904.mochiarcade"
+      ],
+      "exit": 0,
+      "seconds": 0.018
+    },
+    {
+      "args": [
+        "exec-out",
+        "screencap"
+      ],
+      "exit": 0,
+      "seconds": 0.181
+    },
+    {
+      "args": [
+        "shell",
+        "dumpsys",
+        "SurfaceFlinger",
+        "--list"
+      ],
+      "exit": 0,
+      "seconds": 0.021
+    },
+    {
+      "args": [
+        "shell",
+        "input",
+        "keyevent",
+        "KEYCODE_HOME"
+      ],
+      "exit": 0,
+      "seconds": 0.036
+    },
+    {
+      "args": [
+        "shell",
+        "am",
+        "start",
+        "-W",
+        "-n",
+        "io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher"
+      ],
+      "exit": 0,
+      "seconds": 0.662
+    },
+    {
+      "args": [
+        "shell",
+        "pidof",
+        "io.github.seiya058904.mochiarcade"
+      ],
+      "exit": 0,
+      "seconds": 0.072
+    },
+    {
+      "args": [
+        "exec-out",
+        "screencap"
+      ],
+      "exit": 0,
+      "seconds": 1.266
+    },
+    {
+      "args": [
+        "shell",
+        "pidof",
+        "io.github.seiya058904.mochiarcade"
+      ],
+      "exit": 0,
+      "seconds": 0.052
+    },
+    {
+      "args": [
+        "logcat",
+        "-d",
+        "-v",
+        "threadtime"
+      ],
+      "exit": 0,
+      "seconds": 0.063
+    }
+  ],
+  "release_candidate": false,
+  "game_checks": {
+    "fruit_drop": {
+      "entered": true,
+      "system_back_keeps_process_and_freezes_round": true
+    }
+  },
+  "device": {
+    "ro.product.model": "Android SDK built for x86_64",
+    "ro.build.version.release": "14",
+    "ro.build.version.sdk": "34",
+    "ro.product.cpu.abi": "x86_64",
+    "ro.build.fingerprint": "Android/sdk_phone64_x86_64/emu64x:14/UE1A.230829.036.A1/11228894:userdebug/test-keys"
+  },
+  "display": "Physical size: 720x1280",
+  "network_disabled_for_test": true,
+  "install": "Performing Streamed Install\nSuccess",
+  "cold_launch": "Starting: Intent { cmp=io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher }\nStatus: ok\nLaunchState: COLD\nActivity: io.github.seiya058904.mochiarcade/com.godot.game.GodotApp\nTotalTime: 1363\nWaitTime: 1387\nComplete",
+  "fullscreen_tip_dismissed": true,
+  "frame_checks": {
+    "00-home": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 574,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "264dbfc181b9ea3a9fe8014498e5f1675238446c0db778bcb49d80f2a5c1d128"
+    },
+    "15-android-launcher-icon": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 190,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "310beadc425c1f34baacff810df5dc8e30297776c99755a1d61167db22f53b97"
+    },
+    "16-launcher-icon-opened-app": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 574,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "264dbfc181b9ea3a9fe8014498e5f1675238446c0db778bcb49d80f2a5c1d128"
+    },
+    "01-fruit_drop-help": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 94,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "7b67cf05324d784eb194086447fcf9fbd8a6ff473e972b974ec7ea527d692528"
+    },
+    "01-fruit_drop-ready": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 55,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "25fbfa48f633bbb8c7c563656fd7d73e5a061265b9ae26863203d58da63fcae3"
+    },
+    "01-fruit_drop-after-input": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 100,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "e504ea130fdbf716097675b875b6de1471a5f4b00410f41143d5aa09eeef4c11"
+    },
+    "01-fruit_drop-after-back": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 128,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "958d00263817b8664d4e8ec70c47aaaf1b14f742fb7a368c18a684e7251052c6"
+    },
+    "01-fruit_drop-resumed": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 100,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "7568160d9694f388fbcd76a6fb0db328143ae316e43436336033e93ed8356db8"
+    },
+    "01-fruit_drop-background-return": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 1,
+      "non_dark_fraction": 0.0,
+      "has_visible_content": false,
+      "sha256": "cfc80ccb6c70119363e7e3da3bbb361f4c4c2628e4856bfdce139ea7b8cdf249"
+    },
+    "failure-screen": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 1,
+      "non_dark_fraction": 0.0,
+      "has_visible_content": false,
+      "sha256": "cfc80ccb6c70119363e7e3da3bbb361f4c4c2628e4856bfdce139ea7b8cdf249"
+    },
+    "diagnostic-delayed-return": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 1,
+      "non_dark_fraction": 0.0,
+      "has_visible_content": false,
+      "sha256": "cfc80ccb6c70119363e7e3da3bbb361f4c4c2628e4856bfdce139ea7b8cdf249"
+    },
+    "diagnostic-new-surface-return": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 128,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "80f5aab724b0dcc458710a4ab447d259f02743cff3dc2780c6949413154a7363"
+    }
+  },
+  "first_music_loop_survived": true,
+  "launcher_icon_tapped": true,
+  "error": "Android screenshot 01-fruit_drop-background-return is blank: {'width': 720, 'height': 1280, 'pixel_format': 1, 'colorspace': 1, 'sampled_colors': 1, 'non_dark_fraction': 0.0, 'has_visible_content': False, 'sha256': 'cfc80ccb6c70119363e7e3da3bbb361f4c4c2628e4856bfdce139ea7b8cdf249'}",
+  "surface_failure_diagnostic": {
+    "pid_before": "2307",
+    "visible_after_extra_5_seconds": false,
+    "visible_after_new_surface_cycle": true,
+    "same_process": true
+  },
+  "runtime_errors": [],
+  "graphics_swap_warnings": [
+    "10-21 20:33:35.413  2307  2340 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-21 20:34:07.914  2307  2340 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+  ]
+}

@@ -13,12 +13,13 @@ seed/action sequence, screenshot/log path and unresolved limitations.
 ## Gate register
 
 A01-A15 details: RELEASE_CHECKLIST.md. Physical Android: DEVICE_UNAVAILABLE.
-Local Android emulator: BLOCKED by absent acceleration. Hosted API 34 now renders
-all eight games with swangle. Manual review rejected its first green smoke result:
-system Back exited instead of pausing, and Trio tapped covered tiles. The Back
-fix passes all 18 desktop suites; strengthened Android acceptance is pending.
-The next run exposed a native audio-loop overread. Its endpoint repair is locally
-verified; Android acceptance is still blocked until the repaired mixer survives.
+Local Android emulator: BLOCKED by absent acceleration. Hosted API 34 development
+run 39670759820 passes all eight input/lifecycle/restore/restart paths, settings,
+launcher and same-signature reinstall, with 99 actual captures manually reviewed.
+This uses explicitly software-rendered host GLES. The same source on Lavapipe
+still reproduces a black return. Surface stability, performance acceptance and
+final release-signed byte acceptance remain unresolved. The earlier Back and
+audio-loop failures are repaired and their failed evidence remains below.
 
 ## Executed checks
 
@@ -464,3 +465,53 @@ stays at 120/120. The regression fails on the original and passes on the change.
 The full 64-ball fixture's before/after RGB pixels are identical and both actual
 captures are retained. This proves fewer draw submissions on the desktop GPU,
 not Android speed. All 18 required suites pass; hosted timing comparison is pending.
+
+Run 39669849881 tests this change on the same Lavapipe setup. Fruit, Bubble and
+Cake lifecycle pass; Balls then returns black. The additional five-second passive
+capture remains fully black. A new Home cycle with a five-second background stay
+restores the pause sheet with the same PID 3219. This confirms persistent failed
+presentation and recovery through a new surface lifecycle, not an app restart or
+a merely delayed first capture. The internal mSurfaceIsBad hypothesis remains
+SUSPECTED. The overall run stays FAIL; screenshots/report are retained under
+android-surface-*. No automatic recovery is added to the product.
+
+The actual AOSP app drawer now exposes the correct bunny icon, and tapping its
+observed bounds opens the real home screen. Both original captures and UI XML
+were reviewed and retained as android-launcher-bunny/opened-home. Themed mode is
+still unverified. Load execution continues to pass, with exact primary/backup save
+restoration. Starting from 64 balls, the 12-second burst observes 3.01 FPS / p95
+632.010 ms; Jelly observes 4.66 FPS / p95 532.354 ms. These separate hosted runs
+are not a controlled phone benchmark or proof that the drawing change fixes
+software-emulator smoothness. All slow-frame observations remain visible.
+
+## Same-source host GLES comparison
+
+At a032fde, run 39670750928 on Lavapipe fails at Fruit's first background return.
+Five passive seconds remain black; another five-second Home cycle recovers with
+the same PID 2307. Run 39670759820 instead uses host GLES, with Mesa software
+explicitly forced: OpenGL ES Translator, llvmpipe LLVM 20.1.2, Mesa
+25.2.8-0ubuntu0.24.04.4 and preinstalled Xvfb 2:21.1.12-1ubuntu1.8. These builds
+have the same source and assertions, but different debug signatures and APK hashes.
+No production code or engine changed between them.
+
+Host passes all eight touch/Back/background/restore/restart checks, music-loop
+survival, five persisted settings, actual launcher-icon launch and exact save
+preservation after reinstall. Manual review covers 89 smoke and ten load captures
+in 13 labeled sheets. Boards and controls are readable; all background pause,
+Resume and Back transitions are visible. The 64-ball scene damages bricks; the
+12-fruit scene produces actual cut halves and combos. Six unaltered originals,
+all 99 source hashes, both backends' raw reports and graphics observations are in
+evidence/android-host-a032fde/.
+
+Host still records ten EGL_BAD_SURFACE warnings and host ColorBuffer warnings,
+despite visible recovery. Its measured maximum-pool presentation is Balls 6.01 FPS,
+p95 349.348 ms (74 frames/12.141 s), and Jelly 8.91 FPS, p95 215.874 ms
+(107 frames/11.891 s). Both original saves are restored byte-for-byte. These
+software/ADB-inclusive timings do not pass smoothness or establish phone FPS.
+They also cannot prove an engine race is repaired.
+
+The next bounded run uses host by default, with Lavapipe retained as an explicit
+diagnostic choice. Each game now makes three background returns: the first keeps
+the full Resume/Back input checks; two further returns start paused and require
+visible content, identical checkpoint and the same PID. No failed case is retried
+or converted to success. The unresolved black-return release blocker remains.

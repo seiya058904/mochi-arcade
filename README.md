@@ -8,7 +8,8 @@ All eight games are playable in the current development build. A hosted Android 
 emulator completed all eight games' touch, pause, round restore and restart checks,
 plus settings persistence and same-signature reinstall. A later run reproduced an
 intermittent black screen on background return, which remains a release blocker.
-Software-emulator load measurements and final signed-APK acceptance are still under review.
+A host-GLES software comparison now passes the full Android path and visual review;
+repeated stability, performance and final signed-APK acceptance remain open.
 
 <p>
   <img src="docs/evidence/android-lifecycle-0f27910/00-home.png" width="220" alt="Actual Android home screen" />
