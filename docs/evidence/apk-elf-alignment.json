@@ -1,0 +1,39 @@
+{
+  "apk_sha256": "49397209b29f14173acba7aff4886327f38a4af2a62f8c986b04b27555e2b03b",
+  "status": "PASS_STATIC_ELF_ALIGNMENT",
+  "libraries": [
+    {
+      "name": "lib/arm64-v8a/libc++_shared.so",
+      "load_alignments": [
+        16384,
+        16384,
+        16384
+      ]
+    },
+    {
+      "name": "lib/arm64-v8a/libgodot_android.so",
+      "load_alignments": [
+        16384,
+        16384,
+        16384
+      ]
+    },
+    {
+      "name": "lib/x86_64/libc++_shared.so",
+      "load_alignments": [
+        16384,
+        16384,
+        16384
+      ]
+    },
+    {
+      "name": "lib/x86_64/libgodot_android.so",
+      "load_alignments": [
+        16384,
+        16384,
+        16384
+      ]
+    }
+  ],
+  "scope": "ELF PT_LOAD alignment and ZIP alignment are static checks; Android 16 KB page runtime is not tested."
+}

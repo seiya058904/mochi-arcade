@@ -118,7 +118,12 @@ matching final local/remote/tag/build commit; verified release-download bytes.
   correct normal icon. Added the original bunny's matching monochrome mark and
   explicit export setting; actual packaged before/after resources are retained.
 - Run 39659761708 verifies Android music-loop survival and all strengthened lifecycle
-  checks for Fruit, Bubble, Cake and Balls. Trio's second test tap arrived during
+  save-state checks for Fruit, Bubble, Cake and Balls. Trio's second test tap arrived during
   its tile-flight animation; three picks were visible. Preserve the failed run,
   observe each actual mask/history change, and space inputs after animation.
   Remaining Android games/settings/reinstall/load and signed-byte acceptance are pending.
+- Further review rejects background return: all four images are black, with
+  EGL_BAD_SURFACE and host color-buffer errors. The state-only check was too weak.
+  Retain all adverse evidence, add blank-frame and resumed-input checks, and compare
+  the same pinned emulator's documented Lavapipe backend. No app-code workaround is
+  assumed. Run 39661719966 stopped at an interrupted SDK download, before Android tests.

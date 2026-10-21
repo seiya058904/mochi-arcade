@@ -1,0 +1,82 @@
+{
+  "status": "FAIL_BACKGROUND_RENDER",
+  "run_url": "https://github.com/seiya058904/mochi-arcade/actions/runs/39659761708",
+  "commit": "a02eda74054f13a6e2b3652d31e0e35c20dc2749",
+  "apk_sha256": "a3d4b2ff84e48e8408b8edef8d69c36e202072517be9cb92abc25541c4b7e4cb",
+  "environment": "Dedicated GitHub-hosted Android API 34 x86_64 emulator; not a physical phone",
+  "backend": "swangle",
+  "frames": [
+    {
+      "file": "01-fruit_drop-background-return.png",
+      "sha256": "2a5df6816793815669d72be08b3ada68c9805d21e9bf9e4d41d487ec61006aa7",
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 1,
+      "non_dark_fraction": 0.0,
+      "has_visible_content": false
+    },
+    {
+      "file": "02-bubble_garden-background-return.png",
+      "sha256": "2a5df6816793815669d72be08b3ada68c9805d21e9bf9e4d41d487ec61006aa7",
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 1,
+      "non_dark_fraction": 0.0,
+      "has_visible_content": false
+    },
+    {
+      "file": "03-cake_stack-background-return.png",
+      "sha256": "2a5df6816793815669d72be08b3ada68c9805d21e9bf9e4d41d487ec61006aa7",
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 1,
+      "non_dark_fraction": 0.0,
+      "has_visible_content": false
+    },
+    {
+      "file": "04-bouncy_balls-background-return.png",
+      "sha256": "2a5df6816793815669d72be08b3ada68c9805d21e9bf9e4d41d487ec61006aa7",
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 1,
+      "non_dark_fraction": 0.0,
+      "has_visible_content": false
+    }
+  ],
+  "guest_errors": [
+    "10-21 19:17:23.827  2266  2303 E BufferQueueProducer: [SurfaceView[io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher]#1(BLAST Consumer)1](id:8da00000001,api:0,p:-1,c:2266) dequeueBuffer: BufferQueue has been abandoned",
+    "10-21 19:17:23.828  2266  2303 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-21 19:18:06.228  2598  2622 E BufferQueueProducer: [SurfaceView[io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher]#1(BLAST Consumer)1](id:a2600000001,api:0,p:-1,c:2598) dequeueBuffer: BufferQueue has been abandoned",
+    "10-21 19:18:06.229  2598  2622 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-21 19:18:47.953  2838  2862 E BufferQueueProducer: [SurfaceView[io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher]#1(BLAST Consumer)1](id:b1600000001,api:0,p:-1,c:2838) dequeueBuffer: BufferQueue has been abandoned",
+    "10-21 19:18:47.955  2838  2862 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-21 19:19:34.457  3078  3102 E BufferQueueProducer: [SurfaceView[io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher]#1(BLAST Consumer)1](id:c0600000001,api:0,p:-1,c:3078) dequeueBuffer: BufferQueue has been abandoned",
+    "10-21 19:19:34.458  3078  3102 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+  ],
+  "host_errors": [
+    "ERROR        | DisplaySurfaceGlContextHelper context was preempted by others, current=0x3, needed=0x3, thread=0x56045e50f688",
+    "ERROR        | Failed to restore previous context: 12297",
+    "ERROR        | Failed to find ColorBuffer: 153",
+    "ERROR        | Failed to bind to texture: invalid color buffer.",
+    "ERROR        | DisplaySurfaceGlContextHelper context was preempted by others, current=0x3, needed=0x3, thread=0x56045d6add68",
+    "ERROR        | Failed to restore previous context: 12297",
+    "ERROR        | Failed to find ColorBuffer: 192",
+    "ERROR        | Failed to bind to texture: invalid color buffer.",
+    "ERROR        | Failed to find ColorBuffer: 296",
+    "ERROR        | Failed to bind to texture: invalid color buffer.",
+    "ERROR        | DisplaySurfaceGlContextHelper context was preempted by others, current=0x3, needed=0x3, thread=0x560481bc9d68",
+    "ERROR        | Failed to restore previous context: 12297",
+    "ERROR        | Failed to find ColorBuffer: 344",
+    "ERROR        | Failed to bind to texture: invalid color buffer."
+  ],
+  "diagnosis": "Android EGL surface abandoned on return; host backend implicated by color-buffer errors, root cause not yet proven. State-only freeze checks do not validate rendering.",
+  "next": "Compare same pinned emulator on documented Lavapipe backend and reject blank captures automatically."
+}

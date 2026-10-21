@@ -13,6 +13,7 @@ from pathlib import Path
 import subprocess
 import time
 import xml.etree.ElementTree as ET
+from android_capture import capture_png
 
 
 GAMES = ["fruit_drop", "bubble_garden", "cake_stack", "bouncy_balls",
@@ -58,12 +59,13 @@ def main():
         shell("input", "swipe", x1, y1, x2, y2, duration)
         time.sleep(0.15)
 
-    def screenshot(name):
+    def screenshot(name, allow_blank=False):
         time.sleep(0.8)  # Capture the committed rendered frame, not just ADB's input acknowledgement.
-        data = adb("exec-out", "screencap", "-p", binary=True)
-        if not data.startswith(b"\x89PNG\r\n\x1a\n"):
-            raise RuntimeError("Invalid Android screenshot")
+        data, frame = capture_png(adb("exec-out", "screencap", binary=True))
         (output / f"{name}.png").write_bytes(data)
+        report.setdefault("frame_checks", {})[name] = frame
+        if not allow_blank and not frame["has_visible_content"]:
+            raise RuntimeError(f"Android screenshot {name} is blank: {frame}")
 
     def launch():
         # Godot 4.7 exposes this launcher alias; the target activity is private.
@@ -139,7 +141,7 @@ def main():
     def runtime_errors(logs):
         return [line for line in logs.splitlines() if
                 "SCRIPT ERROR:" in line or "FATAL EXCEPTION" in line or "Fatal signal" in line or
-                re.search(r"\bE godot\s*:\s*ERROR:", line)]
+                "eglSwapBuffers failed" in line or re.search(r"\bE godot\s*:\s*ERROR:", line)]
 
     try:
         deadline = time.monotonic() + 240
@@ -287,6 +289,13 @@ def main():
             if not background or saved_state()["sessions"].get(game) != background:
                 raise RuntimeError(f"{game} advanced while backgrounded or resumed without a pause")
             game_check["background_freeze"] = True
+            # Prove that the returned activity still accepts UI input, not just
+            # that its saved state stopped changing after the surface vanished.
+            tap(360, 679)
+            screenshot(f"{index + 1:02d}-{game}-background-resumed")
+            back()
+            screenshot(f"{index + 1:02d}-{game}-background-paused-again")
+            game_check["background_render_and_input"] = True
             park()
             state = saved_state()
             (output / f"{index + 1:02d}-{game}-save.json").write_text(json.dumps(state, indent=2), encoding="utf-8")
@@ -371,7 +380,7 @@ def main():
     except Exception as error:
         report["error"] = str(error)
         try:
-            screenshot("failure-screen")
+            screenshot("failure-screen", allow_blank=True)
             try:
                 (output / "failure-save.json").write_text(json.dumps(saved_state(), indent=2), encoding="utf-8")
             except Exception as save_error:

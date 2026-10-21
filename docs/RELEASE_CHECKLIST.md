@@ -8,11 +8,11 @@ Updated 2026-10-22. Desktop acceptance does not satisfy Android gates.
 | A02 Eight complete games | PASS desktop / Android PENDING | Eight implemented loops, natural-action replays, results/retry and 34-screen matrix |
 | A03 Correct gameplay | PASS desktop | 18 required suites; rules, collision, save, lifecycle and real scene input |
 | A04 Valid procedural content | PASS | Independent Trio solver: 1,500 boards; Hop: 2,000 seeds / 50,000 targets |
-| A05 Android controls | PARTIAL | Back/pause/resume/restart/background pass on first four games in run 39659761708; Trio test animation timing repaired; four remaining games pending |
+| A05 Android controls | PARTIAL / background render FAIL | Back/pause/restart/force-stop restore pass on first four games; background return is black despite frozen save; actual graphics recovery and remaining games pending |
 | A06 Cohesive art | PASS desktop / Android PENDING | Original AI production art integrated; three ratios, EN/ZH, all games and overlays reviewed |
 | A07 Audio | PASS tested Android development path / final signed pending | Native first-loop crash repaired and Android loop survives in 39659761708; nine mixer-boundary regressions and real desktop mute/pause/output checks pass |
 | A08 Persistence | PASS desktop / Android PARTIAL | Four individual round restores and background freezes pass; remaining rounds and same-signature reinstall await strengthened run |
-| A09 Compatibility / performance | PARTIAL | Desktop clipping/lifecycle and bounded-load checks pass; actual Android logs pending |
+| A09 Compatibility / performance | Android FAIL / diagnostic pending | Swangle loses the graphics surface on background return; same-version Lavapipe comparison prepared; maximum Android pools pending |
 | A10 Security / provenance | PASS bounded candidate audit | Known credential-pattern history scan, documented original art/fonts, bundled offline notices; candidate has only VIBRATE and excludes private/dev files |
 | A11 Reproducible build | PASS development | Pinned engine/template, SDK CLI checksum, local + hosted debug export; signed rebuild pending |
 | A12 Verified installable APK | PARTIAL | Development APK installs/starts/renders on actual API 34; lifecycle repair and final signed-byte runtime acceptance pending |

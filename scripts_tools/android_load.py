@@ -15,6 +15,7 @@ import re
 import shlex
 import subprocess
 import time
+from android_capture import capture_png
 
 
 PACKAGE = "io.github.seiya058904.mochiarcade"
@@ -69,7 +70,7 @@ def main():
     output.mkdir(parents=True, exist_ok=True)
     report = {"status": "FAIL", "commit": os.environ.get("GITHUB_SHA", "local"),
               "apk_sha256": hashlib.sha256(args.apk.read_bytes()).hexdigest(),
-              "scope": "Synthetic maximum-pool bursts on isolated AOSP API 34 x86_64 / swangle software renderer",
+              "scope": "Synthetic maximum-pool bursts on isolated AOSP API 34 x86_64 / lavapipe software renderer",
               "timing_source": "https://android.googlesource.com/platform/frameworks/native/+/refs/tags/android-14.0.0_r1/services/surfaceflinger/FrameTracker.cpp",
               "physical_phone_performance": "UNVERIFIED", "loads": {}}
     original = None
@@ -109,10 +110,11 @@ def main():
             raise RuntimeError("Back killed the load-test process")
 
     def screenshot(name):
-        png = adb("exec-out", "screencap", "-p", binary=True)
-        if not png.startswith(b"\x89PNG\r\n\x1a\n"):
-            raise RuntimeError("Invalid screenshot during load")
+        png, frame = capture_png(adb("exec-out", "screencap", binary=True))
         (output / f"{name}.png").write_bytes(png)
+        report.setdefault("frame_checks", {})[name] = frame
+        if not frame["has_visible_content"]:
+            raise RuntimeError(f"Load screenshot {name} is blank: {frame}")
 
     def memory(name):
         raw = shell("dumpsys", "meminfo", PACKAGE)
@@ -214,7 +216,7 @@ def main():
             report["original_save_restored"] = original is not None
             logs = adb("logcat", "-d", "-v", "threadtime")
             (output / "load-logcat.txt").write_text(logs, encoding="utf-8")
-            errors = [line for line in logs.splitlines() if "SCRIPT ERROR:" in line or "FATAL EXCEPTION" in line or "Fatal signal" in line or re.search(r"\bE godot\s*:\s*ERROR:", line)]
+            errors = [line for line in logs.splitlines() if "SCRIPT ERROR:" in line or "FATAL EXCEPTION" in line or "Fatal signal" in line or "eglSwapBuffers failed" in line or re.search(r"\bE godot\s*:\s*ERROR:", line)]
             report["runtime_errors"] = errors
             if errors:
                 report["status"] = "FAIL"

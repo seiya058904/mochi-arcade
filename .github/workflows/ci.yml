@@ -89,7 +89,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" "emulator" "system-images;android-34;default;x86_64"
+          # Retry only interrupted SDK transfers; app launches/tests are never retried.
+          for attempt in 1 2 3; do
+            if "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" "emulator" "system-images;android-34;default;x86_64"; then break; fi
+            if [[ "$attempt" == 3 ]]; then exit 1; fi
+            sleep 5
+          done
           # Versions verified against Google's stable repository metadata on 2026-10-22.
           # Fail on drift rather than silently adopting a different test environment.
           python3 - <<'PY'
@@ -143,7 +148,7 @@ jobs:
           values.update({'hw.lcd.width': '720', 'hw.lcd.height': '1280', 'hw.lcd.density': '320', 'hw.ramSize': '2048', 'hw.cpu.ncore': '2', 'disk.dataPartition.size': '2G', 'disk.cachePartition.size': '128M', 'hw.sdCard': 'no'})
           path.write_text('\n'.join(f'{key}={value}' for key,value in values.items()) + '\n')
           PY
-          "$ANDROID_HOME/emulator/emulator" -avd Mochi_CI_API34 -no-window -no-audio -no-boot-anim -no-snapshot -gpu swangle -accel on -memory 2048 -cores 2 -partition-size 2048 -camera-back none -camera-front none > .local/android-runtime/emulator.log 2>&1 &
+          "$ANDROID_HOME/emulator/emulator" -avd Mochi_CI_API34 -no-window -no-audio -no-boot-anim -no-snapshot -gpu lavapipe -accel on -memory 2048 -cores 2 -partition-size 2048 -camera-back none -camera-front none > .local/android-runtime/emulator.log 2>&1 &
           emulator_pid=$!
           smoke_args=(--apk "$MOCHI_APK" --output .local/android-runtime --emulator-pid "$emulator_pid")
           if [[ "${{ inputs.release_candidate }}" == 'true' ]]; then smoke_args+=(--release); fi

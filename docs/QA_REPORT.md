@@ -329,9 +329,9 @@ is APK resource inspection, not a claim that a phone's themed-icon mode was test
 
 ## Android music and first four lifecycle repairs verified
 
-Run 39659761708 survives the real first music loop without native or script errors.
+Run 39659761708 survives the real first music loop without a native audio crash or script errors.
 Fruit, Bubble, Cake and Balls pass actual system Back process survival, paused-state
-freeze, background freeze, force-stop restore and UI restart. Reviewed Fruit pause
+freeze, saved-state freeze in background, force-stop restore and UI restart. Reviewed Fruit pause
 and Balls restored screenshots show the actual three-button pause sheet. Balls also
 naturally ends and successfully retries through the result button. This verifies
 these repairs on the development APK in the dedicated Android emulator only.
@@ -344,3 +344,24 @@ finish before proceeding. It retains per-touch observations and a failure save;
 the four-top-tile assertion is unchanged. Remaining games, settings/reinstall and
 maximum loads still await execution. The failed report and screenshot are retained
 as android-trio-animation-timing.json and android-trio-animation-timing.png.
+
+Further visual review rejects foreground recovery: all four background-return PNGs
+are entirely black. Saved-state equality alone was insufficient. Each return logs
+`eglSwapBuffers failed: EGL_BAD_SURFACE` and an abandoned BufferQueue; the emulator
+host also loses color buffers. Pause/force-stop/restart captures remain valid, but
+background rendering is a release blocker. The exact failing PNG, host/guest log
+excerpts and frame statistics are retained in android-background-surface-failure.*.
+
+The next diagnostic uses the same pinned emulator/image with its documented
+Lavapipe backend, without changing gameplay or hiding the swangle failure.
+https://developer.android.com/studio/run/emulator-acceleration documents both modes.
+Capture now converts the same raw Android frame to PNG and rejects blank frames;
+it also records pixel statistics. Eight real-frame roundtrips preserve all RGB
+pixels, reject the retained black sample, and three malformed inputs are rejected.
+Foreground return additionally exercises Resume then Back, with actual captures.
+The visual review is still mandatory. EGL swap failures now fail log acceptance.
+
+Run 39661719966 passed all 18 suites and APK export, but the emulator download
+connection closed before runtime setup. SDK transfers now retry at most three
+times and still verify the pinned package version. App launches/tests never retry
+automatically. Android input/load execution for that run is NOT_RUN.
