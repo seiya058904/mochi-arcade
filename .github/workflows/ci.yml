@@ -1,0 +1,69 @@
+name: Godot and Android
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      GODOT_VERSION: 4.7.2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Download and verify official engine and templates
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .local/tools
+          cd .local/tools
+          base="https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable"
+          curl -fsSL --retry 3 "$base/SHA512-SUMS.txt" -o SHA512-SUMS.txt
+          curl -fsSL --retry 3 "$base/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip" -o "Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+          curl -fsSL --retry 3 "$base/Godot_v${GODOT_VERSION}-stable_export_templates.tpz" -o "Godot_v${GODOT_VERSION}-stable_export_templates.tpz"
+          sha512sum --ignore-missing --check SHA512-SUMS.txt
+          unzip -q "Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+          chmod +x "Godot_v${GODOT_VERSION}-stable_linux.x86_64"
+          mkdir -p "$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable"
+          unzip -j "Godot_v${GODOT_VERSION}-stable_export_templates.tpz" templates/android_debug.apk -d "$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.stable"
+          echo "$PWD" >> "$GITHUB_PATH"
+      - name: Import and execute rules and integration tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          engine="Godot_v${GODOT_VERSION}-stable_linux.x86_64"
+          "$engine" --headless --editor --path . --import
+          "$engine" --headless --path . --script tests/logic/run_tests.gd
+          "$engine" --headless --path . --script tests/integration/vertical_slices.gd
+      - name: Configure Android tools and debug signing
+        shell: bash
+        run: |
+          set -euo pipefail
+          sdkmanager "platforms;android-36" "build-tools;36.0.0"
+          mkdir -p .local/android
+          keytool -genkeypair -keystore .local/android/debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
+          mkdir -p "$HOME/.config/godot"
+          printf '[gd_resource type="EditorSettings" format=3]\n\n[resource]\nexport/android/android_sdk_path = "%s"\nexport/android/java_sdk_path = "%s"\n' "$ANDROID_HOME" "$JAVA_HOME" > "$HOME/.config/godot/editor_settings-4.7.tres"
+      - name: Build development APK
+        env:
+          GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ${{ github.workspace }}/.local/android/debug.keystore
+          GODOT_ANDROID_KEYSTORE_DEBUG_USER: androiddebugkey
+          GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD: android
+        run: |
+          mkdir -p dist
+          Godot_v${GODOT_VERSION}-stable_linux.x86_64 --headless --path . --export-debug Android dist/MochiArcade-dev.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: development-apk-and-tests
+          path: |
+            dist/MochiArcade-dev.apk
+            docs/evidence/*tests.json
+            docs/evidence/vertical-slices.json
+          retention-days: 14

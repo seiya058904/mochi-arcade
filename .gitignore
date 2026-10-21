@@ -16,4 +16,5 @@ android/build/
 export_credentials.cfg
 *.tmp
 __pycache__/
-
+docs/**/*.import
+assets/source/*.import

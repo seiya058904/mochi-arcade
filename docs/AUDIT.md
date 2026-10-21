@@ -49,4 +49,3 @@ production artwork, all game implementations and release signing still require v
 The 4.7 Android guide specifies JDK 17, platform/build tools 35/35.0.1 and
 supports signing overrides through environment variables. The simple prebuilt
 APK export path is preferred; custom Gradle/NDK work is not required by this app.
-

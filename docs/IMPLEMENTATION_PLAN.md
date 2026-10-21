@@ -5,10 +5,10 @@ an evidenced external blocker prevents all meaningful progress.
 
 | Phase | Status | Exit evidence |
 | --- | --- | --- |
-| 0. Boundary / environment / risk audit | IN_PROGRESS | Executable versions, device inventory, risk plan |
-| 1. Git / private remote / CI scaffold | TODO | Initial commit, verified private origin/upstream |
-| 2. Art direction / shared shell / early Android | TODO | Generated art, home/settings, installed APK and touch proof |
-| 3. Cake Stack + Number Bloom vertical slices | TODO | Playable loops, rules tests, runtime screenshots |
+| 0. Boundary / environment / risk audit | PASS | Empty boundary verified; official engine/template checksums; SDK/JDK/device inventory |
+| 1. Git / private remote / CI scaffold | IN_PROGRESS | Private origin/main created and initial commit synced; first full CI queued next |
+| 2. Art direction / shared shell / early Android | IN_PROGRESS | Production art and shell rendered; debug APK exported; Android install BLOCKED by offline AVD |
+| 3. Cake Stack + Number Bloom vertical slices | PASS (desktop) | 14,278 logic + 47 integration assertions pass; screenshots and native input recheck |
 | 4a. Fruit Drop | TODO | Merge/overflow tests, runtime gestures and checkpoint |
 | 4b. Bubble Garden | TODO | Hex/attachment/pop/fall/color pool tests and runtime proof |
 | 4c. Mochi Hop | TODO | 1000+ seed reachability, hold/cancel/landing tests and runtime proof |
@@ -23,16 +23,24 @@ an evidenced external blocker prevents all meaningful progress.
 
 ## Current checkpoint
 
-- Latest verified implementation commit: none (empty initial directory).
-- Engine version requested: 4.7.2.stable; Java 17 present; Android templates missing.
-- Two independent image-generation concept directions requested.
-- Next: locate engine, boot existing AVD, fill matching Android template/tool gap,
-  initialize repository and private remote; select art direction then implement shell.
-- All gameplay / visual / Android / release acceptance: NOT_RUN.
+- Initial synchronized commit: d88eaf1 (scope/audit only). Current slice checkpoint being prepared.
+- Engine verified: 4.7.2.stable.official.ed1daf0bf; official Android templates;
+  JDK 17.0.20.1; SDK/Build Tools 36 for the actual target-36 template.
+- Two concepts generated; cream stationery selected; transparent card atlas and
+  bunny adopted and inspected in the real renderer. English/Chinese weights fixed.
+- Cake and 2048 actual scenes, shared shell, atomic save/backup, audio pool, undo,
+  restore and 30-switch integration are implemented. Tests: 14,278 + 47 PASS.
+- Native desktop play revealed a lifecycle race; deferred pause creation fixed
+  it, regression added, native Number Bloom upward merge now scores 4 correctly.
+- Android AVD remains offline in three boot configurations; no hypervisor driver.
+  User asked about a USB-debugging phone; Android proof stays BLOCKED, not passed.
+- Next: commit/push first playable milestone and inspect
+  CI; then Fruit Drop (atomic physics merge, overflow grace, art, rules and actual gestures).
+- Remaining six games, full visual/performance/security audit, release key and
+  final signed APK/Android acceptance/Release are not done. Goal remains active.
 
 ## Success criteria
 
 All A01-A15 from `SOURCE_TASK.md` have direct evidence. Eight complete offline
 games in one Android APK; no P0/P1 or blocking P2; accurate build/install docs;
 matching final local/remote/tag/build commit; verified release-download bytes.
-

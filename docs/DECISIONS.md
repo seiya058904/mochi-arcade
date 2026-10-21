@@ -14,4 +14,3 @@
    for password. Never put credentials in source, logs, CI or release assets.
 8. **Truthful release:** desktop proof never substitutes for Android gestures;
    emulator results never claim physical-device performance.
-
