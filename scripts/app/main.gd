@@ -365,7 +365,9 @@ func toast(message: String) -> void:
 		toast_label.queue_free()
 	if is_instance_valid(toast_tween):
 		toast_tween.kill()
-	toast_label = label(ui, message, Rect2(30, play_rect.end.y - 62, size.x - 60, 54), 25, P.INK, HORIZONTAL_ALIGNMENT_CENTER, true)
+	# Temporarily replace the score row; never cover gestures or game instructions.
+	toast_label = label(ui, message, Rect2(30, top_safe + 108, size.x - 60, 80), 24, P.INK, HORIZONTAL_ALIGNMENT_CENTER, true, true)
+	toast_label.add_theme_stylebox_override("normal", P.box(P.PAPER, 22, P.LINE, 3))
 	toast_tween = create_tween()
 	toast_tween.tween_interval(1.4)
 	toast_tween.tween_property(toast_label, "modulate:a", 0.0, 0.3)
@@ -418,13 +420,16 @@ func _input(event: InputEvent) -> void:
 		return
 	# An owned gesture must terminate even when released over a UI control.
 	if active_pointer != -2 and is_instance_valid(game) and not game.suspended:
-		if event is InputEventScreenTouch and event.index == active_pointer and not event.pressed:
-			game.release(game.to_local(event.position))
+		if event is InputEventScreenTouch and event.index == active_pointer and (event.canceled or not event.pressed):
+			if event.canceled:
+				game.cancel_pointer()
+			else:
+				game.release(game.to_local(event.position))
 			active_pointer = -2
 			get_viewport().set_input_as_handled()
 		elif event is InputEventScreenDrag and event.index == active_pointer:
 			game.drag(game.to_local(event.position))
-		elif event is InputEventMouseButton and event.device != -1 and active_pointer == -1 and not event.pressed:
+		elif event is InputEventMouseButton and event.device != -1 and active_pointer == -1 and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			game.release(game.to_local(event.position))
 			active_pointer = -2
 			get_viewport().set_input_as_handled()

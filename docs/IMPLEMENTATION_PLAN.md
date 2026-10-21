@@ -6,12 +6,12 @@ an evidenced external blocker prevents all meaningful progress.
 | Phase | Status | Exit evidence |
 | --- | --- | --- |
 | 0. Boundary / environment / risk audit | PASS | Empty boundary verified; official engine/template checksums; SDK/JDK/device inventory |
-| 1. Git / private remote / CI scaffold | IN_PROGRESS | Private origin/main created and initial commit synced; first full CI queued next |
+| 1. Git / private remote / CI scaffold | PASS | Private origin/main synced; full CI 39638293273 green on 3099316 including Android debug build |
 | 2. Art direction / shared shell / early Android | IN_PROGRESS | Production art and shell rendered; debug APK exported; Android install BLOCKED by offline AVD |
 | 3. Cake Stack + Number Bloom vertical slices | PASS (desktop) | 14,278 logic + 47 integration assertions pass; screenshots and native input recheck |
 | 4a. Fruit Drop | PASS (desktop) | 29 physics/rule checks PASS; 251 normal-action drops reach tier 7 and natural overflow; rendered art and native aim/release checked |
 | 4b. Bubble Garden | PASS (desktop) | 1,364 checks; 5 gardens cleared in 33 hinted shots; 73 shots reach natural loss; alpha art and footer reviewed |
-| 4c. Mochi Hop | TODO | 1000+ seed reachability, hold/cancel/landing tests and runtime proof |
+| 4c. Mochi Hop | PASS (desktop) | 2,000 seeds / 50,000 platforms; 550,008 rule + 47 runtime assertions; 40-hop real-scene input replay, natural miss/retry, screenshots |
 | 4d. Tile Trio | TODO | Solver-verified seed batches, undo/tray/input runtime proof |
 | 4e. Bouncy Balls | TODO | Paddle/multiplier/pool/collision/stress proof |
 | 4f. Jelly Slice | TODO | Continuous swipe/one-shot/pool/Zen runtime proof |
@@ -23,7 +23,7 @@ an evidenced external blocker prevents all meaningful progress.
 
 ## Current checkpoint
 
-- Latest synchronized implementation commit: 2eef964e2170209c9632da7b96e9d11caae5b706 (Fruit Drop).
+- Latest synchronized implementation commit: 3099316eea687828b506baeb107e9109f87c2e66 (Bubble Garden); full CI PASS.
 - Engine verified: 4.7.2.stable.official.ed1daf0bf; official Android templates;
   JDK 17.0.20.1; SDK/Build Tools 36 for the actual target-36 template.
 - Two concepts generated; cream stationery selected; transparent card atlas and
@@ -45,11 +45,15 @@ an evidenced external blocker prevents all meaningful progress.
   drops, live-color pool, free hint and persistent stages. 1,364 checks PASS, including
   15 angle/frame-rate pairs. Rendered/headless normal-action reports agree exactly.
   Fixed expanded-viewport side gaps; downsampled production sprites and footer reviewed.
-- Second CI (39635500243) rejected a job-level runner context before execution.
-  Moved Android path to step env and persisted through GITHUB_ENV; next push pending.
-- Next: commit/push Bubble + validated workflow fix, then Mochi Hop hold/release,
-  deterministic landing and 1000+ seed reachability proof.
-- Remaining four games, full visual/performance/security audit, release key and
+- CI run 39638293273 is fully green after moving runner context to step env.
+- Hop: original bunny/four sweet platform art, 2D projected-foot landing, capped
+  hold distance, deterministic generation, soft edge/perfect scoring, camera and
+  robust cancel/pause/restore. 2,000 seeds / 50,000 platforms passed, minimum valid
+  hold interval 0.385934 s. 40-hop replay scored 130 then naturally missed and retried.
+  Shared touch cancel and toast placement fixes passed current game regressions.
+- Next: commit/push Hop; Tile Trio reversible layered generation, independent solver,
+  seven-slot tray, undo/hints, real clearing/failure/retry inputs and art.
+- Remaining three games, full visual/performance/security audit, release key and
   final signed APK/Android acceptance/Release are not done. Goal remains active.
 
 ## Success criteria

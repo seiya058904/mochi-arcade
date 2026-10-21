@@ -1,10 +1,10 @@
 # QA report
 
-Status: **PARTIAL** — four playable games, 2026-10-22.
+Status: **PARTIAL** — five playable games, 2026-10-22.
 
 Initial read-only audit on 2026-10-21 confirmed an empty work directory, no Git
 root, Java 17, SDK 34 and an offline Android 34 AVD. Since then an actual Godot
-project, production art, shared shell, four playable scenes and a debug APK have
+project, production art, shared shell, five playable scenes and a debug APK have
 been built. No stable release has been published.
 
 Evidence must include command, actual environment, case counts, pass/fail,
@@ -27,6 +27,10 @@ Android emulator: BLOCKED; every observed `adb devices -l` shows offline.
 | Fruit normal-action playthrough | PASS | evidence/fruit-playthrough-rendered.json; 251 normal drops, score 23220, highest tier 7, natural overflow, max 45 fruit, immediate empty restart |
 | Bubble geometry/runtime | PASS, 1,364 assertions | evidence/bubble-garden-tests.json; hex adjacency, cluster/floating connectivity, active-color pool, continuous shots, save/seed restore, loss/retry, aim/landing agreement at 30/60/120 Hz |
 | Bubble normal-action playthrough | PASS, rendered + headless | evidence/bubble-playthrough-*.json; seed 5402, 33 hinted shots clear 5 gardens; random-input seed 3029 reaches natural loss after 73 shots total; 198 pops, 13 drops, 148 wall bounces, score 2740, retry playable. Reports and complete action traces agree between backends. |
+| Hop reachability | PASS, 550,008 assertions | evidence/hop-reachability-tests.json; seeds 1-2000, 25 platforms each (50,000), capped difficulty and edge-biased preceding landings; analytic world-circle / projected-ellipse oracle; minimum charge interval 0.385934 s (seed 1844) |
+| Hop runtime/input | PASS, 47 checks | evidence/mochi-hop-tests.json; short/center/long holds, explicit edge margin, streak scoring, no airborne duplicate launch, pause/cancel/multitouch/background/reload, three frame rates and three viewport sizes |
+| Hop actual scene input replay | PASS, rendered + headless | evidence/hop-playthrough-*.json; seed 1729, real Godot mouse-down/up routing, 40 successful hops / score 130, natural short-hold miss and immediate playable retry. Per-hop measured charge/frame trace retained. |
+| Hop native desktop smoke | PASS for entry/short hold/miss/retry | Native window entered from home, mouse drag-hold/release visibly launched, too-short hold naturally missed, One more go restored the ready platform. desktop-hop-native.png retains the miss. Successful calibrated holds are covered by the separate input replay, not claimed as manual phone play. |
 | Desktop rendering | PASS for current screens | evidence/desktop-*.png files, AMD RX 7900 XT Compatibility renderer |
 | Native desktop input | PASS for current four games | Actual home/settings clicks, 2048 left/up swipes and merge score 4, Cake placement/cut and score 1, Fruit aim/release and next preview, focus-loss pause/resume; Bubble real mouse drag/release pops four and scores 40 (desktop-bubble-native.png) |
 | Debug APK export | PASS | dist/MochiArcade-dev.apk, local ignored artifact |
@@ -34,7 +38,7 @@ Android emulator: BLOCKED; every observed `adb devices -l` shows offline.
 | APK metadata | PASS | io.github.seiya058904.mochiarcade, min API 24, target 36, arm64-v8a+x86_64; VIBRATE only |
 | Android install / launch / touch | BLOCKED | No online device; not claimed verified |
 | Audible quality / physical-device performance | NOT_RUN | Requires actual listening and Android runtime |
-| CI / release | FAIL / NOT_PUBLISHED | Run 39633928754 passed import/tests but SDK setup could not find sdkmanager; run 39635500243 failed workflow validation before any job. Runner context moved from job env to supported step env; next push will verify. |
+| CI / release | PASS for 3099316 / NOT_PUBLISHED | [Run 39638293273](https://github.com/seiya058904/mochi-arcade/actions/runs/39638293273): engine/template verification, import/tests, SDK setup, debug Android build and artifact upload all passed. Hop checkpoint still needs its own CI run. |
 
 ## Found and fixed
 
@@ -58,8 +62,27 @@ Android emulator: BLOCKED; every observed `adb devices -l` shows offline.
 - Small generated bubbles shimmered when downsampled: enabled mipmaps and inspected
   the actual 450x800 result. Moved the next-shot label above its preview to clear the footer.
 - Rendered long-play shutdown still occasionally reports two ObjectDB instances;
-  headless runs are clean. This desktop audio/resource teardown warning remains open
+  Hop's accelerated run also reported twelve once; a verbose rerun was clean.
+  Headless runs are clean. This intermittent desktop audio/resource teardown warning remains open
   for the integration audit; no crash or persistent in-game node growth observed here.
+- Reproduced canceled-touch launch: `InputEventScreenTouch.canceled` previously took the
+  normal release path. Shared input now cancels the owned gesture instead. A right mouse
+  button release also cannot terminate an active left-button hold. Regression retained.
+- Hop feedback originally overlapped its bottom instructions. Shared toasts now temporarily
+  replace the score row with an opaque, wrapped message; gameplay stays unobstructed.
+- The reachability test initially compared float32 Vector2's 1.2000000477 endpoint to a
+  float64 1.2 literal. Corrected that endpoint comparison with approximate equality;
+  unchanged sampled landings, geometric oracle and minimum-window assertions all pass.
+
+## Hop rules and persistence
+
+Hold duration maps linearly from 70 to 350 world units across 0 to 1.2 seconds,
+then caps without launching automatically. Platforms shrink from radius 62 to a
+floor of 48; six world units of edge forgiveness snap to four units inside the top.
+Center error <=14 gives 3, 4, 5, 6, then at most 7 points; ordinary landings give 1
+and reset the streak. Altitude is visual only; projected ground-foot position decides
+landing. Pause freezes a flight in memory; process reload deliberately returns to
+the last safe foot with the same target, score, RNG and seed, with no held input.
 
 Workflow context constraint checked against
 [GitHub's context availability reference](https://docs.github.com/en/actions/reference/workflows-and-actions/contexts#context-availability).

@@ -41,10 +41,13 @@ jobs:
           engine="Godot_v${GODOT_VERSION}-stable_linux.x86_64"
           "$engine" --headless --editor --path . --import
           "$engine" --headless --path . --script tests/logic/run_tests.gd
+          "$engine" --headless --path . --script tests/logic/hop_reachability.gd
           "$engine" --headless --path . --script tests/integration/vertical_slices.gd
           "$engine" --headless --path . --script tests/integration/fruit_drop.gd
           "$engine" --headless --fixed-fps 60 --path . --script tests/integration/bubble_garden.gd
           "$engine" --headless --fixed-fps 60 --path . --script tests/integration/bubble_playthrough.gd
+          "$engine" --headless --path . --script tests/integration/mochi_hop.gd
+          "$engine" --headless --fixed-fps 60 --path . --script tests/integration/hop_playthrough.gd
           "$engine" --headless --fixed-fps 60 --path . --script tests/integration/fruit_playthrough.gd
       - name: Configure Android tools and debug signing
         env:
@@ -83,4 +86,5 @@ jobs:
             docs/evidence/vertical-slices.json
             docs/evidence/fruit-playthrough-*.json
             docs/evidence/bubble-playthrough-*.json
+            docs/evidence/hop-playthrough-*.json
           retention-days: 14

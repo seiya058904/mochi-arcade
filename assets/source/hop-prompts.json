@@ -1,0 +1,12 @@
+{
+  "tool": "image_gen",
+  "date": "2026-10-22",
+  "assets": [
+    "assets/art/hop-bunny.png",
+    "assets/art/hop-platforms.png"
+  ],
+  "prompts": [
+    "Create ONE production game character sprite for Mochi Arcade, an original cozy Android 2D game in a cream stationery / delicate gouache illustration style. A round tiny vanilla mochi bunny animal, with short soft ears, small cocoa eyes, a tiny warm smile, coral blush, tiny feet that rest on a clear ground line, arms at sides. Gentle three-quarter view facing slightly right, entire character centered, no platform or props. Silhouette must be extremely legible at 90 pixels wide; compact ears, full rounded body, feet at bottom. Soft warm cocoa contours, restrained painterly texture, soft subtle internal volume, no photorealism, no text, no watermark, no checkerboard, no cast shadow outside the character. True clean transparent alpha background, ample transparent margin. Body shape suitable for runtime squish/stretch and hopping; readable foot contact. Use cream #fcf7ee, pale pink #edbdc4 and cocoa #665447. High quality cohesive hand-painted game asset.",
+    "Create a production sprite atlas for Mochi Arcade, a cozy 2D pseudo-isometric hopping game. Exactly FOUR separate original sweet platform sprites, arranged in ONE horizontal row, equal size, large clear transparent gaps. Order: pink strawberry macaron, pale mint marshmallow disk, golden vanilla pudding disk, lavender jelly disk. Every platform is a low round CYLINDER seen from above at a fixed isometric angle. Elliptical flat top, width approximately twice its top ellipse height; visible short front side wall underneath. Each top surface is almost empty and clearly landable, with at most tiny subtle toppings near the edge, NEVER tall toppers. Uniform physical silhouette and orientation across all four: broad flat ellipse top, short 3D side below it. Delicate cream-stationery gouache style, warm cocoa soft contours, restrained pastel palette, gentle internal shadows, no cast shadow beyond sprites, no text, no characters, no logo, no background. True clean transparent alpha, smooth clean edges without colored speckles. Entire sprites contained within their own cells; no touching between sprites. Designed to be read at 150 pixels wide, consistent flat top landing regions for a tiny mochi bunny."
+  ]
+}

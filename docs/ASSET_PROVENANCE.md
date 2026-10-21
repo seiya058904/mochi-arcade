@@ -12,6 +12,8 @@ The tool did not identify its model version. Exact prompts are retained in
 | mochi-bunny.png | image_gen original bunny/macaron | 1536x1024 RGBA; alpha 0-254; transparent corner. Original alpha retained. Used on home and Cake Stack. |
 | fruit-characters.png | image_gen original eight-fruit atlas, 2026-10-22 | 1774x887 RGBA; alpha 0-255. Inspected individual bounds, runtime cropping only, foliage above circular body. Used by real RigidBody2D fruit. Prompt: assets/source/fruit-prompt.json. |
 | bubble-characters.png | image_gen original five-symbol bubble atlas, 2026-10-22 | 1983x793 RGBA; alpha 0-255. Inspected square regions, mipmapped downsampling for small in-game circles. Symbols distinguish colors. Prompt: assets/source/bubble-prompt.json. |
+| hop-bunny.png | image_gen original vanilla mochi bunny, 2026-10-22 | 1211x1299 RGBA. Inspected trimmed atlas region and ground contact. Runtime squish/stretch preserves the foot anchor. Prompt: assets/source/hop-prompts.json. |
+| hop-platforms.png | image_gen four original sweet platforms, 2026-10-22 | 2172x724 RGBA. Individually bounded round platforms with a consistent top ellipse and short front wall. Mipmapped runtime atlas; top center agrees with projected landing coordinates. |
 | app-icon.svg / icon-background.svg | Original project vector illustration | Editable geometric bunny icon; no third-party tracing |
 | Cake layers / UI / particle shapes | Original GDScript vector drawing | Resolution-independent game geometry and decoration |
 | BGM / SFX | Original code synthesis in audio_manager.gd | No third-party samples; one music voice and eight pooled SFX voices |
