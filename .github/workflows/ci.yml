@@ -78,14 +78,18 @@ jobs:
           # Fail on drift rather than silently adopting a different test environment.
           python3 - <<'PY'
           import os
+          import xml.etree.ElementTree as ET
           from pathlib import Path
           sdk = Path(os.environ['ANDROID_HOME'])
           for relative, expected in [('emulator', (37, 2, 12)), ('system-images/android-34/default/x86_64', (4, 0, 0))]:
               props = dict(line.split('=', 1) for line in (sdk / relative / 'source.properties').read_text().splitlines() if '=' in line)
-              revision = props['Pkg.Revision'].strip()
-              parts = tuple(int(n) for n in revision.split('.'))
-              normalized = parts + (0,) * (3 - len(parts))
-              print(f'{relative}: revision {revision!r}')
+              # AOSP r04 contains stale source.properties revision 2. SDK package.xml
+              # records the installed repository revision and is authoritative here.
+              metadata = ET.parse(sdk / relative / 'package.xml')
+              revision = next(node for node in metadata.iter() if node.tag.rsplit('}', 1)[-1] == 'revision')
+              fields = {node.tag.rsplit('}', 1)[-1]: int(node.text) for node in revision}
+              normalized = tuple(fields.get(name, 0) for name in ('major', 'minor', 'micro'))
+              print(f'{relative}: package.xml {normalized}; source.properties {props["Pkg.Revision"]!r}')
               assert normalized == expected, f'Unexpected tool revision: {normalized} != {expected}'
           PY
           echo "$ANDROID_HOME/platform-tools" >> "$GITHUB_PATH"
