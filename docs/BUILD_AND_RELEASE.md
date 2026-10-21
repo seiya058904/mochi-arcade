@@ -14,28 +14,15 @@
 
 ## Windows PowerShell
 
-Set `MOCHI_GODOT` to the official 4.7.2 executable if it is not at the local
-ignored `.local/toolchain/godot-4.7.2/` path used during development. Configure
+Set `MOCHI_GODOT` to the absolute path of the official 4.7.2 executable.
+Python 3.12+ runs the required suite driver; it fails on runtime errors as well
+as nonzero process exits. The driver retains individual logs under `.local/check-logs`. Configure
 Godot Editor Settings > Export > Android with the installed JDK and SDK paths.
 
 ```powershell
 ./scripts_tools/godot.ps1 --headless --editor --import
-./scripts_tools/godot.ps1 --headless --script tests/logic/run_tests.gd
-./scripts_tools/godot.ps1 --headless --script tests/integration/vertical_slices.gd
-./scripts_tools/godot.ps1 --headless --script tests/integration/fruit_drop.gd
-./scripts_tools/godot.ps1 --headless --fixed-fps 60 --script tests/integration/bubble_garden.gd
-./scripts_tools/godot.ps1 --headless --fixed-fps 60 --script tests/integration/bubble_playthrough.gd
-./scripts_tools/godot.ps1 --headless --script tests/logic/hop_reachability.gd
-./scripts_tools/godot.ps1 --headless --script tests/integration/mochi_hop.gd
-./scripts_tools/godot.ps1 --headless --fixed-fps 60 --script tests/integration/hop_playthrough.gd
-./scripts_tools/godot.ps1 --headless --script tests/logic/trio_solver.gd
-./scripts_tools/godot.ps1 --headless --script tests/integration/tile_trio.gd
-./scripts_tools/godot.ps1 --headless --fixed-fps 60 --script tests/integration/trio_playthrough.gd
-./scripts_tools/godot.ps1 --headless --script tests/integration/bouncy_balls.gd
-./scripts_tools/godot.ps1 --headless --fixed-fps 60 --script tests/integration/balls_playthrough.gd
-./scripts_tools/godot.ps1 --headless --script tests/integration/jelly_slice.gd
-./scripts_tools/godot.ps1 --headless --fixed-fps 60 --script tests/integration/jelly_playthrough.gd
-./scripts_tools/godot.ps1 --script tests/integration/capture_ui.gd
+python scripts_tools/run_checks.py --engine $env:MOCHI_GODOT
+./scripts_tools/godot.ps1 --fixed-fps 60 --script tests/integration/visual_matrix.gd
 ./scripts_tools/godot.ps1 --headless --export-debug Android dist/MochiArcade-dev.apk
 ```
 
@@ -54,7 +41,8 @@ The latter two commands have **not yet succeeded**: the available AVD remains
 offline. `emulator -accel-check` reports missing hypervisor driver. Hardware
 acceleration disabled, software renderer and direct long-running launch were
 also tried without obtaining an online Android system. No OS driver or boot
-security setting has been changed. A connected Android device can unblock this.
+security setting has been changed. A connected Android device can unblock this. CI also prepares a dedicated API 34
+standard AOSP emulator with full graphics and KVM; see QA_REPORT for actual outcomes.
 
 ## Stable publication gates
 

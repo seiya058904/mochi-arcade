@@ -20,7 +20,7 @@ func settle(game: Node) -> bool:
 func run() -> void:
 	root.size = Vector2i(450, 800)
 	var save = root.get_node("Save")
-	save.folder = "user://qa-bubble-play-" + str(Time.get_ticks_msec())
+	save.folder = "user://qa-bubble-play-" + str(int(Time.get_unix_time_from_system() * 1000000)) + "-" + str(OS.get_process_id())
 	DirAccess.make_dir_recursive_absolute(save.folder)
 	save.data = save.defaults()
 	save.data.settings.music = false

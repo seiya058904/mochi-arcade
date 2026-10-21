@@ -1,0 +1,40 @@
+{
+  "status": "PASS_DESKTOP_VISUAL_REVIEW",
+  "date": "2026-10-22",
+  "captures": 33,
+  "scope": "Actual Godot Compatibility renderer; not Android acceptance",
+  "profiles": [
+    [
+      450,
+      800,
+      "en"
+    ],
+    [
+      360,
+      800,
+      "zh"
+    ],
+    [
+      640,
+      800,
+      "en"
+    ]
+  ],
+  "review": [
+    "All eight games in each profile plus home/settings",
+    "Phone help, pause and visible Number Bloom merge settlement",
+    "Rechecked final contrast on home/settings/number screens; geometry unchanged from complete 32-screen review"
+  ],
+  "fixed": [
+    "Wide portrait 2048 board/footer clipping",
+    "Tall home lower-space imbalance",
+    "Home and fruit sprite downsample edges",
+    "Muted text contrast on theme surfaces"
+  ],
+  "muted_text_contrast_min": 4.578,
+  "muted_text_contrast_max": 6.679,
+  "limitations": [
+    "No claim of complete WCAG conformance",
+    "Android screenshots and physical-device performance pending"
+  ]
+}

@@ -8,16 +8,21 @@ var start := Vector2.ZERO
 var holding := false
 var won := false
 var traces: Array = []
+var merged_cells: Dictionary = {}
 var animation := 1.0
 var spawned := -1
 var board_y := 0.0
+var board_x := 0.0
+var board_extent := 0.0
 var cell := 0.0
 
 func _ready() -> void:
 	board.resize(16)
 	board.fill(0)
-	board_y = maxf(76, (area.y - area.x) * 0.4)
-	cell = (area.x - 52) / 4.0
+	board_extent = minf(area.x, area.y - 210)
+	board_x = (area.x - board_extent) / 2
+	board_y = maxf(76, (area.y - board_extent) * 0.4)
+	cell = (board_extent - 52) / 4.0
 	var saved := Save.session(game_id)
 	if valid_board(saved.get("board", [])):
 		board = saved.board.map(func(x): return int(x))
@@ -34,6 +39,8 @@ func valid_board(value: Variant) -> bool:
 	if not value is Array or value.size() != 16:
 		return false
 	for number in value:
+		if not (number is int or number is float) or not is_finite(float(number)) or number != floor(number):
+			return false
 		var n := int(number)
 		if n < 0 or n > 1048576 or (n > 0 and (n < 2 or (n & (n - 1)) != 0)):
 			return false
@@ -87,6 +94,9 @@ func slide(direction: int) -> void:
 	undo_state = {"board": board.duplicate(), "score": score, "rng": str(rng.state), "won": won}
 	board = result.board
 	traces = result.traces
+	merged_cells.clear()
+	for trace in traces:
+		merged_cells[trace.to] = int(merged_cells.get(trace.to, 0)) + 1
 	spawned = RULES.spawn(board, rng)
 	animation = 0.0
 	add_score(result.score)
@@ -120,7 +130,7 @@ func undo() -> void:
 	queue_redraw()
 
 func tile_position(index: int) -> Vector2:
-	return Vector2(20 + (index % 4) * (cell + 4), board_y + 20 + (index / 4) * (cell + 4))
+	return Vector2(board_x + 20 + (index % 4) * (cell + 4), board_y + 20 + (index / 4) * (cell + 4))
 
 func tile_color(value: int) -> Color:
 	var colors := [P.PAPER, Color("f8e9c7"), P.PEACH, P.ROSE, P.LILAC, P.SKY, P.MINT, Color("ecd8a3"), Color("dfc6b8"), Color("ccb7d8"), Color("b9d3c0"), Color("f0ce83")]
@@ -137,18 +147,25 @@ func draw_tile(value: int, point: Vector2, scale_value: float = 1.0) -> void:
 
 func _draw() -> void:
 	text_at(MochiCatalog.words("A LITTLE SPACE TO GROW", "留一点空间，慢慢生长"), Vector2(area.x / 2, 38), 21, P.MUTED, true)
-	rounded(Rect2(0, board_y, area.x, area.x), Color("e8dfcd"), 30)
+	rounded(Rect2(board_x, board_y, board_extent, board_extent), Color("e8dfcd"), 30)
 	for i in range(16):
 		rounded(Rect2(tile_position(i), Vector2.ONE * (cell - 2)), Color("f2e9da"), 18)
-	if animation < 1:
-		var eased := 1.0 - pow(1.0 - animation, 3)
+	if animation < 0.72:
+		var eased := 1.0 - pow(1.0 - animation / 0.72, 3)
 		for trace in traces:
 			draw_tile(trace.value, tile_position(trace.from).lerp(tile_position(trace.to), eased))
 	else:
 		for i in range(16):
 			if int(board[i]) > 0:
-				draw_tile(board[i], tile_position(i))
-	var footer := board_y + area.x + 65
+				var scale_value := 1.0
+				if animation < 1 and not reduced_motion:
+					var settle := (animation - 0.72) / 0.28
+					if int(merged_cells.get(i, 0)) == 2:
+						scale_value += sin(settle * PI) * 0.06
+					elif i == spawned:
+						scale_value = lerpf(0.7, 1.0, settle)
+				draw_tile(board[i], tile_position(i), scale_value)
+	var footer := board_y + board_extent + 65
 	text_at(MochiCatalog.words("Swipe. Merge. Bloom.", "滑动，合并，绽放。"), Vector2(area.x / 2, footer), 29, P.INK, true)
 	text_at(MochiCatalog.words("One move at a time. Undo is always free.", "一步一步来，撤回不收费。"), Vector2(area.x / 2, footer + 42), 22, P.MUTED, true)
 	draw_effects()

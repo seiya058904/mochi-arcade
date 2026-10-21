@@ -1,19 +1,25 @@
 # Release gates — not release ready
 
+Updated 2026-10-22. Desktop acceptance does not satisfy Android gates.
+
 | Gate | State | Evidence / remaining work |
 | --- | --- | --- |
-| A01 One app / APK | PARTIAL | Early debug APK has one package; not all games implemented |
-| A02 Eight complete games | NOT_RUN | Three playable games; five pending |
-| A03 Correct gameplay | PARTIAL | 14,278 logic + 47 slice + 29 Fruit checks; normal-drop playthroughs |
-| A04 Valid procedural content | NOT_RUN | Tile solver / Hop reachability pending |
-| A05 Android controls | BLOCKED | Existing AVD offline; no connected device |
-| A06 Cohesive art | PARTIAL | Two concepts, production sprites, first desktop review |
-| A07 Audio | PARTIAL | Original synthesis and settings; audible verification pending |
-| A08 Persistence | PARTIAL | Atomic-save/recovery and 2048 session/undo tests pass |
-| A09 Compatibility / performance | NOT_RUN | Desktop aspect checks only; Android pending |
-| A10 Security / provenance | PARTIAL | Original art/fonts documented; full audit pending |
-| A11 Reproducible build | PARTIAL | Local debug export succeeds; CI pending |
-| A12 Verified installable APK | BLOCKED | APK metadata inspected, Android install not run |
-| A13 Clean synchronized Git | IN_PROGRESS | Milestone synchronization in progress |
-| A14 Final-SHA CI | NOT_RUN | First run failed SDK setup; pinned tool installation fix pending rerun |
-| A15 Release | NOT_PUBLISHED | Withheld until all preceding gates pass |
+| A01 One app / APK | PARTIAL | Development APK contains all eight; final signed package pending |
+| A02 Eight complete games | PASS desktop / Android PENDING | Eight implemented loops, natural-action replays, results/retry and 33-screen matrix |
+| A03 Correct gameplay | PASS desktop | 17 required suites; rules, collision, save, lifecycle and real scene input |
+| A04 Valid procedural content | PASS | Independent Trio solver: 1,500 boards; Hop: 2,000 seeds / 50,000 targets |
+| A05 Android controls | BLOCKED | Local AVD offline; two hosted attempts stopped on disk before boot; revised environment pending |
+| A06 Cohesive art | PASS desktop / Android PENDING | Original AI production art integrated; three ratios, EN/ZH, all games and overlays reviewed |
+| A07 Audio | PARTIAL | Original WAVs, bounded pool, pause/shutdown/settings; audible and mute measurements pending |
+| A08 Persistence | PASS desktop / Android PENDING | Atomic backup, schema recovery, settings/records, eight snapshots; device restart pending |
+| A09 Compatibility / performance | PARTIAL | Desktop clipping/lifecycle and bounded-load checks pass; actual Android logs pending |
+| A10 Security / provenance | PARTIAL | Fonts/art provenance recorded, no network permissions; final history/package audit pending |
+| A11 Reproducible build | PASS development | Pinned engine/template, SDK CLI checksum, local + hosted debug export; signed rebuild pending |
+| A12 Verified installable APK | BLOCKED | Package/ABI/debug signature inspected; install/start on Android not yet executed |
+| A13 Clean synchronized Git | IN_PROGRESS | Milestone commits/pushes; final clean state pending |
+| A14 Final-SHA CI | NOT_RUN | All-eight checkpoint da1d397 passed 39647458113; current/final SHA awaits CI |
+| A15 Release | NOT_PUBLISHED | No tag or stable assets until preceding hard gates pass |
+
+Current unresolved release blockers: Android execution, secure release signing,
+audio verification, final security audit and exact-final-commit CI/download checks.
+Physical-phone performance will remain explicitly unverified if acceptance uses an emulator.

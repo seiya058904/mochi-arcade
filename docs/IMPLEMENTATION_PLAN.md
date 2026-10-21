@@ -15,15 +15,15 @@ an evidenced external blocker prevents all meaningful progress.
 | 4d. Tile Trio | PASS (desktop) | 1,500 solver-verified boards, 439,506 rule + 23 runtime checks; 5 shops / 187 input picks / natural full tray / free result undo / restart; actual screenshots |
 | 4e. Bouncy Balls | PASS (desktop) | 236,650 checks; real x2/x3 gates; 60-second 64-ball stress; normal input clears 4 waves, reaches 64 balls, naturally loses/retries; rendered captures |
 | 4f. Jelly Slice | PASS (desktop) | 7,224 checks; 108,000 stress swipe events; real-input 60-second Zen round slices 150 fruit, naturally misses 7, finishes/retries via buttons; original whole/half art reviewed |
-| 5. Integration / lifecycle / stress audit | IN_PROGRESS | Eight individual suites pass; full-collection lifecycle and adverse save audit next |
-| 6. Complete visual reviews + targeted fixes | TODO | Home + 8 games + overlays + settings + aspect ratio matrix |
+| 5. Integration / lifecycle / stress audit | PASS (desktop) | 17 required suites; 934 full-collection checks, 40 switches, damaged-save recovery and three viewport profiles |
+| 6. Complete visual reviews + targeted fixes | PASS (desktop) | 33 actual renderer captures; EN/ZH, home, eight games, settings, help/pause; board fit, mipmaps and text contrast fixed |
 | 7. Signed Android acceptance | TODO | Signature, package, ABI, hash, install, touch and lifecycle logs |
 | 8. CI / final audit / remote sync | TODO | Clean local/upstream/default SHA match, final-SHA CI green |
 | 9. Release and download verification | TODO | Annotated tag, draft assets, independent hash match, publish |
 
 ## Current checkpoint
 
-- Latest synchronized implementation commit: da1d397c29134fd18ec29b26a8cbfdeedeae0f4c (all eight games); its CI is pending. Previous seven-game CI 39645713022 PASS.
+- All-eight-game checkpoint da1d397c29134fd18ec29b26a8cbfdeedeae0f4c passed CI 39647458113. Later hosted Android attempts 39648255774 and 39649666572 passed build/tests/KVM but failed on emulator disk allocation. Current changes add the collection audit and adjust the runtime environment.
 - Engine verified: 4.7.2.stable.official.ed1daf0bf; official Android templates;
   JDK 17.0.20.1; SDK/Build Tools 36 for the actual target-36 template.
 - Two concepts generated; cream stationery selected; transparent card atlas and
@@ -66,8 +66,16 @@ an evidenced external blocker prevents all meaningful progress.
   All eight now playable; shared clipping contains moving objects inside the play area.
   Earlier stress outliers 321/208 ms remain recorded; two isolated follow-ups had no
   >16.667 ms sample. Cause is unverified; no Android performance inference is made.
-- Next: run full eight-game lifecycle and visual matrix while CI attempts a dedicated
-  720x1280 API 34 AVD. Hosted Linux KVM is documented; success is not yet established.
+- Collection audit: 934 checks / 40 switches pass. Structurally invalid nested rounds
+  now fall back safely without losing records; fixed wide-screen 2048 board clipping.
+  Test save folders use wall-clock microseconds plus PID, avoiding process-relative collisions.
+- Visual matrix: 33 desktop captures at 450x800, 360x800 and 640x800. All layouts
+  reviewed; original art mipmaps, tall-home spacing and 4.58:1 minimum muted-text
+  contrast on the eight theme surfaces verified. This is not a full accessibility audit.
+- Next: execute the revised hosted API 34 standard AOSP AVD. The Google APIs image
+  required at least 7,372.80 MB despite the requested 2 GB partition. Standard AOSP
+  retains full graphics without Google apps; only three extracted job-owned download
+  archives are removed to make room. No local files or unrelated runner tools are deleted.
 - Full visual/performance/security audit, release key and
   final signed APK/Android acceptance/Release are not done. Goal remains active.
 

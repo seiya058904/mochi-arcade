@@ -25,6 +25,7 @@ var exiting := false
 
 func _ready() -> void:
 	get_tree().auto_accept_quit = false
+	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var latin: FontFile = load("res://assets/fonts/Nunito.ttf")
 	var cjk: FontFile = load("res://assets/fonts/NotoSansSC.ttf")
@@ -160,10 +161,19 @@ func button(parent: Control, value: String, rect: Rect2, callback: Callable, col
 	item.add_theme_stylebox_override("focus", P.box(Color.TRANSPARENT, 24, P.MUTED))
 	item.pivot_offset = rect.size * 0.5
 	item.button_down.connect(func():
+		var previous: Variant = item.get_meta("press_tween") if item.has_meta("press_tween") else null
+		if is_instance_valid(previous):
+			previous.kill()
 		if not Save.setting("reduced_motion"):
 			item.scale = Vector2.ONE * 0.97)
 	item.button_up.connect(func():
-		item.scale = Vector2.ONE)
+		if Save.setting("reduced_motion"):
+			item.scale = Vector2.ONE
+		else:
+			var tween := item.create_tween()
+			tween.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+			tween.tween_property(item, "scale", Vector2.ONE, 0.12)
+			item.set_meta("press_tween", tween))
 	item.pressed.connect(func():
 		Sound.play(0)
 		if OS.get_name() == "Android" and Save.setting("haptics"):
@@ -198,7 +208,7 @@ func show_home() -> void:
 		illustration(ui, load("res://assets/art/mochi-bunny.png"), Rect2(w - left - 236, top_safe + 72, 244, 188))
 	label(ui, C.words("Eight little ways to feel good", "八款小游戏，随时开启好心情"), Rect2(left, top_safe + 214, content, 38), 24, P.MUTED)
 	var start_y := top_safe + 284
-	var card_h := clampf((size.y - bottom_safe - start_y - 88) / 4.0 - 16, 156, 192)
+	var card_h := clampf((size.y - bottom_safe - start_y - 88) / 4.0 - 16, 156, 276)
 	var card_w := (content - 20) / 2.0
 	for i in range(8):
 		var id := str(C.GAMES[i][0])

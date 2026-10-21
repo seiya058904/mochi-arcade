@@ -2,7 +2,7 @@ class_name MochiPalette
 extends RefCounted
 
 const INK := Color("634b40")
-const MUTED := Color("947c6e")
+const MUTED := Color("6e564a")
 const CREAM := Color("fcf7ee")
 const PAPER := Color("fffdf8")
 const LINE := Color("eadfce")

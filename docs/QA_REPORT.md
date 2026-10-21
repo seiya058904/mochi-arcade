@@ -13,7 +13,8 @@ seed/action sequence, screenshot/log path and unresolved limitations.
 ## Gate register
 
 A01-A15 details: RELEASE_CHECKLIST.md. Physical Android: DEVICE_UNAVAILABLE.
-Android emulator: BLOCKED; every observed `adb devices -l` shows offline.
+Local Android emulator: BLOCKED by absent acceleration. Hosted KVM passes; two
+boot attempts failed on disk space. Revised standard AOSP environment awaits execution.
 
 ## Executed checks
 
@@ -47,9 +48,24 @@ Android emulator: BLOCKED; every observed `adb devices -l` shows offline.
 | APK metadata | PASS | io.github.seiya058904.mochiarcade, min API 24, target 36, arm64-v8a+x86_64; VIBRATE only |
 | Android install / launch / touch | BLOCKED | No online device; not claimed verified |
 | Audible quality / physical-device performance | NOT_RUN | Requires actual listening and Android runtime |
-| CI / release | PASS for dd211e8 / NOT_PUBLISHED | [Run 39645713022](https://github.com/seiya058904/mochi-arcade/actions/runs/39645713022): all seven-game checks and debug Android build passed. Jelly checkpoint awaits its own CI run. |
+| CI / release | PASS for da1d397 / NOT_PUBLISHED | [Run 39647458113](https://github.com/seiya058904/mochi-arcade/actions/runs/39647458113): all eight-game checks and debug Android build passed. Later hosted runtime attempts fail on disk, as retained below. |
+| Collection lifecycle / adverse saves | PASS, 934 checks | evidence/collection-audit.json: 40 scene switches, primary touch and background freeze, restart/unload, malformed nested sessions/metadata, 360x640 / 360x800 / 640x800 layouts |
+| Complete desktop visual matrix | PASS, 33 captures reviewed | evidence/visual-review.json and matrix-*.png; two languages, three screen ratios, eight games, settings, overlays and merge feedback. Not Android proof. |
+| Required suite runner | PASS, 17 suites | evidence/required-checks.json; rejects engine runtime errors even when process exit code is zero |
 
 ## Found and fixed
+
+- Damaged Cake layer objects and non-numeric 2048 cells reproduced script errors.
+  Shared structural session validation now rejects them before casts; records survive.
+- Wider portrait screens clipped the 2048 board. The board now fits both dimensions.
+- First button-tween regression logged missing metadata despite an exit code of zero;
+  the strict runner caught it. Explicit metadata presence check fixes the initial press.
+- Tall home cards underused space; increased the bounded height. Mipmaps improve
+  the actual downsampled home/fruit sprites. Muted text now has contrast 4.578-6.679
+  against the eight palette surfaces (previous minimum 2.638).
+- Process-relative QA save names could reuse older damaged-save fixtures. Unique
+  wall-clock-microsecond/PID folders isolate each run; old evidence was retained.
+
 
 - Jelly's first multi-finger fixture sent touch-down only to `_input`; the app starts
   gestures in `_unhandled_input`. Corrected the fixture to match the actual event route;
@@ -135,9 +151,9 @@ Workflow context constraint checked against
 
 ## Android blocker evidence
 
-An alternative runtime attempt is now prepared in CI: a dedicated API 34 Google APIs
+An alternative runtime attempt is now prepared in CI: a dedicated API 34 standard AOSP
 x86_64 AVD, 720x1280 / density 320 / 2 cores / 2048 MB, stable emulator 37.2.12 and
-system image revision 14. Those revisions were read from Google's repository metadata;
+system image revision 4. Those revisions were read from Google's repository metadata;
 the workflow checks them and fails on drift. The existing pinned SDK CLI installs them.
 ADB smoke installs the actual job APK, launches it, taps all eight cards, performs real
 Android input, backgrounds/force-stops/restarts, checks persisted settings/seen games,
@@ -150,6 +166,14 @@ its default userdata partition needed 12,288 MB, while the temporary runner had
 4,928.71 MB free. The retained emulator log establishes this disk failure, not a KVM
 failure. The dedicated AVD now requests a 2 GB userdata partition, no SD card, and
 the smoke detects early emulator process exit instead of waiting the entire boot timeout.
+
+Second attempt [39649666572](https://github.com/seiya058904/mochi-arcade/actions/runs/39649666572)
+confirmed the Google APIs image still requires a minimum 7,372.80 MB, with only
+4,928.79 MB available. Early process-exit detection worked. The revised environment
+uses the normal AOSP API 34 image (official revision 4, archive 720,747,116 bytes)
+and removes exactly three verified/extracted archives created by this job. Full
+graphics are retained; the ATD image is deliberately avoided because it disables
+hardware rendering. No Android success is inferred before actual execution.
 
 This uses [documented hosted Linux KVM support](https://github.blog/changelog/2024-04-02-github-actions-hardware-accelerated-android-virtualization-now-available/)
 and the [official emulator CLI](https://developer.android.com/studio/run/emulator-commandline).

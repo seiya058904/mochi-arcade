@@ -89,7 +89,7 @@ func save_tests() -> void:
 	var save = root.get_node("Save")
 	var original_folder: String = save.folder
 	var original_data: Dictionary = save.data.duplicate(true)
-	var test_folder := "user://qa-save-" + str(Time.get_ticks_msec())
+	var test_folder := "user://qa-save-" + str(int(Time.get_unix_time_from_system() * 1000000)) + "-" + str(OS.get_process_id())
 	DirAccess.make_dir_recursive_absolute(test_folder)
 	save.folder = test_folder
 	save.data = save.defaults()

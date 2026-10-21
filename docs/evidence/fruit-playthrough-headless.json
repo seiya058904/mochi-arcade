@@ -1,4 +1,5 @@
 {
+  "backend": "headless",
   "drop_x": [
     343.25,
     288.66,
@@ -351,11 +352,10 @@
   "input_seed": 4182,
   "natural_failure": true,
   "nodes_after_unload": 60,
-  "nodes_before_play": 33,
+  "nodes_before_play": 34,
   "peak_fruit_count": 47,
   "restart_empty": true,
   "score": 36740,
   "seed": 817,
-  "status": "PASS",
-  "backend": "headless"
+  "status": "PASS"
 }

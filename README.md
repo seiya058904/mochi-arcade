@@ -9,9 +9,9 @@ acceptance is pending an online device; a successful APK export alone is not
 an installation test.
 
 <p>
-  <img src="docs/evidence/desktop-home.png" width="220" alt="Actual Godot home screen" />
-  <img src="docs/evidence/desktop-cake-stack.png" width="220" alt="Actual Cake Stack game" />
-  <img src="docs/evidence/desktop-number-bloom.png" width="220" alt="Actual Number Bloom game" />
+  <img src="docs/evidence/matrix-phone-home.png" width="220" alt="Actual Godot home screen" />
+  <img src="docs/evidence/matrix-phone-cake_stack.png" width="220" alt="Actual Cake Stack game" />
+  <img src="docs/evidence/matrix-phone-number_bloom.png" width="220" alt="Actual Number Bloom game" />
 </p>
 
 These are real desktop Godot viewport captures, not Android device screenshots.
@@ -32,10 +32,14 @@ The final Android artifact will be named **MochiArcade.apk**.
 
 Development and release evidence is tracked in [the implementation plan](docs/IMPLEMENTATION_PLAN.md)
 and [QA report](docs/QA_REPORT.md). Follow the verified [build instructions](docs/BUILD_AND_RELEASE.md)
-for Godot import, tests and a development APK. All eight games will be available
-from first launch in the finished collection.
+for Godot import, tests and a development APK. All eight games are available
+from first launch; no accounts, advertisements or purchases are required.
 
-Current checks: **14,278** logic assertions and **47** integration assertions,
+The required runner executes **17 suites**, including **934** collection lifecycle,
+damaged-save and layout checks. A **33-screen** desktop matrix covers both languages
+and three portrait ratios.
+
+Game checks: **14,278** logic assertions and **47** integration assertions,
 including standard 2048 merges, seeded spawn distribution, cake overlap boundaries,
 atomic-save recovery, undo with RNG restoration, lifecycle handling and 30 scene switches.
 Fruit adds **29** physics checks; Bubble adds **1,364** geometry/runtime checks and

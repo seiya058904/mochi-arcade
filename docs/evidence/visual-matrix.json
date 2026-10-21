@@ -1,0 +1,57 @@
+{
+  "languages": [
+    "en",
+    "zh"
+  ],
+  "scope": "Actual Compatibility renderer. Worlds frozen after normal actions for layout inspection; not Android screenshots.",
+  "screenshots": [
+    "res://docs/evidence/matrix-phone-home.png",
+    "res://docs/evidence/matrix-phone-settings.png",
+    "res://docs/evidence/matrix-phone-fruit_drop.png",
+    "res://docs/evidence/matrix-phone-bubble_garden.png",
+    "res://docs/evidence/matrix-phone-cake_stack.png",
+    "res://docs/evidence/matrix-phone-bouncy_balls.png",
+    "res://docs/evidence/matrix-phone-tile_trio.png",
+    "res://docs/evidence/matrix-phone-mochi_hop.png",
+    "res://docs/evidence/matrix-phone-number-merge.png",
+    "res://docs/evidence/matrix-phone-number_bloom.png",
+    "res://docs/evidence/matrix-phone-pause.png",
+    "res://docs/evidence/matrix-phone-help.png",
+    "res://docs/evidence/matrix-phone-jelly_slice.png",
+    "res://docs/evidence/matrix-tall-home.png",
+    "res://docs/evidence/matrix-tall-settings.png",
+    "res://docs/evidence/matrix-tall-fruit_drop.png",
+    "res://docs/evidence/matrix-tall-bubble_garden.png",
+    "res://docs/evidence/matrix-tall-cake_stack.png",
+    "res://docs/evidence/matrix-tall-bouncy_balls.png",
+    "res://docs/evidence/matrix-tall-tile_trio.png",
+    "res://docs/evidence/matrix-tall-mochi_hop.png",
+    "res://docs/evidence/matrix-tall-number_bloom.png",
+    "res://docs/evidence/matrix-tall-jelly_slice.png",
+    "res://docs/evidence/matrix-wide-home.png",
+    "res://docs/evidence/matrix-wide-settings.png",
+    "res://docs/evidence/matrix-wide-fruit_drop.png",
+    "res://docs/evidence/matrix-wide-bubble_garden.png",
+    "res://docs/evidence/matrix-wide-cake_stack.png",
+    "res://docs/evidence/matrix-wide-bouncy_balls.png",
+    "res://docs/evidence/matrix-wide-tile_trio.png",
+    "res://docs/evidence/matrix-wide-mochi_hop.png",
+    "res://docs/evidence/matrix-wide-number_bloom.png",
+    "res://docs/evidence/matrix-wide-jelly_slice.png"
+  ],
+  "status": "CAPTURED_REQUIRES_VISUAL_REVIEW",
+  "viewports": [
+    [
+      450,
+      800
+    ],
+    [
+      360,
+      800
+    ],
+    [
+      640,
+      800
+    ]
+  ]
+}

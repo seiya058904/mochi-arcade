@@ -2,6 +2,7 @@ extends Node
 ## Versioned local save. Write a complete temporary file, rotate a valid backup,
 ## then rename. A corrupt primary never destroys the last readable backup.
 const VERSION := 1
+const SCHEMA := preload("res://scripts/app/save_schema.gd")
 var data: Dictionary = {}
 var folder := "user://"
 var recovered := false
@@ -21,11 +22,13 @@ func decode(path: String) -> Dictionary:
 	var file := FileAccess.open(path, FileAccess.READ)
 	if file == null:
 		return {}
+	if file.get_length() > 2000000:
+		return {}
 	var parser := JSON.new()
 	if parser.parse(file.get_as_text()) != OK:
 		return {}
 	var parsed = parser.data
-	if not parsed is Dictionary or int(parsed.get("version", 0)) != VERSION:
+	if not parsed is Dictionary or not SCHEMA.number(parsed.get("version"), VERSION, VERSION, true):
 		return {}
 	for key in ["settings", "records", "sessions", "seen"]:
 		if not parsed.get(key) is Dictionary:
@@ -41,8 +44,18 @@ func load_save() -> void:
 	if data.is_empty():
 		data = defaults()
 	var settings: Dictionary = defaults().settings
-	settings.merge(data.settings, true)
+	for key in ["music", "sfx", "reduced_motion", "haptics"]:
+		if data.settings.get(key) is bool:
+			settings[key] = data.settings[key]
+	if data.settings.get("language") in ["en", "zh"]:
+		settings.language = data.settings.language
 	data.settings = settings
+	for id in data.records.keys():
+		if not SCHEMA.number(data.records[id], 0, 9007199254740991, true):
+			data.records.erase(id)
+	for id in data.seen.keys():
+		if not data.seen[id] is bool:
+			data.seen.erase(id)
 
 func flush() -> Error:
 	var temp := folder.path_join("save.tmp")
@@ -63,7 +76,8 @@ func flush() -> Error:
 	return last_error
 
 func best(id: String) -> int:
-	return int(data.records.get(id, 0))
+	var value = data.records.get(id, 0)
+	return int(value) if SCHEMA.number(value, 0, 9007199254740991, true) else 0
 
 func record(id: String, score: int) -> void:
 	if score > best(id):
@@ -79,7 +93,7 @@ func set_setting(key: String, value: Variant) -> void:
 
 func session(id: String) -> Dictionary:
 	var value = data.sessions.get(id, {})
-	return value.duplicate(true) if value is Dictionary else {}
+	return value.duplicate(true) if SCHEMA.session(id, value) else {}
 
 func save_session(id: String, value: Dictionary) -> void:
 	data.sessions[id] = value.duplicate(true)

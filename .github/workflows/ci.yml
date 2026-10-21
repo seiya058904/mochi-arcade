@@ -40,22 +40,7 @@ jobs:
           set -euo pipefail
           engine="Godot_v${GODOT_VERSION}-stable_linux.x86_64"
           "$engine" --headless --editor --path . --import
-          "$engine" --headless --path . --script tests/logic/run_tests.gd
-          "$engine" --headless --path . --script tests/logic/hop_reachability.gd
-          "$engine" --headless --path . --script tests/logic/trio_solver.gd
-          "$engine" --headless --path . --script tests/integration/vertical_slices.gd
-          "$engine" --headless --path . --script tests/integration/fruit_drop.gd
-          "$engine" --headless --fixed-fps 60 --path . --script tests/integration/bubble_garden.gd
-          "$engine" --headless --fixed-fps 60 --path . --script tests/integration/bubble_playthrough.gd
-          "$engine" --headless --path . --script tests/integration/mochi_hop.gd
-          "$engine" --headless --fixed-fps 60 --path . --script tests/integration/hop_playthrough.gd
-          "$engine" --headless --path . --script tests/integration/tile_trio.gd
-          "$engine" --headless --fixed-fps 60 --path . --script tests/integration/trio_playthrough.gd
-          "$engine" --headless --path . --script tests/integration/bouncy_balls.gd
-          "$engine" --headless --fixed-fps 60 --path . --script tests/integration/balls_playthrough.gd
-          "$engine" --headless --path . --script tests/integration/jelly_slice.gd
-          "$engine" --headless --fixed-fps 60 --path . --script tests/integration/jelly_playthrough.gd
-          "$engine" --headless --fixed-fps 60 --path . --script tests/integration/fruit_playthrough.gd
+          python3 scripts_tools/run_checks.py --engine "$engine"
       - name: Configure Android tools and debug signing
         env:
           ANDROID_HOME: ${{ runner.temp }}/mochi-android-sdk
@@ -88,16 +73,30 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" "emulator" "system-images;android-34;google_apis;x86_64"
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" "emulator" "system-images;android-34;default;x86_64"
           # Versions verified against Google's stable repository metadata on 2026-10-22.
           # Fail on drift rather than silently adopting a different test environment.
           grep -Fx 'Pkg.Revision=37.2.12' "$ANDROID_HOME/emulator/source.properties"
-          grep -Fx 'Pkg.Revision=14' "$ANDROID_HOME/system-images/android-34/google_apis/x86_64/source.properties"
+          grep -Fx 'Pkg.Revision=4' "$ANDROID_HOME/system-images/android-34/default/x86_64/source.properties"
           echo "$ANDROID_HOME/platform-tools" >> "$GITHUB_PATH"
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-mochi-kvm.rules
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
           "$ANDROID_HOME/emulator/emulator" -accel-check
+          # Only these three job-created, verified archives are disposable after extraction.
+          # Keep installed tools, APKs, logs and all unrelated runner paths intact.
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          root = Path('.local/tools').resolve()
+          version = os.environ['GODOT_VERSION']
+          for name in (f'Godot_v{version}-stable_linux.x86_64.zip', f'Godot_v{version}-stable_export_templates.tpz', 'android-tools.zip'):
+              archive = root / name
+              assert archive.parent == root and archive.is_file() and not archive.is_symlink()
+              print(f'Removing extracted job archive: {archive.name} ({archive.stat().st_size} bytes)')
+              archive.unlink()
+          PY
+          df -h "$ANDROID_HOME" "$RUNNER_TEMP"
       - name: Boot dedicated AVD and run Android input smoke
         env:
           ANDROID_AVD_HOME: ${{ runner.temp }}/mochi-avd
@@ -105,7 +104,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "$ANDROID_AVD_HOME" .local/android-runtime
-          printf 'no\n' | "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd -n Mochi_CI_API34 -k 'system-images;android-34;google_apis;x86_64' -d pixel_2
+          printf 'no\n' | "$ANDROID_HOME/cmdline-tools/latest/bin/avdmanager" create avd -n Mochi_CI_API34 -k 'system-images;android-34;default;x86_64' -d pixel_2
           python3 - <<'PY'
           import os
           from pathlib import Path
@@ -138,4 +137,7 @@ jobs:
             docs/evidence/trio-playthrough-*.json
             docs/evidence/balls-playthrough-*.json
             docs/evidence/jelly-playthrough-*.json
+            docs/evidence/collection-audit.json
+            docs/evidence/required-checks.json
+            .local/check-logs/
           retention-days: 14
