@@ -13,8 +13,10 @@ seed/action sequence, screenshot/log path and unresolved limitations.
 ## Gate register
 
 A01-A15 details: RELEASE_CHECKLIST.md. Physical Android: DEVICE_UNAVAILABLE.
-Local Android emulator: BLOCKED by absent acceleration. Hosted API 34 now boots and installs/launches the APK. The first rendered attempt
-failed on the legacy SwiftShader GLES compiler; full Android acceptance remains pending.
+Local Android emulator: BLOCKED by absent acceleration. Hosted API 34 now renders
+all eight games with swangle. Manual review rejected its first green smoke result:
+system Back exited instead of pausing, and Trio tapped covered tiles. The Back
+fix passes all 18 desktop suites; strengthened Android acceptance is pending.
 
 ## Executed checks
 
@@ -46,11 +48,11 @@ failed on the legacy SwiftShader GLES compiler; full Android acceptance remains 
 | Debug APK export | PASS | dist/MochiArcade-dev.apk, local ignored artifact |
 | Debug APK signature | PASS, debug only | v2/v3 schemes; certificate 2207476872571c99d83537c73a9e3b38d9b66c5d04bef7ad3ccd5ebbe122b0ab |
 | APK metadata | PASS | io.github.seiya058904.mochiarcade, min API 24, target 36, arm64-v8a+x86_64; VIBRATE only |
-| Android install / launch / touch | PASS install/start; FAIL rendering; touch NOT_VERIFIED | Run 39653014044 boots API 34, installs and launches. Legacy SwiftShader cannot link Godot shaders; first-run fullscreen system tip also blocks input. |
+| Android install / launch / touch | PASS rendering / FAIL first lifecycle review | Run 39654367634 renders all eight with swangle; manual review found Back process exit and ineffective Trio test taps. See evidence/android-first-rendered-review.json. |
 | Audio output | PASS measured Windows mixer / phone UNVERIFIED | evidence/audio-output.json: 48 kHz captured output, eight tone peaks 0.101-0.103, eight-voice burst 0.438, music peak 0.0090, muted/paused output exactly zero. No subjective listening or phone-speaker claim. |
 | Repository credential/provenance review | PASS bounded static audit | evidence/security-audit.json: 13 commits, 259 text blobs, known credential patterns; 80 binary/large blobs counted separately. No findings or runtime network/process calls; not exhaustive secret detection. |
 | CI / release | PASS for da1d397 / NOT_PUBLISHED | [Run 39647458113](https://github.com/seiya058904/mochi-arcade/actions/runs/39647458113): all eight-game checks and debug Android build passed. Later hosted runtime attempts fail on disk, as retained below. |
-| Collection lifecycle / adverse saves | PASS, 934 checks | evidence/collection-audit.json: 40 scene switches, primary touch and background freeze, restart/unload, malformed nested sessions/metadata, 360x640 / 360x800 / 640x800 layouts |
+| Collection lifecycle / adverse saves | PASS, 935 checks | evidence/collection-audit.json: actual Back notification and root signal, 40 scene switches, primary touch and background freeze, restart/unload, malformed nested sessions/metadata, three layouts |
 | Complete desktop visual matrix | PASS, 34 captures reviewed | evidence/visual-review.json and matrix-*.png; two languages, three screen ratios, eight games, settings, overlays and merge feedback. Not Android proof. |
 | Required suite runner | PASS, 17 suites | evidence/required-checks.json; rejects engine runtime errors even when process exit code is zero |
 
@@ -247,3 +249,33 @@ production 0.22 s result delay; its unchanged action trace passes with a 0.267 s
 observation. This was a fixture timing correction, not a gameplay fix.
 Tall Cake review found layers behind the bottom instruction; a paper backing now
 keeps that instruction readable. `vertical_playthrough.gd` is the 18th required suite.
+
+## Android rendered review and Back regression
+
+[Run 39654367634](https://github.com/seiya058904/mochi-arcade/actions/runs/39654367634)
+rendered all eight games on Android 14, 720x1280, AOSP x86_64 with swangle.
+Its script reported PASS_SMOKE_AWAITING_VISUAL_REVIEW. Review rejected full
+acceptance: Trio history remained empty (covered tiles), and system Back
+terminated foreground processes instead of displaying pause. Home, adverse Back,
+and adverse Trio PNGs plus the reviewed report are retained in evidence/.
+
+Godot 4.7.2 defaults SceneTree.quit_on_go_back to true; auto_accept_quit controls
+a different desktop close path. Source: https://github.com/godotengine/godot/blob/4.7.2-stable/scene/main/scene_tree.h .
+The app now disables automatic Back exit and defers overlay changes until the
+notification traversal finishes. The strengthened regression first failed on the
+old app, then passed 935 assertions including root Back signal delivery. All 18
+required suites pass. This remains desktop regression evidence until ADB reruns.
+
+[Run 39655181653](https://github.com/seiya058904/mochi-arcade/actions/runs/39655181653)
+failed its initial cold launch: input devices were still registering during first
+AVD boot, activity recreation preceded engine initialization, then Godot reported
+cleanup before _start_success. A boot/configuration race is suspected; no claim
+of a physical-device defect. The harness waits for boot settling and disables
+incremental installation; the failure report is retained. No automatic retries
+or ignored errors turn failed app launches into success.
+
+The new ADB path checks process survival, paused-state freeze, UI resume/restart,
+background return, every round after force-stop, settings and same-signature
+reinstall. Release-APK saves can be inspected via adb root only on the isolated
+AOSP userdebug emulator; the installed APK remains non-debuggable. Signing-secret
+transfer still awaits explicit user approval.

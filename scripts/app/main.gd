@@ -25,6 +25,7 @@ var exiting := false
 
 func _ready() -> void:
 	get_tree().auto_accept_quit = false
+	get_tree().quit_on_go_back = false
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var latin: FontFile = load("res://assets/fonts/Nunito.ttf")
@@ -446,7 +447,9 @@ func _notification(what: int) -> void:
 		if page != "game":
 			Sound.suspend(false)
 	elif what == NOTIFICATION_WM_GO_BACK_REQUEST:
-		back()
+		# System notification propagation can hold the scene tree's child lock.
+		# Defer the overlay mutation, and keep SceneTree from quitting meanwhile.
+		back.call_deferred()
 	elif what == NOTIFICATION_WM_CLOSE_REQUEST:
 		exit_application()
 

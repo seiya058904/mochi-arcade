@@ -93,3 +93,11 @@ matching final local/remote/tag/build commit; verified release-download bytes.
 - Prepared a manual-only signed CI path and tested its certificate/temporary-key
   cleanup locally. Awaiting user approval to upload two encrypted repository secrets;
   no private material has left this computer. Developer APK Android QA continues.
+- Run 39654367634 passed its automated smoke but manual review rejected Back and
+  Trio coverage. All eight rendered views were real Android captures. Fixed the
+  missing `SceneTree.quit_on_go_back = false` and deferred notification UI changes;
+  935 collection checks and all 18 required suites pass locally. Stronger ADB
+  lifecycle/restart/restore/reinstall assertions now await hosted execution.
+- Run 39655181653 failed its first launch during initial AVD input-device setup;
+  retained separately. Allow first boot to settle and use complete non-incremental
+  installs. Do not count the previous green smoke as full Android acceptance.

@@ -23,6 +23,7 @@ func run() -> void:
 	root.get_node("Sound").apply_settings()
 	app = load("res://scenes/app/main.tscn").instantiate()
 	root.add_child(app)
+	check(not quit_on_go_back, "Android system Back must not request automatic engine exit")
 	var schema = load("res://scripts/app/save_schema.gd")
 	for cycle in range(40):
 		var index := cycle % 8
@@ -53,9 +54,15 @@ func run() -> void:
 		await process_frame
 		check(app.game.game_time == time_before, "Paused world has no advancing effects " + str(cycle))
 		app.resume()
-		app.back()
-		check(app.game.suspended and is_instance_valid(app.overlay), "Back opens pause " + str(cycle))
-		app.back()
+		root.propagate_notification(Node.NOTIFICATION_WM_GO_BACK_REQUEST)
+		if not quit_on_go_back:
+			root.go_back_requested.emit()
+		await process_frame
+		check(app.game.suspended and is_instance_valid(app.overlay) and app.overlay.is_inside_tree(), "System Back opens a visible pause without engine exit " + str(cycle))
+		root.propagate_notification(Node.NOTIFICATION_WM_GO_BACK_REQUEST)
+		if not quit_on_go_back:
+			root.go_back_requested.emit()
+		await process_frame
 		check(not app.game.suspended and not is_instance_valid(app.overlay), "Back from pause resumes " + str(cycle))
 		app.restart()
 		check(not app.game.stopped and app.game.score == 0, "Restart resets each game's round " + str(cycle))

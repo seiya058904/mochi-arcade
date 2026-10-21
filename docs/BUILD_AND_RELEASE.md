@@ -94,6 +94,7 @@ exports a non-debuggable release APK, checks the expected public certificate, th
 removes only that transient key in `finally`. It never writes the password to disk
 or logs. The same helper was exercised locally, producing an APK signed by the
 expected identity and leaving no transient keystore. The Android `--release`
-verification path keeps the production sandbox intact; all eight game captures and
-persisted setting screens require visual review, since `run-as` is unavailable.
+verification path keeps the APK non-debuggable. Only the dedicated AOSP userdebug
+emulator uses `adb root` to inspect its test saves; ordinary developer builds use
+`run-as`. All eight captures still require visual review in addition to save checks.
 No workflow or script creates a tag or publishes a Release automatically.
