@@ -365,30 +365,38 @@ def main():
                 state = saved_state()["sessions"].get(game)
                 if state:
                     return state
+                # Re-enter and pause as early as the ADB round-trip allows:
+                # Bouncy Balls serves the ball upward from the paddle, so a fast
+                # Back catches it rising; waiting longer catches it falling back
+                # toward the loss. The card coordinates match open_card().
                 shell("am", "force-stop", package)
                 launch()
-                open_card(index)
-                time.sleep(0.6)
+                tap(190 if index % 2 == 0 else 530, 412 + (index // 2) * 208)
+                time.sleep(0.4)
                 back()
                 time.sleep(0.8)
                 return saved_state()["sessions"].get(game)
 
-            def resume_and_back_transition(attempt):
+            def resume_and_pause_transition(attempt):
                 base_frame = returned_frame if attempt == 0 else screenshot(f"{index + 1:02d}-{game}-background-return-again")
                 suffix = "" if attempt == 0 else "-again"
-                tap(360, 679)
-                resumed_frame = screenshot(f"{index + 1:02d}-{game}-background-resumed{suffix}")
-                if resumed_frame == base_frame:
-                    raise RuntimeError(f"{game} foreground Resume produced no rendered transition")
-                back()
-                if screenshot(f"{index + 1:02d}-{game}-background-paused-again{suffix}") == resumed_frame:
-                    raise RuntimeError(f"{game} foreground Back produced no rendered transition")
+                tap(360, 679)  # Keep playing.
+                time.sleep(0.15)
+                # Pause through the in-game button instead of system Back: on a
+                # short rally the resumed ball can be lost before Back lands, and
+                # the visible pause sheet is the state the repeat probes need.
+                tap(650, 80)
+                time.sleep(0.4)
+                if screenshot(f"{index + 1:02d}-{game}-background-paused-again{suffix}") == base_frame:
+                    raise RuntimeError(f"{game} foreground Resume/Pause produced no rendered transition")
                 return bool(saved_state()["sessions"].get(game))
 
             for attempt in range(2):
-                if resume_and_back_transition(attempt):
+                if attempt and not paused_round_session():
+                    raise RuntimeError(f"{game} could not re-establish a paused round")
+                if resume_and_pause_transition(attempt):
                     break
-                if attempt == 1 or not paused_round_session():
+                if attempt == 1:
                     raise RuntimeError(f"{game} could not return to a paused round after Resume/Back")
             game_check["background_render_and_input"] = True
             game_check["background_cycles"] = [{"cycle": 1, "visible": True, "checkpoint_equal": True,
@@ -418,6 +426,12 @@ def main():
                     json.dumps({"before": checkpoint, "after": observed}, indent=2), encoding="utf-8")
                 if not checkpoint or not cycle_check["checkpoint_equal"] or not cycle_check["same_process"]:
                     raise RuntimeError(f"{game} background cycle {cycle} changed its paused round or process")
+            # A natural result during the resume probe can re-establish a new
+            # paused round; the force-stop restore below must compare against
+            # the round that is actually paused now, not the pre-result save.
+            current = saved_state()["sessions"].get(game)
+            if current:
+                background = current
             park()
             state = saved_state()
             (output / f"{index + 1:02d}-{game}-save.json").write_text(json.dumps(state, indent=2), encoding="utf-8")
