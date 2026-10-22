@@ -2,7 +2,7 @@
   "status": "PASS_STATIC_SIGNED_CANDIDATE_ANDROID_RUNTIME_PENDING",
   "version": "1.0.0",
   "version_code": 1,
-  "apk_sha256": "3597bc5020d5ec545e87a837b03a7a2a7a375a24cde002d44c0c47d1aaa42901",
+  "apk_sha256": "2b459f5cb47242b2e2c9283bc80e30629b413dc76bca4d776b84949f9815b2c5",
   "bytes": 78016973,
   "certificate_sha256": "de1458f30ad0f2a758b9c6f3de82c00b608723eaa75de22d3cf853e351f7657b",
   "certificate_key": "RSA-3072",
@@ -20,11 +20,13 @@
     "android.permission.VIBRATE"
   ],
   "launcher_alias": "com.godot.game.GodotAppLauncher",
-  "zipalign_16kb": "PASS",
+  "zipalign_16kb": "PASS (build-tools 36.0.0, zipalign -c -P 16)",
   "eight_scenes": true,
   "font_notices_bundled": true,
   "private_and_development_files_excluded": true,
-  "scope": "Local release export after batched ball trails and synchronous lifecycle checkpoint; exact signed-byte Android acceptance pending, intermittent background black unresolved in development tests",
-  "local_ci_signing_helper": "PASS: correct certificate and transient key absent after build",
-  "source_commit": "a2a3bd7f92c958524cfd8d5f7357960bad98db0e"
+  "scope": "Local release export rebuilt during the 2026-10-22 takeover after the expanded hit regions and the Bouncy Balls play-field revision. Export excludes docs/, tests/, scripts_tools/, .github/ and assets/source/, so later documentation-only commits do not change the packaged game code. Exact signed-byte Android acceptance is still pending: no device is attached and the local AVD has no hypervisor driver.",
+  "local_ci_signing_helper": "PASS: correct certificate and transient key absent after build (previous CI helper run)",
+  "source_commit": "3a8c7ec5c0c7a00a5d42d143fcf20dcae3db81d7",
+  "aapt2_note": "The prebuilt Godot template emits a benign 'mipmap/themed_icon ... no such path' warning; the same warning is present in the development template APK and the normal and monochrome launcher icons are packaged.",
+  "install_verification": "NOT_RUN / DEVICE_UNAVAILABLE"
 }
