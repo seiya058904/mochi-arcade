@@ -1,5 +1,5 @@
 {
-  "status": "PASS_STATIC_SIGNED_CANDIDATE_ANDROID_RUNTIME_PENDING",
+  "status": "PASS_STATIC_AND_CONTROLLED_EMULATOR_RUNTIME",
   "version": "1.0.0",
   "version_code": 1,
   "apk_sha256": "2b459f5cb47242b2e2c9283bc80e30629b413dc76bca4d776b84949f9815b2c5",
@@ -24,15 +24,29 @@
   "eight_scenes": true,
   "font_notices_bundled": true,
   "private_and_development_files_excluded": true,
-  "scope": "Local release export rebuilt during the 2026-10-22 takeover after the expanded hit regions and the Bouncy Balls play-field revision. Export excludes docs/, tests/, scripts_tools/, .github/ and assets/source/, so later documentation-only commits do not change the packaged game code. Exact signed-byte Android acceptance is still pending: no device is attached and the local AVD has no hypervisor driver.",
+  "scope": "Local release export rebuilt during the 2026-10-22 takeover after the expanded hit regions and the Bouncy Balls play-field revision. Export excludes docs/, tests/, scripts_tools/, .github/ and assets/source/, so later documentation-only commits do not change the packaged game code. The exact signed bytes passed a controlled AOSP API 34 x86_64 AVD acceptance on 2026-10-22; physical-phone automated acceptance remains unavailable (the user's phone retest is user-reported only).",
   "local_ci_signing_helper": "PASS: correct certificate and transient key absent after build (previous CI helper run)",
   "source_commit": "3a8c7ec5c0c7a00a5d42d143fcf20dcae3db81d7",
   "aapt2_note": "The prebuilt Godot template emits a benign 'mipmap/themed_icon ... no such path' warning; the same warning is present in the development template APK and the normal and monochrome launcher icons are packaged.",
-  "install_verification": "NOT_RUN / DEVICE_UNAVAILABLE",
+  "install_verification": "PASS on a controlled AOSP API 34 x86_64 AVD (AEHD 2.2 + AMD RX 7900 XT host GPU) on 2026-10-22; physical-phone automated acceptance remains DEVICE_UNAVAILABLE",
+  "runtime_acceptance": {
+    "status": "PASS_CONTROLLED_EMULATOR",
+    "date": "2026-10-22",
+    "evidence_dir": "docs/evidence/android-api34-hostgpu-2026-10-22/",
+    "smoke": "8 games x 3 background/foreground returns, 101 non-blank frames, same PID, pause checkpoint equality, force-stop restore, zero-score restart, settings persistence, same-signature reinstall, launcher icon",
+    "load": "64 Balls 55.55 presented FPS (p95 33.166 ms); Jelly 60.0 FPS (p95 17.199 ms); exact save restoration",
+    "boundaries": [
+      "controlled emulator, not a physical phone",
+      "compositor FPS is not physical-phone FPS",
+      "hosted software-rendered CI still fails intermittently"
+    ]
+  },
   "android_ci_checkpoints": {
     "32df767": "FAIL Android smoke at a Bouncy Balls repeated-return harness precondition; maximum-pool step PASS",
     "28a8a45": "FAIL Android smoke: fully black Fruit Drop background return reproduced (same PID recovery only via a new surface cycle); maximum-pool step PASS",
-    "6240595": "FAIL Android smoke: black Fruit Drop cycle-2 background return reproduced with a byte-identical black frame; maximum-pool step PASS"
+    "6240595": "FAIL Android smoke: black Fruit Drop cycle-2 background return reproduced with a byte-identical black frame; maximum-pool step PASS",
+    "fd3975d": "FAIL Android smoke: black Fruit Drop cycle-3 background return reproduced; maximum-pool step PASS",
+    "d7f2650": "FAIL Android smoke at Bouncy Balls force-stop restore harness precondition (no blank return in this run); maximum-pool step PASS"
   },
   "packaged_source_note": "Later commits after 3a8c7ec changed only docs/, tests/ and scripts_tools/, which the Android export excludes; the packaged game data is unchanged."
 }

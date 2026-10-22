@@ -134,20 +134,41 @@ unverified from the earlier conversation.
   requested checks; phone/OS/resolution, captures, per-check notes and the on-phone
   hash were not supplied. Recorded as user evidence in `PLAYTEST_FEEDBACK.md` and
   `docs/evidence/physical-device-user-report-2026-10-22.json`; A05/A09/A12 are not
-  marked PASS by it.
+  marked PASS by it alone.
+- Hardware-GPU API 34 signed-byte acceptance (2026-10-22, this session): after the
+  user reboot, the second AVD attempt was resolved by starting AEHD 2.2
+  (`sc start aehd`, exit 0) and booting a CI-matching AOSP API 34 x86_64 AVD
+  (`Mochi_CI_API34`, default image, pixel_2 profile, 720x1280/320, 2 GB, 2 cores)
+  with `-gpu host` on the AMD RX 7900 XT. The exact signed bytes (SHA-256
+  `2b459f5c...`) passed `scripts_tools/android_smoke.py --release`: eight games x
+  three background returns, 101 non-blank frames, same PID, pause checkpoints equal,
+  force-stop restore, zero-score restart, settings, same-signature reinstall save
+  preservation, launcher icon, edge taps and the first music loop; 43
+  `EGL_BAD_SURFACE` warnings occurred only while backgrounded and no runtime error
+  was recorded. `android_load.py --release` also passed: 64 Balls 55.55 presented
+  FPS (p50 16.679 ms, p95 33.166 ms) and Jelly 60.0 FPS (p95 17.199 ms) with exact
+  save restoration. Evidence: `docs/evidence/android-api34-hostgpu-2026-10-22/`.
+  This is a controlled emulator, not a physical phone; physical FPS/thermal
+  acceptance is UNVERIFIED.
+- Harness timing fixes: `scripts_tools/android_smoke.py` now re-establishes a
+  paused Bouncy Balls round with a fast system Back while the served ball is still
+  rising, proves foreground input with Resume followed by the in-game pause button,
+  and refreshes the paused-round baseline after a natural result before the
+  force-stop restore check. All visibility, blank-frame, save and PID assertions
+  are unchanged; the hosted `d7f2650` run failed at the old restore precondition
+  and did not reproduce a blank return.
 
 ## Exact next actions (in order, updated 2026-10-22)
 
-1. If local API-34 automation is still wanted, reboot Windows (this also restores
-   the LDPlayer drivers stopped during diagnosis), then start AEHD
-   (`sc start aehd`; it is DEMAND_START) and boot `Codex_Maestro_Android34` with
-   `-accel on` at 720x1280. If `hvservice` blocks AEHD again, enable WHPX or
-   disable the LDPlayer driver before retrying.
-2. Or connect a USB-debugging Android phone and run the signed-byte smoke; that
-   is the strongest remaining acceptance evidence.
-3. A14 remains FAIL on the final SHA (39701157030). No tag or Release may be
-   created until a green final-SHA run exists in a hardware-capable environment,
-   or the user explicitly accepts a documented CI-environment exception. Do not
-   weaken or delete the black-return assertion.
-4. The 2026-10-22 physical-phone report is recorded as user evidence only; it
-   does not close A05/A09/A12.
+1. Push the harness fix and evidence, then wait for CI on the new final SHA. A14
+   may now pass if the hosted run does not hit the intermittent black return; it
+   still requires the full 18 suites, signed-byte smoke and load phases to pass.
+2. If the hosted run reproduces the black return, the remaining options are a
+   hardware-GPU self-hosted runner for the Android smoke or an explicitly
+   accepted, documented CI-environment exception. Do not weaken or delete the
+   black-return assertion.
+3. Physical-phone performance remains UNVERIFIED. Connecting a USB-debugging
+   phone would allow automated signed-byte and frame-time acceptance; the user's
+   phone retest stays user-reported only.
+4. The local AVD is a controlled emulator and does not replace the final-SHA CI
+   gate. Release only after A09/A14 are closed or explicitly decided.

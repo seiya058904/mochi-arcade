@@ -157,6 +157,16 @@ Boundaries recorded deliberately:
   signed-byte acceptance, and the detailed record is
   `docs/evidence/physical-device-user-report-2026-10-22.json`.
 
+## Hardware-GPU API 34 recheck of the enlarged layout (2026-10-22)
+
+The exact signed bytes also rendered the enlarged Bouncy Balls layout on the
+controlled hardware-GPU AOSP API 34 AVD at 720x1280. Retained frames:
+`docs/evidence/android-api34-hostgpu-2026-10-22/frames/04-bouncy_balls-ready.png`
+(initial layout) and `.../bouncy_balls-running-02.png` (64-ball load). This
+confirms Android hardware-GLES rendering of the revision; it is not a
+physical-phone acceptance of the new sizes and does not replace the user's
+subjective phone report.
+
 ## Evidence boundaries
 
 1. The earlier (pre-revision) playtest APK predates this revision and its bytes

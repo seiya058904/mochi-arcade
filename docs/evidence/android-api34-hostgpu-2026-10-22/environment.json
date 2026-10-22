@@ -1,0 +1,182 @@
+{
+  "schema": 1,
+  "recorded_at": "2026-10-22T11:25:00+08:00",
+  "kind": "local_controlled_emulator_signed_byte_acceptance",
+  "host": {
+    "os": "Windows 11 Enterprise 22631",
+    "cpu": "AMD Ryzen 7 9700X",
+    "gpu": "AMD Radeon RX 7900 XT",
+    "hypervisor": "Google AEHD 2.2 RUNNING after the 2026-10-22 user reboot; emulator -accel-check exit 0"
+  },
+  "avd": {
+    "name": "Mochi_CI_API34",
+    "image": "system-images;android-34;default;x86_64",
+    "device_profile": "pixel_2",
+    "resolution": "720x1280",
+    "density": 320,
+    "cores": 2,
+    "memory_mb": 2048,
+    "data_partition": "2G",
+    "gpu_backend": "host",
+    "boot_seconds": 33
+  },
+  "device": {
+    "serial": "emulator-5554",
+    "fingerprint": "Android/sdk_phone64_x86_64/emu64x:14/UE1A.230829.036.A1/11228894:userdebug/test-keys",
+    "android_release": "14",
+    "sdk": 34,
+    "build_type": "userdebug",
+    "debuggable": true,
+    "root_note": "adb root / uid 0 was used only to read the app save file for checkpoints; the APK remains non-debuggable"
+  },
+  "renderer": "Google (ATI Technologies Inc.), Android Emulator OpenGL ES Translator (AMD Radeon RX 7900 XT), OpenGL ES 3.1 (4.5.0 Core Profile Context 24.5.1.240502)",
+  "apk": {
+    "path": "dist/MochiArcade.apk",
+    "bytes": 78016973,
+    "sha256": "2b459f5cb47242b2e2c9283bc80e30629b413dc76bca4d776b84949f9815b2c5",
+    "certificate_sha256": "de1458f30ad0f2a758b9c6f3de82c00b608723eaa75de22d3cf853e351f7657b",
+    "package": "io.github.seiya058904.mochiarcade",
+    "versionName": "1.0.0",
+    "versionCode": 1,
+    "min_sdk": 24,
+    "target_sdk": 36,
+    "debuggable": false,
+    "signature_schemes": "v2+v3",
+    "zipalign_16kb": "PASS",
+    "permissions": [
+      "android.permission.VIBRATE"
+    ]
+  },
+  "commands": [
+    "emulator -avd Mochi_CI_API34 -no-window -no-audio -no-boot-anim -no-snapshot -gpu host -accel on -memory 2048 -cores 2 -camera-back none -camera-front none",
+    "python scripts_tools/android_smoke.py --apk dist/MochiArcade.apk --output .local/android-api34-hostgpu-smoke6 --serial emulator-5554 --release",
+    "python scripts_tools/android_load.py --apk dist/MochiArcade.apk --output .local/android-api34-hostgpu-load --serial emulator-5554 --release"
+  ],
+  "smoke": {
+    "status": "PASS_SMOKE_AWAITING_VISUAL_REVIEW",
+    "games": 8,
+    "background_cycles_per_game": 3,
+    "frame_checks": 101,
+    "blank_frames": 0,
+    "runtime_errors": [],
+    "egl_swap_warnings": 43,
+    "egl_warning_scope": "only while the activity is backgrounded and its surface is destroyed; no returned foreground frame was blank",
+    "launcher_icon_tapped": true,
+    "footer_and_dialog_edge_taps": true,
+    "first_music_loop_survived": true,
+    "settings_persisted": true,
+    "same_signature_reinstall_preserves_save": true,
+    "all_games_entered": true,
+    "per_game": {
+      "fruit_drop": {
+        "cycles": 3,
+        "restore_after_force_stop": true,
+        "restart_zero_score": true,
+        "same_pid": true,
+        "visible": true
+      },
+      "bubble_garden": {
+        "cycles": 3,
+        "restore_after_force_stop": true,
+        "restart_zero_score": true,
+        "same_pid": true,
+        "visible": true
+      },
+      "cake_stack": {
+        "cycles": 3,
+        "restore_after_force_stop": true,
+        "restart_zero_score": true,
+        "same_pid": true,
+        "visible": true
+      },
+      "bouncy_balls": {
+        "cycles": 3,
+        "restore_after_force_stop": true,
+        "restart_zero_score": true,
+        "same_pid": true,
+        "visible": true
+      },
+      "tile_trio": {
+        "cycles": 3,
+        "restore_after_force_stop": true,
+        "restart_zero_score": true,
+        "same_pid": true,
+        "visible": true
+      },
+      "mochi_hop": {
+        "cycles": 3,
+        "restore_after_force_stop": true,
+        "restart_zero_score": true,
+        "same_pid": true,
+        "visible": true
+      },
+      "number_bloom": {
+        "cycles": 3,
+        "restore_after_force_stop": true,
+        "restart_zero_score": true,
+        "same_pid": true,
+        "visible": true
+      },
+      "jelly_slice": {
+        "cycles": 3,
+        "restore_after_force_stop": true,
+        "restart_zero_score": true,
+        "same_pid": true,
+        "visible": true
+      }
+    }
+  },
+  "load": {
+    "status": "PASS_LOAD_EXECUTION_AWAITING_VISUAL_REVIEW",
+    "physical_phone_performance": "UNVERIFIED",
+    "bouncy_balls": {
+      "active_balls": 64,
+      "presented_fps": 55.55,
+      "interval_ms_p50": 16.679,
+      "interval_ms_p95": 33.166,
+      "interval_ms_max": 68.606,
+      "intervals_over_50ms": 5,
+      "frames": 687,
+      "observed_seconds": 12.35,
+      "pss_before_kib": 175701,
+      "pss_after_kib": 168046,
+      "final_active": 15,
+      "score": 2640,
+      "save_restored": true
+    },
+    "jelly_slice": {
+      "active_fruit": 12,
+      "presented_fps": 60,
+      "interval_ms_p50": 16.664,
+      "interval_ms_p95": 17.199,
+      "interval_ms_max": 21.876,
+      "intervals_over_50ms": 0,
+      "frames": 724,
+      "observed_seconds": 12.05,
+      "pss_before_kib": 173484,
+      "pss_after_kib": 159041,
+      "final_active": 4,
+      "score": 650,
+      "sliced": 36,
+      "save_restored": true,
+      "original_backup_restored": true
+    },
+    "scope": "SurfaceFlinger compositor presentation intervals including ADB input; not simulation-step cost and not physical-phone FPS"
+  },
+  "visual_review": {
+    "contact_sheet": "contact-sheet.png",
+    "representative_frames_reviewed": 16,
+    "automated_visible_content_checks": 101,
+    "result": "PASS"
+  },
+  "harness_changes": [
+    "fast system Back re-establishes a paused Bouncy Balls round while the served ball is still rising",
+    "foreground input is proven with Resume followed by the in-game pause button instead of Back from a live short rally",
+    "the paused-round baseline is refreshed after a natural result before the force-stop restore check"
+  ],
+  "boundaries": [
+    "controlled AOSP API 34 x86_64 emulator, not a physical phone",
+    "compositor FPS includes ADB load and is not physical-phone FPS",
+    "hosted software-rendered CI still fails intermittently; this local run does not satisfy A14 by itself"
+  ]
+}
