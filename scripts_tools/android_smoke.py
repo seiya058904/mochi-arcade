@@ -357,13 +357,39 @@ def main():
             game_check["background_freeze"] = True
             # Prove that the returned activity still accepts UI input, not just
             # that its saved state stopped changing after the surface vanished.
-            tap(360, 679)
-            resumed_frame = screenshot(f"{index + 1:02d}-{game}-background-resumed")
-            if resumed_frame == returned_frame:
-                raise RuntimeError(f"{game} foreground Resume produced no rendered transition")
-            back()
-            if screenshot(f"{index + 1:02d}-{game}-background-paused-again") == resumed_frame:
-                raise RuntimeError(f"{game} foreground Back produced no rendered transition")
+            # A resumed round can legitimately end during the slow software-renderer
+            # capture (Bouncy Balls is the shortest round). Re-establish a real
+            # paused round through ordinary UI input and repeat the same visible
+            # transition assertions at most once; the bounded failure stays a failure.
+            def paused_round_session():
+                state = saved_state()["sessions"].get(game)
+                if state:
+                    return state
+                shell("am", "force-stop", package)
+                launch()
+                open_card(index)
+                time.sleep(0.6)
+                back()
+                time.sleep(0.8)
+                return saved_state()["sessions"].get(game)
+
+            def resume_and_back_transition(attempt):
+                base_frame = returned_frame if attempt == 0 else screenshot(f"{index + 1:02d}-{game}-background-return-again")
+                suffix = "" if attempt == 0 else "-again"
+                tap(360, 679)
+                resumed_frame = screenshot(f"{index + 1:02d}-{game}-background-resumed{suffix}")
+                if resumed_frame == base_frame:
+                    raise RuntimeError(f"{game} foreground Resume produced no rendered transition")
+                back()
+                if screenshot(f"{index + 1:02d}-{game}-background-paused-again{suffix}") == resumed_frame:
+                    raise RuntimeError(f"{game} foreground Back produced no rendered transition")
+                return bool(saved_state()["sessions"].get(game))
+
+            for attempt in range(2):
+                if resume_and_back_transition(attempt):
+                    break
+                if attempt == 1 or not paused_round_session():
+                    raise RuntimeError(f"{game} could not return to a paused round after Resume/Back")
             game_check["background_render_and_input"] = True
             game_check["background_cycles"] = [{"cycle": 1, "visible": True, "checkpoint_equal": True,
                                                   "resume_and_back_input": True}]
@@ -373,6 +399,10 @@ def main():
             for cycle in (2, 3):
                 prefix = f"{index + 1:02d}-{game}-repeat-{cycle}"
                 checkpoint = saved_state()["sessions"].get(game)
+                if not checkpoint:
+                    checkpoint = paused_round_session()
+                if not checkpoint:
+                    raise RuntimeError(f"{game} has no paused round for repeated background returns")
                 pid_before = shell("pidof", package)
                 shell("input", "keyevent", "KEYCODE_HOME")
                 time.sleep(1)

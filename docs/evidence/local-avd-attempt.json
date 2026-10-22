@@ -1,0 +1,23 @@
+{
+  "status": "BLOCKED",
+  "date": "2026-10-22T08:19:08+08:00",
+  "scope": "Local Windows AVD attempt for signed-byte Android acceptance; not a product test",
+  "avd": "Codex_Maestro_Android34 (x86_64, google_apis android-34, 1080x2280, 2048 MB, 4 cores)",
+  "launch": [
+    "-no-window",
+    "-no-audio",
+    "-no-boot-anim",
+    "-no-snapshot",
+    "-gpu swiftshader_indirect",
+    "-accel off",
+    "-memory 2048",
+    "-cores 2"
+  ],
+  "bounded_attempt_seconds": 480,
+  "result": "adb reported emulator-5554 as offline until the bound elapsed; no device state, no boot_completed, no install attempted",
+  "exit": "ONLINE=False; residual qemu process was stopped after the bound",
+  "emulator_version": "Android emulator version 37.1.11.0 (build_id 15917651) (CL:N/A)",
+  "accel_check": "accel: | 6 | Android Emulator hypervisor driver is not installed on this machine | accel",
+  "log": ".local/local-emulator.out.log (separate host log not committed; contains no credentials)",
+  "note": "Previous sessions also never reached an online local device without a hypervisor driver. No OS driver, boot setting or host configuration was changed."
+}

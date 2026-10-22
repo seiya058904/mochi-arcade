@@ -13,7 +13,7 @@ unverified from the earlier conversation.
 - HEAD when the takeover started: `7a48d0eb250f1928685297bab0d6ab3c8b6aa761`
   ("test: repeat Android lifecycle checks on host GLES"); `origin/main` was the
   same commit.
-- The worktree was **not clean**: 15 tracked paths modified and 8 untracked
+- The worktree was **not clean**: 15 tracked paths modified and 13 untracked
   evidence paths from the previous session's expanded small-button hit regions
   were recovered, including `scripts/app/main.gd`,
   `tests/integration/collection_audit.gd`, `scripts_tools/android_smoke.py`,
@@ -83,6 +83,23 @@ unverified from the earlier conversation.
 5. Instrumented future CI runs to retain a continuous guest log during load
    cases and final host process/memory/disk/kernel state, without retrying or
    weakening any assertion.
+
+## Takeover verification runs
+
+- Run [39698026180](https://github.com/seiya058904/mochi-arcade/actions/runs/39698026180)
+  on `32df767`: engine import, 18 suites and the development APK pass; Android
+  install/launch/edge-target taps pass; Fruit, Bubble and Cake complete all
+  lifecycle checks and Bouncy Balls passes its first paused return; the step
+  aborts at Bouncy Balls cycle 2 because the resumed round legitimately ended
+  during the slow capture window and the harness assumed a paused round would
+  still exist. The maximum-pool step passes with both pools on the same online
+  AVD (Balls 3.84 FPS, Jelly 7.19 FPS, software renderer, exact save restoration,
+  host state and continuous logcat retained). Full analysis is in
+  `docs/QA_REPORT.md`; raw reports are `android-smoke-39698026180.json` and
+  `android-load-39698026180.json`.
+- Local AVD retry (2026-10-22): a bounded 8-minute software-only boot never left
+  `emulator-5554 offline`; retained as `local-avd-attempt.json`. No install was
+  attempted and no host configuration was changed.
 
 ## Exact next actions (in order)
 

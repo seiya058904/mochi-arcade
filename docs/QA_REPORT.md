@@ -13,13 +13,23 @@ seed/action sequence, screenshot/log path and unresolved limitations.
 ## Gate register
 
 A01-A15 details: RELEASE_CHECKLIST.md. Physical Android: DEVICE_UNAVAILABLE.
-Local Android emulator: BLOCKED by absent acceleration. Hosted API 34 development
-run 39670759820 passes all eight input/lifecycle/restore/restart paths, settings,
+Local Android emulator: BLOCKED by absent acceleration; a bounded 2026-10-22
+retry is retained in `local-avd-attempt.json`. Hosted API 34 development run
+39670759820 passes all eight input/lifecycle/restore/restart paths, settings,
 launcher and same-signature reinstall, with 99 actual captures manually reviewed.
-This uses explicitly software-rendered host GLES. The same source on Lavapipe
-still reproduces a black return. Surface stability, performance acceptance and
-final release-signed byte acceptance remain unresolved. The earlier Back and
-audio-loop failures are repaired and their failed evidence remains below.
+Run 39673516558 passes all eight paths and all 24 background returns but loses
+its disposable AVD during the Jelly load. Run 39698026180 on `32df767` passes
+the 18 suites, the new footer/dialog edge-target taps, and the full paths for
+Fruit, Bubble and Cake, then stops at a Bouncy Balls repeated-return precondition:
+the resumed round ends naturally during the slow capture window. Its maximum-pool
+phase executes both 64-ball and 12-fruit cases with host-state and continuous
+logcat retained. The harness now re-establishes a real paused round through UI
+input instead of assuming one survives that window; the failed run stays FAIL.
+All hosted runs use explicitly software-rendered host GLES (Mesa llvmpipe). The
+same source on Lavapipe still reproduces a black return. Surface stability,
+physical performance acceptance and final release-signed byte acceptance remain
+unresolved. The earlier Back and audio-loop failures are repaired and their
+failed evidence remains below.
 
 ## Executed checks
 
@@ -618,3 +628,65 @@ natural loss and playable retry; the other seven games' suites are unchanged.
 A physical-phone recheck of the new sizes is `PHYSICAL_DEVICE_RECHECK_PENDING`
 because no phone is attached. The user's old-APK opinion is not reported as
 acceptance of the new build.
+
+## Run 39698026180 on 32df767: edge targets, maximum pools and a harness timing defect
+
+This run is the first hosted CI on the takeover commits. Engine import, all 18
+required suites and the development APK build pass before Android. The Android
+step then fails overall and its failed report is retained as
+`android-smoke-39698026180.json` with `android-load-39698026180.json` and
+`android-host-state-39698026180.txt`.
+
+What actually passed before the stop:
+
+- Install, cold launch, fullscreen-tip dismissal, actual launcher-icon tap and
+  the new expanded-hit-region edge taps all pass. In Fruit Drop the footer Help
+  tap six pixels above the painted edge opens the help sheet, and the dialog
+  action six pixels above its painted top dismisses it
+  (`footer_and_dialog_edge_taps: true`); both frames are retained and differ.
+- Fruit Drop, Bubble Garden and Cake Stack complete every check: real input,
+  system Back survival and freeze, three background return cycles with equal
+  checkpoints and the same PID, force-stop round restore and zero-score restart.
+- Bouncy Balls enters with real input, its round ends naturally (the ADB swipes
+  do not play the paddle), One more go restarts a playable round, and the first
+  paused background return passes with visible transition and equal checkpoint.
+- The final real-Android captures of the enlarged play field are retained:
+  `bouncy-balls-android-after-ready.png` (initial 4x6 wall, large gates and
+  bumpers) and `bouncy-balls-android-after-{packed,full}-pool.png` (64/64
+  balls at RALLY 7, dense and individually readable).
+
+Failure and attribution: the step aborts with
+`bouncy_balls background cycle 2 changed its paused round or process`. The
+retained `04-bouncy_balls-after-input` frame and `failure-screen.png` show the
+natural result sheet and the home screen, and the cycle-2 file contains no
+before/after sessions because the harness reads a missing paused round before
+the assertion. The game behaved correctly: on the enlarged, lower brick wall the
+single ball returns to the paddle sooner, and the resumed round ended during the
+software renderer's screenshot turnaround. The harness had assumed a paused
+round always survives that ~1 s window. Classification: **TEST_HARNESS_DEFECT
+(precondition assumption)**, not an application defect.
+
+Fix (test-only): before the Resume/Back transition and before each repeated
+return, if no paused session exists the harness now force-stops, relaunches,
+enters through the real home card and presses system Back to create a paused
+round, then runs the unchanged visible-transition, checkpoint-equality and
+same-PID assertions. The re-establishment is bounded to one attempt; a failure
+still fails. No game code, assertion strength, retry policy or APK behaviour was
+changed for this.
+
+Maximum-pool phase (executes even when smoke fails): both cases complete with
+exact primary and backup save restoration and continuous guest logcat plus final
+host state.
+
+| Pool case | Fixture | Presentation | p95 | PSS before -> after | Final state |
+| --- | --- | --- | --- | --- | --- |
+| Bouncy Balls | 64 balls, wave 7 | 48 frames / 12.248 s = **3.84 FPS** | 536.197 ms | 196,740 -> 187,610 KiB | score 1,940, 54 active |
+| Jelly Slice | 12 fruit | 88 frames / 12.092 s = **7.19 FPS** | 250.021 ms | 194,564 -> 180,032 KiB | sliced 32, score 640 |
+
+These are SurfaceFlinger compositor intervals on a hosted software-rendered AVD
+including ADB input; they are **not** physical-phone FPS and are not a smoothness
+pass. The run also records 13 `EGL_BAD_SURFACE` warnings across the session,
+which remain product-risk evidence, not a repaired engine race. The following
+commit carries the harness fix plus this documentation; the next CI run is the
+validation of the fix. A physical-device recheck of the enlarged Bouncy Balls
+layout is still `PHYSICAL_DEVICE_RECHECK_PENDING`.

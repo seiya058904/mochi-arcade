@@ -70,7 +70,8 @@ previous session was also carried forward; it does not change visible layout.
 ## Evidence (before / after)
 
 Desktop Compatibility renderer at the 720x1280 design aspect (450x800 window,
-same logical layout), fixed seed 881, same script and fixture for both runs:
+same logical layout), fixed seed 881, the same capture script for both runs and
+the equivalent 64-ball fixture adapted to each brick grid:
 
 - `docs/evidence/bouncy-balls-before-opening.png` / `bouncy-balls-after-opening.png`
 - `docs/evidence/bouncy-balls-before-gate.png` / `bouncy-balls-after-gate.png`
@@ -85,9 +86,16 @@ Actual Android development-build captures at 720x1280 (run 39673516558 on
 - `docs/evidence/bouncy-balls-android-before-input.png` (after real ADB input)
 - `docs/evidence/bouncy-balls-android-before-full-pool.png` (64-ball load burst)
 
-The post-change Android capture comes from the next development-build CI run and
-is recorded in `docs/QA_REPORT.md`. These are software-emulated AOSP Android 14
-views, not physical-phone captures.
+Post-change Android captures at the same 720x1280 profile come from development
+run 39698026180 on `32df767` (Mesa llvmpipe software renderer):
+
+- `docs/evidence/bouncy-balls-android-after-ready.png` (initial enlarged field)
+- `docs/evidence/bouncy-balls-android-after-packed-pool.png` (64/64 balls, packed)
+- `docs/evidence/bouncy-balls-android-after-full-pool.png` (64/64 balls, spread)
+
+They show the 4x6 large-brick wall, the 150x46 multiplier gates and the 68-px
+bumpers on the actual Android viewport, with the paddle unchanged. These are
+software-emulated AOSP Android 14 views, not physical-phone captures.
 
 ## Regression results after the revision
 

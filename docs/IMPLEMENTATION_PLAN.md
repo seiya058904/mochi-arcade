@@ -17,8 +17,8 @@ an evidenced external blocker prevents all meaningful progress.
 | 4f. Jelly Slice | PASS (desktop) | 7,224 checks; 108,000 stress swipe events; real-input 60-second Zen round slices 150 fruit, naturally misses 7, finishes/retries via buttons; original whole/half art reviewed |
 | 5. Integration / lifecycle / stress audit | PASS (desktop) | 18 required suites; 995 full-collection checks, 40 switches, immediate lifecycle persistence, damaged-save recovery, three viewport profiles and actual edge-button input |
 | 6. Complete visual reviews + targeted fixes | PASS (desktop) | 34 actual renderer captures; EN/ZH, home, eight games, settings, help/pause; board fit, mipmaps and text contrast fixed |
-| 7. Signed Android acceptance | IN_PROGRESS / BLOCKED (no device) | Host GLES development run passes all eight paths and launcher; same-source Lavapipe still black. Repeated-return run passes all 24 returns but the AVD goes offline during the Jelly load fixture. No attached phone; local AVD has no hypervisor driver. Physical-device lifecycle/performance and signed-byte runtime remain DEVICE_UNAVAILABLE |
-| 8. CI / final audit / remote sync | IN_PROGRESS | Local takeover recovered, full 18 suites pass; new-SHA CI and final clean SHA match pending |
+| 7. Signed Android acceptance | IN_PROGRESS / BLOCKED (no device) | Host GLES development run passes all eight paths and launcher; same-source Lavapipe still black. Repeated-return run passes all 24 returns but the AVD goes offline during the Jelly load. Run 39698026180 verifies the new edge taps and executes both maximum pools on one online AVD (3.84/7.19 FPS, software) but stops at a Bouncy Balls repeated-return harness precondition, now fixed pending re-run. No attached phone; local AVD has no hypervisor driver. Physical-device lifecycle/performance and signed-byte runtime remain DEVICE_UNAVAILABLE |
+| 8. CI / final audit / remote sync | IN_PROGRESS | Takeover commits pushed (32df767); new-SHA CI fails only on the identified harness precondition; fix commit and clean final SHA pending |
 | 9. Release and download verification | TODO | Annotated tag, draft assets, independent hash match, publish |
 
 ## Current checkpoint
@@ -189,6 +189,12 @@ matching final local/remote/tag/build commit; verified release-download bytes.
   three ratios; all 18 suites pass (995 collection checks). Actual Home/Settings
   GPU pixels are identical before/after. Native edge taps and fresh signing follow
   after the repeated-lifecycle run; the earlier signed candidate predates this change.
+- Run 39698026180 on 32df767: 18 suites and APK build pass; Android edge-target
+  taps pass; Fruit/Bubble/Cake complete; Bouncy Balls stops at cycle 2 because the
+  resumed round naturally ended during the capture window. The harness now
+  re-establishes a real paused round before the unchanged assertions. Both
+  maximum pools execute (Balls 3.84 FPS, Jelly 7.19 FPS, software renderer,
+  exact save restoration, host state and continuous logcat retained).
 - Takeover 2026-10-22 recovered the unpushed expanded hit regions, added the
   Bouncy Balls player-feedback layout revision (ball 22->32 px, 6x4 -> 4x6 bricks,
   gates 116x34 -> 150x46, bumpers 54 -> 68 px, paddle unchanged) and measured
