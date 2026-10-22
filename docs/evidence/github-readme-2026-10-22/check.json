@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "date": "2026-10-22",
+  "repository": {
+    "url": "https://github.com/seiya058904/mochi-arcade",
+    "visibility": "PUBLIC",
+    "default_branch": "main"
+  },
+  "release": {
+    "url": "https://github.com/seiya058904/mochi-arcade/releases/tag/v1.0.0",
+    "latest_url_redirect": "https://github.com/seiya058904/mochi-arcade/releases/tag/v1.0.0",
+    "tag": "v1.0.0",
+    "tag_commit": "2d45caf40d8334c4c9cc1567164db749d983c7ee",
+    "draft": false,
+    "prerelease": false,
+    "assets": [
+      {
+        "name": "MochiArcade.apk",
+        "bytes": 78467820,
+        "sha256": "8fcc1ebc83cb9cb8e8947a1a33bef9cba9222b9ac775fafdcd7d3d5cd85d473c"
+      },
+      {
+        "name": "SHA256SUMS",
+        "bytes": 82,
+        "sha256": "78bbeaf48c45ca8786e4d2a74f4c06b839aef753f685cb11e8a6c7a2c27c103e"
+      }
+    ]
+  },
+  "anonymous_download": {
+    "apk_http_status": 200,
+    "sha256sums_http_status": 200,
+    "downloaded_bytes": 78467820,
+    "downloaded_sha256": "8fcc1ebc83cb9cb8e8947a1a33bef9cba9222b9ac775fafdcd7d3d5cd85d473c",
+    "certificate_sha256": "de1458f30ad0f2a758b9c6f3de82c00b608723eaa75de22d3cf853e351f7657b",
+    "package": "io.github.seiya058904.mochiarcade",
+    "version": "1.0.0",
+    "debuggable": false,
+    "zipalign_16kb": "PASS",
+    "sums_match": true
+  },
+  "readme_rendering": {
+    "repository_page_http_status": 200,
+    "desktop_screenshot": "desktop.png",
+    "mobile_screenshot": "mobile.png",
+    "desktop_viewport": "1440x2200",
+    "mobile_viewport": "390x844",
+    "image_urls_checked": 12,
+    "image_urls_http_200": 12,
+    "documentation_links_checked": 2,
+    "documentation_links_http_200": 2,
+    "badge_urls_checked": 3,
+    "badge_urls_http_200": 3,
+    "top_download_link": "https://github.com/seiya058904/mochi-arcade/releases/latest",
+    "top_download_http_status": 200
+  },
+  "security_audit": {
+    "repository_history": "PASS_BOUNDED_STATIC_AUDIT at 2d45caf; 40 commits, 561 history text blobs, 0 known credential-pattern findings, 0 runtime network/process calls",
+    "actions_logs": "36 prior runs + final run 39724258963 scanned; 0 private-key/token/credential hits; password mentions are GitHub Actions env labels or redacted placeholders",
+    "artifacts": "55 artifacts listed and sized; final development APK confirmed debug-signed (CN=Android Debug), text artifacts scanned with no secret patterns",
+    "secrets": "No repository secrets or variables configured",
+    "pii": "No real emails/phone numbers found; only historical local build paths in docs/evidence (no credentials)"
+  },
+  "final_ci": {
+    "run": "https://github.com/seiya058904/mochi-arcade/actions/runs/39724258963",
+    "commit": "2d45caf40d8334c4c9cc1567164db749d983c7ee",
+    "result": "FAIL only at hosted software-rendered Bouncy Balls repeat-2 background-return blank frame (owner-approved A14 environment exception); 18 suites, development APK build and maximum-pool phase PASS"
+  },
+  "notes": [
+    "Release is public and assets are downloadable without authentication.",
+    "The release tag points to 2d45caf; later documentation-only commits do not change the signed APK.",
+    "Physical-phone quantitative performance remains UNVERIFIED and is disclosed in the release notes."
+  ]
+}

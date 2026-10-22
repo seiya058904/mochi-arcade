@@ -120,8 +120,20 @@
       "evidence": "docs/evidence/physical-device-user-report-2026-10-22.json"
     }
   },
+  "release_url": "https://github.com/seiya058904/mochi-arcade/releases/tag/v1.0.0",
+  "tag_commit": "2d45caf40d8334c4c9cc1567164db749d983c7ee",
+  "published_at": "2026-10-22",
+  "public_repository": "https://github.com/seiya058904/mochi-arcade",
+  "anonymous_download": {
+    "apk_http_status": 200,
+    "sha256sums_http_status": 200,
+    "downloaded_bytes": 78467820,
+    "downloaded_sha256": "8fcc1ebc83cb9cb8e8947a1a33bef9cba9222b9ac775fafdcd7d3d5cd85d473c",
+    "sums_match": true
+  },
+  "readme_rendering": "Desktop 1440x2200 and mobile 390x844 GitHub page checks passed; all 12 relative images and documentation links HTTP 200; evidence docs/evidence/github-readme-2026-10-22/",
   "release_notes": "docs/RELEASE_NOTES_v1.0.0.md",
-  "status": "READY_FOR_RELEASE",
+  "status": "RELEASED",
   "boundaries": [
     "A14 is an owner-approved scoped environment exception, not PASS.",
     "Physical-phone quantitative performance is UNVERIFIED and disclosed in the release notes.",

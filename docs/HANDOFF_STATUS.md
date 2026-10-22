@@ -181,25 +181,29 @@ unverified from the earlier conversation.
   with screenshots and screen recordings retained in
   `docs/evidence/android-api34-final-splash-2026-10-22/`. Physical-phone
   quantitative performance remains UNVERIFIED.
-- Public-release preparation: README rewritten (English, real screenshots,
-  install, build, license, release link), `LICENSE` added, release notes updated;
-  public-safety audit covers history, Actions logs/artifacts, code, screenshots
-  and docs before switching the repository to public. Steps: final commit/CI,
-  draft release with `MochiArcade.apk` and `SHA256SUMS`, downloaded-asset
-  byte/signature verification, repository public, publish, anonymous public
-  download verification.
+- Public release: README replaced with the illustrated English version
+  (real screenshots, install, build, license, release link), `LICENSE` added,
+  release notes updated; public-safety audit covered history, Actions logs and
+  artifacts (no keys/tokens/PII; debug-only dev APKs), and the repository was
+  switched to public in place. Final run 39724258963 on `2d45caf` failed only at
+  the hosted software-rendered black frame (A14 exception); the suites, APK build
+  and load phase passed.
+- Published release: https://github.com/seiya058904/mochi-arcade/releases/tag/v1.0.0
+  — tag `v1.0.0` → `2d45caf40d8334c4c9cc1567164db749d983c7ee`, assets
+  `MochiArcade.apk` (78,467,820 bytes, SHA-256 `8fcc1ebc...`) and
+  `SHA256SUMS`. Unauthenticated download, byte/signature/package/version checks
+  and GitHub README desktop/mobile rendering passed. Physical-phone quantitative
+  performance remains UNVERIFIED and disclosed.
 
-## Exact next actions (release closeout, updated 2026-10-22)
+## Exact next actions (post-release)
 
-1. Commit the final signed splash build, README, license and evidence; push;
-   confirm CI passes the 18 suites and development APK build and fails only at
-   the known hosted Android black return.
-2. Run the public-safety audit of history, Actions logs/artifacts, code,
-   screenshots and docs; stop on any key, credential or personal-data finding.
-3. Create tag v1.0.0 through a draft release, upload the final
-   `MochiArcade.apk` and `SHA256SUMS`, download them into an isolated directory,
-   and re-verify SHA-256, certificate, package, version and byte equality.
-4. Switch the existing repository to public, publish the release, and verify the
-   APK anonymously over the public internet.
-5. Post-release, record the release URL/tag/commit/asset hashes in README, QA,
-   RELEASE_CHECKLIST and this handoff; keep A09 phone performance UNVERIFIED.
+1. Keep the release tag `v1.0.0` fixed at `2d45caf`; any further documentation
+   commit after this one must be labelled post-release and must not be described
+   as changing the signed APK.
+2. If a physical USB-debugging phone becomes available, run the automated
+   signed-byte/frame-time acceptance and update A09 from UNVERIFIED.
+3. If a hosted software-rendered black-return fix is later proven, remove the
+   A14 exception only with new retained evidence; do not delete the historical
+   failed runs.
+4. Do not upload the release private key to repository secrets; keep the existing
+   local signing identity for any future update.

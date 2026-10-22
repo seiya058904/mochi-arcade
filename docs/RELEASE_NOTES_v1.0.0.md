@@ -11,11 +11,12 @@ Eight cozy, fully offline pocket games in one portrait Android app.
 - SHA-256: `8fcc1ebc83cb9cb8e8947a1a33bef9cba9222b9ac775fafdcd7d3d5cd85d473c`
 - Signing certificate SHA-256: `de1458f30ad0f2a758b9c6f3de82c00b608723eaa75de22d3cf853e351f7657b`
 - Signature: RSA-3072, v2+v3; non-debuggable; only `android.permission.VIBRATE`; zipalign 16 KiB
-- Built with the existing Mochi Arcade release identity from the v1.0.0 release tag tree. The game content is unchanged from the previously accepted candidate; this rebuild adds the custom boot splash and release documentation. The private key never left the owner's machine and was not uploaded to repository secrets.
+- Release commit/tag: `v1.0.0` → `2d45caf40d8334c4c9cc1567164db749d983c7ee`; the APK was built from the same working tree before that commit using the existing release identity. The private key never left the owner's machine and was not uploaded to repository secrets.
 
 ## Verification
 
 - 18 required Godot suites: PASS on the release working tree, with zero runtime errors.
+- Final release-commit CI: 18 suites, development APK build and maximum-pool phase PASS; the Android input smoke stops only at the owner-approved hosted software-rendered black-frame case (Bouncy Balls repeat-2 background return, blank frame `cfc80ccb...`). That run is retained as FAIL, not reported as PASS.
 - Signed-byte acceptance on a controlled AOSP API 34 x86_64 AVD (Google AEHD 2.2, AMD Radeon RX 7900 XT host GPU, 720x1280):
   - eight games x three background/foreground returns, 101 visible frames, zero blank frames, same PID, pause checkpoint equality, force-stop round restore and zero-score restart;
   - settings persistence, same-signature reinstall preserves the save, launcher icon, edge-target taps and the first background-music loop;
@@ -26,7 +27,7 @@ Eight cozy, fully offline pocket games in one portrait Android app.
 
 ## Known limitations and disclosed risks
 
-- The GitHub-hosted Ubuntu + Mesa llvmpipe software-rendered Android emulator still intermittently returns a blank frame after a background return (`EGL_BAD_SURFACE`; a new surface cycle recovers the visible pause sheet with the same PID). Retained run 39716897550 failed at `01-fruit_drop-repeat-3-background-return` with blank-frame SHA-256 `cfc80ccb6c70119363e7e3da3bbb361f4c4c2628e4856bfdce139ea7b8cdf249`. Raw failures and FAIL statuses are retained; no assertion was removed or relaxed, and this failure is not reported as PASS.
+- The GitHub-hosted Ubuntu + Mesa llvmpipe software-rendered Android emulator intermittently returns a blank frame after a background return (`EGL_BAD_SURFACE`; a new surface cycle recovers the visible pause sheet with the same PID). Final release-commit run 39724258963 failed at `04-bouncy_balls-repeat-2-background-return` with blank-frame SHA-256 `cfc80ccb6c70119363e7e3da3bbb361f4c4c2628e4856bfdce139ea7b8cdf249`. Raw failures and FAIL statuses are retained; no assertion was removed or relaxed, and this failure is not reported as PASS.
 - The release owner approved a scoped environment exception for that specific hosted software-rendered black return only: `OWNER_APPROVED_ENVIRONMENT_EXCEPTION` (A14), with the hardware-GPU API 34 signed-byte acceptance above as substitute evidence. No self-hosted GPU runner was added. This is not a PASS and does not show that every software renderer is stable.
 - Physical-phone quantitative performance is UNVERIFIED: no phone frame-time, thermal, battery or refresh-rate measurements were supplied. Emulator compositor FPS (55-60) is not phone FPS. Physical-device automated signed-byte acceptance is DEVICE_UNAVAILABLE; the physical-phone result is user-reported only.
 - Bouncy Balls keeps the enlarged play-field revision (32 px ball, 4x6 brick wall, 150x46 multiplier gates, 68 px bumpers, paddle unchanged). The other seven games keep their previous designs.
