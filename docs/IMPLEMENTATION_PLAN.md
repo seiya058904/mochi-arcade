@@ -17,12 +17,19 @@ an evidenced external blocker prevents all meaningful progress.
 | 4f. Jelly Slice | PASS (desktop) | 7,224 checks; 108,000 stress swipe events; real-input 60-second Zen round slices 150 fruit, naturally misses 7, finishes/retries via buttons; original whole/half art reviewed |
 | 5. Integration / lifecycle / stress audit | PASS (desktop) | 18 required suites; 995 full-collection checks, 40 switches, immediate lifecycle persistence, damaged-save recovery, three viewport profiles and actual edge-button input |
 | 6. Complete visual reviews + targeted fixes | PASS (desktop) | 34 actual renderer captures; EN/ZH, home, eight games, settings, help/pause; board fit, mipmaps and text contrast fixed |
-| 7. Signed Android acceptance | IN_PROGRESS / BLOCKED (black return + no device) | Host GLES development runs pass the launcher, edge-target taps and large parts of the lifecycle; same-source Lavapipe still black. Repeated-return run passes all 24 returns but the AVD goes offline during the Jelly load. Run 39698026180 stops at a Bouncy Balls harness precondition (fixed); run 39699385661 then reproduces a fully black Fruit Drop background return that only a new surface cycle recovers with the same PID. Both maximum pools execute on one online AVD in both runs (3.60-3.84 / 5.04-7.19 FPS, software). No attached phone; local AVD has no hypervisor driver. Physical-device and signed-byte acceptance remain DEVICE_UNAVAILABLE |
-| 8. CI / final audit / remote sync | IN_PROGRESS | Takeover commits pushed (32df767); new-SHA CI fails only on the identified harness precondition; fix commit and clean final SHA pending |
+| 7. Signed Android acceptance | IN_PROGRESS / BLOCKED (hosted black return; user-reported phone pass) | Host GLES development runs pass the launcher, edge-target taps and large parts of the lifecycle; same-source Lavapipe still black. Repeated-return run passes all 24 returns but the AVD goes offline during the Jelly load. Run 39698026180 stops at a Bouncy Balls harness precondition (fixed); run 39699385661 then reproduces a fully black Fruit Drop background return that only a new surface cycle recovers with the same PID. Both maximum pools execute on one online AVD in both runs (3.60-3.84 / 5.04-7.19 FPS, software). The final-SHA run 39701157030 is FAIL at the same blank repeated return. On 2026-10-22 the user reported no problems on a physical-phone retest of the four checks, but device metadata, captures and the on-phone hash were NOT_PROVIDED. Local API-34 AVD still cannot boot: AEHD 2.2 installed but start fails with 1450 (hvservice, reboot required). Automated signed-byte acceptance remains DEVICE_UNAVAILABLE |
+| 8. CI / final audit / remote sync | IN_PROGRESS | Takeover commits are pushed through fd3975d; run 39701157030 on that SHA is FAIL at the hosted black return. A green final-SHA run or an explicitly documented environment exception is still required |
 | 9. Release and download verification | TODO | Annotated tag, draft assets, independent hash match, publish |
 
 ## Current checkpoint
 
+- 2026-10-22 follow-up: `dist/MochiArcade.apk` and the delivered
+  `D:\下载\MochiArcade-1.0.0-signed.apk` are byte-identical (SHA-256
+  2b459f5c...); the user reported no problems on a physical-phone retest (device
+  metadata, captures and on-phone hash NOT_PROVIDED); the local API-34 AVD
+  remains blocked by the host virtualization state (AEHD 1450, reboot required).
+  Final-SHA run 39701157030 is FAIL on the hosted black return. See
+  `HANDOFF_STATUS.md`.
 - Latest reviewed development checkpoint a032fde passes host-GLES CI 39670759820 and all 99 native views; same-source Lavapipe 39670750928 fails on black background return. Next run strengthens repeat coverage; signing-secret approval or a connected Android device is still required for signed-byte acceptance.
 - Earlier all-eight-game checkpoint da1d397c29134fd18ec29b26a8cbfdeedeae0f4c passed CI 39647458113. Hosted attempts 39648255774 and 39649666572 then exposed and retained emulator disk-allocation failures.
 - Engine verified: 4.7.2.stable.official.ed1daf0bf; official Android templates;

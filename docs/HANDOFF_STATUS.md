@@ -118,21 +118,36 @@ unverified from the earlier conversation.
   phone or hardware-GPU host.
 - Local AVD retry (2026-10-22): a bounded 8-minute software-only boot never left
   `emulator-5554 offline`; retained as `local-avd-attempt.json`. No install was
-  attempted and no host configuration was changed.
+  attempted.
+- Second AVD attempt (2026-10-22, later): Hyper-V/WHPX features are Disabled and
+  no AEHD driver was installed. Google AEHD 2.2 was downloaded and installed with
+  UAC consent, but the driver fails to start with error 1450 (insufficient
+  resources) because `hvservice` holds the virtualization state (`sc stop
+  hvservice` returns 1052; stopping the LDPlayer `Ld9BoxSup` driver did not clear
+  the failure). No reboot was run. AEHD was changed to DEMAND_START so it will not preempt LDPlayer
+  at boot. During diagnosis the LDPlayer service and `Ld9BoxSup`/`Ld9BoxNetLwf`
+  drivers were stopped; they did not restart at runtime and the LDPlayer instance
+  did not launch, so a reboot is required to restore LDPlayer and to test AEHD
+  after the virtualization state is reset. AVD automation stayed NOT_RUN; the user
+  deferred it.
+- Physical-device retest (2026-10-22): the user reported no problems on the four
+  requested checks; phone/OS/resolution, captures, per-check notes and the on-phone
+  hash were not supplied. Recorded as user evidence in `PLAYTEST_FEEDBACK.md` and
+  `docs/evidence/physical-device-user-report-2026-10-22.json`; A05/A09/A12 are not
+  marked PASS by it.
 
-## Exact next actions (in order)
+## Exact next actions (in order, updated 2026-10-22)
 
-1. Commit the recovered hit-region work, the Bouncy Balls revision, docs and
-   evidence; push `main`; let CI run on the new SHA.
-2. Read the new run's artifacts: Android Bouncy Balls 720x1280 captures before/
-   after comparison, smoke edge-target taps, maximum-pool behaviour and the new
-   host-state/continuous logcat retention.
-3. Rebuild `dist/MochiArcade.apk` with `scripts_tools/sign_release.ps1 -Build`
-   from the final commit and record size/SHA-256/signature/package evidence.
-4. To close A05/A09/A12/A15, either connect a USB-debugging Android phone for
-   lifecycle/touch/load/signed-byte acceptance, or explicitly authorize uploading
-   the release keystore and DPAPI password to two encrypted GitHub Actions
-   secrets so the hosted emulator can test the signed bytes. Until one of those
-   happens, no stable tag or Release may be created. The most useful next
-   diagnostic for the black return is a physical phone or a hardware-GPU host,
-   because the hosted runner only provides Mesa llvmpipe software rendering.
+1. If local API-34 automation is still wanted, reboot Windows (this also restores
+   the LDPlayer drivers stopped during diagnosis), then start AEHD
+   (`sc start aehd`; it is DEMAND_START) and boot `Codex_Maestro_Android34` with
+   `-accel on` at 720x1280. If `hvservice` blocks AEHD again, enable WHPX or
+   disable the LDPlayer driver before retrying.
+2. Or connect a USB-debugging Android phone and run the signed-byte smoke; that
+   is the strongest remaining acceptance evidence.
+3. A14 remains FAIL on the final SHA (39701157030). No tag or Release may be
+   created until a green final-SHA run exists in a hardware-capable environment,
+   or the user explicitly accepts a documented CI-environment exception. Do not
+   weaken or delete the black-return assertion.
+4. The 2026-10-22 physical-phone report is recorded as user evidence only; it
+   does not close A05/A09/A12.

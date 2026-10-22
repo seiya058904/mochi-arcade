@@ -112,9 +112,11 @@ software-emulated AOSP Android 14 views, not physical-phone captures.
   natural loss and playable retry; no state injection.
 - All 18 required suites: PASS (`docs/evidence/required-checks.json`), with 995
   collection checks.
-- Android physical-device recheck of the new sizes: **PHYSICAL_DEVICE_RECHECK_PENDING**
-  because no Android phone is attached to this machine. The user's opinion of the
-  old APK is not evidence that the new sizes are accepted; no such claim is made.
+- Android physical-device recheck of the new sizes: **USER_REPORTED_PASS**
+  on 2026-10-22. The user reported no problems with the enlarged layout on a
+  physical phone. Device metadata, captures and the on-phone hash were not
+  supplied, so this is user-reported subjective acceptance; no automated or
+  byte-level acceptance is claimed. See the retest section below.
 
 ## Other seven games
 
@@ -122,16 +124,50 @@ No gameplay, layout or art change was made to Fruit Drop, Bubble Garden, Cake
 Stack, Tile Trio, Mochi Hop, Number Bloom or Jelly Slice in this revision. Their
 required suites and playthrough replays remain unchanged and pass.
 
+## Physical-device retest after the signed candidate (2026-10-22, user report)
+
+After the signed 1.0.0 candidate was prepared, the user reported a hands-on
+retest on a physical Android phone: "我已经做真机实验了，然后没有发现问题" ("I have
+done the real-device experiment and found no problems"). Read against the four
+checks requested in the handoff, this is a user-reported PASS for:
+
+1. Startup: home screen and all eight cards visible, no crash or black screen.
+2. Bouncy Balls layout: the enlarged ball, 4x6 brick wall, multiplier gates and
+   bumpers are acceptable; paddle handling unchanged, with no size complaint.
+3. Eight games x three background/foreground returns: no black screen or lost
+   round reported (the user did not name individual games).
+4. Bouncy Balls maximum balls and Jelly Slice rapid slicing: no stutter, lost
+   touch input or abnormal heating reported.
+
+Boundaries recorded deliberately:
+
+- The user gave one summary ("no problems found") rather than per-check results,
+  so per-item evidence is NOT_PROVIDED.
+- Phone model, Android version, screen resolution/refresh rate, screenshots,
+  screen recordings and logcat were NOT_PROVIDED.
+- The installed file was not independently confirmed on the phone by hash.
+  Locally, `dist/MochiArcade.apk` and the delivered copy
+  `D:\下载\MochiArcade-1.0.0-signed.apk` are byte-identical: 78,016,973 bytes,
+  SHA-256 `2b459f5cb47242b2e2c9283bc80e30629b413dc76bca4d776b84949f9815b2c5`,
+  certificate SHA-256
+  `de1458f30ad0f2a758b9c6f3de82c00b608723eaa75de22d3cf853e351f7657b`,
+  versionName 1.0.0, non-debuggable, v2+v3.
+- A05/A09/A12 are therefore not marked PASS by this report alone; A14 remains
+  FAIL on the hosted CI black return. The report is user evidence, not automated
+  signed-byte acceptance, and the detailed record is
+  `docs/evidence/physical-device-user-report-2026-10-22.json`.
+
 ## Evidence boundaries
 
-1. The user's installed APK predates this revision and its bytes are unknown; the
-   "before" Android images above are the retained CI development build, labelled
-   as such.
+1. The earlier (pre-revision) playtest APK predates this revision and its bytes
+   were never confirmed; the "before" Android images above are the retained CI
+   development build, labelled as such.
 2. Desktop captures at the 720x1280 aspect and Android 720x1280 captures are
    distinct evidence classes. Neither is a physical-phone performance claim.
 3. The measured sizes are logical design pixels. On the tested 720x1280 / 320 dpi
    profile 96 design pixels equal 48 dp; the revision's ball is 32 design px and
    is not described as a universal physical-size guarantee for other densities.
-4. A freshly signed `MochiArcade.apk` rebuilt from the final commit must still be
-   installed and rechecked on a real device before the stable release gate can
-   close. Until then A12/A15 remain open.
+4. The signed 1.0.0 candidate now has a user-reported physical-phone retest, but
+   the device environment, installed hash and per-check results were not supplied.
+   Automated or byte-level acceptance on a physical device is still required
+   before A12/A15 can close; the user report alone does not change A05/A09/A14.

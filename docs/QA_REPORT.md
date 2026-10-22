@@ -12,9 +12,14 @@ seed/action sequence, screenshot/log path and unresolved limitations.
 
 ## Gate register
 
-A01-A15 details: RELEASE_CHECKLIST.md. Physical Android: DEVICE_UNAVAILABLE.
-Local Android emulator: BLOCKED by absent acceleration; a bounded 2026-10-22
-retry is retained in `local-avd-attempt.json`. Hosted API 34 development run
+A01-A15 details: RELEASE_CHECKLIST.md. Physical Android: a user-reported
+hands-on retest on 2026-10-22 found no problems (startup, enlarged Bouncy Balls
+layout, eight games' background returns, maximum-pool load); device metadata,
+captures and the on-phone hash were not supplied, so automated signed-byte
+acceptance remains DEVICE_UNAVAILABLE. Local Android emulator: BLOCKED by absent
+acceleration; the bounded 2026-10-22 retry is retained in
+`local-avd-attempt.json`; a later AEHD attempt also failed (error 1450, no
+reboot) and is recorded in HANDOFF_STATUS.md. Hosted API 34 development run
 39670759820 passes all eight input/lifecycle/restore/restart paths, settings,
 launcher and same-signature reinstall, with 99 actual captures manually reviewed.
 Run 39673516558 passes all eight paths and all 24 background returns but loses
@@ -30,6 +35,15 @@ same source on Lavapipe still reproduces a black return. Surface stability,
 physical performance acceptance and final release-signed byte acceptance remain
 unresolved. The earlier Back and audio-loop failures are repaired and their
 failed evidence remains below.
+
+Final-SHA run
+[39701157030](https://github.com/seiya058904/mochi-arcade/actions/runs/39701157030)
+on `fd3975d` is FAIL: 18 suites, the development APK build and the maximum-pool
+phase pass; the input smoke stops at the same blank repeated background return
+(Fruit Drop cycle 3, blank frame SHA-256
+`cfc80ccb6c70119363e7e3da3bbb361f4c4c2628e4856bfdce139ea7b8cdf249`), with
+`EGL_BAD_SURFACE` in the guest log and a new surface cycle restoring the visible
+pause sheet with the same PID.
 
 ## Executed checks
 
@@ -62,9 +76,10 @@ failed evidence remains below.
 | Debug APK signature | PASS, debug only | v2/v3 schemes; certificate 2207476872571c99d83537c73a9e3b38d9b66c5d04bef7ad3ccd5ebbe122b0ab |
 | APK metadata | PASS | io.github.seiya058904.mochiarcade, min API 24, target 36, arm64-v8a+x86_64; VIBRATE only |
 | Android install / launch / touch | PASS host development path / surface stability unresolved | Run 39670759820 passes all eight lifecycle paths, actual launcher and settings/reinstall; 99 native captures reviewed. Same-source Lavapipe fails on black return. Earlier failed reviews remain retained. |
+| Physical-device user retest | UNVERIFIED (user-reported PASS) | 2026-10-22 user report: no problems on the four requested checks (startup/home, enlarged Bouncy Balls layout, eight games x three background returns, maximum-pool load). Phone model/OS/resolution, captures, per-check notes and on-phone hash NOT_PROVIDED; not automated or byte-level acceptance. See `PLAYTEST_FEEDBACK.md` and `evidence/physical-device-user-report-2026-10-22.json`. |
 | Audio output | PASS measured Windows mixer / phone UNVERIFIED | evidence/audio-output.json: 48 kHz captured output, eight tone peaks 0.101-0.103, eight-voice burst 0.438, music peak 0.0090, muted/paused output exactly zero. No subjective listening or phone-speaker claim. |
 | Repository credential/provenance review | PASS bounded static audit | evidence/security-audit.json at 7a48d0e: 27 commits, 440 text blobs, known credential patterns; 153 binary/large blobs counted separately. No findings or runtime network/process calls; not exhaustive secret detection. |
-| CI / release | PASS a032fde host checkpoint / later run FAIL / NOT_PUBLISHED | [Run 39670759820](https://github.com/seiya058904/mochi-arcade/actions/runs/39670759820) passes. Run 39673516558 passes 24 background returns, but the AVD goes offline during load setup; failed cleanup and logs are retained. |
+| CI / release | PASS a032fde host checkpoint / later run FAIL / NOT_PUBLISHED | [Run 39670759820](https://github.com/seiya058904/mochi-arcade/actions/runs/39670759820) passes. Run 39673516558 passes 24 background returns, but the AVD goes offline during load setup; failed cleanup and logs are retained. Run 39701157030 on fd3975d fails at the same blank Fruit Drop repeated return after the 18 suites, APK build and load phase pass. |
 | Collection lifecycle / adverse saves | PASS, 995 checks | evidence/collection-audit.json: actual Back notification and root signal, 40 scene switches, immediate primary touch/background freeze, restart/unload, malformed nested sessions/metadata, three layouts and 15 actual-GUI edge-target checks |
 | Complete desktop visual matrix | PASS, 34 captures reviewed | evidence/visual-review.json and matrix-*.png; two languages, three screen ratios, eight games, settings, overlays and merge feedback. Not Android proof. |
 | Required suite runner | PASS, 18 suites | evidence/required-checks.json; rejects engine runtime errors even when process exit code is zero |
