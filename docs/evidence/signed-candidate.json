@@ -31,7 +31,8 @@
   "install_verification": "NOT_RUN / DEVICE_UNAVAILABLE",
   "android_ci_checkpoints": {
     "32df767": "FAIL Android smoke at a Bouncy Balls repeated-return harness precondition; maximum-pool step PASS",
-    "28a8a45": "FAIL Android smoke: fully black Fruit Drop background return reproduced (same PID recovery only via a new surface cycle); maximum-pool step PASS"
+    "28a8a45": "FAIL Android smoke: fully black Fruit Drop background return reproduced (same PID recovery only via a new surface cycle); maximum-pool step PASS",
+    "6240595": "FAIL Android smoke: black Fruit Drop cycle-2 background return reproduced with a byte-identical black frame; maximum-pool step PASS"
   },
   "packaged_source_note": "Later commits after 3a8c7ec changed only docs/, tests/ and scripts_tools/, which the Android export excludes; the packaged game data is unchanged."
 }

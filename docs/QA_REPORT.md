@@ -733,3 +733,36 @@ These are compositor intervals on a hosted Mesa llvmpipe software renderer with
 ADB input; they are not phone FPS and not a smoothness pass. The two independent
 failures differ (harness precondition vs black surface), so neither is a flaky
 one-off that a retry may erase.
+
+## Run 39700272044 on 6240595: black return reproduced a second time
+
+Session 3 on the documentation SHA repeats the pipeline. The 18 suites and the
+APK build pass, the native edge-target taps pass, and Fruit Drop enters, survives
+system Back and completes its first paused background return. Its cycle-2
+background return is again a completely black 720x1280 frame:
+
+- `sampled_colors: 1`, `non_dark_fraction: 0.0`; the PNG is byte-identical
+  (sha256 `cfc80ccb6c70119363e7e3da3bbb361f4c4c2628e4856bfdce139ea7b8cdf249`)
+  to the black frame retained from run 39699385661.
+- It remains black after an extra 5 s. A new Home/foreground cycle restores the
+  visible Fruit Drop pause sheet with the same PID 2326; `EGL_BAD_SURFACE`
+  warnings are retained in the guest log.
+- Raw evidence: `android-smoke-39700272044.json`,
+  `android-black-return-new-surface-6240595.png`,
+  `android-load-39700272044.json`, `android-host-state-39700272044.txt`.
+
+The maximum-pool phase again passes both cases with exact primary and backup save
+restoration: Bouncy Balls 64 balls -> 3.62 FPS / p95 643.104 ms / score 1,460;
+Jelly Slice 12 fruit -> 5.10 FPS / p95 397.828 ms / score 670. Software rendering
+only; not phone performance.
+
+Two independent sessions on the takeover code now reproduce the same black-surface
+failure at different lifecycle points, with identical black output and
+PID-preserving recovery only through a new surface cycle. That is a reproducible
+product-risk blocker on the hosted software emulator, not a one-off. The Bouncy
+Balls repeated-return harness fix could not be exercised on Android because both
+sessions fail earlier at Fruit Drop. Classification stays ENGINE/SURFACE RACE
+(suspected Godot 4.7.2 `GLSurfaceView` bad-surface handling; not internally
+instrumented) on hosted Mesa llvmpipe. A05/A09 remain BLOCKED, no tag or Release
+is created, and a physical phone or hardware-GPU host is the next meaningful
+diagnostic.

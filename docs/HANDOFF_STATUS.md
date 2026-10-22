@@ -107,6 +107,15 @@ unverified from the earlier conversation.
   software renderer, exact save restoration). Raw evidence is retained under
   `android-black-return-*`, `android-smoke-39699385661.json` and
   `android-load-39699385661.json`.
+- Run [39700272044](https://github.com/seiya058904/mochi-arcade/actions/runs/39700272044)
+  on `6240595`: 18 suites, APK build and edge-target taps pass; Fruit Drop
+  completes Back and its first paused return, then the cycle-2 background return
+  is again a fully black frame, byte-identical to the run-2 black PNG. Still
+  black after 5 s; a new surface cycle recovers the visible pause sheet with the
+  same PID. Two independent takeover-code sessions now reproduce the same blocker,
+  and both maximum pools pass again (Balls 3.62 FPS, Jelly 5.10 FPS, saves
+  restored). Release remains BLOCKED; the next useful evidence needs a physical
+  phone or hardware-GPU host.
 - Local AVD retry (2026-10-22): a bounded 8-minute software-only boot never left
   `emulator-5554 offline`; retained as `local-avd-attempt.json`. No install was
   attempted and no host configuration was changed.

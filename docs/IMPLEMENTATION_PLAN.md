@@ -189,6 +189,13 @@ matching final local/remote/tag/build commit; verified release-download bytes.
   three ratios; all 18 suites pass (995 collection checks). Actual Home/Settings
   GPU pixels are identical before/after. Native edge taps and fresh signing follow
   after the repeated-lifecycle run; the earlier signed candidate predates this change.
+- Run 39700272044 on 6240595 reproduces the black Fruit Drop background return
+  a second time (cycle 2; byte-identical black frame to 39699385661), with the
+  same PID-preserving recovery only through a new surface cycle. Both maximum
+  pools pass again (Balls 3.62 FPS, Jelly 5.10 FPS, saves restored). The surface
+  blocker is now reproducible on the takeover code, so the project stops here as
+  BLOCKED for release; no tag/Release is created. Next evidence requires a
+  physical phone or hardware-GPU host.
 - Run 39699385661 on 28a8a45: 18 suites, APK build and edge-target taps pass;
   Fruit Drop enters and freezes on Back, then its background return is fully black,
   still black after 5 s and visible only after a new surface cycle with the same
