@@ -690,3 +690,46 @@ which remain product-risk evidence, not a repaired engine race. The following
 commit carries the harness fix plus this documentation; the next CI run is the
 validation of the fix. A physical-device recheck of the enlarged Bouncy Balls
 layout is still `PHYSICAL_DEVICE_RECHECK_PENDING`.
+
+## Run 39699385661 on 28a8a45: black background return reproduced, maximum pools pass
+
+This independent session on the harness-fix commit re-ran the whole pipeline.
+Engine import, all 18 required suites and the development APK build pass, and the
+Android step again reaches gameplay. The expanded edge-target taps pass
+(`footer_and_dialog_edge_taps: true`). Fruit Drop enters, its system Back keeps
+the process and freezes the round, but the first background-return screenshot is
+**completely black**:
+
+- Error: `Android screenshot 01-fruit_drop-background-return is blank` with
+  `sampled_colors: 1`, `non_dark_fraction: 0.0`, 720x1280.
+- Required diagnostics: the screen is still black after an additional 5 seconds
+  (`visible_after_extra_5_seconds: false`); a new Home/foreground cycle restores
+  the visible pause sheet with the same PID 2308
+  (`visible_after_new_surface_cycle: true`, `same_process: true`).
+- The guest log records `eglSwapBuffers failed: EGL_BAD_SURFACE` at 00:27:29 and
+  00:28:08 for the same process; no app tombstone, ANR or script error appears.
+- Raw evidence: `android-smoke-39699385661.json`, `android-black-return-28a8a45.png`,
+  `android-black-return-delayed-28a8a45.png`,
+  `android-black-return-new-surface-28a8a45.png` and
+  `android-host-state-39699385661.txt`.
+
+This is the same **unresolved intermittent engine/emulator surface failure** that
+has been retained since the earlier runs, now reproduced on the takeover code in
+an independent session. It is not attributable to the harness fix (the run never
+reaches Bouncy Balls) and it is not repairable by adding hidden restarts or
+silently dropping progress. A05 and A09 stay BLOCKED; no release may be tagged
+while this reproduces. The Bouncy Balls repeated-return harness fix added in this
+commit remains unverified on Android until a run passes Fruit Drop's return.
+
+The maximum-pool phase again executes both cases on the same online AVD and
+restores the exact primary and backup saves:
+
+| Pool case | Fixture | Presentation | p95 | PSS before -> after | Final state |
+| --- | --- | --- | --- | --- | --- |
+| Bouncy Balls | 64 balls, wave 7 | 45 frames / 12.30 s = **3.60 FPS** | 661.448 ms | 196,770 -> 187,293 KiB | score 1,460, 24 active |
+| Jelly Slice | 12 fruit | 62 frames / 12.30 s = **5.04 FPS** | 415.789 ms | 194,656 -> 179,969 KiB | score 600, 4 active |
+
+These are compositor intervals on a hosted Mesa llvmpipe software renderer with
+ADB input; they are not phone FPS and not a smoothness pass. The two independent
+failures differ (harness precondition vs black surface), so neither is a flaky
+one-off that a retry may erase.

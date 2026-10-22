@@ -28,5 +28,10 @@
   "local_ci_signing_helper": "PASS: correct certificate and transient key absent after build (previous CI helper run)",
   "source_commit": "3a8c7ec5c0c7a00a5d42d143fcf20dcae3db81d7",
   "aapt2_note": "The prebuilt Godot template emits a benign 'mipmap/themed_icon ... no such path' warning; the same warning is present in the development template APK and the normal and monochrome launcher icons are packaged.",
-  "install_verification": "NOT_RUN / DEVICE_UNAVAILABLE"
+  "install_verification": "NOT_RUN / DEVICE_UNAVAILABLE",
+  "android_ci_checkpoints": {
+    "32df767": "FAIL Android smoke at a Bouncy Balls repeated-return harness precondition; maximum-pool step PASS",
+    "28a8a45": "FAIL Android smoke: fully black Fruit Drop background return reproduced (same PID recovery only via a new surface cycle); maximum-pool step PASS"
+  },
+  "packaged_source_note": "Later commits after 3a8c7ec changed only docs/, tests/ and scripts_tools/, which the Android export excludes; the packaged game data is unchanged."
 }

@@ -10,12 +10,14 @@ plus settings persistence and same-signature reinstall. A later run reproduced a
 intermittent black screen on background return, which remains a release blocker.
 A host-GLES software comparison now passes the full Android path and visual review;
 a later repeated-return run passes all 24 returns but the disposable emulator goes
-offline during the maximum-load phase. The newest run passes the expanded edge-target
-taps, every path for three games and the first Bouncy Balls return, executes both
-maximum pools on one online emulator (64 Balls at 3.84 FPS, 12 Jelly fruit at
-7.19 FPS on software rendering; not phone performance), and stops on a test-harness
-timing assumption at a second Bouncy Balls return. Repeated stability, performance
-and final signed-APK acceptance remain open.
+offline during the maximum-load phase. Two newest runs pass the expanded edge-target taps and execute both maximum pools
+on one online emulator (64 Balls at 3.60-3.84 FPS, 12 Jelly fruit at 5.04-7.19 FPS
+on software rendering; not phone performance). They also retain two independent
+Android failures: a test-harness timing assumption at a second Bouncy Balls return
+(now fixed) and, more importantly, a fully black Fruit Drop background return that
+only a new surface cycle recovers with the same PID. That intermittent surface
+failure is a release blocker; repeated stability, performance and final signed-APK
+acceptance remain open.
 
 The user's own phone playtest reported one P1 issue: Bouncy Balls' ball, bricks and
 mid-field multiplier gates/bumpers were too small (the paddle was explicitly fine).

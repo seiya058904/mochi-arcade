@@ -17,7 +17,7 @@ an evidenced external blocker prevents all meaningful progress.
 | 4f. Jelly Slice | PASS (desktop) | 7,224 checks; 108,000 stress swipe events; real-input 60-second Zen round slices 150 fruit, naturally misses 7, finishes/retries via buttons; original whole/half art reviewed |
 | 5. Integration / lifecycle / stress audit | PASS (desktop) | 18 required suites; 995 full-collection checks, 40 switches, immediate lifecycle persistence, damaged-save recovery, three viewport profiles and actual edge-button input |
 | 6. Complete visual reviews + targeted fixes | PASS (desktop) | 34 actual renderer captures; EN/ZH, home, eight games, settings, help/pause; board fit, mipmaps and text contrast fixed |
-| 7. Signed Android acceptance | IN_PROGRESS / BLOCKED (no device) | Host GLES development run passes all eight paths and launcher; same-source Lavapipe still black. Repeated-return run passes all 24 returns but the AVD goes offline during the Jelly load. Run 39698026180 verifies the new edge taps and executes both maximum pools on one online AVD (3.84/7.19 FPS, software) but stops at a Bouncy Balls repeated-return harness precondition, now fixed pending re-run. No attached phone; local AVD has no hypervisor driver. Physical-device lifecycle/performance and signed-byte runtime remain DEVICE_UNAVAILABLE |
+| 7. Signed Android acceptance | IN_PROGRESS / BLOCKED (black return + no device) | Host GLES development runs pass the launcher, edge-target taps and large parts of the lifecycle; same-source Lavapipe still black. Repeated-return run passes all 24 returns but the AVD goes offline during the Jelly load. Run 39698026180 stops at a Bouncy Balls harness precondition (fixed); run 39699385661 then reproduces a fully black Fruit Drop background return that only a new surface cycle recovers with the same PID. Both maximum pools execute on one online AVD in both runs (3.60-3.84 / 5.04-7.19 FPS, software). No attached phone; local AVD has no hypervisor driver. Physical-device and signed-byte acceptance remain DEVICE_UNAVAILABLE |
 | 8. CI / final audit / remote sync | IN_PROGRESS | Takeover commits pushed (32df767); new-SHA CI fails only on the identified harness precondition; fix commit and clean final SHA pending |
 | 9. Release and download verification | TODO | Annotated tag, draft assets, independent hash match, publish |
 
@@ -189,6 +189,13 @@ matching final local/remote/tag/build commit; verified release-download bytes.
   three ratios; all 18 suites pass (995 collection checks). Actual Home/Settings
   GPU pixels are identical before/after. Native edge taps and fresh signing follow
   after the repeated-lifecycle run; the earlier signed candidate predates this change.
+- Run 39699385661 on 28a8a45: 18 suites, APK build and edge-target taps pass;
+  Fruit Drop enters and freezes on Back, then its background return is fully black,
+  still black after 5 s and visible only after a new surface cycle with the same
+  PID (EGL_BAD_SURFACE retained). The black-return blocker is therefore reproduced
+  on the takeover code; A05/A09 stay BLOCKED. Both pools execute again (Balls
+  3.60 FPS, Jelly 5.04 FPS, exact save restoration). The harness fix is not yet
+  validated because this run stops before Bouncy Balls.
 - Run 39698026180 on 32df767: 18 suites and APK build pass; Android edge-target
   taps pass; Fruit/Bubble/Cake complete; Bouncy Balls stops at cycle 2 because the
   resumed round naturally ended during the capture window. The harness now

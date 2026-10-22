@@ -97,6 +97,16 @@ unverified from the earlier conversation.
   host state and continuous logcat retained). Full analysis is in
   `docs/QA_REPORT.md`; raw reports are `android-smoke-39698026180.json` and
   `android-load-39698026180.json`.
+- Run [39699385661](https://github.com/seiya058904/mochi-arcade/actions/runs/39699385661)
+  on `28a8a45` (harness fix): 18 suites, APK build and the new edge-target taps
+  pass; Android then reproduces a fully black Fruit Drop background return. The
+  screen is still black after an extra 5 s and only a new surface cycle restores
+  the visible pause sheet with the same PID, with `EGL_BAD_SURFACE` in the guest
+  log. This is the retained release blocker, not a harness-fix regression, and it
+  stays BLOCKED. Both maximum pools execute again (Balls 3.60 FPS, Jelly 5.04 FPS,
+  software renderer, exact save restoration). Raw evidence is retained under
+  `android-black-return-*`, `android-smoke-39699385661.json` and
+  `android-load-39699385661.json`.
 - Local AVD retry (2026-10-22): a bounded 8-minute software-only boot never left
   `emulator-5554 offline`; retained as `local-avd-attempt.json`. No install was
   attempted and no host configuration was changed.
@@ -114,4 +124,6 @@ unverified from the earlier conversation.
    lifecycle/touch/load/signed-byte acceptance, or explicitly authorize uploading
    the release keystore and DPAPI password to two encrypted GitHub Actions
    secrets so the hosted emulator can test the signed bytes. Until one of those
-   happens, no stable tag or Release may be created.
+   happens, no stable tag or Release may be created. The most useful next
+   diagnostic for the black return is a physical phone or a hardware-GPU host,
+   because the hosted runner only provides Mesa llvmpipe software rendering.
