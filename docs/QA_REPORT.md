@@ -55,6 +55,17 @@ on `d7f2650` is also FAIL, but at the Bouncy Balls force-stop restore harness
 precondition rather than a blank return (no blank frame occurred in that run).
 The harness fixes verified locally address that timing precondition.
 
+Owner-approved environment exception (2026-10-22): A14 is **not PASS**. The owner
+accepted a scoped exception for the GitHub-hosted Ubuntu Mesa llvmpipe
+background-return blank frame only, using the signed-byte hardware-GPU API 34
+acceptance above as substitute evidence, and declined a self-hosted GPU runner.
+The retained failure run
+[39716897550](https://github.com/seiya058904/mochi-arcade/actions/runs/39716897550)
+on `90ee172` failed at `01-fruit_drop-repeat-3-background-return` with blank
+frame `cfc80ccb...`; no assertion was removed and the run remains FAIL. See
+`RELEASE_CHECKLIST.md`. Physical-phone quantitative performance remains
+UNVERIFIED and is disclosed in the release notes.
+
 ## Executed checks
 
 | Check | Result | Evidence |
@@ -90,11 +101,12 @@ The harness fixes verified locally address that timing precondition.
 | Signed-byte maximum-pool load on hardware-GPU API 34 AVD | PASS execution / phone FPS UNVERIFIED | Same run: Bouncy Balls 64 balls 55.55 presented FPS (p50 16.679 ms, p95 33.166 ms; 687 frames / 12.35 s; PSS 175,701 -> 168,046 KiB), Jelly Slice 12 fruit 60.0 FPS (p50 16.664 ms, p95 17.199 ms; 724 frames / 12.05 s; PSS 173,484 -> 159,041 KiB), exact save restoration and original backup restored. Compositor intervals including ADB load, not physical-phone FPS. Evidence: same folder `load-report.json`. |
 | Physical-device user retest | UNVERIFIED (user-reported PASS) | 2026-10-22 user report: no problems on the four requested checks (startup/home, enlarged Bouncy Balls layout, eight games x three background returns, maximum-pool load). Phone model/OS/resolution, captures, per-check notes and on-phone hash NOT_PROVIDED; not automated or byte-level acceptance. See `PLAYTEST_FEEDBACK.md` and `evidence/physical-device-user-report-2026-10-22.json`. |
 | Audio output | PASS measured Windows mixer / phone UNVERIFIED | evidence/audio-output.json: 48 kHz captured output, eight tone peaks 0.101-0.103, eight-voice burst 0.438, music peak 0.0090, muted/paused output exactly zero. No subjective listening or phone-speaker claim. |
-| Repository credential/provenance review | PASS bounded static audit | evidence/security-audit.json at 7a48d0e: 27 commits, 440 text blobs, known credential patterns; 153 binary/large blobs counted separately. No findings or runtime network/process calls; not exhaustive secret detection. |
-| CI / release | PASS a032fde host checkpoint / later run FAIL / NOT_PUBLISHED | [Run 39670759820](https://github.com/seiya058904/mochi-arcade/actions/runs/39670759820) passes. Run 39673516558 passes 24 background returns, but the AVD goes offline during load setup; failed cleanup and logs are retained. Run 39701157030 on fd3975d fails at the same blank Fruit Drop repeated return after the 18 suites, APK build and load phase pass. Run 39711487194 on d7f2650 fails at the Bouncy Balls restore precondition with no blank return; that run motivated the harness fixes verified locally. |
+| Repository credential/provenance review | PASS bounded static audit | evidence/security-audit.json at 90ee172: 36 commits, 524 text blobs; 213 binary/large blobs counted separately; no known credential-pattern findings and no runtime network/process calls; not exhaustive secret detection. |
+| CI / release | PASS a032fde host checkpoint / later runs FAIL / A14 OWNER_APPROVED_ENVIRONMENT_EXCEPTION / release pending | [Run 39670759820](https://github.com/seiya058904/mochi-arcade/actions/runs/39670759820) passes. Runs 39673516558, 39701157030 and 39716897550 retain their Android failures; 39711487194 failed at the Bouncy restore precondition with no blank return and motivated the harness fixes. The owner accepted a scoped exception for the hosted software-rendered black return only (A14 is not PASS); release closeout is in progress. |
 | Collection lifecycle / adverse saves | PASS, 995 checks | evidence/collection-audit.json: actual Back notification and root signal, 40 scene switches, immediate primary touch/background freeze, restart/unload, malformed nested sessions/metadata, three layouts and 15 actual-GUI edge-target checks |
 | Complete desktop visual matrix | PASS, 34 captures reviewed | evidence/visual-review.json and matrix-*.png; two languages, three screen ratios, eight games, settings, overlays and merge feedback. Not Android proof. |
-| Required suite runner | PASS, 18 suites | evidence/required-checks.json; rejects engine runtime errors even when process exit code is zero |
+| Required suite runner | PASS, 18 suites | evidence/required-checks.json at 90ee172; local run: all 18 scripts PASS with zero runtime errors; runner rejects engine runtime errors even when process exit code is zero |
+| Final release verification (90ee172) | PASS for non-hosted-Android gates | 18/18 required suites locally PASS; bounded security audit PASS; APK SHA-256 `2b459f5c...`, certificate `de1458f3...`, versionName 1.0.0, non-debuggable, v2+v3, only VIBRATE, 16 KiB aligned; path audit from packaged source `3a8c7ec` shows only docs/tests/scripts_tools plus README, which is not a Godot resource and is absent from the APK. A14 hosted Android result is covered by the owner-approved exception, not by this row. |
 
 ## Found and fixed
 

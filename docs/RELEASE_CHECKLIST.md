@@ -1,6 +1,8 @@
 # Release gates — not release ready
 
-Updated 2026-10-22. Desktop acceptance does not satisfy Android gates.
+Updated 2026-10-22. Desktop acceptance does not satisfy Android gates. A14
+carries an owner-approved, scoped environment exception; it is not a PASS. See
+"Owner-approved environment exception" below.
 
 | Gate | State | Evidence / remaining work |
 | --- | --- | --- |
@@ -17,10 +19,43 @@ Updated 2026-10-22. Desktop acceptance does not satisfy Android gates.
 | A11 Reproducible build | PASS development | Pinned engine/template, SDK CLI checksum, local + hosted debug export; signed rebuild pending |
 | A12 Verified installable APK | PASS controlled emulator / physical automated acceptance unavailable | Signed candidate SHA-256 `2b459f5c...`, certificate `de1458f3...`, versionName 1.0.0, non-debuggable, v2+v3, zipalign 16 KiB, only VIBRATE; installed and ran the full signed-byte lifecycle and maximum-pool acceptance on the hardware-GPU API 34 AVD on 2026-10-22 (eight games x three returns, force-stop restore, same-signature reinstall, launcher icon, first music loop). The user reported a physical-phone retest but supplied no device metadata, captures or on-phone hash; physical automated signed-byte acceptance remains DEVICE_UNAVAILABLE |
 | A13 Clean synchronized Git | PASS clean sync checkpoint | Takeover history and subsequent docs/evidence commits are pushed to origin/main; worktree clean and HEAD equals origin/main. Final release-SHA acceptance still depends on A09/A14 |
-| A14 Final-SHA CI | FAIL; blocker reproduces | 39698026180 (32df767): 18 suites/APK pass, Android stops at a Bouncy Balls harness precondition. 39699385661 (28a8a45): black Fruit Drop return reproduced. 39700272044 (6240595): black Fruit Drop cycle-2 return with an identical black frame hash. 39701157030 (fd3975d): black Fruit Drop cycle-3 return. 39711487194 (d7f2650): 18 suites/APK/load pass, Android stops at the Bouncy Balls force-stop restore precondition with no blank return in that run. The signed-byte hardware-GPU local AVD PASS does not replace this gate; a green CI run on the exact final SHA is required before release |
-| A15 Release | NOT_PUBLISHED | No tag or stable assets until preceding hard gates pass |
+| A14 Final-SHA CI | OWNER_APPROVED_ENVIRONMENT_EXCEPTION (not PASS) | Retained hosted failures: 39698026180 (32df767) harness precondition; 39699385661 (28a8a45) black Fruit Drop return; 39700272044 (6240595) black cycle-2 frame; 39701157030 (fd3975d) black cycle-3; 39711487194 (d7f2650) Bouncy restore precondition with no blank; 39716897550 (90ee172) blank Fruit Drop repeat-3 frame `cfc80cc...` on the hosted software renderer. The owner accepted a scoped exception on 2026-10-22 for this hosted Ubuntu + Mesa llvmpipe background-return blank frame only, using the hardware-GPU API 34 signed-byte acceptance as substitute evidence. No assertion was removed and every failed run stays FAIL; see the exception section below |
+| A15 Release | PENDING_PUBLISH | Owner-approved A14 exception recorded; signed APK, `SHA256SUMS` and release notes prepared. Tag v1.0.0, draft asset upload, downloaded-asset byte/signature verification and publish are in progress |
 
-Current unresolved release blockers: hosted CI black return (A14), physical-phone performance acceptance (A09), and final Release steps (A15).
-Secure local release signing, signed-byte hardware-GPU emulator acceptance and measured desktop audio verification have passed.
-Physical-phone performance will remain explicitly unverified; the 2026-10-22 phone retest is user-reported only (no device metadata, captures or on-phone hash).
-The local hardware-GPU AVD PASS does not satisfy A14 by itself; a green CI run on the exact final SHA is still required.
+## Owner-approved environment exception (A14)
+
+- State: `OWNER_APPROVED_ENVIRONMENT_EXCEPTION`, not PASS.
+- Owner decision: 2026-10-22. The owner explicitly accepted a scoped exception for
+  the GitHub-hosted Ubuntu + Mesa llvmpipe software-rendered Android emulator
+  background-return blank frame, and declined a self-hosted GPU runner.
+- Scope: only the intermittent blank frame after a background return on that
+  hosted software renderer. Every other gate remains in force; raw failures,
+  blank-frame hashes, logs and FAIL statuses are retained, and no assertion was
+  deleted or relaxed.
+- Substitute evidence: the exact signed bytes passed the controlled AOSP API 34
+  x86_64 hardware-GPU run (Google AEHD 2.2 + AMD RX 7900 XT, 720x1280) on
+  2026-10-22: eight games x three background returns, 101 non-blank frames, same
+  PID, pause checkpoint equality, force-stop restore, zero-score restart,
+  settings, same-signature reinstall, launcher icon, first music loop; maximum
+  pools 64 Balls 55.55 presented FPS / Jelly 60.0 FPS with exact save restoration.
+  Evidence: `docs/evidence/android-api34-hostgpu-2026-10-22/`.
+- Retained failure: run
+  [39716897550](https://github.com/seiya058904/mochi-arcade/actions/runs/39716897550)
+  on `90ee172` failed at `01-fruit_drop-repeat-3-background-return` with blank
+  frame SHA-256 `cfc80ccb6c70119363e7e3da3bbb361f4c4c2628e4856bfdce139ea7b8cdf249`,
+  `EGL_BAD_SURFACE`, recovered only by a new surface cycle with the same PID.
+- Residual risk: the hosted software-renderer black return is not fully
+  root-caused and may share a Godot/emulator surface race. Hardware-GPU and
+  user-phone evidence do not prove the hosted environment or every software
+  renderer is safe. Physical-phone quantitative performance remains UNVERIFIED.
+- Not claimed: A14 PASS, stability on all software renderers, or physical-phone
+  performance.
+
+Current status: A14 carries the owner-approved scoped environment exception; A09
+physical-phone quantitative performance remains UNVERIFIED and is disclosed in the
+release notes. Release steps remaining: tag v1.0.0, draft upload, downloaded-asset
+byte/signature verification, publish.
+Secure local release signing, signed-byte hardware-GPU emulator acceptance and
+measured desktop audio verification have passed.
+Physical-phone performance will remain explicitly unverified; the 2026-10-22 phone
+retest is user-reported only (no device metadata, captures or on-phone hash).

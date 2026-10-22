@@ -158,7 +158,36 @@ unverified from the earlier conversation.
   are unchanged; the hosted `d7f2650` run failed at the old restore precondition
   and did not reproduce a blank return.
 
-## Exact next actions (in order, updated 2026-10-22)
+## Owner-approved A14 environment exception and v1.0.0 release (2026-10-22)
+
+- Owner decision: accept a scoped exception for the GitHub-hosted Ubuntu Mesa
+  llvmpipe Android emulator background-return blank frame; no self-hosted GPU
+  runner. A14 is recorded as `OWNER_APPROVED_ENVIRONMENT_EXCEPTION`, not PASS.
+- Retained failure: run 39716897550 on `90ee172` failed at
+  `01-fruit_drop-repeat-3-background-return` with blank frame
+  `cfc80ccb...`; the raw evidence and FAIL status are kept.
+- Substitute evidence: the signed-byte hardware-GPU API 34 acceptance (8 games x
+  3 returns, 101 non-blank frames, restore/reinstall, 64 Balls 55.55 FPS, Jelly
+  60.0 FPS). Physical-phone quantitative performance remains UNVERIFIED.
+- Release verification: local 18/18 suites PASS on `90ee172`; bounded security
+  audit PASS; APK static checks PASS; the path audit from the packaged source
+  `3a8c7ec` shows only export-excluded docs/tests/tools plus README, which is
+  not a Godot resource and is absent from the APK. Release steps: tag v1.0.0,
+  draft upload, downloaded-asset byte/signature verification, publish.
+
+## Exact next actions (release closeout)
+
+1. Commit the owner-approved A14 exception and release notes; push; confirm CI
+   passes the 18 suites and development APK build and fails only at the known
+   hosted Android black return.
+2. Create tag v1.0.0 via a draft release, upload `MochiArcade.apk` and
+   `SHA256SUMS`, download them into an isolated directory, and re-verify
+   SHA-256, certificate, package, version and byte equality before publishing.
+3. After publish, record the release URL/tag/commit/asset hashes in README, QA,
+   RELEASE_CHECKLIST and this handoff in a clearly marked post-release docs
+   commit.
+4. Keep A09 physical-phone quantitative performance UNVERIFIED and disclosed; no
+   self-hosted GPU runner and no signing-key upload.
 
 1. Push the harness fix and evidence, then wait for CI on the new final SHA. A14
    may now pass if the hosted run does not hit the intermittent black return; it
