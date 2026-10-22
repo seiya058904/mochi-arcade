@@ -30,9 +30,12 @@ unverified from the earlier conversation.
 
 ## Toolchain and signing
 
-- Godot `4.7.2.stable.official.ed1daf0bf` at
-  `.local/toolchain/godot-4.7.2/Godot_v4.7.2-stable_win64.exe` (official
-  archive and export templates retained with `SHA512-SUMS.txt`).
+- Godot `4.7.2.stable.official.ed1daf0bf` from the single shared copy at
+  `D:\tools\godot\4.7.2\Godot_v4.7.2-stable_win64.exe` (deduplicated on
+  2026-10-22 so two Godot projects do not each carry 173 MB; `scripts_tools/godot.ps1`
+  uses it by default and `MOCHI_GODOT` still overrides). The local
+  `.local/toolchain/...` path remains a fallback; official archive and export
+  templates are retained with `SHA512-SUMS.txt`.
 - Temurin OpenJDK 17.0.20.1; Android SDK at
   `%LOCALAPPDATA%\Android\Sdk` with platform-tools, platforms 34/35/36 and
   Build Tools 34.0.0/35.0.1/36.0.0; `adb`, `apksigner`, `aapt2`, `zipalign`
