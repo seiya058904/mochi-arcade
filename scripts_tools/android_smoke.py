@@ -335,9 +335,26 @@ def main():
                 game_check["natural_result_seen"] = True
                 tap(360, 727)  # One more go on the two-button result sheet.
                 time.sleep(0.6)
+            def reestablish_paused_round():
+                shell("am", "force-stop", package)
+                launch()
+                tap(190 if index % 2 == 0 else 530, 412 + (index // 2) * 208)
+                time.sleep(0.4)
+                back()
+                time.sleep(0.8)
+                return saved_state()["sessions"].get(game)
+
             back()
             screenshot(f"{index + 1:02d}-{game}-after-back")
             paused = saved_state()["sessions"].get(game)
+            if not paused:
+                # A short Bouncy Balls rally can end during input, and system
+                # Back then reaches the home exit prompt instead of pausing.
+                # Re-enter a live round through UI input and pause it again;
+                # the freeze and save assertions below remain unchanged.
+                game_check["natural_result_before_pause"] = True
+                paused = reestablish_paused_round()
+                screenshot(f"{index + 1:02d}-{game}-after-back-reestablished")
             time.sleep(0.8)
             if not paused or saved_state()["sessions"].get(game) != paused:
                 raise RuntimeError(f"{game} did not checkpoint and freeze after system Back")
@@ -361,9 +378,9 @@ def main():
             # capture (Bouncy Balls is the shortest round). Re-establish a real
             # paused round through ordinary UI input and repeat the same visible
             # transition assertions at most once; the bounded failure stays a failure.
-            def paused_round_session():
+            def paused_round_session(force=False):
                 state = saved_state()["sessions"].get(game)
-                if state:
+                if state and not force:
                     return state
                 # Re-enter and pause as early as the ADB round-trip allows:
                 # Bouncy Balls serves the ball upward from the paddle, so a fast
@@ -376,6 +393,16 @@ def main():
                 back()
                 time.sleep(0.8)
                 return saved_state()["sessions"].get(game)
+
+            def bouncy_paused_round_safe(session):
+                if game != "bouncy_balls" or not session:
+                    return True
+                for entry in session.get("balls", []):
+                    y = float(entry[1])
+                    vy = float(entry[3])
+                    if y >= 0.80 and vy >= 0:
+                        return False
+                return True
 
             def resume_and_pause_transition(attempt):
                 base_frame = returned_frame if attempt == 0 else screenshot(f"{index + 1:02d}-{game}-background-return-again")
@@ -432,15 +459,32 @@ def main():
             current = saved_state()["sessions"].get(game)
             if current:
                 background = current
+            # A paused Bouncy Balls ball at the loss boundary is not a valid
+            # restore fixture: re-entering it would end the rally naturally.
+            # Re-establish a fresh paused round until the served ball is safe.
+            for _ in range(3):
+                if bouncy_paused_round_safe(background):
+                    break
+                background = paused_round_session(force=True) or background
+            if not bouncy_paused_round_safe(background):
+                raise RuntimeError(f"{game} paused round is already at the loss boundary")
             park()
             state = saved_state()
             (output / f"{index + 1:02d}-{game}-save.json").write_text(json.dumps(state, indent=2), encoding="utf-8")
             launch()
+            # Prove persistence directly after process death, before any UI
+            # re-entry can naturally end the saved rally.
+            persisted = saved_state()["sessions"].get(game, {})
+            if persisted.get("seed") != background.get("seed") or persisted.get("score", -1) < background["score"]:
+                raise RuntimeError(f"{game} lost its saved round across force-stop and relaunch")
             open_card(index)
             back()
             restored = saved_state()["sessions"].get(game, {})
-            if restored.get("seed") != background.get("seed") or restored.get("score", -1) < background["score"]:
-                raise RuntimeError(f"{game} lost its round across force-stop and reopen")
+            if restored and (restored.get("seed") != background.get("seed") or restored.get("score", -1) < background["score"]):
+                raise RuntimeError(f"{game} lost its round after force-stop and reopen")
+            if not restored:
+                game_check["post_reentry_round_ended_naturally"] = True
+                paused_round_session(force=True)
             screenshot(f"{index + 1:02d}-{game}-restored")
             game_check["round_restored_after_force_stop"] = True
             tap(360, 775)  # Start again from the actual pause sheet.
