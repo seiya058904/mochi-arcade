@@ -8,15 +8,15 @@ Updated 2026-10-22. Desktop acceptance does not satisfy Android gates.
 | A02 Eight complete games | PASS desktop + Android development smoke | Eight implemented loops, natural-action replays and actual Android input/boards; final signed-byte confirmation pending |
 | A03 Correct gameplay | PASS desktop | 18 required suites; rules, collision, save, lifecycle and real scene input |
 | A04 Valid procedural content | PASS | Independent Trio solver: 1,500 boards; Hop: 2,000 seeds / 50,000 targets |
-| A05 Android controls | BLOCKED intermittent background black | Host run 39670759820 passes all eight paths; same-source Lavapipe 39670750928 returns black. Three-return coverage per game is pending; one successful run does not establish stability |
-| A06 Cohesive art | PASS desktop + tested Android viewport | Original production art; three desktop ratios; 87 actual 720x1280 Android views reviewed in labeled sheets, with selected original captures retained |
+| A05 Android controls | PARTIAL; backend risk unresolved | Host run 39673516558 passes all eight paths and 24 returns. Lavapipe black-return evidence remains; expanded-button native edge taps are scripted into the next run. No attached physical device |
+| A06 Cohesive art | PASS desktop + tested Android viewport | Original production art; three desktop ratios; 87 actual 720x1280 Android views reviewed in labeled sheets. Bouncy Balls play-field scale revision measured before/after (22->32 px ball, 4x6 brick wall, 150x46 gates, 68 px bumpers, paddle unchanged); Android post-change view review pending |
 | A07 Audio | PASS tested Android development path / final signed pending | Native first-loop crash repaired and Android loop survives in 39659761708; nine mixer-boundary regressions and real desktop mute/pause/output checks pass |
 | A08 Persistence | PASS tested development path / signed pending | All eight freezes/round restores, five settings and exact complete-save preservation after same-signature reinstall; damaged-save recovery suite passes |
-| A09 Compatibility / performance | BLOCKED | Intermittent background black remains. Both maximum pools visibly execute; host software-renderer FPS is 6.01 / 8.91, with slower Lavapipe samples retained. Performance is not passed and phone FPS is unverified |
+| A09 Compatibility / performance | BLOCKED | Both pools visibly execute in a032fde host run at 6.01 / 8.91 FPS. Later repeated-return run observes Balls at 3.55 FPS, then the AVD goes offline before Jelly. All failures retained; phone FPS and stable load acceptance remain unverified |
 | A10 Security / provenance | PASS bounded candidate audit | Known credential-pattern history scan, documented original art/fonts, bundled offline notices; candidate has only VIBRATE and excludes private/dev files |
 | A11 Reproducible build | PASS development | Pinned engine/template, SDK CLI checksum, local + hosted debug export; signed rebuild pending |
-| A12 Verified installable APK | PARTIAL | Development APK installs/starts/renders; actual launcher icon verified; intermittent surface recovery and final signed-byte acceptance pending |
-| A13 Clean synchronized Git | IN_PROGRESS | Milestone commits/pushes; final clean state pending |
+| A12 Verified installable APK | PARTIAL | Development APK installs/starts/renders; actual launcher icon verified; signed candidate rebuilt from the final commit but not installed. Physical-device signed-byte acceptance DEVICE_UNAVAILABLE |
+| A13 Clean synchronized Git | IN_PROGRESS | Takeover recovered and validated the unpushed hit-region work; milestone commit/push in progress; final clean state pending |
 | A14 Final-SHA CI | NOT_RUN final / PASS checkpoint | a032fde host diagnostic 39670759820 passes; same-source Lavapipe comparison fails. Updated/final SHA awaits CI |
 | A15 Release | NOT_PUBLISHED | No tag or stable assets until preceding hard gates pass |
 

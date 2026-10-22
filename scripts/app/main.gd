@@ -1,5 +1,12 @@
 extends Control
 
+class TouchButton extends Button:
+	func _has_point(point: Vector2) -> bool:
+		# 96 design pixels equal 48 dp on the tested 720px / 320dpi
+		# Android viewport. Keep the artwork and layout unchanged.
+		var hit_size := size.max(Vector2(96, 96))
+		return Rect2((size - hit_size) * 0.5, hit_size).has_point(point)
+
 const P := preload("res://scripts/shared/palette.gd")
 const C := preload("res://scripts/app/catalog.gd")
 var ui: Control
@@ -150,7 +157,7 @@ func label(parent: Control, value: String, rect: Rect2, font_size: int = 28, col
 	return item
 
 func button(parent: Control, value: String, rect: Rect2, callback: Callable, color: Color = P.PAPER, font_size: int = 27) -> Button:
-	var item := Button.new()
+	var item := TouchButton.new()
 	item.position = rect.position
 	item.size = rect.size
 	item.text = value

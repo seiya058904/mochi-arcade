@@ -14,9 +14,11 @@ Game rules live in individual scenes and do not depend on another game's state.
 
 ## Current playable development scope
 
-Fruit Drop, Cake Stack and Number Bloom have executable rules and integration tests, real
-rendered screenshots and replayable input paths. The five remaining cards
-explicitly report development status. This build is not a finished collection.
+All eight games have executable rules, integration tests, real rendered screenshots
+and playable input paths. Hosted Android development builds have completed all
+eight touch/lifecycle paths. Intermittent surface recovery, performance acceptance
+and final signed-byte Android verification remain release blockers; this is not
+an accepted stable release.
 
 ## Non-negotiable proof
 

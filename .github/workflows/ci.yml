@@ -154,6 +154,7 @@ jobs:
             dpkg-query -W xvfb libgl1-mesa-dri
             Xvfb -displayfd 3 -screen 0 720x1280x24 -nolisten tcp 3>.local/android-runtime/xvfb-display.txt >.local/android-runtime/xvfb.log 2>&1 &
             mochi_xvfb_pid=$!
+            printf '%s\n' "$mochi_xvfb_pid" > .local/android-runtime/xvfb.pid
             for attempt in {1..20}; do
               if [[ -s .local/android-runtime/xvfb-display.txt ]]; then break; fi
               kill -0 "$mochi_xvfb_pid"
@@ -175,6 +176,7 @@ jobs:
           PY
           "$ANDROID_HOME/emulator/emulator" -avd Mochi_CI_API34 -no-window -no-audio -no-boot-anim -no-snapshot -gpu "$MOCHI_EMULATOR_GPU" -accel on -memory 2048 -cores 2 -partition-size 2048 -camera-back none -camera-front none > .local/android-runtime/emulator.log 2>&1 &
           emulator_pid=$!
+          printf '%s\n' "$emulator_pid" > .local/android-runtime/emulator.pid
           smoke_args=(--apk "$MOCHI_APK" --output .local/android-runtime --emulator-pid "$emulator_pid")
           if [[ "${{ inputs.release_candidate }}" == 'true' ]]; then smoke_args+=(--release); fi
           python3 scripts_tools/android_smoke.py "${smoke_args[@]}"
@@ -185,7 +187,31 @@ jobs:
           set -euo pipefail
           load_args=(--apk "$MOCHI_APK" --output .local/android-runtime/load)
           if [[ "${{ inputs.release_candidate }}" == 'true' ]]; then load_args+=(--release); fi
+          # Preserve guest logs even if the AVD becomes unreachable during a load.
+          adb -s emulator-5554 logcat -v threadtime > .local/android-runtime/load-stream-logcat.txt 2>&1 &
+          mochi_logcat_pid=$!
+          trap 'kill "$mochi_logcat_pid" 2>/dev/null || true' EXIT
           python3 scripts_tools/android_load.py "${load_args[@]}"
+      - name: Retain AVD host state
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p .local/android-runtime
+          # Read-only diagnostics of this disposable job; never reboot/retry a failure.
+          {
+            date --iso-8601=seconds
+            free -m
+            df -h "$RUNNER_TEMP"
+            for name in emulator xvfb; do
+              if [[ -r ".local/android-runtime/$name.pid" ]]; then
+                read -r mochi_pid < ".local/android-runtime/$name.pid"
+                printf '%s PID %s\n' "$name" "$mochi_pid"
+                ps -p "$mochi_pid" -o pid,ppid,state,etime,rss,vsz,comm || true
+              fi
+            done
+            timeout 10s adb devices -l || true
+            sudo dmesg --ctime | tail -n 80 || true
+          } > .local/android-runtime/host-state.txt 2>&1
       - name: Upload Android runtime evidence
         if: always()
         uses: actions/upload-artifact@v4

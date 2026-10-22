@@ -3,8 +3,21 @@ extends MochiGame
 const P := preload("res://scripts/shared/palette.gd")
 const SWEEP := preload("res://scripts/shared/sweep.gd")
 const MAX_BALLS := 64
-const RADIUS := 11.0
+# Player-feedback layout revision: the ball, brick wall, multiplier gates and
+# bumpers were all too small on a portrait phone. The paddle keeps its exact
+# width, height, y position and drag mapping; only the play-field objects grow.
+const RADIUS := 16.0
 const PADDLE_WIDTH := 172.0
+const BRICK_COLUMNS := 4
+const BRICK_ROWS := 6
+const BRICK_GAP := 7.0
+const BRICK_MARGIN := 26.0
+const BRICK_HEIGHT := 44.0
+const BRICK_TOP := 78.0
+const BRICK_PITCH := 49.0
+const GATE_SIZE := Vector2(150, 46)
+const GATE_Y := [0.635, 0.76]
+const BUMPER_RADIUS := 34.0
 const COLORS := [P.ROSE, P.SKY, P.YELLOW, P.MINT, P.LILAC]
 var pool: Array[Dictionary] = []
 var bricks: Array[Dictionary] = []
@@ -38,8 +51,10 @@ func _ready() -> void:
 		sprite.atlas = atlas
 		sprite.region = Rect2(x, 187, 398, 398)
 		sprites.append(sprite)
-	gates.assign([Rect2(area.x * 0.25 - 58, area.y * 0.57, 116, 34), Rect2(area.x * 0.75 - 58, area.y * 0.69, 116, 34)])
-	bumpers.assign([Vector2(area.x * 0.28, area.y * 0.43), Vector2(area.x * 0.72, area.y * 0.43)])
+	gates.assign([
+		Rect2(area.x * 0.28 - GATE_SIZE.x * 0.5, area.y * GATE_Y[0], GATE_SIZE.x, GATE_SIZE.y),
+		Rect2(area.x * 0.72 - GATE_SIZE.x * 0.5, area.y * GATE_Y[1], GATE_SIZE.x, GATE_SIZE.y)])
+	bumpers.assign([Vector2(area.x * 0.30, area.y * 0.50), Vector2(area.x * 0.70, area.y * 0.50)])
 	if not restore(Save.session(game_id)):
 		make_wave()
 		spawn(Vector2(paddle_x, paddle_y() - 25), Vector2(0.34, -1).normalized() * speed(), 0)
@@ -56,11 +71,11 @@ func paddle_rect() -> Rect2:
 
 func make_wave() -> void:
 	bricks.clear()
-	var width := (area.x - 64) / 6.0
-	for row in range(4):
-		for col in range(6):
+	var width := (area.x - BRICK_MARGIN * 2.0 - BRICK_GAP * (BRICK_COLUMNS - 1)) / BRICK_COLUMNS
+	for row in range(BRICK_ROWS):
+		for col in range(BRICK_COLUMNS):
 			var hp := 1 + mini(3, (wave - 1) / 2) + (1 if row == 0 else 0)
-			bricks.append({"rect": Rect2(36 + col * width, 76 + row * 46, width - 8, 37), "hp": hp, "max": hp, "color": (row + col / 2 + wave) % 5})
+			bricks.append({"rect": Rect2(BRICK_MARGIN + col * (width + BRICK_GAP), BRICK_TOP + row * BRICK_PITCH, width, BRICK_HEIGHT), "hp": hp, "max": hp, "color": (row + col / 2 + wave) % 5})
 	for ball in pool:
 		ball.gates = 0
 	clear_time = 0
@@ -166,7 +181,7 @@ func collision(from: Vector2, to: Vector2, seen: int) -> Dictionary:
 		if hit.time < result.time:
 			result = {"time": hit.time, "normal": hit.normal, "kind": "brick", "id": i}
 	for i in range(bumpers.size()):
-		var t := SWEEP.circle(from, to, bumpers[i], 27 + RADIUS)
+		var t := SWEEP.circle(from, to, bumpers[i], BUMPER_RADIUS + RADIUS)
 		if t < result.time:
 			var normal := (from.lerp(to, t) - bumpers[i]).normalized()
 			if movement.dot(normal) < -0.000001:
@@ -327,26 +342,27 @@ func _draw() -> void:
 	draw_line(Vector2(area.x - 18, 57), Vector2(area.x - 18, paddle_y() + 20), Color("e6d7b9"), 3, true)
 	for brick in bricks:
 		if brick.hp > 0:
-			rounded(brick.rect, COLORS[brick.color], 10, Color("d6c3a6"))
-			text_at(str(brick.hp), brick.rect.get_center() + Vector2(0, 8), 22, P.INK, true)
+			rounded(brick.rect, COLORS[brick.color], 12, Color("d6c3a6"))
+			text_at(str(brick.hp), brick.rect.get_center() + Vector2(0, 9), 25, P.INK, true)
 	for point in bumpers:
-		draw_circle(point + Vector2(0, 4), 30, Color("e5d7ba"))
-		draw_circle(point, 27, P.PAPER)
-		draw_texture_rect(sprites[2], Rect2(point - Vector2(22, 22), Vector2(44, 44)), false)
+		draw_circle(point + Vector2(0, 5), BUMPER_RADIUS + 3, Color("e5d7ba"))
+		draw_circle(point, BUMPER_RADIUS, P.PAPER)
+		var sprite_size := BUMPER_RADIUS * 1.65
+		draw_texture_rect(sprites[2], Rect2(point - Vector2.ONE * sprite_size * 0.5, Vector2.ONE * sprite_size), false)
 	for i in range(gates.size()):
 		var color: Color = P.MINT if i == 0 else P.LILAC
-		rounded(gates[i].grow(4 if gate_glow[i] > 0 and not reduced_motion else 0), color, 17, color.darkened(0.14))
-		text_at("×" + str(i + 2), gates[i].get_center() + Vector2(0, 9), 27, P.INK, true)
+		rounded(gates[i].grow(4 if gate_glow[i] > 0 and not reduced_motion else 0), color, 20, color.darkened(0.14))
+		text_at("×" + str(i + 2), gates[i].get_center() + Vector2(0, 12), 34, P.INK, true)
 	# Draw trails together behind the shared-atlas sprites. Interleaving each
 	# line with a sprite prevented batching and added two submissions per ball.
 	if not reduced_motion:
 		var trails := PackedVector2Array()
 		for ball in pool:
 			if ball.active:
-				trails.append(ball.p - ball.v.normalized() * 19)
+				trails.append(ball.p - ball.v.normalized() * (RADIUS * 1.7))
 				trails.append(ball.p)
 		if not trails.is_empty():
-			draw_multiline(trails, Color(1, 1, 1, 0.7), 8, true)
+			draw_multiline(trails, Color(1, 1, 1, 0.7), 10, true)
 	for ball in pool:
 		if ball.active:
 			draw_texture_rect(sprites[ball.color], Rect2(ball.p - Vector2.ONE * RADIUS, Vector2.ONE * RADIUS * 2), false)

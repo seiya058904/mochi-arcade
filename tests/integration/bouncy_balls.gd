@@ -72,6 +72,33 @@ func run() -> void:
 		var bounced: Vector2 = game.rebound(incoming, normal)
 		check(bounced.dot(normal) > 0 and absf(bounced.y) >= game.speed() * 0.259, "Curved rebounds always leave the surface with a vertical component " + str(sample))
 	check(game.active_count() == 1 and game.pool.size() == 64 and game.bricks_left() == 24, "Fresh game has one ball, 24 bricks and a fixed 64-slot pool")
+	# Player-feedback layout revision: the ball, bricks, gates and bumpers must
+	# stay large enough to read on a portrait phone. The paddle is unchanged.
+	var first_brick: Rect2 = game.bricks[0].rect
+	var wall_bottom := 0.0
+	var brick_columns := {}
+	for brick in game.bricks:
+		wall_bottom = maxf(wall_bottom, brick.rect.end.y)
+		brick_columns[brick.rect.position.x] = true
+	var layout := {"area": [game.area.x, game.area.y], "ball_diameter": game.RADIUS * 2.0,
+		"ball_percent_area_width": snappedf(game.RADIUS * 2.0 / game.area.x * 100.0, 0.01),
+		"brick": [snappedf(first_brick.size.x, 0.01), snappedf(first_brick.size.y, 0.01)],
+		"brick_percent_area_width": snappedf(first_brick.size.x / game.area.x * 100.0, 0.01),
+		"brick_columns": brick_columns.size(), "brick_rows": game.bricks.size() / brick_columns.size(),
+		"brick_wall_percent_area_height": snappedf((wall_bottom - first_brick.position.y) / game.area.y * 100.0, 0.01),
+		"gate": [game.gates[0].size.x, game.gates[0].size.y],
+		"gate_percent_area_width": snappedf(game.gates[0].size.x / game.area.x * 100.0, 0.01),
+		"bumper_diameter": game.BUMPER_RADIUS * 2.0,
+		"bumper_percent_area_width": snappedf(game.BUMPER_RADIUS * 2.0 / game.area.x * 100.0, 0.01),
+		"paddle": [game.paddle_rect().size.x, game.paddle_rect().size.y]}
+	check(game.RADIUS * 2.0 >= game.area.x * 0.045, "Ball diameter is at least 4.5% of the play-field width")
+	check(first_brick.size.x >= game.area.x * 0.18 and first_brick.size.y >= game.area.y * 0.045, "Bricks are at least 18% of the field width and 4.5% of its height")
+	check(brick_columns.size() == 4 and game.bricks.size() == 24, "Four wide brick columns hold the same 24-brick rally")
+	check(game.gates[0].size.x >= game.area.x * 0.20 and game.gates[0].size.y >= game.area.y * 0.045, "Multiplier gates are at least 20% of the field width and 4.5% of its height")
+	check(game.BUMPER_RADIUS * 2.0 >= game.area.x * 0.09, "Bumpers are at least 9% of the field width")
+	check((wall_bottom - first_brick.position.y) >= game.area.y * 0.28, "Brick wall occupies at least 28% of the field height")
+	check(is_equal_approx(game.paddle_rect().size.x, 172.0) and is_equal_approx(game.paddle_rect().size.y, 19.0) and is_equal_approx(game.paddle_y(), game.area.y - 76), "Paddle keeps its original size and y position")
+	check(game.bumpers[0].y + game.BUMPER_RADIUS < game.gates[0].position.y and game.gates[1].end.y < game.paddle_y() - 60, "Mid-field gates and bumpers keep clear vertical lanes")
 	game.press(Vector2(-10000, 100))
 	check(is_equal_approx(game.paddle_rect().position.x, 18), "Paddle clamps at left rail")
 	game.drag(Vector2(10000, 100))
@@ -113,7 +140,8 @@ func run() -> void:
 	check(endpoints[0].distance_to(endpoints[1]) < 0.02 and endpoints[0].distance_to(endpoints[2]) < 0.02, "Paddle endpoint agrees at 30/60/120 Hz")
 	game = fresh()
 	empty_pool(game)
-	game.spawn(Vector2(120, 300), Vector2.UP, 3)
+	var low_brick: Rect2 = game.bricks[game.bricks.size() - 1].rect
+	game.spawn(Vector2(low_brick.get_center().x, low_brick.end.y + game.RADIUS + 12), Vector2.UP, 3)
 	game._physics_process(0.25)
 	check(game.brick_hits == 1 and game.score == 25 and game.pool[0].v.y > 0, "A swept brick hit scores once and rebounds without tunneling")
 	game = fresh()
@@ -146,13 +174,17 @@ func run() -> void:
 	game.set_physics_process(false)
 	check(game.pool[0].p == Vector2(game.paddle_x, game.paddle_y() - 25) and game.pool[0].v.y < 0 and game.pool[0].gates == 3 and game.score == saved.score, "Changed viewport recalls survivors below new geometry, preserving progress and gate claims")
 	# One final brick contact and one lost ball in the same update: clear wins.
+	var survivor: Rect2 = game.bricks[game.bricks.size() - 1].rect
 	for brick in game.bricks:
 		brick.hp = 0
-	game.bricks[18].hp = 1
+	game.bricks[game.bricks.size() - 1].hp = 1
 	empty_pool(game)
-	game.spawn(Vector2(70, 300), Vector2.UP, 3)
+	game.spawn(Vector2(survivor.get_center().x, game.paddle_y() - 25), Vector2.UP, 3)
 	game.spawn(Vector2(300, game.area.y + 10), Vector2.DOWN, 3)
-	game._physics_process(0.2)
+	for step in range(60):
+		game._physics_process(0.05)
+		if game.clear_time > 0:
+			break
 	check(game.clear_time > 0 and not game.stopped and game.active_count() == 1, "Last brick clear takes precedence over a simultaneous lost ball")
 	var clear_score: int = game.score
 	game.checkpoint()
@@ -202,6 +234,7 @@ func run() -> void:
 	await process_frame
 	check(stress_max == 64 and get_node_count() <= node_count + 1 and game.collision_limit_hits == 0, "64-ball stress retains only the one shared wave-toast label and exhausts no collision iterations")
 	var report := {"status": "PASS" if failures.is_empty() else "FAIL", "checks": checks, "failures": failures,
+		"layout": layout,
 		"preserved_adverse_sample": {"initial_collision_limit_hits": 7, "normal": [-0.13369, -0.991023], "incoming": [-507.9101, 136.76], "cause": "Minimum vertical speed restored inward velocity after grazing bumper reflection", "fix": "Outward-normal validation after speed correction, normal separation epsilon; 2000 additional curved contacts"},
 		"stress": {"simulated_seconds": 60, "maintained_pool_fixture": true, "max_balls": stress_max, "pool_size": game.pool.size(), "collision_limit_hits": game.collision_limit_hits,
 		"nodes_before": node_count, "nodes_after": get_node_count(), "allowed_ui_toast_nodes": 1, "physics_us_p50": times[1800], "physics_us_p95": times[3420], "physics_us_max": times.back(), "scope": "Windows headless GDScript simulation only; not Android FPS or rendering performance"}}

@@ -1,0 +1,33 @@
+{
+  "status": "PASS_IDENTICAL_RENDERED_PIXELS",
+  "scope": "Actual desktop GPU home/settings output before and after hit-region change; not Android touch proof",
+  "comparisons": {
+    "home": {
+      "size": [
+        450,
+        800
+      ],
+      "different_pixel_bounds": null,
+      "rgb_identical": true
+    },
+    "settings": {
+      "size": [
+        450,
+        800
+      ],
+      "different_pixel_bounds": null,
+      "rgb_identical": true
+    }
+  },
+  "gpu": "AMD Radeon RX 7900 XT / OpenGL 3.3 Compatibility",
+  "capture_sha256": {
+    "original-home": "b9a2efe5e878839916a4f1a4bbe1d048b4f3fcb21171396079592b5909edde76",
+    "original-settings": "b1a83b797461200f0cca97fc0bab9e4fef78bce8b064df9d6a1de6878ee979c3",
+    "expanded-home": "b9a2efe5e878839916a4f1a4bbe1d048b4f3fcb21171396079592b5909edde76",
+    "expanded-settings": "b1a83b797461200f0cca97fc0bab9e4fef78bce8b064df9d6a1de6878ee979c3"
+  },
+  "retained_captures": [
+    "touch-target-home.png",
+    "touch-target-settings.png"
+  ]
+}

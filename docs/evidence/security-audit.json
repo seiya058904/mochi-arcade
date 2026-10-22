@@ -1,11 +1,11 @@
 {
   "status": "PASS_BOUNDED_STATIC_AUDIT",
-  "commit": "e688600202573219a40f3e98e94ed3088028e6a3",
-  "commits_scanned": 23,
+  "commit": "7a48d0eb250f1928685297bab0d6ab3c8b6aa761",
+  "commits_scanned": 27,
   "counts": {
-    "history_text_blobs": 394,
-    "history_binary_or_large": 104,
-    "working_text_files": 204
+    "history_text_blobs": 440,
+    "history_binary_or_large": 153,
+    "working_text_files": 226
   },
   "findings": [],
   "runtime_network_or_process_calls": [],

@@ -1,0 +1,61 @@
+{
+  "area": [
+    648.0,
+    886.0
+  ],
+  "ball_diameter": 32.0,
+  "ball_percent_area_width": 4.94,
+  "ball_percent_screen_width": 4.44,
+  "bricks": {
+    "bottom": 367.0,
+    "columns": 4,
+    "count": 24,
+    "gap_x": 7.0,
+    "height": 44.0,
+    "percent_area_width": 22.18,
+    "rows": 6,
+    "top": 78.0,
+    "wall_percent_area_height": 32.62,
+    "width": 143.75
+  },
+  "bumper_centers": [
+    [
+      194.4,
+      443.0
+    ],
+    [
+      453.6,
+      443.0
+    ]
+  ],
+  "bumper_diameter": 68.0,
+  "bumper_percent_area_width": 10.49,
+  "gate0_percent_area_width": 23.15,
+  "gates": [
+    {
+      "center": [
+        181.4,
+        585.6
+      ],
+      "height": 46.0,
+      "width": 150.0
+    },
+    {
+      "center": [
+        466.6,
+        696.4
+      ],
+      "height": 46.0,
+      "width": 150.0
+    }
+  ],
+  "paddle": {
+    "height": 19.0,
+    "percent_area_width": 26.54,
+    "width": 172.0
+  },
+  "paddle_y": 810.0,
+  "scope": "Desktop Compatibility renderer; production constants and live brick/gate geometry. Not Android evidence.",
+  "screen_width": 720.0,
+  "tag": "after"
+}

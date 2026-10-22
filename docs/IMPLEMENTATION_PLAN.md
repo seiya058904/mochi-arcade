@@ -13,12 +13,12 @@ an evidenced external blocker prevents all meaningful progress.
 | 4b. Bubble Garden | PASS (desktop) | 1,364 checks; 5 gardens cleared in 33 hinted shots; 73 shots reach natural loss; alpha art and footer reviewed |
 | 4c. Mochi Hop | PASS (desktop) | 2,000 seeds / 50,000 platforms; 550,008 rule + 47 runtime assertions; 40-hop real-scene input replay, natural miss/retry, screenshots |
 | 4d. Tile Trio | PASS (desktop) | 1,500 solver-verified boards, 439,506 rule + 23 runtime checks; 5 shops / 187 input picks / natural full tray / free result undo / restart; actual screenshots |
-| 4e. Bouncy Balls | PASS (desktop) | 236,650 checks; real x2/x3 gates; 60-second 64-ball stress; normal input clears 4 waves, reaches 64 balls, naturally loses/retries; rendered captures |
+| 4e. Bouncy Balls | PASS (desktop) | 236,607 checks incl. player-feedback layout invariants; real x2/x3 gates; 60-second 64-ball stress; rendered input clears 4 waves, score 4,975, gates 58/80, real 64-ball max, natural loss/retry; measured before/after captures |
 | 4f. Jelly Slice | PASS (desktop) | 7,224 checks; 108,000 stress swipe events; real-input 60-second Zen round slices 150 fruit, naturally misses 7, finishes/retries via buttons; original whole/half art reviewed |
-| 5. Integration / lifecycle / stress audit | PASS (desktop) | 18 required suites; 980 full-collection checks, 40 switches, immediate lifecycle persistence, damaged-save recovery and three viewport profiles |
+| 5. Integration / lifecycle / stress audit | PASS (desktop) | 18 required suites; 995 full-collection checks, 40 switches, immediate lifecycle persistence, damaged-save recovery, three viewport profiles and actual edge-button input |
 | 6. Complete visual reviews + targeted fixes | PASS (desktop) | 34 actual renderer captures; EN/ZH, home, eight games, settings, help/pause; board fit, mipmaps and text contrast fixed |
-| 7. Signed Android acceptance | IN_PROGRESS / background BLOCKED | Host GLES development run passes all eight paths and launcher; 99 captures reviewed. Same-source Lavapipe still black. Repeated lifecycle, performance and signed-byte runtime pending; signing-secret approval pending |
-| 8. CI / final audit / remote sync | TODO | Clean local/upstream/default SHA match, final-SHA CI green |
+| 7. Signed Android acceptance | IN_PROGRESS / BLOCKED (no device) | Host GLES development run passes all eight paths and launcher; same-source Lavapipe still black. Repeated-return run passes all 24 returns but the AVD goes offline during the Jelly load fixture. No attached phone; local AVD has no hypervisor driver. Physical-device lifecycle/performance and signed-byte runtime remain DEVICE_UNAVAILABLE |
+| 8. CI / final audit / remote sync | IN_PROGRESS | Local takeover recovered, full 18 suites pass; new-SHA CI and final clean SHA match pending |
 | 9. Release and download verification | TODO | Annotated tag, draft assets, independent hash match, publish |
 
 ## Current checkpoint
@@ -183,3 +183,23 @@ matching final local/remote/tag/build commit; verified release-download bytes.
   Actual host adapter is Mesa llvmpipe, not a hardware GPU. EGL/ColorBuffer warnings
   remain and 6.01/8.91 FPS is not a performance pass. Use host for the next bounded
   run and require three returns per game; keep the unresolved black-return blocker.
+- Small buttons in the tested 720px/320dpi profile had 36-44dp hit heights.
+  Expand shared hit regions to 96 design pixels without changing rendered bounds.
+  All 15 new actual-GUI edge taps fail on the original and pass after repair across
+  three ratios; all 18 suites pass (995 collection checks). Actual Home/Settings
+  GPU pixels are identical before/after. Native edge taps and fresh signing follow
+  after the repeated-lifecycle run; the earlier signed candidate predates this change.
+- Takeover 2026-10-22 recovered the unpushed expanded hit regions, added the
+  Bouncy Balls player-feedback layout revision (ball 22->32 px, 6x4 -> 4x6 bricks,
+  gates 116x34 -> 150x46, bumpers 54 -> 68 px, paddle unchanged) and measured
+  before/after at the 720x1280 aspect. All 18 required suites pass; the Android
+  maximum-pool fixture was updated to the 4-column brick grid. See
+  `PLAYTEST_FEEDBACK.md`, `HANDOFF_STATUS.md` and the takeover section of
+  `QA_REPORT.md`.
+- Run 39673516558 passes the complete smoke and all 24 returns; 37 relevant
+  captures are manually reviewed and all 110 hashes retained. The AVD then goes
+  offline writing the Jelly load fixture, preventing cleanup. Keep the entire run
+  FAIL; cause is UNVERIFIED. Add continuous load logcat and final host diagnostics
+  to the next run, alongside the new edge-target inputs. Do not retry/reboot away
+  the failure. Remaining gates still include reliable load execution, performance,
+  signed-byte acceptance and final CI/release checks.

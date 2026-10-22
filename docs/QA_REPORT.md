@@ -27,7 +27,7 @@ audio-loop failures are repaired and their failed evidence remains below.
 | --- | --- | --- |
 | Official engine / template SHA512 | PASS | Verified downloaded archives against official sums before extraction |
 | Godot 4.7.2 import | PASS | Actual headless editor import; all current scripts/scenes/assets |
-| Cake / 2048 / save rules | PASS, 14,278 assertions | evidence/logic-tests.json; canonical merges, 625 rows, 10,000 spawns, 1,500 cuts, corrupt save recovery |
+| Cake / 2048 / save / audio rules | PASS, 14,288 assertions | evidence/logic-tests.json; canonical merges, 625 rows, 10,000 spawns, 1,500 cuts, corrupt save recovery and valid mixer loop endpoints |
 | Current vertical-slice integration | PASS, 47 assertions | evidence/vertical-slices.json; pause, retry, terminal state, undo RNG, session restore, 30 switches, lifecycle regression |
 | Fruit physics/rules | PASS, 29 assertions | evidence/fruit-drop-tests.json; actual physics contacts through all 8 tiers, duplicate suppression, pause, save, overflow fixture and retry |
 | Fruit normal-action playthrough | PASS | evidence/fruit-playthrough-rendered.json; 251 normal drops, score 23220, highest tier 7, natural overflow, max 45 fruit, immediate empty restart |
@@ -51,13 +51,13 @@ audio-loop failures are repaired and their failed evidence remains below.
 | Debug APK export | PASS | dist/MochiArcade-dev.apk, local ignored artifact |
 | Debug APK signature | PASS, debug only | v2/v3 schemes; certificate 2207476872571c99d83537c73a9e3b38d9b66c5d04bef7ad3ccd5ebbe122b0ab |
 | APK metadata | PASS | io.github.seiya058904.mochiarcade, min API 24, target 36, arm64-v8a+x86_64; VIBRATE only |
-| Android install / launch / touch | PASS rendering / FAIL first lifecycle review | Run 39654367634 renders all eight with swangle; manual review found Back process exit and ineffective Trio test taps. See evidence/android-first-rendered-review.json. |
+| Android install / launch / touch | PASS host development path / surface stability unresolved | Run 39670759820 passes all eight lifecycle paths, actual launcher and settings/reinstall; 99 native captures reviewed. Same-source Lavapipe fails on black return. Earlier failed reviews remain retained. |
 | Audio output | PASS measured Windows mixer / phone UNVERIFIED | evidence/audio-output.json: 48 kHz captured output, eight tone peaks 0.101-0.103, eight-voice burst 0.438, music peak 0.0090, muted/paused output exactly zero. No subjective listening or phone-speaker claim. |
-| Repository credential/provenance review | PASS bounded static audit | evidence/security-audit.json: 13 commits, 259 text blobs, known credential patterns; 80 binary/large blobs counted separately. No findings or runtime network/process calls; not exhaustive secret detection. |
-| CI / release | PASS for da1d397 / NOT_PUBLISHED | [Run 39647458113](https://github.com/seiya058904/mochi-arcade/actions/runs/39647458113): all eight-game checks and debug Android build passed. Later hosted runtime attempts fail on disk, as retained below. |
-| Collection lifecycle / adverse saves | PASS, 935 checks | evidence/collection-audit.json: actual Back notification and root signal, 40 scene switches, primary touch and background freeze, restart/unload, malformed nested sessions/metadata, three layouts |
+| Repository credential/provenance review | PASS bounded static audit | evidence/security-audit.json at 7a48d0e: 27 commits, 440 text blobs, known credential patterns; 153 binary/large blobs counted separately. No findings or runtime network/process calls; not exhaustive secret detection. |
+| CI / release | PASS a032fde host checkpoint / later run FAIL / NOT_PUBLISHED | [Run 39670759820](https://github.com/seiya058904/mochi-arcade/actions/runs/39670759820) passes. Run 39673516558 passes 24 background returns, but the AVD goes offline during load setup; failed cleanup and logs are retained. |
+| Collection lifecycle / adverse saves | PASS, 995 checks | evidence/collection-audit.json: actual Back notification and root signal, 40 scene switches, immediate primary touch/background freeze, restart/unload, malformed nested sessions/metadata, three layouts and 15 actual-GUI edge-target checks |
 | Complete desktop visual matrix | PASS, 34 captures reviewed | evidence/visual-review.json and matrix-*.png; two languages, three screen ratios, eight games, settings, overlays and merge feedback. Not Android proof. |
-| Required suite runner | PASS, 17 suites | evidence/required-checks.json; rejects engine runtime errors even when process exit code is zero |
+| Required suite runner | PASS, 18 suites | evidence/required-checks.json; rejects engine runtime errors even when process exit code is zero |
 
 ## Found and fixed
 
@@ -515,3 +515,106 @@ diagnostic choice. Each game now makes three background returns: the first keeps
 the full Resume/Back input checks; two further returns start paused and require
 visible content, identical checkpoint and the same PID. No failed case is retried
 or converted to success. The unresolved black-return release blocker remains.
+
+## Expanded small-button hit regions
+
+The tested Android viewport is 720x1280 at 320dpi. Several painted buttons are
+72-88 pixels high, equivalent to 36-44dp, below the task's approximate 48dp target.
+The shared button now extends only its hit region to at least 96 design pixels
+in each axis, centered on the existing visual rectangle. This is 48dp in the
+tested Android profile; no universal physical-size claim is made for untested
+display densities. Artwork, positions, visible size and game rules stay unchanged.
+
+Fifteen real Godot GUI input cases cover Settings, a toggle, Back, footer Help
+and dialog action at points six pixels outside their painted rectangles, across
+three portrait ratios. All 15 fail on the original rectangular hit behavior and
+pass with the repair; the preserved baseline is touch-target-baseline.json.
+All 18 required suites pass, with 995 collection checks. Actual AMD GPU captures
+of Home and Settings are pixel-identical before/after and were visually reviewed;
+touch-target-visual.json records this bounded comparison. Android edge taps are
+added to the next smoke run and remain pending until that build is installed.
+
+## Repeated returns pass; subsequent AVD loss retained
+
+Run 39673516558 on 7a48d0e passes all eight complete smoke paths and all 24
+background returns. Each pair of additional paused returns retains its checkpoint
+and PID. The 24 return views, eight input views and five Balls load views were
+manually reviewed in five sheets; all are visible and readable. All 110 captured
+source hashes are retained, but the other 73 views are not claimed as newly
+manually reviewed. See evidence/android-repeat-7a48d0e/.
+
+The overall run is FAIL. Balls starts at 64, reaches score 1290 and ends at 21;
+44 actual presentations over 12.104 seconds give 3.55 FPS and p95 499.492 ms.
+While writing the next Jelly fixture, ADB times out after 40 seconds, then reports
+the device offline. Screenshot, final logcat and save restoration cannot complete.
+The original primary/backup remain preserved by the test script in host memory
+and the pre-load primary is retained in the raw artifact, but restoration to this
+disposable AVD is NOT_COMPLETED. No user device is involved.
+
+The emulator host log ends with gfxstream null-context errors. No retained host
+PID/kernel evidence establishes a crash, OOM or root cause, so attribution remains
+UNVERIFIED. Future CI now retains a continuous guest log during loads and final
+host process/memory/disk/kernel state. It does not reboot or retry failed cases.
+The passed return subset does not turn this failed run into release readiness.
+
+## Takeover: recovered work, failure attribution and Bouncy Balls revision
+
+The 2026-10-22 takeover found the worktree dirty on `7a48d0e` with the previous
+session's expanded small-button hit regions and repeated-return evidence not yet
+pushed. A protected snapshot was saved under `.local/handoff-snapshot/` before any
+operation; the material was then validated rather than discarded. All 18 required
+suites pass with the recovered code (`required-checks.json`), including 995
+collection checks and the 15 real-GUI edge-target cases whose pre-repair baseline
+is retained as `touch-target-baseline.json`. The native Android edge taps in
+`android_smoke.py` are pending a run on the new build.
+
+### Run 39673516558 failure review (takeover reading of the retained artifact)
+
+The downloaded artifact was re-inspected rather than trusted from the earlier
+summary. The smoke phase passes all eight complete paths and all 24 background
+returns; each repeated paused return keeps its checkpoint and PID. The Bouncy
+Balls maximum-pool case executes with 64 balls, 44 actual SurfaceFlinger
+presentations in 12.104 s (3.55 FPS, p95 499.492 ms, software renderer), visible
+frames and a memory drop from 196,790 to 187,380 KiB PSS. The Jelly case fails
+before it starts: `adb shell run-as io.github.seiya058904.mochiarcade tee
+files/save.json` times out after 40 seconds, the following screenshot command
+returns `error: closed`, and the cleanup reports the device offline. The retained
+`emulator.log` ends with gfxstream `null ctx` delete-texture/buffer errors after
+the GL context is gone. No app tombstone, ANR, SIGSEGV or script error was found
+in the retained files, and no host PID/kernel/OOM state was captured for that run.
+
+Classification for this failure: **EMULATOR_INFRA_FAILURE (hosted software-rendered
+AVD lost its graphics context / ADB channel)**, with the deeper trigger
+UNDETERMINED. It is not evidence of an app defect, and it is also not a pass:
+the Jelly load case is NOT_RUN and the run stays FAIL. The next CI run was
+instrumented beforehand to retain a continuous guest log during load cases and a
+final host memory/disk/kernel/process snapshot; no assertion is relaxed, no case
+is retried and the disposal AVD is never rebooted to hide a failure.
+
+### Bouncy Balls player-feedback layout revision
+
+The user's phone playtest reported that Bouncy Balls' ball, bricks and mid-field
+multiplier gates/bumpers are too small, while explicitly saying the paddle is not
+the problem. The measured pre-change field had a 22-px ball (3.40% of the 648-px
+field width), 89.33x37 bricks in a 6x4 wall, 116x34 gates and 54-px bumpers.
+The revision keeps the 24-brick count, 64-ball pool, gate claims, scoring, waves
+and save schema, and the paddle stays exactly 172x19 at `area.y - 76` with the
+same drag clamp. The ball is now 32 px (4.94% field width), bricks are 143.75x44
+in a 4x6 wall (22.18% width; 32.62% of field height), gates are 150x46 (23.15%
+width) and bumpers are 68 px (10.49%). Hitboxes, sweeps and drawn geometry share
+the same constants; nothing is a stretched sprite.
+
+Evidence: `PLAYTEST_FEEDBACK.md` holds the measured table, the user-feedback
+boundary and the retained pre-change Android 720x1280 views. Desktop before/after
+captures are `bouncy-balls-{before,after}-{opening,gate,full-pool}.png` with
+`bouncy-balls-layout-{before,after}.json`. The Android post-change captures are
+recorded with the new CI run below. The 64-ball saturated view remains readable.
+
+Regression after the revision: `bouncy-balls-tests.json` PASS with 236,607
+checks (new layout invariants included; 60-second 64-ball stress, zero
+collision-limit hits); rendered ordinary-input `balls-playthrough-rendered.json`
+PASS with 4 waves cleared, score 4,975, gates 58/80, real maximum 64 balls,
+natural loss and playable retry; the other seven games' suites are unchanged.
+A physical-phone recheck of the new sizes is `PHYSICAL_DEVICE_RECHECK_PENDING`
+because no phone is attached. The user's old-APK opinion is not reported as
+acceptance of the new build.

@@ -14,3 +14,9 @@
    for password. Never put credentials in source, logs, CI or release assets.
 8. **Truthful release:** desktop proof never substitutes for Android gestures;
    emulator results never claim physical-device performance.
+9. **Bouncy Balls scale revision (2026-10-22):** after the user's phone playtest,
+   enlarge the ball, brick wall, multiplier gates and bumpers and tighten the
+   play-field composition. Keep the paddle's original 172x19 size, y position and
+   drag mapping because the user explicitly said the paddle is not too small.
+   Collision and drawing share the same constants; 24 bricks, the fixed 64-ball
+   pool, gate claims and the save schema are unchanged.

@@ -9,7 +9,14 @@ emulator completed all eight games' touch, pause, round restore and restart chec
 plus settings persistence and same-signature reinstall. A later run reproduced an
 intermittent black screen on background return, which remains a release blocker.
 A host-GLES software comparison now passes the full Android path and visual review;
-repeated stability, performance and final signed-APK acceptance remain open.
+a later repeated-return run passes all 24 returns but the disposable emulator goes
+offline during the maximum-load phase. Repeated stability, performance and final
+signed-APK acceptance remain open.
+
+The user's own phone playtest reported one P1 issue: Bouncy Balls' ball, bricks and
+mid-field multiplier gates/bumpers were too small (the paddle was explicitly fine).
+The current build enlarges those play-field objects and keeps the paddle unchanged;
+measured before/after evidence is in [playtest feedback](docs/PLAYTEST_FEEDBACK.md).
 
 <p>
   <img src="docs/evidence/android-lifecycle-0f27910/00-home.png" width="220" alt="Actual Android home screen" />
@@ -39,7 +46,7 @@ and [QA report](docs/QA_REPORT.md). Follow the verified [build instructions](doc
 for Godot import, tests and a development APK. All eight games are available
 from first launch; no accounts, advertisements or purchases are required.
 
-The required runner executes **18 suites**, including **980** collection lifecycle,
+The required runner executes **18 suites**, including **995** collection lifecycle,
 damaged-save and layout checks. A **34-screen** desktop matrix covers both languages
 and three portrait ratios.
 
@@ -52,8 +59,9 @@ Mochi Hop validates **2,000 seeds / 50,000 platforms**, **47** input/lifecycle c
 and a 40-hop input replay followed by a natural miss and restart.
 Tile Trio independently solves **1,500 seeded boards** and verifies five consecutive
 levels plus full-tray recovery through actual scene input.
-Bouncy Balls reaches the real 64-ball cap during a four-wave input replay; sustained
-pool stress and swept collisions have dedicated regression checks.
+Bouncy Balls reaches the real 64-ball cap during a four-wave input replay; its
+236,607 checks include layout-scale invariants after the playtest revision, plus
+sustained pool stress and swept collisions.
 Jelly Slice verifies fast segment swipes, single-cut ownership and bounded fruit,
 halves and trails; a 60-second actual-input replay slices 150 fruit and exercises
 the voluntary Zen results and replay controls.

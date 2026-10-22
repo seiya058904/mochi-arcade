@@ -32,7 +32,9 @@ def fixtures(original):
                 "seed": 640012, "wave": 7, "score": 0, "paddle": 0.5,
                 "balls": [[0.14 + (i % 8) * 0.1, 0.49 + (i // 8) * 0.025,
                            (-1 if i % 2 else 1) * (140 + i % 5 * 20), -380, 3, i % 5] for i in range(64)],
-                "health": [5] * 6 + [4] * 18, "clear": 0, "area": [648, 894]}
+                # Wave 7 gives the four top-row bricks 5 hp and the rest 4; the
+                # production restore rejects any hp above the live brick max.
+                "health": [5] * 4 + [4] * 20, "clear": 0, "area": [648, 894]}
         else:
             state["sessions"][name] = {
                 "seed": 120032, "rng": "640012", "score": 0, "sliced": 0, "missed": 0,

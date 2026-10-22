@@ -12,6 +12,48 @@ func check(condition: bool, message: String) -> void:
 		failures.append(message)
 		push_error(message)
 
+func click_ui(point: Vector2) -> void:
+	for pressed in [true, false]:
+		var event := InputEventMouseButton.new()
+		event.button_index = MOUSE_BUTTON_LEFT
+		event.pressed = pressed
+		event.position = root.get_final_transform() * point
+		Input.parse_input_event(event)
+		await process_frame
+	await process_frame
+
+func edge_targets(dimensions: Vector2i) -> void:
+	root.size = dimensions
+	app.show_home()
+	await process_frame
+	var settings: Button = app.ui.find_children("*", "Button", false, false)[0]
+	await click_ui(settings.position + Vector2(-6, settings.size.y * 0.5))
+	check(app.page == "settings", "Settings opens from outside the painted left edge " + str(dimensions))
+	if app.page != "settings":
+		app.show_settings() # Continue collecting baseline failures without hiding them.
+	var buttons: Array[Node] = app.ui.find_children("*", "Button", false, false)
+	var music: Button = buttons[1]
+	var was_music: bool = root.get_node("Save").setting("music")
+	await click_ui(music.position + Vector2(music.size.x * 0.5, -6))
+	check(root.get_node("Save").setting("music") != was_music, "Setting toggles above its painted edge " + str(dimensions))
+	var back_button: Button = app.ui.find_children("*", "Button", false, false)[0]
+	await click_ui(back_button.position + Vector2(-6, back_button.size.y * 0.5))
+	check(app.page == "home", "Back works beyond its painted left edge " + str(dimensions))
+	app.open_game(2, true, 4800)
+	app.resume()
+	await process_frame
+	var help: Button = app.ui.find_children("*", "Button", false, false)[2]
+	await click_ui(help.position + Vector2(help.size.x * 0.5, -6))
+	check(is_instance_valid(app.overlay) and app.game.suspended, "Help opens above its painted footer edge " + str(dimensions))
+	if not is_instance_valid(app.overlay):
+		app.show_help()
+	var resume_button: Button = app.overlay.find_children("*", "Button", true, false)[0]
+	await click_ui(resume_button.global_position + Vector2(resume_button.size.x * 0.5, -6))
+	check(not is_instance_valid(app.overlay) and not app.game.suspended, "Dialog action works above its painted edge " + str(dimensions))
+	app.leave_game()
+	root.get_node("Save").set_setting("music", false)
+	root.get_node("Sound").apply_settings()
+
 func run() -> void:
 	root.size = Vector2i(450, 800)
 	var save = root.get_node("Save")
@@ -117,6 +159,9 @@ func run() -> void:
 				check(last_tile.x <= app.game.area.x and last_tile.y <= app.game.area.y - 100, "2048 full board and footer fit aspect " + str(dimensions))
 			app.leave_game()
 			await process_frame
+	save.data.settings.reduced_motion = true
+	for dimensions in [Vector2i(360, 640), Vector2i(360, 800), Vector2i(640, 800)]:
+		await edge_targets(dimensions)
 	var report := {"status": "PASS" if failures.is_empty() else "FAIL", "checks": checks, "failures": failures, "switches": 40, "viewports": [[360, 640], [360, 800], [640, 800]], "preserved_baseline_failures": ["Cake layers=[{}] accesses missing width and breaks round", "2048 non-numeric cell produces an invalid int cast", "640x800 portrait clips the bottom of the 2048 board"], "scope": "Full collection desktop lifecycle/geometry; not Android proof"}
 	var output := FileAccess.open("res://docs/evidence/collection-audit.json", FileAccess.WRITE)
 	output.store_string(JSON.stringify(report, "  ") + "\n")

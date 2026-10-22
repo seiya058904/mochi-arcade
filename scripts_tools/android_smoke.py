@@ -256,7 +256,18 @@ def main():
             screenshot(f"{index + 1:02d}-{game}-help")
             tap(360, 775)
             time.sleep(0.3)
-            screenshot(f"{index + 1:02d}-{game}-ready")
+            ready_frame = screenshot(f"{index + 1:02d}-{game}-ready")
+            if index == 0:
+                # Six pixels above the 76px painted footer, inside the 96px
+                # hit target. These taps missed before the shared button repair.
+                tap(150, 1162)
+                edge_help = screenshot("01-fruit_drop-edge-help")
+                if edge_help == ready_frame:
+                    raise RuntimeError("Footer edge tap did not open the visible help sheet")
+                tap(360, 730)  # Six pixels above the dialog button's painted top.
+                if screenshot("01-fruit_drop-edge-resumed") == edge_help:
+                    raise RuntimeError("Dialog edge tap did not dismiss the visible help sheet")
+                report["footer_and_dialog_edge_taps"] = True
             if index == 0:
                 for x in [280, 440, 280]:
                     swipe(360, 520, x, 520)
@@ -399,8 +410,8 @@ def main():
             tap(360, 871)  # Back to my pocket from pause.
             park()
         launch()
-        tap(650, 70)
-        tap(608, 360)  # Music off.
+        tap(606, 70)  # Six pixels left of the painted Settings button.
+        tap(608, 320)  # Six pixels above the painted Music toggle; music off.
         tap(608, 466)  # SFX off.
         tap(608, 572)  # Reduced motion on.
         tap(608, 678)  # Haptics off.

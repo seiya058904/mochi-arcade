@@ -1,0 +1,94 @@
+{
+  "status": "FAIL",
+  "commit": "7a48d0eb250f1928685297bab0d6ab3c8b6aa761",
+  "apk_sha256": "84e27c58e0b25e9ad1dd5bbab17879f85dc7adc2323a4e7b6f7c96c8c2e65085",
+  "scope": "Synthetic maximum-pool bursts on isolated AOSP API 34 x86_64; inspect emulator.log for actual graphics adapter",
+  "graphics_backend_requested": "host",
+  "timing_source": "https://android.googlesource.com/platform/frameworks/native/+/refs/tags/android-14.0.0_r1/services/surfaceflinger/FrameTracker.cpp",
+  "physical_phone_performance": "UNVERIFIED",
+  "loads": {
+    "bouncy_balls": {
+      "initial_active": 64,
+      "fixture": "synthetic production save restore",
+      "memory_before": {
+        "total_pss_kib": 196790
+      },
+      "layer": "SurfaceView[io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher](BLAST)#1189",
+      "input_burst_seconds": 12.149,
+      "input_samples": 27,
+      "presentation": {
+        "status": "MEASURED",
+        "frames": 44,
+        "observed_seconds": 12.104,
+        "presented_fps": 3.55,
+        "interval_ms_p50": 268.676,
+        "interval_ms_p95": 499.492,
+        "interval_ms_max": 688.604,
+        "intervals_over_50ms": 43,
+        "scope": "Compositor presentation intervals, including ADB load; not simulation step cost or physical-phone FPS"
+      },
+      "memory_after": {
+        "total_pss_kib": 187380
+      },
+      "natural_round_ended": false,
+      "final_active": 21,
+      "score": 1290,
+      "status": "PASS_LOAD_EXECUTION_AWAITING_VISUAL_REVIEW"
+    },
+    "jelly_slice": {
+      "status": "FAIL",
+      "error": "Command '['adb', '-s', 'emulator-5554', 'shell', 'run-as', 'io.github.seiya058904.mochiarcade', 'tee', 'files/save.json']' timed out after 40 seconds",
+      "capture_error": "ADB ('exec-out', 'screencap') failed: error: closed\n"
+    }
+  },
+  "device": "Android/sdk_phone64_x86_64/emu64x:14/UE1A.230829.036.A1/11228894:userdebug/test-keys",
+  "frame_checks": {
+    "bouncy_balls-maximum-paused": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 88,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "bouncy_balls-running-00": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 197,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "bouncy_balls-running-02": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 198,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "bouncy_balls-running-05": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 192,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "bouncy_balls-after-load": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 103,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    }
+  },
+  "error": "Load cases failed: jelly_slice",
+  "cleanup_error": "ADB ('shell', 'am', 'force-stop', 'io.github.seiya058904.mochiarcade') failed: adb: device offline\n"
+}
