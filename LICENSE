@@ -1,0 +1,23 @@
+# License
+
+Copyright (c) 2026 seiya058904. All rights reserved.
+
+Mochi Arcade, including its source code, game rules, artwork, characters,
+audio, branding and documentation, is made public for viewing, review and
+personal installation of the official signed release. No other rights are
+granted.
+
+You may not copy, modify, redistribute, sublicense, sell, or use the source,
+artwork, audio or branding in another product, or distribute modified builds as
+Mochi Arcade or under any confusingly similar name, without prior written
+permission from the copyright holder.
+
+Third-party components remain under their own licenses:
+
+- Godot Engine 4.7.2 — MIT License; engine/component notices are bundled in the
+  app and its credits/license screen.
+- Nunito and Noto Sans SC fonts — SIL Open Font License 1.1; the OFL texts are
+  bundled at `assets/fonts/Nunito-OFL.txt` and
+  `assets/fonts/NotoSansSC-OFL.txt` and are readable offline in the app.
+
+See `docs/ASSET_PROVENANCE.md` for artwork and font provenance.

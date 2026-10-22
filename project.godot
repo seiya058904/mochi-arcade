@@ -8,6 +8,11 @@ run/main_scene="res://scenes/app/main.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/description="Eight little games. A softer kind of play."
 config/icon="res://assets/art/app-icon.svg"
+boot_splash/bg_color=Color(0.984314, 0.952941, 0.886275, 1)
+boot_splash/fullsize=true
+boot_splash/image="res://assets/art/boot-splash.png"
+boot_splash/show_image=true
+boot_splash/use_filter=true
 
 [autoload]
 Save="*res://scripts/app/save_manager.gd"

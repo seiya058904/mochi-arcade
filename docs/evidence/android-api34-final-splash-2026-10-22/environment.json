@@ -1,0 +1,121 @@
+{
+  "schema": 1,
+  "date": "2026-10-22",
+  "kind": "final_signed_byte_splash_and_boot_acceptance",
+  "apk": {
+    "path": "dist/MochiArcade.apk",
+    "bytes": 78467820,
+    "sha256": "8fcc1ebc83cb9cb8e8947a1a33bef9cba9222b9ac775fafdcd7d3d5cd85d473c",
+    "certificate_sha256": "de1458f30ad0f2a758b9c6f3de82c00b608723eaa75de22d3cf853e351f7657b",
+    "package": "io.github.seiya058904.mochiarcade",
+    "versionName": "1.0.0",
+    "versionCode": 1,
+    "min_sdk": 24,
+    "target_sdk": 36,
+    "debuggable": false,
+    "signature_schemes": "v2+v3",
+    "zipalign_16kb": "PASS",
+    "permissions": [
+      "android.permission.VIBRATE"
+    ],
+    "signing_identity": "Existing Mochi Arcade RSA-3072 release key; no new identity and no key upload",
+    "built_with": "scripts_tools/sign_release.ps1 -Build (Godot 4.7.2 stable, official Android templates)"
+  },
+  "boot_splash": {
+    "project_setting_image": "res://assets/art/boot-splash.png",
+    "image_size": "720x1280",
+    "image_sha256": "b974b9d7325f7f53b808750ac86b9026e1ff75a81e90630cd25cc52cba22a7ce",
+    "bg_color": "#FBF3E2",
+    "fullsize": true,
+    "godot_default_logo_visible": false,
+    "godot_default_progress_bar_visible": false,
+    "fake_percentage_or_artificial_delay": false,
+    "android_native_splash_icon_sha256": "cd08dd6c2e97f1d9d780697c5752042f6918aa9c3ce508ee8898798098233acb",
+    "android_native_splash_icon": "Original bunny launcher icon; no Godot logo",
+    "android_splash_export_options": [
+      "splash_screen/background_color=Color(0.984314, 0.952941, 0.886275, 1)",
+      "screen/background_color=Color(0.984314, 0.952941, 0.886275, 1)"
+    ],
+    "note": "The prebuilt Godot Android template still uses the platform light starting-window background for the brief native splash; the app-provided Mochi Arcade boot splash is cream and the custom engine splash is fully branded."
+  },
+  "startup": {
+    "device": "AOSP API 34 x86_64 AVD, 720x1280, 320 dpi, AEHD 2.2 + AMD RX 7900 XT host GPU",
+    "first_launch_fresh_install_ms": 463,
+    "cold_start_ms": 408,
+    "warm_start_ms": 79,
+    "video_files": [
+      "startup-first.mp4",
+      "startup-cold.mp4",
+      "startup-warm.mp4"
+    ],
+    "contact_sheets": [
+      "startup-first-sheet.png",
+      "startup-cold-sheet.png",
+      "startup-warm-sheet.png",
+      "startup-first-late-sheet.png",
+      "startup-cold-late-sheet.png"
+    ],
+    "observed_sequence": [
+      "Android launcher / system splash: original bunny icon",
+      "Cream app window and custom Mochi Arcade boot splash: bunny, macaron, MOCHI ARCADE title",
+      "Home screen with eight cards"
+    ],
+    "no_godot_default_branding_observed": true
+  },
+  "smoke": {
+    "status": "PASS_SMOKE_AWAITING_VISUAL_REVIEW",
+    "apk_sha256": "8fcc1ebc83cb9cb8e8947a1a33bef9cba9222b9ac775fafdcd7d3d5cd85d473c",
+    "games": 8,
+    "background_cycles_per_game": 3,
+    "frame_checks": 101,
+    "blank_frames": 0,
+    "same_pid": true,
+    "pause_checkpoint_equal": true,
+    "force_stop_restore": true,
+    "zero_score_restart": true,
+    "settings_persisted": true,
+    "same_signature_reinstall_preserves_save": true,
+    "launcher_icon": true,
+    "edge_target_taps": true,
+    "first_music_loop": true,
+    "runtime_errors": [],
+    "egl_swap_warnings": 43,
+    "egl_warning_scope": "only while backgrounded with the surface destroyed; no returned frame was blank"
+  },
+  "load": {
+    "status": "PASS_LOAD_EXECUTION_AWAITING_VISUAL_REVIEW",
+    "bouncy_balls": {
+      "active_balls": 64,
+      "presented_fps": 55.43,
+      "interval_ms_p95": 33.251,
+      "pss_before_kib": 175671,
+      "pss_after_kib": 166479
+    },
+    "jelly_slice": {
+      "active_fruit": 12,
+      "presented_fps": 60,
+      "interval_ms_p95": 17.243,
+      "pss_before_kib": 173708,
+      "pss_after_kib": 159156
+    },
+    "original_save_restored": true,
+    "original_backup_restored": true,
+    "phone_fps": "UNVERIFIED",
+    "scope": "SurfaceFlinger compositor intervals including ADB load; not physical-phone FPS"
+  },
+  "suites": {
+    "status": "PASS",
+    "executed": 18,
+    "total": 18,
+    "evidence": "docs/evidence/required-checks.json"
+  },
+  "visual_review": {
+    "sheet": "visual-review-sheet.png",
+    "result": "PASS for representative startup, home, game, settings, launcher and 64-ball/12-fruit frames"
+  },
+  "boundaries": [
+    "Controlled AOSP API 34 emulator with hardware GPU; not a physical phone.",
+    "Physical-phone quantitative performance remains UNVERIFIED.",
+    "Hosted GitHub Actions Mesa/llvmpipe Android black-return remains covered by the owner-approved A14 environment exception, not PASS."
+  ]
+}

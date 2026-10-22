@@ -1,37 +1,27 @@
 # Mochi Arcade
 
-A cozy, offline collection of eight original 2D pocket games for Android.
+Eight cozy, fully offline pocket games in one portrait Android app.
 
-**In development. No verified release is available yet.**
-
-All eight games are playable in the current development build. A hosted Android 14
-emulator completed all eight games' touch, pause, round restore and restart checks,
-plus settings persistence and same-signature reinstall. A later run reproduced an
-intermittent black screen on background return, which remains a release blocker.
-A host-GLES software comparison now passes the full Android path and visual review;
-a later repeated-return run passes all 24 returns but the disposable emulator goes
-offline during the maximum-load phase. The newest runs pass the expanded edge-target taps and execute both maximum pools
-on one online emulator (64 Balls at 3.60-3.84 FPS, 12 Jelly fruit at 5.04-7.19 FPS
-on software rendering; not phone performance). They also retain three Android
-failures: a test-harness timing assumption at a second Bouncy Balls return (now
-fixed) and, more importantly, fully black Fruit Drop background returns in two
-separate sessions that only a new surface cycle recovers with the same PID. That
-surface failure is a reproducible release blocker; repeated stability, performance
-and final signed-APK acceptance remain open.
-
-The user's own phone playtest reported one P1 issue: Bouncy Balls' ball, bricks and
-mid-field multiplier gates/bumpers were too small (the paddle was explicitly fine).
-The current build enlarges those play-field objects and keeps the paddle unchanged;
-measured before/after evidence is in [playtest feedback](docs/PLAYTEST_FEEDBACK.md).
+[Download v1.0.0](https://github.com/seiya058904/mochi-arcade/releases/tag/v1.0.0) ·
+[Release notes](docs/RELEASE_NOTES_v1.0.0.md) ·
+[QA report](docs/QA_REPORT.md)
 
 <p>
-  <img src="docs/evidence/android-lifecycle-0f27910/00-home.png" width="220" alt="Actual Android home screen" />
-  <img src="docs/evidence/android-lifecycle-0f27910/03-cake_stack-after-input.png" width="220" alt="Cake Stack after Android touch input" />
-  <img src="docs/evidence/android-lifecycle-0f27910/07-number_bloom-after-input.png" width="220" alt="Number Bloom after Android swipes" />
+  <img src="docs/evidence/android-api34-final-splash-2026-10-22/frames/mochi-splash.png" width="210" alt="Custom Mochi Arcade boot splash" />
+  <img src="docs/evidence/android-api34-final-splash-2026-10-22/frames/00-home.png" width="210" alt="Mochi Arcade home screen with eight games" />
+  <img src="docs/evidence/android-api34-final-splash-2026-10-22/frames/bouncy_balls-running-02.png" width="210" alt="Bouncy Balls at the 64-ball maximum" />
 </p>
 
-Actual Android 14 emulator captures at 720x1280, reviewed alongside 84 other
-native captures. This is development-build evidence, not a physical-phone performance claim.
+A cream-paper arcade of small, gentle games: drop fruit, pop bubbles, stack cake,
+catch bouncy balls, match tiles, hop between platforms, merge numbers and slice
+jelly. Each session lasts a few minutes. No accounts, ads, purchases, stamina,
+network permissions or required tutorial.
+
+Built with **Godot 4.7.2 stable**, GDScript and the Compatibility renderer.
+The Android artifact is **MochiArcade.apk**, package
+`io.github.seiya058904.mochiarcade`, version **1.0.0**.
+
+## Games
 
 | Game | Play |
 | --- | --- |
@@ -44,34 +34,69 @@ native captures. This is development-build evidence, not a physical-phone perfor
 | Number Bloom | Slide and merge a classic 2048 board |
 | Jelly Slice | Swipe through jelly fruit in a gentle Zen mode |
 
-Built with **Godot 4.7.2 stable**, GDScript and the Compatibility renderer.
-The final Android artifact will be named **MochiArcade.apk**.
+## Verified for v1.0.0
 
-Development and release evidence is tracked in [the implementation plan](docs/IMPLEMENTATION_PLAN.md)
-and [QA report](docs/QA_REPORT.md). Follow the verified [build instructions](docs/BUILD_AND_RELEASE.md)
-for Godot import, tests and a development APK. All eight games are available
-from first launch; no accounts, advertisements or purchases are required.
+- **18 required Godot suites: PASS**, with zero runtime errors; the suite includes
+  995 collection lifecycle/damaged-save checks, 34 desktop visual-matrix screens,
+  real-input playthroughs and bounded stress tests (see
+  [QA report](docs/QA_REPORT.md) and [required checks](docs/evidence/required-checks.json)).
+- **Signed-byte Android acceptance on a controlled hardware-GPU AVD** (AOSP API 34
+  x86_64, Google AEHD 2.2, AMD Radeon RX 7900 XT, 720x1280): eight games x three
+  background/foreground returns, 101 non-blank frames, same PID, pause checkpoint
+  equality, force-stop round restore, zero-score restart, settings persistence,
+  same-signature reinstall preserving the save, launcher icon, edge-target taps
+  and first background-music loop. Maximum pools: 64 Balls at 55.43 presented FPS
+  (p95 33.251 ms), Jelly Slice 12 fruit at 60.0 FPS (p95 17.243 ms), with exact
+  save/backup restoration.
+- **Custom Mochi Arcade startup experience**: the Android system splash uses the
+  original bunny icon; the Godot boot splash is a cream Mochi Arcade image with
+  the bunny and macaron. No Godot default logo, blue icon or default progress bar
+  is shown, and no fake loading percentage or artificial delay is used. First
+  launch 463 ms, cold start 408 ms, warm start 79 ms on the controlled AVD;
+  screenshots and screen recordings are retained in
+  [startup evidence](docs/evidence/android-api34-final-splash-2026-10-22/).
+- **Security**: bounded static audit of the full reachable history and release
+  working tree, no known credential-pattern findings and no runtime
+  network/process calls.
+- **Physical phone**: the owner reported a hands-on retest with no problems.
+  Device metadata, captures and on-phone hashes were not supplied, so this remains
+  subjective user evidence rather than automated physical-device acceptance.
 
-The required runner executes **18 suites**, including **995** collection lifecycle,
-damaged-save and layout checks. A **34-screen** desktop matrix covers both languages
-and three portrait ratios.
+### Disclosed limitation (owner-approved CI environment exception)
 
-Game checks: **14,288** logic/audio-boundary assertions and **47** integration assertions,
-including standard 2048 merges, seeded spawn distribution, cake overlap boundaries,
-atomic-save recovery, undo with RNG restoration, lifecycle handling and 30 scene switches.
-Fruit adds **29** physics checks; Bubble adds **1,364** geometry/runtime checks and
-a normal-action replay clearing five gardens before a natural loss and retry.
-Mochi Hop validates **2,000 seeds / 50,000 platforms**, **47** input/lifecycle checks,
-and a 40-hop input replay followed by a natural miss and restart.
-Tile Trio independently solves **1,500 seeded boards** and verifies five consecutive
-levels plus full-tray recovery through actual scene input.
-Bouncy Balls reaches the real 64-ball cap during a four-wave input replay; its
-236,607 checks include layout-scale invariants after the playtest revision, plus
-sustained pool stress and swept collisions.
-Jelly Slice verifies fast segment swipes, single-cut ownership and bounded fruit,
-halves and trails; a 60-second actual-input replay slices 150 fruit and exercises
-the voluntary Zen results and replay controls.
-The [release checklist](docs/RELEASE_CHECKLIST.md) deliberately retains pending gates.
+The GitHub-hosted Ubuntu + Mesa llvmpipe software-rendered Android emulator still
+intermittently shows a blank frame after a background return
+(`EGL_BAD_SURFACE`; a new surface cycle recovers the pause sheet with the same
+PID). The raw failures are retained and the CI run is not reported as PASS. The
+release owner approved a scoped A14 gate state of
+`OWNER_APPROVED_ENVIRONMENT_EXCEPTION` for that hosted software-rendered case
+only, using the hardware-GPU signed-byte acceptance above as substitute evidence.
+No self-hosted GPU runner was added and no test assertion was removed.
+
+Physical-phone quantitative performance (frame time, thermal, battery, refresh
+rate) remains **UNVERIFIED**. Emulator compositor FPS is not phone FPS. See
+[RELEASE_CHECKLIST.md](docs/RELEASE_CHECKLIST.md) and
+[RELEASE_NOTES_v1.0.0.md](docs/RELEASE_NOTES_v1.0.0.md).
+
+## Download and install
+
+Download the signed APK and checksum from the
+[v1.0.0 release](https://github.com/seiya058904/mochi-arcade/releases/tag/v1.0.0):
+
+- `MochiArcade.apk`
+- `SHA256SUMS`
+
+```
+SHA-256  8fcc1ebc83cb9cb8e8947a1a33bef9cba9222b9ac775fafdcd7d3d5cd85d473c
+cert     de1458f30ad0f2a758b9c6f3de82c00b608723eaa75de22d3cf853e351f7657b
+```
+
+Requires Android 7.0+ (API 24), ARM64 or x86_64. Open the APK with Android's
+package installer (allow installs from the file manager/browser when prompted).
+Updates must keep the same package name and release signing identity to preserve
+app data. The artifact is signed with the existing Mochi Arcade release
+certificate (RSA-3072, v2+v3); the private key never enters this repository or
+GitHub Actions secrets.
 
 ## Build and test
 
@@ -82,13 +107,24 @@ engine executable. From PowerShell in the project root:
 ```powershell
 ./scripts_tools/godot.ps1 --headless --editor --import
 python scripts_tools/run_checks.py --engine $env:MOCHI_GODOT
-./scripts_tools/godot.ps1 --headless --export-debug Android dist/MochiArcade-dev.apk
+python scripts_tools/android_smoke.py --apk dist/MochiArcade.apk --output .local/android --serial emulator-5554 --release
+python scripts_tools/android_load.py --apk dist/MochiArcade.apk --output .local/load --serial emulator-5554 --release
 ```
 
-The test runner fails on script/runtime errors even if Godot exits with code zero.
-Development APKs use a debug identity; they are not long-term update releases.
-See [build and signing details](docs/BUILD_AND_RELEASE.md) for the private release
-identity, actual Android acceptance status and final publication gates.
+The signed release export uses `scripts_tools/sign_release.ps1 -Build` with the
+protected local signing identity; see
+[build and signing details](docs/BUILD_AND_RELEASE.md). Development APKs use a
+debug identity and are not update releases.
+
+## Custom boot splash
+
+- `assets/art/boot-splash.png` (720x1280) is composed from the original
+  `mochi-bunny.png` art with a procedural cream background and Nunito title.
+- `project.godot` sets `application/boot_splash` to that image with
+  `bg_color=#FBF3E2`, full-size and filtering enabled.
+- `export_presets.cfg` sets cream splash/window background colors for the
+  Godot 4.7.2 Android export path.
+- No Godot logo, default progress bar, fake percentage or synthetic delay is used.
 
 ## Project layout
 
@@ -97,7 +133,7 @@ identity, actual Android acceptance status and final publication gates.
 | `scenes/app`, `scripts/app` | Shared navigation, local saves and audio |
 | `scenes/games`, `scripts/games` | Eight isolated scenes and their rules |
 | `scripts/shared` | Input lifecycle, palette, feedback and geometry |
-| `assets/art`, `assets/fonts` | Production art and licensed fonts |
+| `assets/art`, `assets/fonts` | Production art, boot splash and licensed fonts |
 | `assets/source` | Image-generation prompts and concept provenance |
 | `tests`, `scripts_tools` | Rules, input replays, visual/audio audits and build tools |
 | `docs/evidence` | Actual reports and clearly labelled desktop/Android captures |
@@ -108,13 +144,12 @@ Everything plays offline. There are no accounts, ads, purchases, analytics or
 network permissions. Progress and preferences stay in local app storage. Settings
 include music, sound, reduced motion, vibration, language and record reset.
 Credits and bundled font/engine notices are readable offline inside the app.
-See [asset provenance](docs/ASSET_PROVENANCE.md) for generated artwork and font sources.
+See [asset provenance](docs/ASSET_PROVENANCE.md) for generated artwork and font
+sources.
 
-## Install and releases
+## License
 
-**No stable release is currently published.** The final accepted asset will be named
-`MochiArcade.apk`. This repository is private, so its releases require repository
-access. When a verified release is available, download that APK to an Android
-7.0+ ARM64 or x86_64 device and open it with Android's package installer. Updates
-must retain the same package and release signing identity to preserve app data.
-Physical-device performance remains unverified until tested on a phone.
+Copyright (c) 2026 seiya058904. All rights reserved. See [LICENSE](LICENSE) for
+the repository license and third-party notices. The app bundles Godot Engine
+(MIT) and Nunito / Noto Sans SC (SIL OFL 1.1) notices; those components remain
+under their own licenses.

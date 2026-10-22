@@ -17,9 +17,9 @@ an evidenced external blocker prevents all meaningful progress.
 | 4f. Jelly Slice | PASS (desktop) | 7,224 checks; 108,000 stress swipe events; real-input 60-second Zen round slices 150 fruit, naturally misses 7, finishes/retries via buttons; original whole/half art reviewed |
 | 5. Integration / lifecycle / stress audit | PASS (desktop) | 18 required suites; 995 full-collection checks, 40 switches, immediate lifecycle persistence, damaged-save recovery, three viewport profiles and actual edge-button input |
 | 6. Complete visual reviews + targeted fixes | PASS (desktop) | 34 actual renderer captures; EN/ZH, home, eight games, settings, help/pause; board fit, mipmaps and text contrast fixed |
-| 7. Signed Android acceptance | IN_PROGRESS / BLOCKED (hosted CI only) | Host GLES development runs pass the launcher, edge-target taps and large parts of the lifecycle; same-source Lavapipe still black. Repeated-return run passes all 24 returns but the AVD goes offline during the Jelly load. Run 39698026180 stops at a Bouncy Balls harness precondition (fixed); run 39699385661 then reproduces a fully black Fruit Drop background return that only a new surface cycle recovers with the same PID. Both maximum pools execute on one online AVD in both runs (3.60-3.84 / 5.04-7.19 FPS, software). The final-SHA run 39701157030 is FAIL at the same blank repeated return; run 39711487194 (d7f2650) fails at the Bouncy restore precondition with no blank return. On 2026-10-22 the exact signed bytes passed a hardware-GPU AOSP API 34 AVD acceptance (8 games x 3 returns, 101 non-blank frames, force-stop restore, reinstall; 64 Balls 55.55 FPS, Jelly 60.0 FPS) with evidence in `docs/evidence/android-api34-hostgpu-2026-10-22/`; this is an emulator, not a physical phone, and does not satisfy A14. User-reported phone retest: no problems, metadata/captures NOT_PROVIDED |
-| 8. CI / final audit / remote sync | PASS WITH OWNER-APPROVED A14 ENVIRONMENT EXCEPTION | Final local verification on `90ee172`: 18/18 suites PASS, security audit PASS, APK static checks PASS, path audit from packaged source `3a8c7ec` clean. Run 39716897550 on `90ee172` remains FAIL at the hosted software-rendered Android black return; A14 is not PASS. See the RELEASE_CHECKLIST exception section |
-| 9. Release and download verification | IN_PROGRESS | Tag v1.0.0, draft upload, downloaded-asset byte/signature verification and publish in progress; A09 phone performance remains UNVERIFIED and disclosed |
+| 7. Signed Android acceptance | PASS controlled hardware-GPU emulator; hosted CI on scoped exception | Host GLES development runs pass the launcher, edge-target taps and large parts of the lifecycle; same-source Lavapipe still black. Repeated-return run passes all 24 returns but the AVD goes offline during the Jelly load. Run 39698026180 stops at a Bouncy Balls harness precondition (fixed); run 39699385661 then reproduces a fully black Fruit Drop background return that only a new surface cycle recovers with the same PID. Both maximum pools execute on one online AVD in both runs (3.60-3.84 / 5.04-7.19 FPS, software). The final-SHA run 39701157030 is FAIL at the same blank repeated return; run 39711487194 (d7f2650) fails at the Bouncy restore precondition with no blank return. On 2026-10-22 the exact signed bytes passed a hardware-GPU AOSP API 34 AVD acceptance (8 games x 3 returns, 101 non-blank frames, force-stop restore, reinstall; 64 Balls 55.55 FPS, Jelly 60.0 FPS) with evidence in `docs/evidence/android-api34-hostgpu-2026-10-22/`; this is an emulator, not a physical phone, and does not satisfy A14. User-reported phone retest: no problems, metadata/captures NOT_PROVIDED |
+| 8. CI / final audit / remote sync | PASS WITH OWNER-APPROVED A14 ENVIRONMENT EXCEPTION; public audit pending | Final local verification on the v1.0.0 splash working tree: 18/18 suites PASS, security audit PASS, final signed APK static checks PASS, startup and hardware-GPU Android acceptance PASS. The hosted Android smoke retains its known software-renderer failure (A14 exception, not PASS). Public-safety audit of history/Actions/artifacts precedes the visibility switch |
+| 9. Release and download verification | IN_PROGRESS | Tag v1.0.0, draft upload, downloaded-asset verification, repository public switch, publish and anonymous public download verification in progress; A09 phone performance remains UNVERIFIED and disclosed |
 
 ## Current checkpoint
 
@@ -33,10 +33,13 @@ an evidenced external blocker prevents all meaningful progress.
   a controlled emulator, not a phone. Hosted runs 39701157030 (black return) and
   39711487194 (Bouncy restore precondition, no blank return) remain FAIL. See
   `HANDOFF_STATUS.md`.
-- 2026-10-22 release closeout: the owner approved the scoped A14 hosted
-  software-renderer exception; final local verification on `90ee172` passed
-  18/18 suites, the bounded security audit and APK static checks; release notes
-  and exception are recorded; tag/draft/download verification/publish in progress.
+- 2026-10-22 v1.0.0 closeout: the owner approved the scoped A14 hosted
+  software-renderer exception; the final APK was rebuilt with the existing
+  identity and a custom cream Mochi boot splash (SHA-256 `8fcc1ebc...`); 18/18
+  suites, hardware-GPU Android smoke/load, startup and static APK checks passed;
+  README/license/release notes are ready. Final commit/CI, public-safety audit,
+  draft upload, repository public switch, publish and anonymous download
+  verification are in progress.
 - Latest reviewed development checkpoint a032fde passes host-GLES CI 39670759820 and all 99 native views; same-source Lavapipe 39670750928 fails on black background return. Next run strengthens repeat coverage; signing-secret approval or a connected Android device is still required for signed-byte acceptance.
 - Earlier all-eight-game checkpoint da1d397c29134fd18ec29b26a8cbfdeedeae0f4c passed CI 39647458113. Hosted attempts 39648255774 and 39649666572 then exposed and retained emulator disk-allocation failures.
 - Engine verified: 4.7.2.stable.official.ed1daf0bf; official Android templates;

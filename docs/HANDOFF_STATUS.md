@@ -158,46 +158,48 @@ unverified from the earlier conversation.
   are unchanged; the hosted `d7f2650` run failed at the old restore precondition
   and did not reproduce a blank return.
 
-## Owner-approved A14 environment exception and v1.0.0 release (2026-10-22)
+## Owner-approved A14 exception, splash rebuild and v1.0.0 public release (2026-10-22)
 
 - Owner decision: accept a scoped exception for the GitHub-hosted Ubuntu Mesa
   llvmpipe Android emulator background-return blank frame; no self-hosted GPU
   runner. A14 is recorded as `OWNER_APPROVED_ENVIRONMENT_EXCEPTION`, not PASS.
-- Retained failure: run 39716897550 on `90ee172` failed at
+  Retained failure: run 39716897550 on `90ee172` failed at
   `01-fruit_drop-repeat-3-background-return` with blank frame
-  `cfc80ccb...`; the raw evidence and FAIL status are kept.
-- Substitute evidence: the signed-byte hardware-GPU API 34 acceptance (8 games x
-  3 returns, 101 non-blank frames, restore/reinstall, 64 Balls 55.55 FPS, Jelly
-  60.0 FPS). Physical-phone quantitative performance remains UNVERIFIED.
-- Release verification: local 18/18 suites PASS on `90ee172`; bounded security
-  audit PASS; APK static checks PASS; the path audit from the packaged source
-  `3a8c7ec` shows only export-excluded docs/tests/tools plus README, which is
-  not a Godot resource and is absent from the APK. Release steps: tag v1.0.0,
-  draft upload, downloaded-asset byte/signature verification, publish.
+  `cfc80ccb...`; raw evidence and FAIL status are kept.
+- Final signed APK rebuilt with the existing release identity after adding the
+  custom Mochi boot splash: SHA-256
+  `8fcc1ebc83cb9cb8e8947a1a33bef9cba9222b9ac775fafdcd7d3d5cd85d473c`,
+  78,467,820 bytes; certificate unchanged. The custom splash uses
+  `assets/art/boot-splash.png` (bunny, macaron, cream background), the
+  `project.godot` boot-splash settings and cream splash/window colors in
+  `export_presets.cfg`. No Godot default logo, progress bar, fake percentage or
+  artificial delay was observed.
+- Final verification: 18/18 required suites PASS; hardware-GPU API 34 signed-byte
+  smoke PASS (8 games x 3 returns, 101 non-blank frames, restore/reinstall,
+  first music loop) and load PASS (64 Balls 55.43 FPS, Jelly 60.0 FPS, save and
+  backup restored); first launch 463 ms, cold start 408 ms, warm start 79 ms,
+  with screenshots and screen recordings retained in
+  `docs/evidence/android-api34-final-splash-2026-10-22/`. Physical-phone
+  quantitative performance remains UNVERIFIED.
+- Public-release preparation: README rewritten (English, real screenshots,
+  install, build, license, release link), `LICENSE` added, release notes updated;
+  public-safety audit covers history, Actions logs/artifacts, code, screenshots
+  and docs before switching the repository to public. Steps: final commit/CI,
+  draft release with `MochiArcade.apk` and `SHA256SUMS`, downloaded-asset
+  byte/signature verification, repository public, publish, anonymous public
+  download verification.
 
-## Exact next actions (release closeout)
+## Exact next actions (release closeout, updated 2026-10-22)
 
-1. Commit the owner-approved A14 exception and release notes; push; confirm CI
-   passes the 18 suites and development APK build and fails only at the known
-   hosted Android black return.
-2. Create tag v1.0.0 via a draft release, upload `MochiArcade.apk` and
-   `SHA256SUMS`, download them into an isolated directory, and re-verify
-   SHA-256, certificate, package, version and byte equality before publishing.
-3. After publish, record the release URL/tag/commit/asset hashes in README, QA,
-   RELEASE_CHECKLIST and this handoff in a clearly marked post-release docs
-   commit.
-4. Keep A09 physical-phone quantitative performance UNVERIFIED and disclosed; no
-   self-hosted GPU runner and no signing-key upload.
-
-1. Push the harness fix and evidence, then wait for CI on the new final SHA. A14
-   may now pass if the hosted run does not hit the intermittent black return; it
-   still requires the full 18 suites, signed-byte smoke and load phases to pass.
-2. If the hosted run reproduces the black return, the remaining options are a
-   hardware-GPU self-hosted runner for the Android smoke or an explicitly
-   accepted, documented CI-environment exception. Do not weaken or delete the
-   black-return assertion.
-3. Physical-phone performance remains UNVERIFIED. Connecting a USB-debugging
-   phone would allow automated signed-byte and frame-time acceptance; the user's
-   phone retest stays user-reported only.
-4. The local AVD is a controlled emulator and does not replace the final-SHA CI
-   gate. Release only after A09/A14 are closed or explicitly decided.
+1. Commit the final signed splash build, README, license and evidence; push;
+   confirm CI passes the 18 suites and development APK build and fails only at
+   the known hosted Android black return.
+2. Run the public-safety audit of history, Actions logs/artifacts, code,
+   screenshots and docs; stop on any key, credential or personal-data finding.
+3. Create tag v1.0.0 through a draft release, upload the final
+   `MochiArcade.apk` and `SHA256SUMS`, download them into an isolated directory,
+   and re-verify SHA-256, certificate, package, version and byte equality.
+4. Switch the existing repository to public, publish the release, and verify the
+   APK anonymously over the public internet.
+5. Post-release, record the release URL/tag/commit/asset hashes in README, QA,
+   RELEASE_CHECKLIST and this handoff; keep A09 phone performance UNVERIFIED.

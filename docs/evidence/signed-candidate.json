@@ -2,8 +2,8 @@
   "status": "PASS_STATIC_AND_CONTROLLED_EMULATOR_RUNTIME",
   "version": "1.0.0",
   "version_code": 1,
-  "apk_sha256": "2b459f5cb47242b2e2c9283bc80e30629b413dc76bca4d776b84949f9815b2c5",
-  "bytes": 78016973,
+  "apk_sha256": "8fcc1ebc83cb9cb8e8947a1a33bef9cba9222b9ac775fafdcd7d3d5cd85d473c",
+  "bytes": 78467820,
   "certificate_sha256": "de1458f30ad0f2a758b9c6f3de82c00b608723eaa75de22d3cf853e351f7657b",
   "certificate_key": "RSA-3072",
   "schemes": [
@@ -24,29 +24,44 @@
   "eight_scenes": true,
   "font_notices_bundled": true,
   "private_and_development_files_excluded": true,
-  "scope": "Local release export rebuilt during the 2026-10-22 takeover after the expanded hit regions and the Bouncy Balls play-field revision. Export excludes docs/, tests/, scripts_tools/, .github/ and assets/source/, so later documentation-only commits do not change the packaged game code. The exact signed bytes passed a controlled AOSP API 34 x86_64 AVD acceptance on 2026-10-22; physical-phone automated acceptance remains unavailable (the user's phone retest is user-reported only).",
+  "splash": {
+    "project_image": "res://assets/art/boot-splash.png",
+    "image_sha256": "b974b9d7325f7f53b808750ac86b9026e1ff75a81e90630cd25cc52cba22a7ce",
+    "godot_default_logo_visible": false,
+    "godot_default_progress_bar_visible": false,
+    "evidence_dir": "docs/evidence/android-api34-final-splash-2026-10-22/"
+  },
+  "scope": "Final v1.0.0 signed export rebuilt on 2026-10-22 with the custom Mochi Arcade boot splash and cream window/splash settings. Export excludes docs/, tests/, scripts_tools/, .github/ and assets/source/, so only the splash change and packaged game content are in the APK. The exact signed bytes passed a controlled AOSP API 34 x86_64 AVD acceptance; physical-phone automated acceptance remains unavailable (user-reported phone retest only).",
   "local_ci_signing_helper": "PASS: correct certificate and transient key absent after build (previous CI helper run)",
-  "source_commit": "3a8c7ec5c0c7a00a5d42d143fcf20dcae3db81d7",
-  "aapt2_note": "The prebuilt Godot template emits a benign 'mipmap/themed_icon ... no such path' warning; the same warning is present in the development template APK and the normal and monochrome launcher icons are packaged.",
+  "source_commit": "v1.0.0 release tag tree; the APK was built from the working tree that became the release commit. Previous packaged-code source was 3a8c7ec before the splash-only rebuild.",
+  "superseded_candidates": [
+    {
+      "sha256": "2b459f5cb47242b2e2c9283bc80e30629b413dc76bca4d776b84949f9815b2c5",
+      "bytes": 78016973,
+      "note": "Pre-splash signed candidate; superseded because the boot splash and export resources changed."
+    }
+  ],
+  "aapt2_note": "The prebuilt Godot template emits a benign 'mipmap/themed_icon ... no such path' warning; the normal and monochrome launcher icons are packaged.",
   "install_verification": "PASS on a controlled AOSP API 34 x86_64 AVD (AEHD 2.2 + AMD RX 7900 XT host GPU) on 2026-10-22; physical-phone automated acceptance remains DEVICE_UNAVAILABLE",
   "runtime_acceptance": {
     "status": "PASS_CONTROLLED_EMULATOR",
     "date": "2026-10-22",
-    "evidence_dir": "docs/evidence/android-api34-hostgpu-2026-10-22/",
-    "smoke": "8 games x 3 background/foreground returns, 101 non-blank frames, same PID, pause checkpoint equality, force-stop restore, zero-score restart, settings persistence, same-signature reinstall, launcher icon",
-    "load": "64 Balls 55.55 presented FPS (p95 33.166 ms); Jelly 60.0 FPS (p95 17.199 ms); exact save restoration",
+    "evidence_dir": "docs/evidence/android-api34-final-splash-2026-10-22/",
+    "smoke": "8 games x 3 background/foreground returns, 101 non-blank frames, same PID, pause checkpoint equality, force-stop restore, zero-score restart, settings persistence, same-signature reinstall, launcher icon, first music loop",
+    "load": "64 Balls 55.43 presented FPS (p95 33.251 ms); Jelly 60.0 FPS (p95 17.243 ms); original save and backup restored",
+    "startup": "first launch 463 ms, cold start 408 ms, warm start 79 ms; custom Mochi boot splash; no Godot default logo or progress bar",
     "boundaries": [
       "controlled emulator, not a physical phone",
       "compositor FPS is not physical-phone FPS",
-      "hosted software-rendered CI still fails intermittently"
+      "hosted software-rendered CI still fails intermittently and is covered by the owner-approved A14 environment exception"
     ]
   },
   "android_ci_checkpoints": {
+    "6240595": "FAIL Android smoke: black Fruit Drop cycle-2 background return reproduced with a byte-identical black frame; maximum-pool step PASS",
     "32df767": "FAIL Android smoke at a Bouncy Balls repeated-return harness precondition; maximum-pool step PASS",
     "28a8a45": "FAIL Android smoke: fully black Fruit Drop background return reproduced (same PID recovery only via a new surface cycle); maximum-pool step PASS",
-    "6240595": "FAIL Android smoke: black Fruit Drop cycle-2 background return reproduced with a byte-identical black frame; maximum-pool step PASS",
     "fd3975d": "FAIL Android smoke: black Fruit Drop cycle-3 background return reproduced; maximum-pool step PASS",
     "d7f2650": "FAIL Android smoke at Bouncy Balls force-stop restore harness precondition (no blank return in this run); maximum-pool step PASS"
   },
-  "packaged_source_note": "Later commits after 3a8c7ec changed only docs/, tests/ and scripts_tools/, which the Android export excludes; the packaged game data is unchanged."
+  "packaged_source_note": "The v1.0.0 rebuild changed only the boot-splash assets, project boot-splash/export splash settings and the APK signature after rebuilding. Game code, eight games, Bouncy Balls layout and save schema are unchanged from the previously accepted build."
 }
