@@ -640,9 +640,11 @@ checks (new layout invariants included; 60-second 64-ball stress, zero
 collision-limit hits); rendered ordinary-input `balls-playthrough-rendered.json`
 PASS with 4 waves cleared, score 4,975, gates 58/80, real maximum 64 balls,
 natural loss and playable retry; the other seven games' suites are unchanged.
-A physical-phone recheck of the new sizes is `PHYSICAL_DEVICE_RECHECK_PENDING`
-because no phone is attached. The user's old-APK opinion is not reported as
-acceptance of the new build.
+A physical-phone recheck of the new sizes was `PHYSICAL_DEVICE_RECHECK_PENDING`
+at this checkpoint because no phone was attached; on 2026-10-22 the user later
+reported no problems with the enlarged layout on a physical phone, with device
+metadata and captures NOT_PROVIDED (see `PLAYTEST_FEEDBACK.md`). The user's
+old-APK opinion is not reported as acceptance of the new build.
 
 ## Run 39698026180 on 32df767: edge targets, maximum pools and a harness timing defect
 
@@ -704,7 +706,9 @@ pass. The run also records 13 `EGL_BAD_SURFACE` warnings across the session,
 which remain product-risk evidence, not a repaired engine race. The following
 commit carries the harness fix plus this documentation; the next CI run is the
 validation of the fix. A physical-device recheck of the enlarged Bouncy Balls
-layout is still `PHYSICAL_DEVICE_RECHECK_PENDING`.
+layout was still `PHYSICAL_DEVICE_RECHECK_PENDING` at this checkpoint; the
+2026-10-22 user report later found no problems (metadata and captures
+NOT_PROVIDED).
 
 ## Run 39699385661 on 28a8a45: black background return reproduced, maximum pools pass
 
