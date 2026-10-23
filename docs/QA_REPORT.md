@@ -2,7 +2,7 @@
 
 ## Current 1.1.0 source iteration — 2026-10-23
 
-**NOT_RELEASED; exact signed runtime/upgrade PASS; startup-video/final CI pending.**
+**v1.1.0 RELEASED; exact signed runtime/upgrade, startup review and public bytes PASS.**
 [ITERATION_1.1.md](ITERATION_1.1.md) and `evidence/iteration-1.1/` retain all scopes.
 Original 18 plus 48-check reliability suite: 19/19 PASS. All 64 real-renderer
 EN/ZH three-ratio layouts and failure/Undo screens reviewed; five idle RGBA pairs
@@ -14,7 +14,7 @@ smoke, code-1 -> code-2 upgrade with both files byte-preserved, eight restored
 rounds/records/settings, terminal Undo/restart, corrupt/read-denied recovery,
 uninstall, independent clean smoke (8 x 3 returns), first audio loop, 64-ball and
 12-fruit load/save restoration. All 240 raw screenshots reviewed. The brief Godot
-boot image needs the additional native video review; stable frames are visible.
+boot image is confirmed by the additional native video review; stable frames are visible.
 35 candidate EGL warnings follow same-PID lifecycle events within two seconds;
 no native/script runtime errors. Previous black frames and host SIGSEGV stay FAIL.
 

@@ -2,7 +2,7 @@
 
 ## Current iteration — 2026-10-23
 
-**1.1.0 NOT_RELEASED; original signed runtime/upgrade PASS; final review pending.**
+**v1.1.0 RELEASED; original signed runtime/upgrade and anonymous bytes PASS.**
 The public v1.0.0 tag/assets remain unchanged. See [ITERATION_1.1.md](ITERATION_1.1.md)
 for audit, full artifact identity and raw evidence. Runtime source is 5672e409;
 subsequent changes concern acceptance tools, documents and evidence only.
@@ -11,11 +11,14 @@ Local 19/19 suites (48 reliability assertions), 64 EN/ZH layout captures and
 failure/Undo screens pass. Hosted exact-byte run 39930890985 passes predecessor,
 in-place upgrade, eight restored games, corrupt/read-denied recovery, clean
 candidate 8 x 3 lifecycle, audio loop and maximum pools. All 240 captures reviewed.
-An additional startup recording closes the brief Godot splash sampling gap.
+The additional startup recording has closed the brief Godot splash sampling gap.
 
-Next: verify final-SHA CI/startup recording, tag the release source, verify the
-existing owner-authorized draft, publish, anonymously download and verify, then
-commit only post-release evidence and confirm clean main/origin synchronization.
+Published Release: https://github.com/seiya058904/mochi-arcade/releases/tag/v1.1.0.
+New immutable tag 4f5d7f78159497f6f6d53d06d4acc16685c25c72 has the same runtime
+and packaging as APK source 5672e40968f2169dddce72d82460b7a2bfdfa7c9. Anonymous
+APK/checksum download, byte/signature/version and latest resolution pass.
+Post-release main changes only document acceptance; final SHA/CI and clean sync
+are independently recorded in the delivery report and local closeout JSON.
 No private signing material went to GitHub. The owner declined AEHD startup;
 keep it stopped. Physical device and quantitative phone metrics remain unavailable.
 

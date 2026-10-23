@@ -1,8 +1,9 @@
 # Build and release
 
-Current source: 1.1.0 / Android versionCode 2, **NOT_RELEASED**. The public
-v1.0.0 release is intact. See [iteration status](ITERATION_1.1.md) for the current
-Android host blocker and exact release continuation. Local signing works; private
+Current release: **v1.1.0**, Android versionCode 2. Its original signed bytes passed
+API 34 hosted runtime/upgrade and independent public-download verification; the
+v1.0.0 release is intact. See [iteration evidence](ITERATION_1.1.md) for source
+identity, retained failures and device limits. Local signing works; private
 material must stay local. Nineteen suites are now required (the original 18 plus
 the save-failure/terminal-Undo suite).
 

@@ -7,9 +7,9 @@
 | Takeover / baseline / audit | PASS | Clean unique root; live public remote/tag/download; original signing identity opened; baseline 18/18; eight-game review in ITERATION_1.1.md |
 | Confirmed repairs | PASS local | Save failure/recovery, terminal Bloom Undo, four idle canvas guards; 19/19 suites including 48 new regression checks |
 | Desktop rendering / audio | PASS reviewed | 64 EN/ZH captures across three ratios; terminal/failure UI; same-seed idle pixels exact; actual audio mixer checks |
-| New signed Android / upgrade | PASS signed hosted API 34 | Run 39930890985: original-cert upgrade, all eight restored rounds, clean 8 x 3 lifecycle/audio/load, 240 captures reviewed. Additional native boot video pending; local AEHD stays stopped |
-| Remote integration / development CI | PASS source 5672e409 | Direct main integration; run 39930691818 passes and all 114 development captures reviewed. Final documentation/acceptance-tool SHA checked independently |
-| New stable Release / public download | NOT_RELEASED; pending final review | Authorized draft 421633768 contains exact signed APK 9676db2f...; complete startup/final CI, tag, publish and anonymous verification. v1.0.0 unchanged |
+| New signed Android / upgrade | PASS signed hosted API 34 | Run 39930890985: original-cert upgrade, all eight restored rounds, clean 8 x 3 lifecycle/audio/load, 240 captures reviewed. Additional native boot video reviewed; local AEHD stays stopped |
+| Remote integration / development CI | PASS release source 4f5d7f7 | Direct main integration; development run 39934851867 and exact signed run 39934863776 pass with separate screenshot/video review. Post-release documentation SHA is checked independently |
+| New stable Release / public download | PASS | Published v1.1.0, immutable tag 4f5d7f7, exact signed APK 9676db2f... and checksum anonymously re-downloaded and verified. v1.0.0 unchanged |
 
 See [ITERATION_1.1.md](ITERATION_1.1.md) for exact continuation and evidence.
 The following phase board and checkpoints are **historical v1.0.0 development**;

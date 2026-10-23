@@ -18,10 +18,11 @@ All eight games have executable rules, integration tests, real rendered screensh
 and playable input paths. v1.0.0 was publicly released on 2026-10-22 after signed
 hardware-GPU API 34 emulator acceptance and the explicitly scoped hosted llvmpipe
 A14 exception. Physical-phone quantitative performance remains UNVERIFIED.
-The 1.1.0 source iteration adds save-failure feedback/recovery, terminal Number
-Bloom Undo and fewer idle canvas rebuilds. Its own signed-byte Android upgrade
-and runtime gates must pass before a new stable release; old acceptance is not
-new-version evidence. See ITERATION_1.1.md and RELEASE_CHECKLIST.md.
+The published v1.1.0 (2026-10-23) adds save-failure feedback/recovery, terminal Number
+Bloom Undo and fewer idle canvas rebuilds. Its own original-signature Android upgrade
+and runtime checks passed on the hosted API 34 software-rendered AVD, followed
+by public asset verification. No new physical-phone acceptance is claimed.
+See ITERATION_1.1.md and RELEASE_CHECKLIST.md.
 
 ## Non-negotiable proof
 

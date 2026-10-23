@@ -45,3 +45,8 @@ expanded touch regions were reviewed on the 720x1280/320dpi API 34 hardware-GPU
 AVD (see android-api34-final-splash-2026-10-22 evidence). Other cutouts, densities
 and physical-phone geometry remain UNVERIFIED; that review does not certify a
 new build automatically.
+
+For v1.1.0, a separate 64-capture three-ratio EN/ZH desktop matrix and exact
+signed API 34 software-emulator lifecycle/upgrade/load captures were reviewed.
+Native startup video confirms the original boot artwork. See ITERATION_1.1.md;
+other physical cutouts/densities and phone measurements remain unverified.

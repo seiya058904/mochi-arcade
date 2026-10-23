@@ -1,12 +1,14 @@
-# Release gates — published v1.0.0 and unreleased 1.1.0
+# Release gates — published v1.1.0 and historical v1.0.0
 
-Current iteration (2026-10-23): **1.1.0 NOT_RELEASED; signed acceptance PASS**.
-A01-A08/A10-A12 pass the final-source local suites, reviewed layouts and exact
-signed API 34 hosted run 39930890985 (upgrade + independent clean lifecycle/load).
-Additional native startup-video review is pending; A09 physical phone metrics
-remain UNVERIFIED. A13/final-SHA A14 and A15 publication are completed during final
-closeout, not inferred from earlier CI. The old A14 exception is not used by the
-passing signed run. See [iteration report](ITERATION_1.1.md) for evidence/limits.
+Current iteration (2026-10-23): **v1.1.0 RELEASED**. A01-A08/A10-A12 pass
+final-source tests, reviewed layouts and exact signed API 34 hosted acceptance
+(8 x 3 returns, upgrade, recovery, audio/load and native startup review). A09 is
+PARTIAL: physical metrics and untested devices/APIs remain UNVERIFIED; hosted
+software FPS is not phone FPS. A13/tag/source synchronization and A14 release-source
+CI pass; final post-release documentation CI is checked separately in the delivery
+report. A15 published assets/latest/anonymous byte/signature checks pass.
+The earlier A14 exception is preserved only as historical v1.0.0 evidence; the
+passing 1.1.0 signed run does not invoke it. See [iteration report](ITERATION_1.1.md).
 
 The following table and public-download section describe **v1.0.0 only**.
 

@@ -1,7 +1,7 @@
 # 1.1.0 iteration — 2026-10-23
 
-Status: **NOT_RELEASED; signed runtime/upgrade PASS, startup-video review pending**. The published v1.0.0 remains
-the accepted download. No old tag, asset, visibility or history is replaced.
+Status: **v1.1.0 RELEASED; signed runtime, upgrade and public bytes verified**.
+The original v1.0.0 tag and assets remain available unchanged. No old tag, asset, visibility or history is replaced.
 This report separates source validation, development CI and signed-byte acceptance.
 
 ## Takeover and success criteria
@@ -36,7 +36,7 @@ This report separates source validation, development CI and signed-byte acceptan
 | P1 `save_manager.gd:40` | Syntactically valid primary with damaged record/settings discarded valid backed-up values. | Valid primary fields win; malformed existing fields recover individually from a valid backup. Malformed primary never replaces a valid backup. Invalid JSON uses the backup, never an uncommitted temp. Version-1 format retained. |
 | P2 `main.gd:408` / `number_bloom.gd:undo` | Real final legal swipe reaches full-board results, but no Undo button despite a valid snapshot. | Add localized result Undo; restores board, score, RNG and won flag, clears stopped/snapshot, checkpoints round, preserves earned best. Verified close/reload and restart. Standard 2048 rules unchanged. |
 | P2 four static game callbacks | Number Bloom, Tile Trio, Bubble Garden and READY Mochi Hop rebuilt canvas commands every tick while visually stationary. | Skip effect/draw work only while static; input redraws remain, shots/particles/transitions still run. Camera converges within 0.001 design pixel. Same-machine, same-seed 180-frame comparison: each 180 -> 0 canvas rebuilds; all five RGBA images identical. GPU draw-call counts unchanged. |
-| P2 current documentation | AGENTS still said private; PRODUCT said unreleased; BUILD/phase notes mixed superseded blockers with current status. | Correct current public v1.0.0 status, explicitly scope old acceptance, preserve failure history and A14 exception. New iteration remains blocked until its own gates pass. |
+| P2 current documentation | AGENTS still said private; PRODUCT said unreleased; BUILD/phase notes mixed superseded blockers with current status. | Correct current public v1.0.0 status, explicitly scope old acceptance, preserve failure history and A14 exception. New iteration gates are recorded independently below. |
 
 No confirmed new P0. No claim of a llvmpipe product fix. Original Bouncy Balls
 32px balls, 4x6 wall, 150x46 gates, 68px bumpers and paddle are unchanged.
@@ -102,22 +102,27 @@ not a demonstrated new app crash. Do not repeatedly retry identical boot failure
 Exact signed APK install, eight games x three returns, signed load/audio, old APK
 upgrade, clean install/uninstall and on-device damaged-save recovery: PASS on the
 hosted software-rendered API 34 AVD in run 39930890985; 240 captures reviewed.
-Custom Android icon and cream transition are captured; a bounded native startup
-video is being added to isolate the brief Godot boot image.
+Custom Android icon, cream transition and Godot boot artwork were reviewed in
+raw native startup video; see the separate startup-video reviewer manifest.
 API 24 and other API/device/density profiles: UNVERIFIED. Desktop acceptance and
 hosted development-package checks are separately reported.
 
-## Exact next actions
+## Release closeout
 
-1. Review the additional native startup recording and final-SHA CI. The owner
-   explicitly declined AEHD startup; keep that restriction. Original signed bytes
-   already passed full predecessor/upgrade/candidate/load acceptance.
-2. Keep the accepted APK bytes unchanged; create a new immutable tag only after
-   review closes. Verify the existing authorized draft assets, publish, then
-   download anonymously and recheck bytes/signature/version/latest.
-3. Record post-release documentation-only commits separately from the APK build
-   source, verify runtime/packaging tree equivalence and clean main/origin sync.
-   Physical quantitative results remain unverified without a phone.
+- Published v1.1.0: https://github.com/seiya058904/mochi-arcade/releases/tag/v1.1.0.
+  `releases/latest` resolves to v1.1.0. APK and SHA256SUMS anonymously downloaded
+  to a separate directory, byte-compared and independently signature-verified.
+- Immutable v1.1.0 tag: `4f5d7f78159497f6f6d53d06d4acc16685c25c72`.
+  APK build source: `5672e40968f2169dddce72d82460b7a2bfdfa7c9`; runtime/asset/export
+  trees are identical. Later main changes only record release docs/evidence and
+  do not change the tagged build or signed APK.
+- Original v1.0.0 tag/assets unchanged. No private-key upload, driver changes,
+  force push, stash or user-file cleanup. Original and task worktree are the same
+  initially clean directory. Final HEAD/origin and CI are recorded in the final
+  delivery report and local closeout JSON to avoid a self-referential commit SHA.
+- No release-blocking item remains. Local AVD remains blocked by the deliberately
+  unchanged acceleration environment; physical device, temperature/battery/60/120
+  Hz and untested APIs/densities remain DEVICE_UNAVAILABLE / UNVERIFIED.
 
 ## Signed candidate and code closeout
 
@@ -131,7 +136,7 @@ hosted development-package checks are separately reported.
   zipalign 16 KiB and every ELF PT_LOAD alignment >=16 KiB; font notices and boot
   splash present, no tests/docs/keys/save fixtures in APK. An independently authenticated download from unpublished draft 421633768
   is byte-identical and separately signature-verified. Anonymous public download
-  remains pending publication.
+  now matches those bytes and has independent static/signature verification.
 - Size is 4,096 bytes above v1.0.0; no size reduction claim. Original compressed
   Godot libraries occupy 49,397,173 bytes and imported CJK font 13,290,643 bytes.
 - Full local suite: 19/19 PASS, 48/48 reliability assertions. All seven real-renderer
@@ -143,7 +148,7 @@ hosted development-package checks are separately reported.
   or stash was created. Final per-commit CI is checked separately; the local
   `.local/iteration-1.1/closeout.json` and final delivery report record its exact
   SHA, run, downloaded reports and visual review. Signed Android install/runtime/load/upgrade pass run 39930890985; publication
-  remains pending final visual/CI closeout.
+  and independent anonymous verification are complete.
 - The owner explicitly declined starting the already-installed AEHD service.
   Keep that service stopped; do not retry this system change or request secrets.
   Hosted acceptance uses its already functioning isolated AVD; local runtime
@@ -265,3 +270,35 @@ Signed maximum-pool observations (including ADB load): 64 Balls p50/p95
 12 Jelly p50/p95 56.895/182.072 ms, 14.12 FPS, PSS 171644 -> 157354 KiB.
 Both original save files restored. These are noisy hosted software compositor
 measurements, not physical performance claims or paired improvement percentages.
+
+
+### Final source replay, startup and publication
+
+Release-source development CI [39934851867](https://github.com/seiya058904/mochi-arcade/actions/runs/39934851867)
+and exact signed replay [39934863776](https://github.com/seiya058904/mochi-arcade/actions/runs/39934863776)
+both pass on `4f5d7f78159497f6f6d53d06d4acc16685c25c72`. Runtime and packaging
+are byte-identical to APK source 5672e409; no APK rebuild/replacement occurred.
+The final signed replay again passes predecessor/upgrade/clean smoke/load. Its
+240 native PNGs are reviewed (121 new unique images directly, 48 identical copies
+of those and 71 byte-identical images already reviewed); raw statuses stay intact.
+Forty EGL warnings follow same-PID lifecycle events within two seconds, with no
+native/script errors. The original native videos confirm custom Android icon,
+cream transition, original Godot boot artwork and home. An initial black surface
+before boot art appears in both versions: candidate frame 39 about 21.9 ms,
+predecessor frame 57 about 88.9 ms. Those adverse frames are retained. This is an
+initialization observation, not a sustained foreground/background-return failure;
+no claim of improved startup timing is made from one software-emulator sample.
+
+Final signed repeat load: Balls p50/p95 67.922/266.491 ms, 8.86 presented FPS,
+PSS 174047 -> 164174 KiB; Jelly 36.080/101.125 ms, 21.46 FPS,
+PSS 171347 -> 156782 KiB. The earlier slower signed sample above remains evidence;
+no aggregate is used to erase it or claim phone performance.
+
+v1.1.0 published at 2026-10-23 10:19:28 UTC. Public APK and SHA256SUMS return
+HTTP 200 without authentication; 78,471,916 bytes and SHA-256 9676db2f... match
+the independently installed/tested bytes. A separate download signature/static
+check confirms original certificate, code 2/name 1.1.0, two ABIs, VIBRATE only,
+non-debuggable and 16 KiB alignment. Anonymous API metadata hit GitHub's rate
+limit (403); public website/asset requests succeeded without credentials, and
+release metadata was separately checked via authenticated read-only API.
+The README top link uses releases/latest, which resolves to v1.1.0.

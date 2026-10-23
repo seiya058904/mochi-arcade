@@ -1,0 +1,16 @@
+{
+  "status": "PASS_RUNTIME_PACKAGING_TREE_EQUIVALENT",
+  "apk_build_commit": "5672e40968f2169dddce72d82460b7a2bfdfa7c9",
+  "acceptance_commit": "4f5d7f78159497f6f6d53d06d4acc16685c25c72",
+  "apk_sha256": "9676db2f517e9c206317bfce045259294e36c5014b294f155db549b81f263320",
+  "runtime_paths": [
+    "project.godot",
+    "export_presets.cfg",
+    "scripts",
+    "scenes",
+    "assets",
+    "icon.svg"
+  ],
+  "changed_runtime_paths": [],
+  "intervening_changes": "Acceptance harness, documentation and retained evidence only; APK bytes unchanged"
+}

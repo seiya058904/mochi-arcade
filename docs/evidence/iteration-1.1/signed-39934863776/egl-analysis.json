@@ -1,0 +1,285 @@
+{
+  "warnings": 40,
+  "events": [
+    {
+      "warning": "10-23 10:06:09.527  7142  7172 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:06:08.904  7142  7142 V Godot   : OnPause: GodotFragment{432f1b4} (e8c4732c-44d5-43ab-a54f-91b1e1eb9e5c id=0x7f07002c)",
+        "seconds_before": 0.623
+      }
+    },
+    {
+      "warning": "10-23 10:06:39.919  7142  7172 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:06:39.293  7142  7142 V Godot   : OnPause: GodotFragment{432f1b4} (e8c4732c-44d5-43ab-a54f-91b1e1eb9e5c id=0x7f07002c)",
+        "seconds_before": 0.626
+      }
+    },
+    {
+      "warning": "10-23 10:06:50.367  7142  7172 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:06:49.761  7142  7142 V Godot   : OnPause: GodotFragment{432f1b4} (e8c4732c-44d5-43ab-a54f-91b1e1eb9e5c id=0x7f07002c)",
+        "seconds_before": 0.606
+      }
+    },
+    {
+      "warning": "10-23 10:06:58.351  7142  7172 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:06:58.310  7142  7142 V Godot   : OnStop: GodotFragment{432f1b4} (e8c4732c-44d5-43ab-a54f-91b1e1eb9e5c id=0x7f07002c)",
+        "seconds_before": 0.041
+      }
+    },
+    {
+      "warning": "10-23 10:07:06.304  7142  7172 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:07:05.542  7142  7142 V Godot   : OnPause: GodotFragment{432f1b4} (e8c4732c-44d5-43ab-a54f-91b1e1eb9e5c id=0x7f07002c)",
+        "seconds_before": 0.762
+      }
+    },
+    {
+      "warning": "10-23 10:07:19.259  7649  7672 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:07:18.612  7649  7649 V Godot   : OnPause: GodotFragment{432f1b4} (4464bde0-01df-469e-a256-4020e15fa559 id=0x7f07002c)",
+        "seconds_before": 0.647
+      }
+    },
+    {
+      "warning": "10-23 10:07:39.186  7750  7773 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:07:38.567  7750  7750 V Godot   : OnPause: GodotFragment{432f1b4} (0a56eff4-eb91-454c-987f-be82ac7ef69c id=0x7f07002c)",
+        "seconds_before": 0.619
+      }
+    },
+    {
+      "warning": "10-23 10:07:49.754  7750  7773 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:07:49.009  7750  7750 V Godot   : OnPause: GodotFragment{432f1b4} (0a56eff4-eb91-454c-987f-be82ac7ef69c id=0x7f07002c)",
+        "seconds_before": 0.745
+      }
+    },
+    {
+      "warning": "10-23 10:07:57.929  7750  7773 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:07:57.083  7750  7750 V Godot   : OnPause: GodotFragment{432f1b4} (0a56eff4-eb91-454c-987f-be82ac7ef69c id=0x7f07002c)",
+        "seconds_before": 0.846
+      }
+    },
+    {
+      "warning": "10-23 10:08:05.593  7750  7773 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:08:05.586  7750  7750 V Godot   : OnStop: GodotFragment{432f1b4} (0a56eff4-eb91-454c-987f-be82ac7ef69c id=0x7f07002c)",
+        "seconds_before": 0.007
+      }
+    },
+    {
+      "warning": "10-23 10:08:18.782  7949  7973 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:08:17.967  7949  7949 V Godot   : OnPause: GodotFragment{432f1b4} (921e5a1b-fea5-47a8-9859-969d38e59f2d id=0x7f07002c)",
+        "seconds_before": 0.815
+      }
+    },
+    {
+      "warning": "10-23 10:08:35.975  8052  8075 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:08:35.917  8052  8052 V Godot   : OnStop: GodotFragment{432f1b4} (5d8a9209-72b4-4355-a056-5de47a12f49d id=0x7f07002c)",
+        "seconds_before": 0.058
+      }
+    },
+    {
+      "warning": "10-23 10:08:46.517  8052  8075 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:08:46.511  8052  8052 V Godot   : OnStop: GodotFragment{432f1b4} (5d8a9209-72b4-4355-a056-5de47a12f49d id=0x7f07002c)",
+        "seconds_before": 0.006
+      }
+    },
+    {
+      "warning": "10-23 10:08:54.254  8052  8075 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:08:53.594  8052  8052 V Godot   : OnPause: GodotFragment{432f1b4} (5d8a9209-72b4-4355-a056-5de47a12f49d id=0x7f07002c)",
+        "seconds_before": 0.66
+      }
+    },
+    {
+      "warning": "10-23 10:09:02.252  8052  8075 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:09:01.618  8052  8052 V Godot   : OnPause: GodotFragment{432f1b4} (5d8a9209-72b4-4355-a056-5de47a12f49d id=0x7f07002c)",
+        "seconds_before": 0.634
+      }
+    },
+    {
+      "warning": "10-23 10:09:35.785  8356  8380 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:09:35.145  8356  8356 V Godot   : OnPause: GodotFragment{432f1b4} (26c32e5d-87e4-495c-a2f1-9bc6ab16caac id=0x7f07002c)",
+        "seconds_before": 0.64
+      }
+    },
+    {
+      "warning": "10-23 10:09:58.169  8514  8537 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:09:57.405  8514  8514 V Godot   : OnPause: GodotFragment{432f1b4} (403703b3-f779-4eff-8d4d-3168b561e70c id=0x7f07002c)",
+        "seconds_before": 0.764
+      }
+    },
+    {
+      "warning": "10-23 10:10:06.004  8514  8537 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:10:05.279  8514  8514 V Godot   : OnPause: GodotFragment{432f1b4} (403703b3-f779-4eff-8d4d-3168b561e70c id=0x7f07002c)",
+        "seconds_before": 0.725
+      }
+    },
+    {
+      "warning": "10-23 10:10:13.861  8514  8537 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:10:13.130  8514  8514 V Godot   : OnPause: GodotFragment{432f1b4} (403703b3-f779-4eff-8d4d-3168b561e70c id=0x7f07002c)",
+        "seconds_before": 0.731
+      }
+    },
+    {
+      "warning": "10-23 10:10:26.670  8657  8680 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:10:26.623  8657  8657 V Godot   : OnStop: GodotFragment{432f1b4} (94660ab7-7a8c-4637-b800-93cd009867d3 id=0x7f07002c)",
+        "seconds_before": 0.047
+      }
+    },
+    {
+      "warning": "10-23 10:10:48.354  8759  8782 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:10:48.286  8759  8759 V Godot   : OnStop: GodotFragment{432f1b4} (25809fe2-1dee-4d5b-8ae6-09b6e6ecb8cb id=0x7f07002c)",
+        "seconds_before": 0.068
+      }
+    },
+    {
+      "warning": "10-23 10:10:59.085  8759  8782 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:10:58.425  8759  8759 V Godot   : OnPause: GodotFragment{432f1b4} (25809fe2-1dee-4d5b-8ae6-09b6e6ecb8cb id=0x7f07002c)",
+        "seconds_before": 0.66
+      }
+    },
+    {
+      "warning": "10-23 10:11:07.220  8759  8782 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:11:06.616  8759  8759 V Godot   : OnPause: GodotFragment{432f1b4} (25809fe2-1dee-4d5b-8ae6-09b6e6ecb8cb id=0x7f07002c)",
+        "seconds_before": 0.604
+      }
+    },
+    {
+      "warning": "10-23 10:11:15.053  8759  8782 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:11:14.556  8759  8759 V Godot   : OnPause: GodotFragment{432f1b4} (25809fe2-1dee-4d5b-8ae6-09b6e6ecb8cb id=0x7f07002c)",
+        "seconds_before": 0.497
+      }
+    },
+    {
+      "warning": "10-23 10:11:28.407  8994  9018 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:11:27.694  8994  8994 V Godot   : OnPause: GodotFragment{432f1b4} (9c43baca-5a68-4df3-9df5-689a395328f7 id=0x7f07002c)",
+        "seconds_before": 0.713
+      }
+    },
+    {
+      "warning": "10-23 10:11:48.067  9095  9119 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:11:47.466  9095  9095 V Godot   : OnPause: GodotFragment{432f1b4} (fc336442-9341-4fab-bf5b-65b08a07f4c7 id=0x7f07002c)",
+        "seconds_before": 0.601
+      }
+    },
+    {
+      "warning": "10-23 10:11:58.260  9095  9119 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:11:57.643  9095  9095 V Godot   : OnPause: GodotFragment{432f1b4} (fc336442-9341-4fab-bf5b-65b08a07f4c7 id=0x7f07002c)",
+        "seconds_before": 0.617
+      }
+    },
+    {
+      "warning": "10-23 10:12:06.061  9095  9119 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:12:05.476  9095  9095 V Godot   : OnPause: GodotFragment{432f1b4} (fc336442-9341-4fab-bf5b-65b08a07f4c7 id=0x7f07002c)",
+        "seconds_before": 0.585
+      }
+    },
+    {
+      "warning": "10-23 10:12:13.738  9095  9119 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:12:13.737  9095  9095 V Godot   : OnStop: GodotFragment{432f1b4} (fc336442-9341-4fab-bf5b-65b08a07f4c7 id=0x7f07002c)",
+        "seconds_before": 0.001
+      }
+    },
+    {
+      "warning": "10-23 10:12:26.723  9295  9318 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:12:26.011  9295  9295 V Godot   : OnPause: GodotFragment{432f1b4} (eb4156a1-44a0-402a-9bd2-6291a394a2b0 id=0x7f07002c)",
+        "seconds_before": 0.712
+      }
+    },
+    {
+      "warning": "10-23 10:12:47.174  9398  9420 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:12:47.173  9398  9398 V Godot   : OnStop: GodotFragment{432f1b4} (5ae2119a-505e-429c-a9d0-059aedc76a54 id=0x7f07002c)",
+        "seconds_before": 0.001
+      }
+    },
+    {
+      "warning": "10-23 10:12:57.394  9398  9420 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:12:56.765  9398  9398 V Godot   : OnPause: GodotFragment{432f1b4} (5ae2119a-505e-429c-a9d0-059aedc76a54 id=0x7f07002c)",
+        "seconds_before": 0.629
+      }
+    },
+    {
+      "warning": "10-23 10:13:05.253  9398  9420 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:13:05.209  9398  9398 V Godot   : OnStop: GodotFragment{432f1b4} (5ae2119a-505e-429c-a9d0-059aedc76a54 id=0x7f07002c)",
+        "seconds_before": 0.044
+      }
+    },
+    {
+      "warning": "10-23 10:13:25.953  9622  9646 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:13:25.331  9622  9622 V Godot   : OnPause: GodotFragment{432f1b4} (03277ef5-4652-48ed-9756-d740b5ba02a5 id=0x7f07002c)",
+        "seconds_before": 0.622
+      }
+    },
+    {
+      "warning": "10-23 10:13:48.202  9725  9748 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:13:48.144  9725  9725 V Godot   : OnStop: GodotFragment{432f1b4} (9a801b8a-2749-4086-893a-7bcc2b755577 id=0x7f07002c)",
+        "seconds_before": 0.058
+      }
+    },
+    {
+      "warning": "10-23 10:13:59.135  9725  9748 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:13:58.306  9725  9725 V Godot   : OnPause: GodotFragment{432f1b4} (9a801b8a-2749-4086-893a-7bcc2b755577 id=0x7f07002c)",
+        "seconds_before": 0.829
+      }
+    },
+    {
+      "warning": "10-23 10:14:07.048  9725  9748 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:14:06.263  9725  9725 V Godot   : OnPause: GodotFragment{432f1b4} (9a801b8a-2749-4086-893a-7bcc2b755577 id=0x7f07002c)",
+        "seconds_before": 0.785
+      }
+    },
+    {
+      "warning": "10-23 10:14:14.694  9725  9748 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:14:14.197  9725  9725 V Godot   : OnPause: GodotFragment{432f1b4} (9a801b8a-2749-4086-893a-7bcc2b755577 id=0x7f07002c)",
+        "seconds_before": 0.497
+      }
+    },
+    {
+      "warning": "10-23 10:14:27.622 10001 10024 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:14:27.621 10001 10001 V Godot   : OnStop: GodotFragment{432f1b4} (560207a1-e2c7-4144-a490-f51d2f163abb id=0x7f07002c)",
+        "seconds_before": 0.001
+      }
+    },
+    {
+      "warning": "10-23 10:14:36.765 10103 10126 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+      "same_pid_lifecycle": {
+        "line": "10-23 10:14:36.081 10103 10103 V Godot   : OnPause: GodotFragment{432f1b4} (9f5d70e9-669d-4336-8736-e9981abb577a id=0x7f07002c)",
+        "seconds_before": 0.684
+      }
+    }
+  ]
+}
