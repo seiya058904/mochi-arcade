@@ -142,7 +142,9 @@ func flush() -> Error:
 	if read_error != OK:
 		return complete_write(read_error)
 	if valid_backup(previous):
-		error = write_temp(backup_temp, FileAccess.get_file_as_string(primary))
+		# Reuse the validated read. A second read can fail or observe different
+		# bytes after validation, and must never replace the backup with empty data.
+		error = write_temp(backup_temp, JSON.stringify(previous))
 		if error == OK:
 			error = DirAccess.rename_absolute(backup_temp, backup)
 		if error != OK:

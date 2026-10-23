@@ -5,7 +5,7 @@
 **1.1.0 NOT_RELEASED; signed hosted acceptance pending.** The existing v1.0.0 public
 release and tag are untouched. See [ITERATION_1.1.md](ITERATION_1.1.md) for the
 audit, source changes, evidence, signing identity and exact continuation.
-The 18 original suites plus new 46-check reliability suite pass locally; 64
+The 18 original suites plus new 48-check reliability suite pass locally; 64
 desktop layout captures and save/Undo UI captures were visually reviewed. Local
 DPAPI signing identity is available. No online physical device is present;
 acceleration-on AVD startup fails its hypervisor precondition, and both unaccelerated

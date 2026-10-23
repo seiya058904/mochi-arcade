@@ -135,7 +135,7 @@ hosted development-package checks are separately reported.
   is byte-identical; this is NOT an anonymous release-asset download.
 - Size is 4,096 bytes above v1.0.0; no size reduction claim. Original compressed
   Godot libraries occupy 49,397,173 bytes and imported CJK font 13,290,643 bytes.
-- Full local suite: 19/19 PASS, 46/46 reliability assertions. All seven real-renderer
+- Full local suite: 19/19 PASS, 48/48 reliability assertions. All seven real-renderer
   replay scripts (covering eight games) PASS; vertical replay includes a retained
   earlier timeout and independent successful rerun. Actual desktop audio PASS.
 - Source is integrated directly into existing public main; repository protection
@@ -169,7 +169,7 @@ The first signed candidate (source `37c9a87`, SHA-256 `96531cb4bd98712a43b8f76e0
 Final review found that Stay here dismissed the failed-save dialog without
 resuming an active game. Two actual-button regression cases fail before the
 repair and pass afterward: resume an active round, or retain result actions for
-a stopped round. The 46-check reliability suite includes both. The earlier
+a stopped round. The 48-check reliability suite includes both. The earlier
 comparison harness timed out because it called a helper absent from the old
 implementation; that harness was corrected to click the actual button on both
 versions, without weakening either assertion. Raw logs remain local.
@@ -202,3 +202,14 @@ causing frame-count-based tests to fail at the wrong simulated time. Those faile
 results are retained separately. Re-running all seven real-renderer scripts with
 the same fixed simulation clock as `run_checks.py` passes all eight game paths;
 this is renderer/input correctness evidence, not real-time performance evidence.
+
+### Validated backup read
+
+A deterministic path-change fault after successful decoding reproduced an empty
+backup caused by an unchecked second read. The writer now serializes the already
+validated previous dictionary into the verified backup staging file; no second
+read can replace the backup with empty data. The pre-fix failing case is retained
+and all 48 reliability assertions pass. Same-disk ABBA save-flush timings are in
+`evidence/iteration-1.1/save-io-profile.json`; integrity checks add I/O cost, so
+this change makes no saving-speed claim. APKs produced before this repair are
+superseded, including the first staged candidate; retain their hashes/run scopes.

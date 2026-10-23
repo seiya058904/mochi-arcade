@@ -49,9 +49,9 @@
     "max_balls": 64,
     "nodes_after": 29,
     "nodes_before": 28,
-    "physics_us_max": 9706,
-    "physics_us_p50": 565,
-    "physics_us_p95": 1137,
+    "physics_us_max": 12567,
+    "physics_us_p50": 555,
+    "physics_us_p95": 1102,
     "pool_size": 64,
     "scope": "Windows headless GDScript simulation only; not Android FPS or rendering performance",
     "simulated_seconds": 60

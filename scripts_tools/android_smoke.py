@@ -75,6 +75,17 @@ def main():
         result = shell("am", "start", "-W", "-n", f"{package}/com.godot.game.GodotAppLauncher")
         if "Error:" in result or "Status: ok" not in result:
             raise RuntimeError(f"Launch did not succeed: {result}")
+        if "startup_frames" not in report:
+            # Retain the first launch transition/splash separately. These precede
+            # the existing committed-home assertion; no blank-frame gate is removed.
+            report["startup_frames"] = {}
+            for index in range(3):
+                data, frame = capture_png(adb("exec-out", "screencap", binary=True))
+                name = f"startup-{index:02d}"
+                (output / f"{name}.png").write_bytes(data)
+                frame["sha256"] = hashlib.sha256(data).hexdigest()
+                report["startup_frames"][name] = frame
+                time.sleep(0.2)
         time.sleep(5)  # Native activity visibility precedes first Godot/font rendering.
         if not shell("pidof", package):
             raise RuntimeError("App process exited after launch")

@@ -1,0 +1,8 @@
+{
+  "checks": 48,
+  "failures": [
+    "Backup uses validated contents instead of an unchecked second read"
+  ],
+  "scope": "Isolated filesystem fault fixtures and actual terminal swipe; desktop, not Android",
+  "status": "FAIL"
+}

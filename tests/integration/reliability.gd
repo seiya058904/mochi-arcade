@@ -18,6 +18,14 @@ class DeniedReader extends "res://scripts/app/save_manager.gd":
 			return {}
 		return super.decode(path)
 
+class MovingReader extends "res://scripts/app/save_manager.gd":
+	var move_after_read := false
+	func decode(path: String) -> Dictionary:
+		var value := super.decode(path)
+		if move_after_read and path.ends_with("/save.json") and not value.is_empty():
+			DirAccess.rename_absolute(path, path + ".held")
+		return value
+
 func check(value: bool, message: String) -> void:
 	checks += 1
 	if not value:
@@ -114,6 +122,15 @@ func run() -> void:
 	check(denied_reader.record("number_bloom", 10000) == ERR_FILE_NO_PERMISSION, "Read access lost after loading also blocks replacement")
 	check(FileAccess.get_file_as_bytes(primary) == original, "Mid-session read denial preserves old primary")
 	denied_reader.free()
+	var moving_reader := MovingReader.new()
+	moving_reader.folder = save.folder.path_join("moving-primary")
+	DirAccess.make_dir_absolute(moving_reader.folder)
+	moving_reader.data = moving_reader.defaults()
+	moving_reader.record("number_bloom", 111)
+	moving_reader.move_after_read = true
+	check(moving_reader.record("number_bloom", 222) == OK, "A validated in-memory primary can be backed up after its path changes")
+	check(moving_reader.decode(moving_reader.folder.path_join("save.backup.json")).get("records", {}).get("number_bloom") == 111, "Backup uses validated contents instead of an unchecked second read")
+	moving_reader.free()
 	# Deny primary rename with an empty directory at its destination.
 	var held_primary: String = save.folder.path_join("held-primary.json")
 	DirAccess.rename_absolute(primary, held_primary)
