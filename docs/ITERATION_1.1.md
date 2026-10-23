@@ -119,3 +119,27 @@ hosted development-package checks are separately reported.
 4. Only after the missing gates pass, tag the final release source, create/verify
    draft APK + SHA256SUMS, publish, independently download anonymously and verify
    latest/tag/assets, then perform final clean main/origin sync. v1.0.0 stays fixed.
+
+
+## Signed candidate and code closeout
+
+- Source commit: `37c9a877283f63d2acc340e21b6263d2f15833a9` (runtime/packaging).
+  Later evidence-only commits do not alter the candidate source tree.
+- Local artifact: `dist/MochiArcade.apk`, versionName **1.1.0**, versionCode **2**,
+  **78,471,916 bytes**, SHA-256
+  `96531cb4bd98712a43b8f76e09236e200a1a84cbdb0af4eb56e0fc1278cbc81c`.
+- Static verification PASS: original certificate, v2/v3, non-debuggable,
+  package unchanged, min SDK 24 / target SDK 36, arm64-v8a + x86_64, only VIBRATE,
+  zipalign 16 KiB and every ELF PT_LOAD alignment >=16 KiB; font notices and boot
+  splash present, no tests/docs/keys/save fixtures in APK. A separate local copy
+  is byte-identical; this is NOT an anonymous release-asset download.
+- Size is 4,096 bytes above v1.0.0; no size reduction claim. Original compressed
+  Godot libraries occupy 49,397,173 bytes and imported CJK font 13,290,643 bytes.
+- Full local suite: 19/19 PASS, new reliability 39/39 PASS. All seven real-renderer
+  replay scripts (covering eight games) PASS; vertical replay includes a retained
+  earlier timeout and independent successful rerun. Actual desktop audio PASS.
+- CI must still be observed on the integrated main SHA. Signed Android install,
+  runtime, load, old-version upgrade and publication remain BLOCKED, not PASS.
+- A narrowly scoped request to start the already-installed AEHD service was made
+  because the task forbids system-driver changes; no such action is authorized
+  or taken without an explicit response. No secret upload is requested.
