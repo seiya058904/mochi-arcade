@@ -1,0 +1,122 @@
+{
+  "status": "PASS_AUTOMATION_AWAITING_VISUAL_REVIEW",
+  "gate": "DIAG",
+  "tool_commit": "bfe653feceb38f2c7efe07fbc652ec972da07180",
+  "build_source": "920f39cfc29fc0d46b03a295f25f1197446a4027",
+  "run_id": "39960486671",
+  "attempt": "1",
+  "apk_sha256": "09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8",
+  "profile": "swangle",
+  "children": {
+    "diagnostic-load": {
+      "exit": 0,
+      "seconds": 43.481
+    }
+  },
+  "visual_review": "PENDING",
+  "renderer": [
+    "GLES: Google (Google Inc. (Google)), Android Emulator OpenGL ES Translator (ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver-5.0.0)), OpenGL ES 3.1 (OpenGL ES 3.1.0 (ANGLE 2.1.17841 git hash: 5fa2e61da947))"
+  ],
+  "frames": {
+    "public-1.1.0-home": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 378,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "83908af025a0b156de359197b856c75398ef509fd6572f79b6d3d2e642c24ef6"
+    },
+    "public-1.1.0-return-1": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 95,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "babd6c518f26ff6087374527c2d4496d6f3749324f9ef23885b4dc8bc26d6ea6"
+    },
+    "public-1.1.0-return-2": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 95,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "babd6c518f26ff6087374527c2d4496d6f3749324f9ef23885b4dc8bc26d6ea6"
+    },
+    "public-1.1.0-return-3": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 99,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "9fb41da293c7e5efb81451f1d7ab2e31b4efd8b792be41e27fa328e60230f48b"
+    },
+    "candidate-home": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 567,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "b99d2b895e90bd338e9c25cc03e1d3bd3dc9bbb411229c4e2af0ade97eeb0e2e"
+    },
+    "candidate-return-1": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 95,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "32ffae6e0f65d2be9d515e35a5b62d962aaee8cdb463018d830432294477e023"
+    },
+    "candidate-return-2": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 95,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "32ffae6e0f65d2be9d515e35a5b62d962aaee8cdb463018d830432294477e023"
+    },
+    "candidate-return-3": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 99,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "ec2d3ef6c5d7b3671c38558f80bb1cbd11cb364c2c37ad7d93ae8223d612214d"
+    }
+  },
+  "baselines": {
+    "public-1.1.0": {
+      "status": "PASS",
+      "source": "This fresh AVD, actual settings inputs"
+    },
+    "candidate": {
+      "status": "PASS",
+      "source": "This fresh AVD, actual settings inputs"
+    }
+  },
+  "controls": {
+    "public-1.1.0": {
+      "status": "PASS_THREE_RETURNS_AND_STOP",
+      "apk_sha256": "9676db2f517e9c206317bfce045259294e36c5014b294f155db549b81f263320"
+    },
+    "candidate": {
+      "status": "PASS_THREE_RETURNS_AND_STOP",
+      "apk_sha256": "09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8"
+    }
+  }
+}

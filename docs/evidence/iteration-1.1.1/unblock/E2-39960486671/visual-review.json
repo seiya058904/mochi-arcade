@@ -1,0 +1,27 @@
+{
+  "status": "PASS_DIAGNOSTIC_REVIEWED",
+  "run_id": "39960486671",
+  "apk_sha256": "09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8",
+  "public_control_sha256": "9676db2f517e9c206317bfce045259294e36c5014b294f155db549b81f263320",
+  "files": {
+    "candidate-home.png": "b99d2b895e90bd338e9c25cc03e1d3bd3dc9bbb411229c4e2af0ade97eeb0e2e",
+    "candidate-return-1.png": "32ffae6e0f65d2be9d515e35a5b62d962aaee8cdb463018d830432294477e023",
+    "candidate-return-2.png": "32ffae6e0f65d2be9d515e35a5b62d962aaee8cdb463018d830432294477e023",
+    "candidate-return-3.png": "ec2d3ef6c5d7b3671c38558f80bb1cbd11cb364c2c37ad7d93ae8223d612214d",
+    "public-1.1.0-home.png": "83908af025a0b156de359197b856c75398ef509fd6572f79b6d3d2e642c24ef6",
+    "public-1.1.0-return-1.png": "babd6c518f26ff6087374527c2d4496d6f3749324f9ef23885b4dc8bc26d6ea6",
+    "public-1.1.0-return-2.png": "babd6c518f26ff6087374527c2d4496d6f3749324f9ef23885b4dc8bc26d6ea6",
+    "public-1.1.0-return-3.png": "9fb41da293c7e5efb81451f1d7ab2e31b4efd8b792be41e27fa328e60230f48b",
+    "load/bouncy_balls-after-load.png": "59d867965641e20506f01c2bba2722ba8736c734c28064977f958c44beb7bd55",
+    "load/bouncy_balls-maximum-paused.png": "c66e5ecb8c3b3dca76514c20680d33e1e73c7f573d37ba775bfd3bb79ac53bfb",
+    "load/bouncy_balls-running-00.png": "c5e40acb99a6705c12a4f3a6c45acfb9d687ecff672c1f4271a1771ee9bfc067",
+    "load/bouncy_balls-running-02.png": "ab47cdb4b2c6025c7a4a4e82c523651a4bf597cf4367509d1943b31caf70317e",
+    "load/bouncy_balls-running-05.png": "d9a5e220bd242175090e4476903c3362ea1c4f1a6d085bbd364de42610873bfd",
+    "load/jelly_slice-after-load.png": "d784a6533acda03b7549e982eae4d94108716f4d98be7edbee07ae3d170e8d06",
+    "load/jelly_slice-maximum-paused.png": "b5a8738e2ab2b222a9c1a5cb3b3ecc9fe905f23fb7e98d457dbe5a82c7ab94ec",
+    "load/jelly_slice-running-00.png": "eefb6a2bd27ef3a16843f80d727a93040e427c3a7132a209697a87d1136b6539",
+    "load/jelly_slice-running-02.png": "ea089f0a376a12e34c898d5ef1c0a8a87c32a3fbdf9af7365c184c95f260946e",
+    "load/jelly_slice-running-05.png": "1d5c3ec53d2a07b16c3c5b69e8febcb58c5ea024856f59f4fbc5c62ed87cdaf8"
+  },
+  "review": "18 native images reviewed. Candidate home, six Bouncy returns, ten load views render correctly without missing artwork or clipping. The public initial home includes the Android immersive-mode tip; later controls are unobscured. Diagnostic scope only, no complete upgrade or clean acceptance claim."
+}

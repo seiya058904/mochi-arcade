@@ -1,0 +1,49 @@
+Applications Memory Usage (in Kilobytes):
+Uptime: 149840 Realtime: 149840
+
+** MEMINFO in pid 3418 [io.github.seiya058904.mochiarcade] **
+                   Pss  Private  Private     Swap      Rss     Heap     Heap     Heap
+                 Total    Dirty    Clean    Dirty    Total     Size    Alloc     Free
+                ------   ------   ------   ------   ------   ------   ------   ------
+  Native Heap    93817    93748        0        0    97020   107480    95504     7412
+  Dalvik Heap     8513     7944        0        0    16764     4763     2398     2365
+ Dalvik Other      772      752        0        0     1524                           
+        Stack      552      552        0        0      560                           
+       Ashmem       24        0        0        0      568                           
+    Other dev       19        0       16        0      324                           
+     .so mmap    57076     1848    52552        0    93256                           
+    .jar mmap     1341        0        0        0    27052                           
+    .apk mmap      210        0       68        0     1636                           
+    .ttf mmap       38        0        0        0      192                           
+    .dex mmap     3796        4     3780        0     4572                           
+    .oat mmap      621        0        0        0    13564                           
+    .art mmap     1044      444        4        0    26924                           
+   Other mmap       15        8        0        0      876                           
+      Unknown     3020     3016        0        0     3572                           
+        TOTAL   170858   108316    56420        0   288404   112243    97902     9777
+ 
+ App Summary
+                       Pss(KB)                        Rss(KB)
+                        ------                         ------
+           Java Heap:     8392                          43688
+         Native Heap:    93748                          97020
+                Code:    58268                         140288
+               Stack:      552                            560
+            Graphics:        0                              0
+       Private Other:     3776
+              System:     6122
+             Unknown:                                    6848
+ 
+           TOTAL PSS:   170858            TOTAL RSS:   288404      TOTAL SWAP (KB):        0
+ 
+ Objects
+               Views:        8         ViewRootImpl:        1
+         AppContexts:        6           Activities:        1
+              Assets:        7        AssetManagers:        0
+       Local Binders:       13        Proxy Binders:       37
+       Parcel memory:        5         Parcel count:       20
+    Death Recipients:        0             WebViews:        0
+ 
+ SQL
+         MEMORY_USED:        0
+  PAGECACHE_OVERFLOW:        0          MALLOC_SIZE:        0

@@ -1,0 +1,72 @@
+{
+  "transport": {
+    "status": "OBSERVED",
+    "exit": 0,
+    "seconds": 0.002
+  },
+  "light-shell": {
+    "status": "OBSERVED",
+    "exit": 0,
+    "seconds": 0.006
+  },
+  "app-pid": {
+    "status": "NOT_AVAILABLE",
+    "exit": 1,
+    "seconds": 0.011
+  },
+  "activity-manager": {
+    "status": "OBSERVED",
+    "exit": 0,
+    "seconds": 0.021
+  },
+  "surface-flinger": {
+    "status": "OBSERVED",
+    "exit": 0,
+    "seconds": 0.01
+  },
+  "guest-processes": {
+    "status": "OBSERVED",
+    "exit": 0,
+    "seconds": 0.336
+  },
+  "guest-anr-index": {
+    "status": "OBSERVED",
+    "exit": 0,
+    "seconds": 0.01
+  },
+  "guest-logcat": {
+    "status": "OBSERVED",
+    "exit": 0,
+    "seconds": 0.061
+  },
+  "host-processes": {
+    "status": "OBSERVED",
+    "exit": 0,
+    "seconds": 0.011
+  },
+  "host-memory": {
+    "status": "OBSERVED",
+    "exit": 0,
+    "seconds": 0.002
+  },
+  "host-disk": {
+    "status": "OBSERVED",
+    "exit": 0,
+    "seconds": 0.011
+  },
+  "emulator-threads": {
+    "status": "OBSERVED",
+    "exit": 0,
+    "seconds": 0.023
+  },
+  "emulator-status": {
+    "status": "OBSERVED",
+    "exit": 0,
+    "seconds": 0.002
+  },
+  "emulator-kernel-stack": {
+    "status": "OBSERVED",
+    "exit": 0,
+    "seconds": 0.006
+  }
+}

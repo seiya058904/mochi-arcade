@@ -30,7 +30,7 @@ on:
         description: Emulator graphics diagnostic using software rendering on this runner
         type: choice
         options: [host, lavapipe, swiftshader, swangle]
-        default: host
+        default: swangle
 permissions:
   contents: read
 jobs:
@@ -73,7 +73,7 @@ jobs:
         gate: ${{ fromJSON(inputs.acceptance_gate == 'ALL' && '["U110","U100","CLEAN","LOAD"]' || inputs.acceptance_gate == 'DIAG' && '["DIAG"]' || inputs.acceptance_gate == 'U110' && '["U110"]' || inputs.acceptance_gate == 'U100' && '["U100"]' || inputs.acceptance_gate == 'CLEAN' && '["CLEAN"]' || inputs.acceptance_gate == 'LOAD' && '["LOAD"]' || '["CLEAN","LOAD"]') }}
     env:
       GODOT_VERSION: 4.7.2
-      MOCHI_EMULATOR_GPU: ${{ inputs.graphics_backend || 'host' }}
+      MOCHI_EMULATOR_GPU: ${{ inputs.graphics_backend || 'swangle' }}
       MOCHI_STAGED_RELEASE_ID: ${{ inputs.staged_release_id }}
       MOCHI_STAGED_APK_SHA256: ${{ inputs.staged_apk_sha256 }}
       MOCHI_STAGED_SOURCE_SHA: ${{ inputs.staged_source_sha }}

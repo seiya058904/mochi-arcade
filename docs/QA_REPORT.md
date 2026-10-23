@@ -6,6 +6,11 @@
 [ITERATION_1.1.1.md](ITERATION_1.1.1.md) for F1–F6, exact next actions and
 current evidence. The v1.1.0 sections below describe the previous delivery.
 
+Current acceptance continuation: [Android unblock audit](ANDROID_UNBLOCK_1.1.1.md).
+The final prior main run 39951046417 also remains FAIL: load bodies completed,
+but the first finally operation timed out before either save was restored.
+New diagnostics and reviews are recorded separately; no historical FAIL is edited.
+
 ## Historical 1.1.0 source iteration — 2026-10-23
 
 **v1.1.0 RELEASED; exact signed runtime/upgrade, startup review and public bytes PASS.**

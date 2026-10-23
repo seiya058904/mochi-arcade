@@ -3,6 +3,12 @@
 Status: **BLOCKED; signed Android acceptance failed after hosted emulator crashes**. Published v1.1.0 and v1.0.0
 remain unchanged. This iteration does not inherit their runtime PASS results.
 
+Continuation: [Android unblock audit](ANDROID_UNBLOCK_1.1.1.md) is the current
+acceptance record. It preserves these repairs/candidate and the historical failures
+below, adds four isolated gates and captures both original save files before load.
+The earlier 22-suite and 126/119 assertion results remain scoped to their runs;
+the current unified tool entry has 23 suites.
+
 ## Takeover and scope
 
 Root: `D:\xia zai\AI project\Project in Iteration\Mochi Arcade`; origin

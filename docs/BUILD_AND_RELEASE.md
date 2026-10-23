@@ -113,7 +113,9 @@ No workflow or script creates a tag or publishes a Release automatically.
 
 ## Emulator graphics diagnostic
 
-The default `graphics_backend=host` uses the emulator's host GLES route. Manual
+The current default `graphics_backend=swangle` uses ANGLE/SwiftShader after bounded
+diagnostic 39960486671 passed lifecycle, load/restoration and native review. Full
+signed gates remain separate. The previous `graphics_backend=host` uses the emulator's host GLES route. Manual
 runs can select `lavapipe` to reproduce the retained failing comparison. Both
 remain software-rendered on the hosted runner. Host starts the image's existing Xvfb and
 sets Mesa's `LIBGL_ALWAYS_SOFTWARE=true` and `GALLIUM_DRIVER=llvmpipe`; it installs

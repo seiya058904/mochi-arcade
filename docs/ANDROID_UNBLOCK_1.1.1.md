@@ -61,13 +61,14 @@ The release summary rejects absent, failed, mismatched or unreviewed gates.
 | Profile | Unique change | Fixed controls | Status |
 | --- | --- | --- | --- |
 | E1 explicit `-gpu swiftshader` | Replace host GLES/Mesa llvmpipe profile; remove inherited Mesa/Xvfb overrides for this route | Emulator 37.2.12, AOSP API 34 x86_64 r4, 720x1280/320 dpi, 2 cores/2048 MiB, original APKs, three Bouncy returns and stop per APK, candidate 64-ball/12-jelly load and restoration | FAIL, 39959705397: public v1.1.0 blank home and shader linking errors; candidate/control/load NOT_RUN |
-| E2 explicit `-gpu swangle` | Use ANGLE GLES frontend with SwiftShader, supported by installed emulator help; test a different shader compiler/capability route after E1 uniform-limit failure | Same fixed controls and assertions as E1; no seed/timeout relaxation | SELECTED, not yet run |
+| E2 explicit `-gpu swangle` | Use ANGLE GLES frontend with SwiftShader, supported by installed emulator help; test a different shader compiler/capability route after E1 uniform-limit failure | Same fixed controls and assertions as E1; no seed/timeout relaxation | PASS diagnostic only, 39960486671; 18 native images reviewed |
 
 One diagnostic attempt per profile; maximum two new profiles. Read emulator GPU
 help and actual SurfaceFlinger renderer before app tests. E1 runs public v1.1.0
 control first, then candidate under the same profile. Short diagnostic success
 only permits full acceptance; it never substitutes for U110/U100/CLEAN/LOAD.
-Current default profile is retained until a new one is actually accepted.
+E2 is now selected for the full gates and default development CI after its complete
+diagnostic passed. No more new profiles or unchanged diagnostic retries are planned.
 
 Tool preflight failures are retained separately from renderer experiments:
 39958474343 failed workflow validation (job-level `runner` context); 39958584887
@@ -91,6 +92,22 @@ E2 is justified by this specific GLES linking failure: the installed help lists
 `swangle` as ANGLE with SwiftShader, rather than the direct SwiftShader GLES route.
 It is a hypothesis, not a promised fix. It is the second and final new profile in
 this bounded task; only a passing diagnosis permits full gates.
+
+E2 at T `bfe653feceb38f2c7efe07fbc652ec972da07180` passed public v1.1.0 and
+candidate three-return/stop controls, then both candidate load bodies and complete
+primary/backup restoration (bytes/existence/owner/mode). Actual renderer was ANGLE
+2.1.17841 / SwiftShader driver-5.0.0, OpenGL ES 3.1, Vulkan 1.3.0. No Godot/runtime
+errors or host crash were recorded; owned emulator termination exited 0.
+18 native screenshots were reviewed: one initial public home has Android's
+immersive tip, all later game/control/load views are unobscured. The original
+AWAITING_VISUAL_REVIEW automation report remains unchanged, with a separate
+diagnostic review and exact file hashes. Evidence:
+`evidence/iteration-1.1.1/unblock/E2-39960486671/`.
+
+Observed load presentation rates were 5.33 and 10.33 FPS on this CPU-rendered
+hosted environment including ADB work. These are not phone performance or a
+performance improvement claim. This diagnostic does not satisfy the four full
+release gates and does not establish the cause of historical host SIGSEGVs.
 
 Official [graphics modes](https://developer.android.com/studio/run/emulator-acceleration)
 list explicit swiftshader; swiftshader_indirect is deprecated. This motivates an

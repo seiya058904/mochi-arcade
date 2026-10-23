@@ -6,6 +6,11 @@
 [ITERATION_1.1.1.md](ITERATION_1.1.1.md) for F1–F6, exact next actions and
 current evidence. The v1.1.0 sections below describe the previous delivery.
 
+Current continuation and exact next actions: [Android unblock audit](ANDROID_UNBLOCK_1.1.1.md).
+This includes the final development run's force-stop timeout (39951046417),
+which prevented both file restorations, and the new bounded graphics diagnostics.
+Do not conflate that timeout with the two observed SIGSEGV failures.
+
 ## Historical iteration — 2026-10-23
 
 **v1.1.0 RELEASED; original signed runtime/upgrade and anonymous bytes PASS.**

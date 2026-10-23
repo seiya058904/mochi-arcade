@@ -1,0 +1,78 @@
+Display 0 name="Built-in Screen"#1
+WindowedMagnification:0:31#2
+HideDisplayCutout:0:14#3
+OneHanded:0:14#4
+FullscreenMagnification:0:12#5
+Leaf:0:1#6
+WallpaperWindowToken{c75b739 token=android.os.Binder@c4b4300}#62
+dbf79f4 com.android.systemui.wallpapers.ImageWallpaper#63
+com.android.systemui.wallpapers.ImageWallpaper#64
+Wallpaper BBQ wrapper#65
+DefaultTaskDisplayArea#7
+Task=1#44
+Task=7#93
+9e2616b ActivityRecordInputSink com.android.launcher3/.uioverrides.QuickstepLauncher#100
+ActivityRecord{2d444c8 u0 com.android.launcher3/.uioverrides.QuickstepLauncher#94
+c3ee5f3 com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher#95
+com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher#394
+ImeContainer#10
+WindowToken{dcabee5 type=2011 android.os.Binder@42e2ddc}#86
+Surface(name=2b7ed40 InputMethod)/@0xd89e61f - animation-leash of insets_animation#399
+2b7ed40 InputMethod#87
+Task=2#45
+Task=3#46
+Dim layer#50
+Task=4#47
+Dim layer#51
+Leaf:3:12#8
+WindowToken{d8ab9ca type=2038 android.os.BinderProxy@d6bcc5}#48
+a6c5fbe ShellDropTarget#49
+ImePlaceholder:13:14#9
+OneHanded:15:15#11
+FullscreenMagnification:15:15#12
+Leaf:15:15#13
+WindowToken{3b18c58 type=2000 android.os.BinderProxy@980c7ca}#71
+Surface(name=f6bc1b1 StatusBar)/@0xe003169 - animation-leash of insets_animation#395
+f6bc1b1 StatusBar#72
+StatusBar#83
+HideDisplayCutout:16:16#14
+OneHanded:16:16#15
+FullscreenMagnification:16:16#16
+Leaf:16:16#17
+OneHanded:17:17#18
+FullscreenMagnification:17:17#19
+Leaf:17:17#20
+WindowToken{4996e1f type=2040 android.os.BinderProxy@86bfc79}#69
+fdb856c NotificationShade#70
+HideDisplayCutout:18:23#21
+OneHanded:18:23#22
+FullscreenMagnification:18:23#23
+Leaf:18:23#24
+Leaf:24:25#25
+WindowToken{ee323d6 type=2019 android.os.BinderProxy@4de8798}#66
+Surface(name=925a657 NavigationBar0)/@0x77450f3 - animation-leash of insets_animation#396
+925a657 NavigationBar0#67
+NavigationBar0#82
+HideDisplayCutout:26:31#26
+OneHanded:26:31#27
+FullscreenMagnification:26:27#28
+Leaf:26:27#29
+Leaf:28:28#30
+FullscreenMagnification:29:31#31
+Leaf:29:31#32
+HideDisplayCutout:32:35#33
+OneHanded:32:32#34
+Leaf:32:32#35
+FullscreenMagnification:33:33#36
+Leaf:33:33#37
+OneHanded:34:35#38
+FullscreenMagnification:34:35#39
+Leaf:34:35#40
+Leaf:36:36#41
+Accessibility Overlays#43
+Display Overlays#42
+Input Consumer recents_animation_input_consumer#92
+WindowToken{4fafd81 type=2024 android.os.BinderProxy@225465a}#54
+ae16e26 ScreenDecorOverlay#55
+WindowToken{241919d type=2024 android.os.BinderProxy@1763874}#56
+cb70612 ScreenDecorOverlayBottom#57

@@ -6,6 +6,11 @@
 [ITERATION_1.1.1.md](ITERATION_1.1.1.md) for F1–F6, exact next actions and
 current evidence. The v1.1.0 sections below describe the previous delivery.
 
+Current continuation: [Android unblock audit and four-gate board](ANDROID_UNBLOCK_1.1.1.md).
+Tools now preserve both original load-test files, retain independent diagnostic
+phases, and isolate U110/U100/CLEAN/LOAD. Original candidate bytes remain frozen;
+none of the new tools or desktop checks substitutes for complete signed gates.
+
 ## Historical 1.1.0 iteration — 2026-10-23
 
 | Phase | Status | Exit evidence / next action |

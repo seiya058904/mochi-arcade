@@ -17,6 +17,12 @@ Build source `920f39cfc29fc0d46b03a295f25f1197446a4027`; original-signed APK
 See [ITERATION_1.1.1.md](ITERATION_1.1.1.md). Historical failures and the v1.0.0
 exception below do not waive candidate gates.
 
+The [current unblock audit](ANDROID_UNBLOCK_1.1.1.md) controls continuation.
+U110/U100/CLEAN/LOAD each require their own complete run, exact candidate hash,
+S/T source relationship and independent native capture review. The unified entry
+now includes a 23rd suite for restoration failure and gate-summary rejection.
+Two load bodies alone cannot pass without original primary/backup restoration.
+
 Historical v1.1.0 iteration (2026-10-23): **v1.1.0 RELEASED**. A01-A08/A10-A12 pass
 final-source tests, reviewed layouts and exact signed API 34 hosted acceptance
 (8 x 3 returns, upgrade, recovery, audio/load and native startup review). A09 is

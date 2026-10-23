@@ -260,11 +260,11 @@ docs/              Product, art direction, QA and release evidence
 
 ### Verification, Without Guesswork
 
-The repository includes **22 required automated checks** (game suites, save/terminal boundary regressions, full restore semantics and release-identity rejection tests), deterministic game replays, procedural-board checks, and retained Android screenshots and lifecycle evidence.
+The repository includes **23 required automated checks** (game suites, save/terminal boundary regressions, full restore semantics, release identity and Android restoration/release-summary rejection tests), deterministic game replays, procedural-board checks, and retained Android screenshots and lifecycle evidence.
 
 The published **v1.0.0** signed APK was exercised on a controlled **Android 14 / API 34 hardware-GPU emulator**, including all eight games, background return, resume, restart, save restoration, and maximum-object loads. This is **not** a claim that every Android phone will achieve the same frame rate.
 
-The **v1.1.1 candidate** repairs pending Fruit Drop merge snapshots, terminal recovery and section-level save recovery, and reduces measured duplicate save transactions. Its original-signed Android and two-source upgrade gates are tracked separately in [the current patch report](docs/ITERATION_1.1.1.md); publication is blocked by hosted emulator crashes during acceptance; it is not a stable release.
+The **v1.1.1 candidate** repairs pending Fruit Drop merge snapshots, terminal recovery and section-level save recovery, and reduces measured duplicate save transactions. Repairs and measurements are in [the patch report](docs/ITERATION_1.1.1.md). Publication remains blocked; [the current Android acceptance audit](docs/ANDROID_UNBLOCK_1.1.1.md) tracks two complete upgrade paths, independent clean installation, load/save restoration and bounded graphics diagnostics. The existing original-signed candidate is preserved; it is not a stable release.
 
 The published **v1.1.0** adds save-failure feedback and recovery, Number Bloom Undo from the result screen, and fewer idle canvas rebuilds. Its exact original-signature APK passed Android 14 / API 34 software-emulator runtime, in-place v1.0.0 upgrade, eight games with three background returns each, and maximum-object loads; native captures were reviewed. [Iteration status and evidence](docs/ITERATION_1.1.md) retain both passes and failures. No physical phone was available for this version; phone performance, thermal/battery results and other API/device coverage remain unverified.
 
