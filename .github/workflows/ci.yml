@@ -70,7 +70,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        gate: ${{ fromJSON(inputs.acceptance_gate == 'ALL' && '["U110","U100","CLEAN","LOAD"]' || inputs.acceptance_gate == 'DIAG' && '["DIAG"]' || inputs.acceptance_gate == 'U110' && '["U110"]' || inputs.acceptance_gate == 'U100' && '["U100"]' || inputs.acceptance_gate == 'CLEAN' && '["CLEAN"]' || inputs.acceptance_gate == 'LOAD' && '["LOAD"]' || '["CLEAN","LOAD"]') }}
+        # Automatic CI verifies source and APK construction. Hosted software-GPU
+        # Android runtime gates remain explicit manual diagnostics/acceptance.
+        gate: ${{ fromJSON(github.event_name != 'workflow_dispatch' && '["BUILD"]' || inputs.acceptance_gate == 'ALL' && '["U110","U100","CLEAN","LOAD"]' || inputs.acceptance_gate == 'DIAG' && '["DIAG"]' || inputs.acceptance_gate == 'U110' && '["U110"]' || inputs.acceptance_gate == 'U100' && '["U100"]' || inputs.acceptance_gate == 'CLEAN' && '["CLEAN"]' || inputs.acceptance_gate == 'LOAD' && '["LOAD"]' || '["CLEAN","LOAD"]') }}
     env:
       GODOT_VERSION: 4.7.2
       MOCHI_EMULATOR_GPU: ${{ inputs.graphics_backend || 'swangle' }}
@@ -160,6 +162,7 @@ jobs:
           python3 scripts_tools/candidate_source.py
           echo 'MOCHI_APK=dist/MochiArcade.apk' >> "$GITHUB_ENV"
       - name: Install pinned Android runtime tools
+        if: ${{ matrix.gate != 'BUILD' }}
         shell: bash
         run: |
           set -euo pipefail
@@ -207,6 +210,7 @@ jobs:
           PY
           df -h "$ANDROID_HOME" "$RUNNER_TEMP"
       - name: Boot dedicated AVD and run Android input smoke
+        if: ${{ matrix.gate != 'BUILD' }}
         id: android_smoke
         env:
           ANDROID_AVD_HOME: ${{ runner.temp }}/mochi-avd
@@ -264,11 +268,11 @@ jobs:
           if [[ -n "$MOCHI_STAGED_RELEASE_ID" || "${{ inputs.release_candidate }}" == 'true' ]]; then gate_args+=(--release); fi
           python3 scripts_tools/android_gate.py "${gate_args[@]}"
       - name: Retain host state and release job-owned processes
-        if: always()
+        if: ${{ always() && matrix.gate != 'BUILD' }}
         shell: bash
         run: python3 scripts_tools/android_host.py
       - name: Upload Android runtime evidence
-        if: always()
+        if: ${{ always() && matrix.gate != 'BUILD' }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4; official tag resolved 2026-10-23
         with:
           name: android-runtime-evidence-${{ matrix.gate }}

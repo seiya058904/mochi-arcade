@@ -1,6 +1,16 @@
 # Implementation board
 
-## Current bounded closeout — 2026-10-23
+## Current local retest and CI policy — 2026-10-23
+
+The owner authorized a fresh local Android retest, superseding the prior closed
+window for this specific investigation. The exact failing CI development APK
+passed eight games × three background returns on a local Pixel 2 API 34 AVD with
+AMD host GPU; no black return reproduced. Automatic CI now retains source checks
+and APK construction, with hosted software-GPU runtime gates available manually.
+This is an owner-approved hosted-environment exception, not a proven engine fix
+or signed-candidate release approval. [Exact result, evidence and limits](LOCAL_ANDROID_CI_EXCEPTION_20261023.md).
+
+## Previous bounded closeout — 2026-10-23
 
 The owner replaced open-ended Android diagnosis with a 60-minute final closeout.
 See [scope, tool regression evidence, retention rules and exact stopping actions](CLOSEOUT_60MIN.md).
