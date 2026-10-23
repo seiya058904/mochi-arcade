@@ -25,7 +25,36 @@ on:
 permissions:
   contents: read
 jobs:
+  staged_bytes:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.staged_release_id }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      # GitHub requires push-level access to read an unpublished draft (403 with
+      # contents:read). Only this explicitly dispatched transport job has it;
+      # it performs GET/downloads, never publishes, signs or changes a release.
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Download authorized draft bytes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MOCHI_STAGED_RELEASE_ID: ${{ inputs.staged_release_id }}
+          MOCHI_STAGED_APK_SHA256: ${{ inputs.staged_apk_sha256 }}
+        run: python3 scripts_tools/fetch_staged_release.py --download-only --release-id "$MOCHI_STAGED_RELEASE_ID" --sha256 "$MOCHI_STAGED_APK_SHA256"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: staged-signed-input
+          path: |
+            dist/MochiArcade.apk
+            dist/SHA256SUMS
+            dist/staged-release.json
+          retention-days: 14
   verify:
+    needs: staged_bytes
+    if: ${{ always() && !cancelled() && (needs.staged_bytes.result == 'success' || needs.staged_bytes.result == 'skipped') }}
     runs-on: ubuntu-24.04
     timeout-minutes: 35
     env:
@@ -101,12 +130,15 @@ jobs:
         run: |
           python3 scripts_tools/build_ci_release.py --engine "Godot_v${GODOT_VERSION}-stable_linux.x86_64"
           echo 'MOCHI_APK=dist/MochiArcade.apk' >> "$GITHUB_ENV"
-      - name: Fetch and verify locally signed staged bytes
+      - uses: actions/download-artifact@v4
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.staged_release_id }}
-        env:
-          GH_TOKEN: ${{ github.token }}
+        with:
+          name: staged-signed-input
+          path: dist
+      - name: Verify locally signed staged bytes
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.staged_release_id }}
         run: |
-          python3 scripts_tools/fetch_staged_release.py --release-id "$MOCHI_STAGED_RELEASE_ID" --sha256 "$MOCHI_STAGED_APK_SHA256"
+          python3 scripts_tools/fetch_staged_release.py --verify-only --release-id "$MOCHI_STAGED_RELEASE_ID" --sha256 "$MOCHI_STAGED_APK_SHA256"
           echo 'MOCHI_APK=dist/MochiArcade.apk' >> "$GITHUB_ENV"
       - name: Install pinned Android runtime tools
         shell: bash

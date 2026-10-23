@@ -1,0 +1,9 @@
+{
+  "status": "FAIL",
+  "run": "https://github.com/seiya058904/mochi-arcade/actions/runs/39928628764",
+  "source": "de02c6a47d598d0afc903494bfda12a5e0af408c",
+  "phase": "GET unpublished draft metadata",
+  "error": "HTTP 403 Resource not accessible by integration",
+  "android_runtime": "NOT_RUN",
+  "repair": "Limit contents:write to explicitly dispatched draft-download job; test job remains contents:read; no key upload"
+}

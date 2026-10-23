@@ -37,17 +37,28 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--release-id", type=int, required=True)
     parser.add_argument("--sha256", required=True)
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--download-only", action="store_true")
+    mode.add_argument("--verify-only", action="store_true")
     args = parser.parse_args()
     assert args.release_id > 0 and re.fullmatch(r"[0-9a-f]{64}", args.sha256)
-    metadata = json.loads(subprocess.check_output(["gh", "api", f"repos/{REPOSITORY}/releases/{args.release_id}"], text=True))
+    Path("dist").mkdir(exist_ok=True)
+    metadata = (json.loads(Path("dist/staged-release.json").read_text()) if args.verify_only else
+                json.loads(subprocess.check_output(["gh", "api", f"repos/{REPOSITORY}/releases/{args.release_id}"], text=True)))
+    assert metadata["id"] == args.release_id
     assert metadata["draft"] and metadata["tag_name"] == "v1.1.0", "Only the authorized unpublished 1.1.0 draft is accepted"
     assets = {item["name"]: item for item in metadata["assets"]}
-    Path("dist").mkdir(exist_ok=True)
-    for name in ["MochiArcade.apk", "SHA256SUMS"]:
-        with (Path("dist") / name).open("wb") as dest:
-            subprocess.run(["gh", "api", "-H", "Accept: application/octet-stream",
-                            f"repos/{REPOSITORY}/releases/assets/{assets[name]['id']}"], stdout=dest, check=True)
+    if not args.verify_only:
+        for name in ["MochiArcade.apk", "SHA256SUMS"]:
+            with (Path("dist") / name).open("wb") as dest:
+                subprocess.run(["gh", "api", "-H", "Accept: application/octet-stream",
+                                f"repos/{REPOSITORY}/releases/assets/{assets[name]['id']}"], stdout=dest, check=True)
+        Path("dist/staged-release.json").write_text(json.dumps(metadata, indent=2) + "\n")
     assert Path("dist/SHA256SUMS").read_text().strip() == f"{args.sha256}  MochiArcade.apk"
+    assert hashlib.sha256(Path("dist/MochiArcade.apk").read_bytes()).hexdigest() == args.sha256
+    if args.download_only:
+        print("Downloaded checksum-pinned draft APK; signature verification belongs to the read-only test job")
+        return
     # Published predecessor is deliberately downloaded without any credential.
     old = Path("dist/MochiArcade-v1.0.0.apk")
     with urllib.request.urlopen(f"https://github.com/{REPOSITORY}/releases/download/v1.0.0/MochiArcade.apk", timeout=120) as response:

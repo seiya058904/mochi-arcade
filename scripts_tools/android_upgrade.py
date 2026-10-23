@@ -138,6 +138,31 @@ def main():
             shot("upgraded-" + game + "-after-input")
             assert shell("pidof", PACKAGE)
             passed(game + " restored seed/score, retained records/settings and accepted native input")
+        # Real final legal swipe, then the new three-button result's Undo entry.
+        terminal = copy.deepcopy(state)
+        terminal["settings"]["language"] = "en"
+        terminal["seen"]["number_bloom"] = False
+        board = [2, 4, 8, 16, 4, 8, 16, 32, 8, 16, 32, 64, 2, 2, 8, 16]
+        terminal["sessions"]["number_bloom"].update(board=board, score=64, undo={}, won=False)
+        fixture(terminal)
+        launch()
+        tap(190, 1036)
+        tap(360, 775)
+        shell("input", "swipe", 560, 700, 150, 700, 300)
+        time.sleep(1)
+        shot("bloom-terminal-before-undo")
+        tap(360, 679)  # First button of the three-action result: Undo last move.
+        time.sleep(0.6)
+        undone = json.loads(read())
+        assert undone["sessions"]["number_bloom"]["board"] == board
+        assert undone["sessions"]["number_bloom"]["score"] == 64
+        assert undone["sessions"]["number_bloom"]["undo"] == {}
+        assert undone["records"] == terminal["records"]
+        shot("bloom-terminal-undone")
+        stop()
+        launch()
+        assert json.loads(read())["sessions"]["number_bloom"] == undone["sessions"]["number_bloom"]
+        passed("Actual terminal swipe and result Undo restore board/score and survive process restart")
         for damage in ["invalid-json", "damaged-fields"]:
             fixture(state)
             broken = copy.deepcopy(state)
