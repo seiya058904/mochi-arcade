@@ -21,18 +21,13 @@ on:
         description: Exact committed source used for the locally signed candidate
         type: string
         default: ''
-      upgrade_from:
-        description: Independently hash-pinned public predecessor to upgrade
-        type: choice
-        options: [v1.1.0, v1.0.0]
-        default: v1.1.0
       acceptance_gate:
         description: Independent AVD gate; ALL executes four isolated signed gates
         type: choice
         options: [DIAG, U110, U100, CLEAN, LOAD, ALL]
         default: CLEAN
       graphics_backend:
-        description: Emulator graphics diagnostic; both choices use software rendering on this runner
+        description: Emulator graphics diagnostic using software rendering on this runner
         type: choice
         options: [host, lavapipe, swiftshader]
         default: host
@@ -162,6 +157,7 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.staged_release_id }}
         run: |
           python3 scripts_tools/fetch_staged_release.py --verify-only --predecessor "$MOCHI_UPGRADE_FROM" --release-id "$MOCHI_STAGED_RELEASE_ID" --sha256 "$MOCHI_STAGED_APK_SHA256" --source "$MOCHI_STAGED_SOURCE_SHA"
+          python3 scripts_tools/candidate_source.py
           echo 'MOCHI_APK=dist/MochiArcade.apk' >> "$GITHUB_ENV"
       - name: Install pinned Android runtime tools
         shell: bash
@@ -220,7 +216,7 @@ jobs:
           mkdir -p "$ANDROID_AVD_HOME" .local/android-runtime
           case "$MOCHI_EMULATOR_GPU" in lavapipe|host|swiftshader) ;; *) exit 1 ;; esac
           "$ANDROID_HOME/emulator/emulator" -help-gpu > .local/android-runtime/emulator-help-gpu.txt 2>&1
-          "$ANDROID_HOME/emulator/emulator" -version > .local/android-runtime/emulator-version.txt 2>&1
+          "$ANDROID_HOME/emulator/emulator" -no-window -version > .local/android-runtime/emulator-version.txt 2>&1
           if [[ "$MOCHI_EMULATOR_GPU" == 'swiftshader' ]]; then
             grep -w swiftshader .local/android-runtime/emulator-help-gpu.txt
             unset LIBGL_ALWAYS_SOFTWARE GALLIUM_DRIVER DISPLAY

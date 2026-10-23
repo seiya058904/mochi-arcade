@@ -215,6 +215,7 @@ def main():
         # Real final legal swipe, then the new three-button result's Undo entry.
         terminal = copy.deepcopy(state)
         terminal["settings"]["language"] = "en"
+        terminal["settings"]["music"] = True
         terminal["seen"]["number_bloom"] = False
         board = [2, 4, 8, 16, 4, 8, 16, 32, 8, 16, 32, 64, 2, 2, 8, 16]
         terminal["sessions"]["number_bloom"].update(board=board, score=64, undo={}, won=False)
@@ -225,12 +226,14 @@ def main():
         shell("input", "swipe", 560, 700, 150, 700, 300)
         time.sleep(1)
         shot("bloom-terminal-before-undo")
+        (out/'bloom-terminal-audio-before.txt').write_text(shell('dumpsys','media.audio_flinger'),encoding='utf-8')
         terminal_pid = shell("pidof", PACKAGE)
         shell("input", "keyevent", "KEYCODE_HOME")
         time.sleep(0.8)
         launch()
         assert shell("pidof", PACKAGE) == terminal_pid
         shot("bloom-terminal-background-return")
+        (out/'bloom-terminal-audio-return.txt').write_text(shell('dumpsys','media.audio_flinger'),encoding='utf-8')
         tap(360, 679)  # First button of the three-action result: Undo last move.
         time.sleep(0.6)
         undone = json.loads(read())
@@ -243,6 +246,32 @@ def main():
         launch()
         assert json.loads(read())["sessions"]["number_bloom"] == undone["sessions"]["number_bloom"]
         passed("Actual terminal swipe and result Undo restore board/score and survive process restart")
+        trio = json.loads(Path('tests/integration/fixtures/terminal-trio.json').read_text(encoding='utf-8'))
+        terminal = copy.deepcopy(state)
+        terminal['settings'].update(language='en', music=True)
+        terminal['seen']['tile_trio'] = False
+        terminal['sessions']['tile_trio'] = trio['initial']
+        fixture(terminal);launch();tap(190,828);tap(360,775)
+        for x,y in trio['taps']:
+            tap(round(x),round(y))
+        time.sleep(.8)
+        assert 'tile_trio' not in json.loads(read())['sessions'], 'Seven real inputs did not reach terminal tray'
+        shot('trio-terminal-before-undo')
+        terminal_pid=shell('pidof',PACKAGE)
+        shell('input','keyevent','KEYCODE_HOME');time.sleep(.8);launch()
+        assert shell('pidof',PACKAGE)==terminal_pid
+        shot('trio-terminal-background-return')
+        (out/'trio-terminal-audio-return.txt').write_text(shell('dumpsys','media.audio_flinger'),encoding='utf-8')
+        tap(360,679)
+        restored_trio=json.loads(read())
+        compare(trio['before_last'],restored_trio['sessions']['tile_trio'],'Native terminal Trio Undo')
+        assert restored_trio['records']==terminal['records']
+        shot('trio-terminal-undone')
+        # Repeat the real final selection to prove resumed input remains functional.
+        tap(*map(round,trio['taps'][-1]));time.sleep(.8)
+        assert 'tile_trio' not in json.loads(read())['sessions']
+        passed('Seven native Trio picks reach full tray; terminal background return, actual Undo and next input pass')
+        report['terminal_audio_scope']='Enabled music and retained AudioFlinger state; Android output not captured/listened. Desktop mixer evidence remains separate.'
         for damage in ["invalid-json", "damaged-fields", "settings-section"]:
             fixture(state)
             broken = copy.deepcopy(state)

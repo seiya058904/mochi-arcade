@@ -69,6 +69,13 @@ control first, then candidate under the same profile. Short diagnostic success
 only permits full acceptance; it never substitutes for U110/U100/CLEAN/LOAD.
 Current default profile is retained until a new one is actually accepted.
 
+Tool preflight failures are retained separately from renderer experiments:
+39958474343 failed workflow validation (job-level `runner` context); 39958584887
+failed the version probe before creating or starting an AVD. The windowed QEMU
+binary could not load `libpulse.so.0`. The probe now uses `-no-window`, matching
+the actual launch. No library installation or environment change was made.
+E1 is still NOT_RUN until an AVD actually starts.
+
 Official [graphics modes](https://developer.android.com/studio/run/emulator-acceleration)
 list explicit swiftshader; swiftshader_indirect is deprecated. This motivates an
 experiment, not a claim that the prior gfxstream failure has been fixed.

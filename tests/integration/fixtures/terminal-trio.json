@@ -1,0 +1,111 @@
+{
+  "before_last": {
+    "history": [
+      {
+        "mask": "68719476735",
+        "score": 0,
+        "tray": []
+      },
+      {
+        "mask": "68711088127",
+        "score": 0,
+        "tray": [
+          23
+        ]
+      },
+      {
+        "mask": "68711088111",
+        "score": 0,
+        "tray": [
+          23,
+          4
+        ]
+      },
+      {
+        "mask": "60121153519",
+        "score": 0,
+        "tray": [
+          23,
+          4,
+          33
+        ]
+      },
+      {
+        "mask": "60116959215",
+        "score": 0,
+        "tray": [
+          23,
+          4,
+          33,
+          22
+        ]
+      },
+      {
+        "mask": "60116959207",
+        "score": 0,
+        "tray": [
+          23,
+          4,
+          33,
+          22,
+          3
+        ]
+      }
+    ],
+    "mask": "59982741479",
+    "score": 0,
+    "seed": 701,
+    "stage": 1,
+    "tray": [
+      23,
+      4,
+      27,
+      33,
+      22,
+      3
+    ]
+  },
+  "initial": {
+    "history": [],
+    "mask": "68719476735",
+    "score": 0,
+    "seed": 701,
+    "stage": 1,
+    "tray": []
+  },
+  "source": "Production generator seed 701, real selectable tile choices; Android must execute all seven native taps",
+  "taps": [
+    [
+      510.0,
+      460.0
+    ],
+    [
+      560.0,
+      422.0
+    ],
+    [
+      360.0,
+      510.0
+    ],
+    [
+      410.0,
+      460.0
+    ],
+    [
+      460.0,
+      422.0
+    ],
+    [
+      510.0,
+      560.0
+    ],
+    [
+      560.0,
+      522.0
+    ]
+  ],
+  "viewport": [
+    720,
+    1280
+  ]
+}

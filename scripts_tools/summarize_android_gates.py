@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 
 GATES=('U110','U100','CLEAN','LOAD')
+GAMES={'fruit_drop','bubble_garden','cake_stack','bouncy_balls','tile_trio','mochi_hop','number_bloom','jelly_slice'}
 
 
 def summarize(root, sha, source, tool, profile):
@@ -20,8 +21,19 @@ def summarize(root, sha, source, tool, profile):
             child=json.loads((folder/('upgrade/upgrade-report.json' if gate.startswith('U') else 'clean/report.json' if gate=='CLEAN' else 'load/load-report.json')).read_text(encoding='utf-8'))
             assert child['status'].startswith('PASS') and child['apk_sha256']==sha
             if gate.startswith('U'):
-                assert len(child['semantics'])==8 and all(v['status']=='PASS' for v in child['semantics'].values())
-            if gate=='LOAD':assert child['original_save_restored'] and child['original_backup_restored']
+                assert set(child['semantics'])==GAMES and all(v['status']=='PASS' for v in child['semantics'].values())
+                assert child['predecessor_tag']==('v1.1.0' if gate=='U110' else 'v1.0.0')
+            if gate=='CLEAN':
+                assert report['clean_uninstall']=='PASS_PACKAGE_AND_DATA_ABSENT'
+                assert set(child['game_checks'])==GAMES
+                for checks in child['game_checks'].values():
+                    assert len(checks['background_cycles'])==3
+                    assert all(c['visible'] and c['checkpoint_equal'] for c in checks['background_cycles'])
+                    assert checks['round_restored_after_force_stop'] and checks['restart_zero_score']
+            if gate=='LOAD':
+                assert child['original_save_restored'] and child['original_backup_restored']
+                assert set(child['loads'])=={'bouncy_balls','jelly_slice'}
+                assert all(v['status'].startswith('PASS') for v in child['loads'].values())
             review=json.loads((folder/'visual-review.json').read_text(encoding='utf-8'))
             assert review['status']=='PASS_REVIEWED' and review['apk_sha256']==sha and review['run_id']==report['run_id']
             actual={str(p.relative_to(folder)).replace('\\','/'):hashlib.sha256(p.read_bytes()).hexdigest()
