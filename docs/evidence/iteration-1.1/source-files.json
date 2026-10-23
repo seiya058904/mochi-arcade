@@ -1,8 +1,8 @@
 {
   "scripts/app/audio_manager.gd": "eb8e2da720b88060b978459dab1e3856e02d2694ab8104d8ee073afd9b39147d",
   "scripts/app/catalog.gd": "8ab132443213d5ea50f0f8dfa0de1358d7f2ff2ce4da21aa986ad6c712466ab8",
-  "scripts/app/main.gd": "19b99783704bfac4170ba212a5189e5ec9fbf98e9e1b7cf5c069d017ac9d63db",
-  "scripts/app/save_manager.gd": "1a5b80453a7181ccb46bed46d969a19c0613f3fc5fafcf59768dfb5c4081f7e5",
+  "scripts/app/main.gd": "64a2b85c852185f7891a4a2763567eb3b6c0c71fe0ed7fdaaf9235f00ab5ad8b",
+  "scripts/app/save_manager.gd": "0fc91c0ae9bcf3e0afb60b169668a64b5c7101c7e05991811b74936c1c5e28fa",
   "scripts/app/save_schema.gd": "5a5375770e4c0402285d81c255a38ab76dec9427935f6070c40ec1f72f38f553",
   "scripts/games/bloom_rules.gd": "d2ff0ac2d4c315a72029a3308d04565bb72bf2d89d28820e37b6e9bbc27afdca",
   "scripts/games/bouncy_balls.gd": "3034795541a9aa71456ac65dc3f34972514b8c33190bb8daf5e0d74817cfef7a",

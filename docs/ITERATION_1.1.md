@@ -135,7 +135,7 @@ hosted development-package checks are separately reported.
   is byte-identical; this is NOT an anonymous release-asset download.
 - Size is 4,096 bytes above v1.0.0; no size reduction claim. Original compressed
   Godot libraries occupy 49,397,173 bytes and imported CJK font 13,290,643 bytes.
-- Full local suite: 19/19 PASS, new reliability 39/39 PASS. All seven real-renderer
+- Full local suite: 19/19 PASS, new reliability suite (see latest report). All seven real-renderer
   replay scripts (covering eight games) PASS; vertical replay includes a retained
   earlier timeout and independent successful rerun. Actual desktop audio PASS.
 - CI must still be observed on the integrated main SHA. Signed Android install,
@@ -143,3 +143,18 @@ hosted development-package checks are separately reported.
 - A narrowly scoped request to start the already-installed AEHD service was made
   because the task forbids system-driver changes; no such action is authorized
   or taken without an explicit response. No secret upload is requested.
+
+
+### Additional P1: unreadable is not empty
+
+A real Windows ACL fixture (read denied, replacement allowed) proved that the
+first candidate could load a 9999-point primary as empty and overwrite it with
+1 point while returning OK. This is a pre-existing load error distinction bug,
+confirmed during the final audit, not a permission change to user files. The
+repaired loader records I/O errors separately from missing/malformed JSON and
+blocks replacement of unreadable data, including access lost during a session.
+An explicit localized message explains checking access and reopening the app;
+pending progress is not falsely described as saved. The same ACL experiment now
+returns Error 12 and leaves the 9999-point primary intact. ACLs on the task's
+synthetic fixture were restored. CI also runs portable fault regressions.
+The initial signed candidate above is superseded and must not be published.

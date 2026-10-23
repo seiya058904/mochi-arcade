@@ -1,0 +1,22 @@
+{
+  "status": "PASS_BOUNDED_STATIC_AUDIT",
+  "commit": "b14091b8445bfa2832d57073abf476f533b892de",
+  "commits_scanned": 44,
+  "counts": {
+    "history_text_blobs": 630,
+    "history_binary_or_large": 247,
+    "working_text_files": 314
+  },
+  "findings": [],
+  "runtime_network_or_process_calls": [],
+  "fonts": {
+    "NotoSansSC-OFL.txt": "7accca2f29220c9ab44e4950799b821f36ebf5bbe6b5fb5342724b32228a8daf",
+    "Nunito-OFL.txt": "87e0b5393262ed4b7c1baa0c14f4ced89da7dc8144058bab34b7d28b53a2f0eb"
+  },
+  "limitations": [
+    "Known credential patterns only; not entropy or exhaustive secret detection",
+    "Large/binary blobs excluded from textual scan",
+    "AI provenance is recorded, not a trademark or exclusivity guarantee",
+    "Final APK permission/signature checks are separate"
+  ]
+}

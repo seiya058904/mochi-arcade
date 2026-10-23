@@ -57,8 +57,13 @@ func _ready() -> void:
 	load_icons()
 	show_home()
 	Save.persistence_changed.connect(_save_status, CONNECT_DEFERRED)
+	if Save.load_error != OK:
+		_save_status.call_deferred(Save.load_error)
 
 func _save_status(error: Error) -> void:
+	if Save.load_error != OK:
+		toast(C.words("Can't read saves. Check access and restart. New progress isn't saved.", "无法读取存档，请检查访问权限并重启。本次进度尚未保存。"))
+		return
 	toast(C.words("Can't save. Check storage space. We'll retry your changes.", "无法保存，请检查存储空间。我们会重试保存。") if error != OK else C.words("Your changes are saved now.", "更改已保存。"))
 
 func _resize() -> void:
@@ -478,7 +483,13 @@ func exit_application() -> void:
 		return
 	pause_game(true)
 	if Save.flush() != OK:
-		show_dialog(C.words("Some changes aren't saved", "还有更改未保存"), C.words("Check storage space and retry. Closing now loses changes since the last successful save.", "请检查存储空间后重试。现在退出会丢失上次成功保存后的更改。"), [[C.words("Retry saving", "重试保存"), exit_application], [C.words("Stay here", "留在这里"), dismiss_overlay], [C.words("Close without saving", "不保存并退出"), _quit]])
+		var actions := [[C.words("Stay here", "留在这里"), dismiss_overlay], [C.words("Close without saving", "不保存并退出"), _quit]]
+		var message := C.words("Check storage space and retry. Closing now loses changes since the last successful save.", "请检查存储空间后重试。现在退出会丢失上次成功保存后的更改。")
+		if Save.load_error != OK:
+			message = C.words("Saved data couldn't be read. Check access, then reopen the app. New progress will not be saved; the old files are kept.", "未能读取存档。请检查访问权限后重新打开应用。本次新进度不会保存，旧文件会保留。")
+		else:
+			actions.push_front([C.words("Retry saving", "重试保存"), exit_application])
+		show_dialog(C.words("Some changes aren't saved", "还有更改未保存"), message, actions)
 		return
 	_quit()
 

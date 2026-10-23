@@ -9,6 +9,8 @@ var folder := "user://"
 var recovered := false
 var last_error := OK
 var dirty := false
+var read_error := OK
+var load_error := OK
 
 func _ready() -> void:
 	load_save()
@@ -19,15 +21,22 @@ func defaults() -> Dictionary:
 		"records": {}, "sessions": {}, "seen": {}}
 
 func decode(path: String) -> Dictionary:
+	read_error = OK
 	if not FileAccess.file_exists(path):
 		return {}
 	var file := FileAccess.open(path, FileAccess.READ)
 	if file == null:
+		read_error = FileAccess.get_open_error()
 		return {}
 	if file.get_length() > 2000000:
 		return {}
+	var contents := file.get_as_text()
+	var error := file.get_error()
+	if error != OK and error != ERR_FILE_EOF:
+		read_error = error
+		return {}
 	var parser := JSON.new()
-	if parser.parse(file.get_as_text()) != OK:
+	if parser.parse(contents) != OK:
 		return {}
 	var parsed = parser.data
 	if not parsed is Dictionary or not SCHEMA.number(parsed.get("version"), VERSION, VERSION, true):
@@ -39,7 +48,10 @@ func decode(path: String) -> Dictionary:
 
 func load_save() -> void:
 	data = decode(folder.path_join("save.json"))
+	load_error = read_error
 	var backup := decode(folder.path_join("save.backup.json"))
+	if load_error == OK:
+		load_error = read_error
 	recovered = false
 	if data.is_empty():
 		data = backup.duplicate(true)
@@ -67,8 +79,8 @@ func load_save() -> void:
 	for id in data.seen.keys():
 		if not data.seen[id] is bool:
 			data.seen.erase(id)
-	dirty = false
-	last_error = OK
+	dirty = load_error != OK
+	last_error = load_error
 
 func valid_field(section: String, key: String, value: Variant) -> bool:
 	match section:
@@ -114,6 +126,11 @@ func write_temp(path: String, contents: String) -> Error:
 	return OK if FileAccess.get_file_as_string(path) == contents else ERR_FILE_CORRUPT
 
 func flush() -> Error:
+	# An unreadable file is not an empty/corrupt save. Its newer data is unknown;
+	# do not replace it with defaults or an older backup. Reopen on next launch
+	# after access is repaired, rather than guessing a merge of pending progress.
+	if load_error != OK:
+		return complete_write(load_error)
 	var temp := folder.path_join("save.tmp")
 	var primary := folder.path_join("save.json")
 	var backup := folder.path_join("save.backup.json")
@@ -121,7 +138,10 @@ func flush() -> Error:
 	var error := write_temp(temp, JSON.stringify(data))
 	if error != OK:
 		return complete_write(error)
-	if valid_backup(decode(primary)):
+	var previous := decode(primary)
+	if read_error != OK:
+		return complete_write(read_error)
+	if valid_backup(previous):
 		error = write_temp(backup_temp, FileAccess.get_file_as_string(primary))
 		if error == OK:
 			error = DirAccess.rename_absolute(backup_temp, backup)

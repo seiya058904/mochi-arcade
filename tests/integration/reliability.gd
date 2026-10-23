@@ -11,6 +11,13 @@ class ShortWriter extends "res://scripts/app/save_manager.gd":
 		file.close()
 		return ERR_FILE_CANT_WRITE # Deterministic disk-full/short-write fault.
 
+class DeniedReader extends "res://scripts/app/save_manager.gd":
+	func decode(path: String) -> Dictionary:
+		if path.ends_with("/save.json"):
+			read_error = ERR_FILE_NO_PERMISSION
+			return {}
+		return super.decode(path)
+
 func check(value: bool, message: String) -> void:
 	checks += 1
 	if not value:
@@ -96,6 +103,17 @@ func run() -> void:
 	check(short_writer.record("number_bloom", 512) == ERR_FILE_CANT_WRITE, "Short write propagates exact error")
 	check(FileAccess.get_file_as_bytes(primary) == original and FileAccess.get_file_as_bytes(backup) == backup_before, "Partial temp write preserves both valid files")
 	short_writer.free()
+	var denied_reader := DeniedReader.new()
+	denied_reader.folder = save.folder
+	denied_reader.load_save()
+	check(denied_reader.load_error == ERR_FILE_NO_PERMISSION, "Read failure remains distinct from corrupt or missing data")
+	check(denied_reader.record("number_bloom", 9999) == ERR_FILE_NO_PERMISSION, "Unreadable primary blocks replacement with pending/default data")
+	check(FileAccess.get_file_as_bytes(primary) == original and FileAccess.get_file_as_bytes(backup) == backup_before, "Read-denied path preserves both original files byte for byte")
+	denied_reader.load_error = OK
+	denied_reader.data = save.data.duplicate(true)
+	check(denied_reader.record("number_bloom", 10000) == ERR_FILE_NO_PERMISSION, "Read access lost after loading also blocks replacement")
+	check(FileAccess.get_file_as_bytes(primary) == original, "Mid-session read denial preserves old primary")
+	denied_reader.free()
 	# Deny primary rename with an empty directory at its destination.
 	var held_primary: String = save.folder.path_join("held-primary.json")
 	DirAccess.rename_absolute(primary, held_primary)
@@ -165,6 +183,16 @@ func run() -> void:
 	DirAccess.remove_absolute(temp)
 	app._notification(Node.NOTIFICATION_APPLICATION_FOCUS_IN)
 	check(not save.dirty and save.decode(primary).settings.language == "zh", "Foreground retry saves pending settings")
+	if DisplayServer.get_name() != "headless":
+		for language in ["en", "zh"]:
+			save.data.settings.language = language
+			save.load_error = ERR_FILE_NO_PERMISSION
+			app.show_settings()
+			app._save_status(ERR_FILE_NO_PERMISSION)
+			await shot("read-failure-" + language)
+			app.exit_application()
+			await shot("read-exit-" + language)
+			save.load_error = OK
 	var report := {"status": "PASS" if failures.is_empty() else "FAIL", "checks": checks, "failures": failures, "scope": "Isolated filesystem fault fixtures and actual terminal swipe; desktop, not Android"}
 	DirAccess.make_dir_recursive_absolute("res://.local/iteration-1.1")
 	write("res://.local/iteration-1.1/reliability.json", JSON.stringify(report, "  "))

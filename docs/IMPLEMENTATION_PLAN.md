@@ -5,7 +5,7 @@
 | Phase | Status | Exit evidence / next action |
 | --- | --- | --- |
 | Takeover / baseline / audit | PASS | Clean unique root; live public remote/tag/download; original signing identity opened; baseline 18/18; eight-game review in ITERATION_1.1.md |
-| Confirmed repairs | PASS local | Save failure/recovery, terminal Bloom Undo, four idle canvas guards; 19/19 suites including 39 new regression checks |
+| Confirmed repairs | PASS local | Save failure/recovery, terminal Bloom Undo, four idle canvas guards; 19/19 suites including 44 new regression checks |
 | Desktop rendering / audio | PASS reviewed | 64 EN/ZH captures across three ratios; terminal/failure UI; same-seed idle pixels exact; actual audio mixer checks |
 | New signed Android / upgrade | BLOCKED | AVD acceleration unavailable; no-accel startup crashes before usable ADB. Obtain functioning isolated Android environment, preserve original certificate and verify v1.0.0 upgrade |
 | Remote integration / CI | IN_PROGRESS | Push reviewed source; observe final-main workflow and review its raw Android captures |

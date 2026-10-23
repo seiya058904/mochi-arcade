@@ -1,0 +1,22 @@
+{
+  "status": "PASS_REGRESSION",
+  "fixture": "Task-owned .local/iteration-1.1/read-denied/save.json; no user data",
+  "fault": "Windows file ACL denies current user R while parent permits replacing files; ACL restored after experiment",
+  "before": {
+    "source": "b14091b",
+    "file_exists": true,
+    "loaded_best": 0,
+    "record_return": 0,
+    "original_best": 9999,
+    "disk_best_after": 1,
+    "status": "FAIL_DATA_LOSS"
+  },
+  "after": {
+    "file_exists": true,
+    "loaded_best": 0,
+    "record_return": 12,
+    "disk_best_after": 9999,
+    "status": "PASS_OLD_FILE_PRESERVED"
+  },
+  "recovery_policy": "Read error is distinct from malformed JSON; block writes until access is repaired and app reopened, rather than guessing a merge over unreadable data"
+}

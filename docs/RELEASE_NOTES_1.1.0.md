@@ -7,6 +7,8 @@ These notes do not announce a published release.
 - Save failures are explained in English or Simplified Chinese. Pending progress
   stays in memory for a later retry; exiting after a failed save requires an
   explicit choice. Temporary writes and backup replacement are verified first.
+- Unreadable saves are protected from replacement. Check file access and reopen
+  the app after a read error; new progress is explicitly marked unsaved.
 - Recover damaged record, setting and session fields from the valid backup while
   preserving valid newer fields in the primary save.
 - Undo the last move directly from Number Bloom's full-board result screen.
