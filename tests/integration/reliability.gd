@@ -171,6 +171,17 @@ func run() -> void:
 		check(app.game.score == 0 and app.game.undo_state.is_empty(), "Restart clears terminal Undo snapshot")
 	# Failure feedback is deferred safely through settings rebuilds and lifecycle.
 	DirAccess.make_dir_absolute(temp)
+	app.exit_application()
+	for item in app.overlay.find_children("*", "Button", true, false):
+		if item.text == "Stay here":
+			item.pressed.emit()
+	check(not app.game.suspended and not app.exiting and not is_instance_valid(app.overlay), "Cancel failed exit resumes the active round")
+	app.game.stopped = true
+	app.exit_application()
+	for item in app.overlay.find_children("*", "Button", true, false):
+		if item.text == "Stay here":
+			item.pressed.emit()
+	check(is_instance_valid(app.overlay) and app.game.stopped and not app.exiting, "Cancel failed exit preserves terminal result actions")
 	save.set_setting("language", "zh")
 	app.show_settings()
 	await process_frame

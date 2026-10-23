@@ -483,7 +483,7 @@ func exit_application() -> void:
 		return
 	pause_game(true)
 	if Save.flush() != OK:
-		var actions := [[C.words("Stay here", "留在这里"), dismiss_overlay], [C.words("Close without saving", "不保存并退出"), _quit]]
+		var actions := [[C.words("Stay here", "留在这里"), _cancel_exit], [C.words("Close without saving", "不保存并退出"), _quit]]
 		var message := C.words("Check storage space and retry. Closing now loses changes since the last successful save.", "请检查存储空间后重试。现在退出会丢失上次成功保存后的更改。")
 		if Save.load_error != OK:
 			message = C.words("Saved data couldn't be read. Check access, then reopen the app. New progress will not be saved; the old files are kept.", "未能读取存档。请检查访问权限后重新打开应用。本次新进度不会保存，旧文件会保留。")
@@ -492,6 +492,12 @@ func exit_application() -> void:
 		show_dialog(C.words("Some changes aren't saved", "还有更改未保存"), message, actions)
 		return
 	_quit()
+
+func _cancel_exit() -> void:
+	if is_instance_valid(game) and game.stopped:
+		show_result(C.words("Your round is still here.", "本局结果还在这里。"))
+	else:
+		resume()
 
 func _quit() -> void:
 	exiting = true

@@ -1,0 +1,9 @@
+{
+  "checks": 46,
+  "failures": [
+    "Cancel failed exit resumes the active round",
+    "Cancel failed exit preserves terminal result actions"
+  ],
+  "scope": "Isolated filesystem fault fixtures and actual terminal swipe; desktop, not Android",
+  "status": "FAIL"
+}
