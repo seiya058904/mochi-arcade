@@ -23,9 +23,11 @@ class AdbEvidence:
         self.serial, self.timeout, self.phase = serial, timeout, 'initialization'
         self.app_pid = 'UNOBSERVED'
         self.last_exit = None
+        self.last_stderr = ''
 
     def __call__(self, *parts, data=None, binary=False, timeout=None, check=True):
         args = list(map(str, parts))
+        self.last_exit, self.last_stderr = None, ''
         start = time.monotonic()
         event = {'phase': self.phase, 'monotonic_start': start, 'command': args,
                  'app_pid_last_observed': self.app_pid, 'emulator_pid': os.environ.get('MOCHI_EMULATOR_PID'),
@@ -34,17 +36,22 @@ class AdbEvidence:
             result = subprocess.run(['adb', '-s', self.serial, *args], input=data,
                                     capture_output=True, timeout=timeout or self.timeout)
             event['exit'] = result.returncode
+            self.last_stderr = result.stderr.decode(errors='replace')
             if args[:2] == ['shell', 'uiautomator']:
                 # dump may exit zero without creating XML; retain its diagnostic text.
                 event['uiautomator_output'] = (result.stdout+result.stderr).decode(errors='replace')[:4096]
+                event['stdout'] = result.stdout.decode(errors='replace')
+                event['stderr'] = self.last_stderr
             self.last_exit = result.returncode
             if args[:2] == ['shell', 'pidof']:
                 self.app_pid = result.stdout.decode(errors='replace').strip() or 'ABSENT'
             if check and result.returncode:
                 raise RuntimeError(f'ADB {args}: {result.stderr.decode(errors="replace")}')
             return result.stdout if binary else result.stdout.decode(errors='replace').strip()
-        except subprocess.TimeoutExpired:
+        except subprocess.TimeoutExpired as error:
             event['timeout'] = True
+            event['stdout'] = (error.stdout or b'').decode(errors='replace')
+            event['stderr'] = (error.stderr or b'').decode(errors='replace')
             raise
         finally:
             event['seconds'] = round(time.monotonic() - start, 3)

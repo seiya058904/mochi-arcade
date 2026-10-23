@@ -1,5 +1,16 @@
 # QA report
 
+## Current bounded closeout — 2026-10-23
+
+The owner replaced open-ended Android diagnosis with a 60-minute final closeout.
+See [scope, tool regression evidence, retention rules and exact stopping actions](CLOSEOUT_60MIN.md).
+Launcher XML freshness/validity and actual icon foreground proof are the only
+new tool work; application/candidate bytes and signed FAIL results stay unchanged.
+One final main push CI and local delivery record supply dynamic outcomes; no
+automatic next research round. Release remains BLOCKED.
+
+## Previous signed acceptance (historical)
+
 Current signed run 39961466842: **U100 and LOAD PASS reviewed; U110 and CLEAN FAIL**.
 The complete v1.0.0 upgrade includes eight semantic states, real terminal Undo and
 fault recovery. The v1.1.0 upgrade and independent new-install gates remain incomplete.

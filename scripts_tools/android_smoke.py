@@ -12,9 +12,9 @@ import re
 from pathlib import Path
 import subprocess
 import time
-import xml.etree.ElementTree as ET
 from android_capture import capture_png
 from android_evidence import AdbEvidence, require_owned
+from android_ui import dump_hierarchy, require_foreground
 
 
 GAMES = ["fruit_drop", "bubble_garden", "cake_stack", "bouncy_balls",
@@ -147,10 +147,8 @@ def main():
         deadline = time.monotonic() + 25
         tapped = False
         while time.monotonic() < deadline:
-            shell("uiautomator", "dump", "/sdcard/mochi-window.xml")
-            document = shell("cat", "/sdcard/mochi-window.xml")
-            (output / "fullscreen-window.xml").write_text(document, encoding="utf-8")
-            buttons = [node for node in ET.fromstring(document).iter("node")
+            document = dump_hierarchy(recorder, output / "fullscreen-window.xml")
+            buttons = [node for node in document.iter("node")
                        if node.get("text", "").upper() == "GOT IT"]
             if not buttons:
                 report["fullscreen_tip_dismissed"] = tapped
@@ -169,11 +167,9 @@ def main():
         deadline = time.monotonic() + 15
         workspace_visible = False
         while time.monotonic() < deadline:
-            shell("uiautomator", "dump", "/sdcard/mochi-launcher.xml")
-            launcher = shell("cat", "/sdcard/mochi-launcher.xml")
-            (output / "launcher-home.xml").write_text(launcher, encoding="utf-8")
+            launcher = dump_hierarchy(recorder, output / "launcher-home.xml")
             workspace_visible = any(node.get("resource-id") == "com.android.launcher3:id/workspace"
-                                    for node in ET.fromstring(launcher).iter("node"))
+                                    for node in launcher.iter("node"))
             if workspace_visible:
                 break
             time.sleep(0.5)
@@ -185,10 +181,8 @@ def main():
         deadline = time.monotonic() + 15
         icons = []
         while time.monotonic() < deadline:
-            shell("uiautomator", "dump", "/sdcard/mochi-launcher.xml")
-            launcher = shell("cat", "/sdcard/mochi-launcher.xml")
-            (output / "launcher.xml").write_text(launcher, encoding="utf-8")
-            icons = [node for node in ET.fromstring(launcher).iter("node")
+            launcher = dump_hierarchy(recorder, output / "launcher.xml")
+            icons = [node for node in launcher.iter("node")
                      if node.get("text") == "Mochi Arcade" or node.get("content-desc") == "Mochi Arcade"]
             if icons:
                 break
@@ -201,6 +195,7 @@ def main():
         time.sleep(5)
         if not shell("pidof", package, check=False):
             raise RuntimeError("Launcher icon did not start the app")
+        require_foreground(recorder, package, output / "launcher-opened-foreground.txt")
         screenshot("16-launcher-icon-opened-app")
         report["launcher_icon_tapped"] = True
 
