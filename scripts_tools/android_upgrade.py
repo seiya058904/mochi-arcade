@@ -20,6 +20,7 @@ from android_smoke import GAMES
 from release_identity import identity, build_inputs
 from fetch_staged_release import verify
 from upgrade_semantics import restored, compare
+from android_evidence import AdbEvidence
 
 PACKAGE = "io.github.seiya058904.mochiarcade"
 ACTIVITY = PACKAGE + "/com.godot.game.GodotAppLauncher"
@@ -48,12 +49,11 @@ def main():
     report.update(build_source=args.source, predecessor_tag=args.predecessor, predecessor_sha256=predecessor["sha256"], semantics={})
     paths = {name: f"/data/user/0/{PACKAGE}/files/{name}" for name in ["save.json", "save.backup.json"]}
 
+    recorder = AdbEvidence(out, timeout=120)
+    report['command_timeline'] = 'adb-timeline.jsonl'
+
     def adb(*parts, data=None, binary=False, check=True):
-        result = subprocess.run(["adb", "-s", "emulator-5554", *map(str, parts)], input=data, capture_output=True, timeout=120)
-        report["commands"].append({"args": list(map(str, parts)), "exit": result.returncode})
-        if check and result.returncode:
-            raise RuntimeError(f"ADB {parts} failed: {result.stderr.decode(errors='replace')}")
-        return result.stdout if binary else result.stdout.decode(errors="replace").strip()
+        return recorder(*parts, data=data, binary=binary, check=check)
 
     def shell(*parts, **kwargs):
         return adb("shell", *parts, **kwargs)
@@ -68,6 +68,7 @@ def main():
         shell("tee", paths[name], data=value)
 
     def fixture(value):
+        recorder.phase = 'upgrade-fixture'
         stop()
         for name in paths:
             shell("chmod", "600", paths[name])
@@ -84,6 +85,7 @@ def main():
         time.sleep(0.6)
 
     def shot(name):
+        recorder.phase = name
         png, frame = capture_png(adb("exec-out", "screencap", binary=True))
         (out / (name + ".png")).write_bytes(png)
         report.setdefault("frames", {})[name] = frame

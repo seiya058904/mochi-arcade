@@ -30,6 +30,7 @@ SUITES = [
     ("tests/integration/patch_reliability.gd", False),
     ("tests/integration/upgrade_restore.gd", False),
     ("scripts_tools/test_release_tools.py", False),
+    ("scripts_tools/test_android_restore.py", False),
 ]
 
 

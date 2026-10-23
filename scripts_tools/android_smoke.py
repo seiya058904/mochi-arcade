@@ -14,6 +14,7 @@ import subprocess
 import time
 import xml.etree.ElementTree as ET
 from android_capture import capture_png
+from android_evidence import AdbEvidence, require_owned
 
 
 GAMES = ["fruit_drop", "bubble_garden", "cake_stack", "bouncy_balls",
@@ -39,15 +40,11 @@ def main():
               "visual_review": "PENDING", "commands": commands, "release_candidate": args.release,
               "game_checks": {}}
 
+    recorder = AdbEvidence(output, args.serial)
+    report['command_timeline'] = 'adb-timeline.jsonl'
+
     def adb(*parts, binary=False, timeout=30, check=True):
-        command = ["adb", "-s", args.serial, *map(str, parts)]
-        started = time.monotonic()
-        result = subprocess.run(command, capture_output=True, timeout=timeout)
-        commands.append({"args": command[3:], "exit": result.returncode,
-                         "seconds": round(time.monotonic() - started, 3)})
-        if check and result.returncode:
-            raise RuntimeError(f"ADB failed: {parts}: {result.stderr.decode(errors='replace')}")
-        return result.stdout if binary else result.stdout.decode(errors="replace").strip()
+        return recorder(*parts, binary=binary, timeout=timeout, check=check)
 
     def shell(*parts, **kwargs):
         return adb("shell", *parts, **kwargs)
@@ -228,6 +225,7 @@ def main():
             time.sleep(3)
         else:
             raise RuntimeError("Android did not finish booting within 240 seconds")
+        require_owned(adb)
         report["device"] = {key: shell("getprop", key) for key in
                             ["ro.product.model", "ro.build.version.release", "ro.build.version.sdk", "ro.product.cpu.abi", "ro.build.fingerprint"]}
         report["display"] = shell("wm", "size")
@@ -281,6 +279,7 @@ def main():
             screenshot("launcher-failure", allow_blank=True)
             launch()
         for index, game in enumerate(GAMES):
+            recorder.phase = 'smoke-' + game
             if index:
                 launch()
             open_card(index)

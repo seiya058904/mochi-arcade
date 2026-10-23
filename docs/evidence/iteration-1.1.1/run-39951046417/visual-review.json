@@ -1,0 +1,28 @@
+{
+  "status": "REVIEWED_CAPTURED_FRAMES_RUN_FAIL",
+  "run_id": 39951046417,
+  "commit": "e258bf738a8967dce544dff674872903a50fee4b",
+  "apk_sha256": "fa1bc1a727f580ea152c17617f50e26852cc6f608e453c6237ec79fc6140d966",
+  "package_kind": "development_debug_not_signed_candidate",
+  "reviewed_png_count": 112,
+  "stable_smoke_frames": 99,
+  "load_frames": 10,
+  "startup_observations": 3,
+  "source_manifest": "source-manifest.json",
+  "sheets": [
+    "review-0.jpg",
+    "review-1.jpg",
+    "review-2.jpg",
+    "review-3.jpg",
+    "review-4.jpg",
+    "review-5.jpg",
+    "review-6.jpg"
+  ],
+  "observations": [
+    "Recorded gameplay, pause, restore, settings, licenses and both maximum-load views are visible",
+    "Startup frames show icon, cream transition and OS fullscreen tip; not a full startup video approval",
+    "Automatic smoke passed; both load executions completed, but final force-stop cleanup timed out at 40 seconds; original-save restoration is not proven",
+    "Host emulator process remains present and adb lists device; gfxstream null-context messages do not establish root cause",
+    "No full CI or original-signed candidate acceptance claimed"
+  ]
+}

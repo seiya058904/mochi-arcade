@@ -16,6 +16,8 @@ import shlex
 import subprocess
 import time
 from android_capture import capture_png
+from android_evidence import AdbEvidence, require_owned, diagnose
+from android_restore import SaveRestoration
 
 
 PACKAGE = "io.github.seiya058904.mochiarcade"
@@ -76,15 +78,11 @@ def main():
               "graphics_backend_requested": os.environ.get("MOCHI_EMULATOR_GPU", "unrecorded"),
               "timing_source": "https://android.googlesource.com/platform/frameworks/native/+/refs/tags/android-14.0.0_r1/services/surfaceflinger/FrameTracker.cpp",
               "physical_phone_performance": "UNVERIFIED", "loads": {}}
-    original = None
-    original_backup = None
+    recorder = AdbEvidence(output, args.serial, timeout=40)
+    restoration = None
 
     def adb(*parts, data=None, binary=False, check=True):
-        result = subprocess.run(["adb", "-s", args.serial, *map(str, parts)],
-                                input=data, capture_output=True, timeout=40)
-        if check and result.returncode:
-            raise RuntimeError(f"ADB {parts} failed: {result.stderr.decode(errors='replace')}")
-        return result.stdout if binary else result.stdout.decode(errors="replace").strip()
+        return recorder(*parts, data=data, binary=binary, check=check)
 
     def shell(*parts, **kwargs):
         return adb("shell", *parts, **kwargs)
@@ -101,6 +99,30 @@ def main():
 
     def write_private(filename, data):
         private_command("tee", filename, data=data)
+
+    def read_original(filename):
+        # A failed transport/read is never interpreted as an absent file.
+        path = f"/data/user/0/{PACKAGE}/files/{filename}" if args.release else f"files/{filename}"
+        command = f'if [ -e {path} ]; then echo PRESENT; else echo ABSENT; fi'
+        present = shell("sh", "-c", shlex.quote(command)) if args.release else shell("run-as", PACKAGE, "sh", "-c", shlex.quote(command))
+        assert present in ('PRESENT', 'ABSENT'), 'Uncertain original file existence'
+        return private_command('cat', filename, binary=True) if present == 'PRESENT' else None
+
+    def stop_confirmed():
+        shell('am', 'force-stop', PACKAGE)
+        assert shell('pidof', PACKAGE, check=False) == '', 'Application still running'
+        assert recorder.last_exit == 1, 'pidof did not positively report absence'
+        # Confirm the transport/shell is alive: an offline pidof is not proof of absence.
+        assert shell('echo', 'MOCHI_STOPPED') == 'MOCHI_STOPPED'
+
+    def original_metadata(name):
+        if args.release:
+            return shell('stat', '-c', '%u:%g:%a', f'/data/user/0/{PACKAGE}/files/{name}')
+        return shell('run-as', PACKAGE, 'stat', '-c', '%u:%g:%a', f'files/{name}')
+
+    def remove_original(name):
+        if read_original(name) is not None:
+            private_command('rm', name)
 
     def tap(x, y):
         shell("input", "tap", x, y)
@@ -126,8 +148,7 @@ def main():
         return {"total_pss_kib": int(match.group(1)) if match else None}
 
     try:
-        if not args.serial.startswith("emulator-") or shell("getprop", "ro.kernel.qemu") != "1":
-            raise RuntimeError("Load fixtures require the dedicated test emulator")
+        require_owned(adb)
         report["device"] = shell("getprop", "ro.build.fingerprint")
         installed_path = shell("pm", "path", PACKAGE)
         if not installed_path.startswith("package:") or "\n" in installed_path:
@@ -139,15 +160,19 @@ def main():
         if args.release:
             if shell("getprop", "ro.build.type") != "userdebug" or shell("id", "-u") != "0":
                 raise RuntimeError("Non-debuggable save access requires the already-rooted dedicated userdebug AVD")
-        shell("am", "force-stop", PACKAGE)
-        original = private_command("cat", "save.json", binary=True)
-        original_backup = private_command("cat", "save.backup.json", binary=True)
-        (output / "pre-load-save.json").write_bytes(original)
+        recorder.phase = 'preserve-originals'
+        stop_confirmed()
+        restoration = SaveRestoration(output, read_original, original_metadata,
+                                     write_private, remove_original, stop_confirmed)
+        restoration.capture()
+        original = restoration.originals['save.json']
+        assert original is not None, 'LOAD needs a valid job-created primary baseline'
         cases = fixtures(json.loads(original))
         failed_cases = []
         for name, fixture in cases.items():
             try:
-                shell("am", "force-stop", PACKAGE)
+                recorder.phase = name + '-load'
+                stop_confirmed()
                 fixture_bytes = json.dumps(fixture).encode("utf-8")
                 write_private("save.json", fixture_bytes)
                 (output / f"{name}-fixture.json").write_bytes(fixture_bytes)
@@ -235,28 +260,34 @@ def main():
     except Exception as error:
         report["error"] = str(error)
     finally:
+        recorder.phase = 'restore-originals'
+        report['load_execution'] = report['status']
+        if restoration is not None:
+            restored = restoration.restore()
+            report['restoration'] = restoration.phases
+            report['original_save_restored'] = restored
+            report['original_backup_restored'] = restored
+            if not restored:
+                report['status'] = 'FAIL'
+        else:
+            report['restoration'] = {'status': 'NOT_RUN', 'reason': 'Preflight did not complete'}
+            report['status'] = 'FAIL'
+        recorder.phase = 'collect-final-logs'
         try:
-            shell("am", "force-stop", PACKAGE)
-            if original is not None:
-                write_private("save.json", original)
-            if original_backup is not None:
-                write_private("save.backup.json", original_backup)
-            if original is not None and private_command("cat", "save.json", binary=True) != original:
-                raise RuntimeError("Pre-load save restoration bytes do not match")
-            if original_backup is not None and private_command("cat", "save.backup.json", binary=True) != original_backup:
-                raise RuntimeError("Pre-load backup restoration bytes do not match")
-            report["original_save_restored"] = original is not None
-            report["original_backup_restored"] = original_backup is not None
             logs = adb("logcat", "-d", "-v", "threadtime")
             (output / "load-logcat.txt").write_text(logs, encoding="utf-8")
             errors = [line for line in logs.splitlines() if "SCRIPT ERROR:" in line or "FATAL EXCEPTION" in line or "Fatal signal" in line or re.search(r"\bE godot\s*:\s*ERROR:", line)]
             report["runtime_errors"] = errors
             report["graphics_swap_warnings"] = [line for line in logs.splitlines() if "eglSwapBuffers failed" in line]
+            report['log_collection'] = 'PASS'
             if errors:
                 report["status"] = "FAIL"
         except Exception as error:
             report["status"] = "FAIL"
-            report["cleanup_error"] = str(error)
+            report['log_collection'] = {'status': 'FAIL', 'error': str(error)}
+        if report['status'] == 'FAIL':
+            report['diagnostics'] = diagnose(output/'failure-diagnostics', args.serial)
+        report['runner_process_release'] = 'SEPARATE_JOB_FINALIZER'
         (output / "load-report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
         print(json.dumps(report, indent=2))
     return 0 if report["status"].startswith("PASS") else 1

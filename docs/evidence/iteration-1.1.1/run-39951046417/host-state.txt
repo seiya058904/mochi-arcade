@@ -1,0 +1,95 @@
+2026-10-23T12:22:54+00:00
+               total        used        free      shared  buff/cache   available
+Mem:           15989        8653         224          50        7507        7336
+Swap:           3071           0        3071
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root       145G   73G   72G  51% /
+emulator PID 3076
+    PID    PPID S     ELAPSED   RSS    VSZ COMMAND
+   3076       1 I       12:30 7947228 9781944 qemu-system-x86
+xvfb PID 2994
+    PID    PPID S     ELAPSED   RSS    VSZ COMMAND
+   2994       1 S       12:32 14716  23104 Xvfb
+List of devices attached
+emulator-5554          device product:sdk_phone64_x86_64 model:Android_SDK_built_for_x86_64 device:emu64x transport_id:1
+
+[Fri Oct 23 12:06:35 2026] hv_pci 724314e4-4878-49e3-9caa-0ebe81bba5ab: PCI VMBus probing: Using version 0x10004
+[Fri Oct 23 12:06:35 2026] hv_pci 724314e4-4878-49e3-9caa-0ebe81bba5ab: PCI host bridge to bus 4878:00
+[Fri Oct 23 12:06:35 2026] pci_bus 4878:00: root bus resource [mem 0xfc0000000-0xfc00fffff window]
+[Fri Oct 23 12:06:35 2026] pci_bus 4878:00: No busn resource found for root bus, will use [bus 00-ff]
+[Fri Oct 23 12:06:35 2026] pci 4878:00:02.0: [15b3:1016] type 00 class 0x020000 PCIe Endpoint
+[Fri Oct 23 12:06:35 2026] pci 4878:00:02.0: BAR 0 [mem 0xfc0000000-0xfc00fffff 64bit pref]
+[Fri Oct 23 12:06:35 2026] pci 4878:00:02.0: enabling Extended Tags
+[Fri Oct 23 12:06:35 2026] pci 4878:00:02.0: 0.000 Gb/s available PCIe bandwidth, limited by Unknown x0 link at 4878:00:02.0 (capable of 63.008 Gb/s with 8.0 GT/s PCIe x8 link)
+[Fri Oct 23 12:06:35 2026] Console: switching to colour frame buffer device 128x48
+[Fri Oct 23 12:06:35 2026] pci_bus 4878:00: busn_res: [bus 00-ff] end is updated to 00
+[Fri Oct 23 12:06:35 2026] pci 4878:00:02.0: BAR 0 [mem 0xfc0000000-0xfc00fffff 64bit pref]: assigned
+[Fri Oct 23 12:06:35 2026] hyperv_drm 5620e0c7-8062-4dce-aeb7-520c7ef76171: [drm] fb0: hyperv_drmdrmfb frame buffer device
+[Fri Oct 23 12:06:35 2026] hv_vmbus: registering driver hid_hyperv
+[Fri Oct 23 12:06:35 2026] input: Microsoft Vmbus HID-compliant Mouse as /devices/0006:045E:0621.0001/input/input1
+[Fri Oct 23 12:06:36 2026] hid-hyperv 0006:045E:0621.0001: input: VIRTUAL HID v0.01 Mouse [Microsoft Vmbus HID-compliant Mouse] on
+[Fri Oct 23 12:06:36 2026] workqueue: drm_fb_helper_damage_work hogged CPU for >10000us 4 times, consider switching to WQ_UNBOUND
+[Fri Oct 23 12:06:36 2026] mlx5_core 4878:00:02.0: enabling device (0000 -> 0002)
+[Fri Oct 23 12:06:36 2026] mlx5_core 4878:00:02.0: firmware version: 14.30.5032
+[Fri Oct 23 12:06:36 2026] kvm_amd: TSC scaling supported
+[Fri Oct 23 12:06:36 2026] kvm_amd: Nested Virtualization enabled
+[Fri Oct 23 12:06:36 2026] kvm_amd: Nested Paging enabled
+[Fri Oct 23 12:06:36 2026] kvm_amd: kvm_amd: Hyper-V enlightened NPT TLB flush enabled
+[Fri Oct 23 12:06:36 2026] kvm_amd: kvm_amd: Hyper-V Direct TLB Flush enabled
+[Fri Oct 23 12:06:36 2026] kvm_amd: Virtual VMLOAD VMSAVE supported
+[Fri Oct 23 12:06:36 2026] kvm_amd: PMU virtualization is disabled
+[Fri Oct 23 12:06:36 2026] workqueue: drm_fb_helper_damage_work hogged CPU for >10000us 5 times, consider switching to WQ_UNBOUND
+[Fri Oct 23 12:06:36 2026] mlx5_core 4878:00:02.0: Flow counters bulk query buffer size increased, bulk_query_len(8)
+[Fri Oct 23 12:06:36 2026] hv_netvsc 00224832-ee6f-0022-4832-ee6f00224832 eth0: VF registering: eth1
+[Fri Oct 23 12:06:36 2026] mlx5_core 4878:00:02.0 eth1: joined to eth0
+[Fri Oct 23 12:06:36 2026] mlx5_core 4878:00:02.0 eth1: Disabling LRO, not supported in legacy RQ
+[Fri Oct 23 12:06:36 2026] mlx5_core 4878:00:02.0 eth1: Disabling LRO, not supported in legacy RQ
+[Fri Oct 23 12:06:36 2026] mlx5_core 4878:00:02.0: MLX5E: StrdRq(0) RqSz(1024) StrdSz(256) RxCqeCmprss(0 basic)
+[Fri Oct 23 12:06:36 2026] mlx5_core 4878:00:02.0 enP18552s1: renamed from eth1
+[Fri Oct 23 12:06:36 2026] MACsec IEEE 802.1AE
+[Fri Oct 23 12:06:36 2026] workqueue: drm_fb_helper_damage_work hogged CPU for >10000us 7 times, consider switching to WQ_UNBOUND
+[Fri Oct 23 12:06:36 2026] hv_utils: KVP IC version 4.0
+[Fri Oct 23 12:06:36 2026] EXT4-fs (sda16): mounted filesystem 11c37f36-eda2-46ed-86c9-17c521906ced r/w with ordered data mode. Quota mode: none.
+[Fri Oct 23 12:06:37 2026] audit: type=1400 audit(1792757196.998:2): apparmor="STATUS" operation="profile_load" profile="unconfined" name="Discord" pid=475 comm="apparmor_parser"
+[Fri Oct 23 12:06:37 2026] audit: type=1400 audit(1792757196.998:3): apparmor="STATUS" operation="profile_load" profile="unconfined" name=4D6F6E676F444220436F6D70617373 pid=476 comm="apparmor_parser"
+[Fri Oct 23 12:06:37 2026] audit: type=1400 audit(1792757196.998:4): apparmor="STATUS" operation="profile_load" profile="unconfined" name="1password" pid=474 comm="apparmor_parser"
+[Fri Oct 23 12:06:37 2026] audit: type=1400 audit(1792757196.998:5): apparmor="STATUS" operation="profile_load" profile="unconfined" name="QtWebEngineProcess" pid=477 comm="apparmor_parser"
+[Fri Oct 23 12:06:37 2026] audit: type=1400 audit(1792757197.000:6): apparmor="STATUS" operation="profile_load" profile="unconfined" name="balena-etcher" pid=479 comm="apparmor_parser"
+[Fri Oct 23 12:06:37 2026] audit: type=1400 audit(1792757197.002:7): apparmor="STATUS" operation="profile_load" profile="unconfined" name="brave" pid=480 comm="apparmor_parser"
+[Fri Oct 23 12:06:37 2026] audit: type=1400 audit(1792757197.002:8): apparmor="STATUS" operation="profile_load" profile="unconfined" name="buildah" pid=481 comm="apparmor_parser"
+[Fri Oct 23 12:06:37 2026] audit: type=1400 audit(1792757197.002:9): apparmor="STATUS" operation="profile_load" profile="unconfined" name="cam" pid=482 comm="apparmor_parser"
+[Fri Oct 23 12:06:37 2026] audit: type=1400 audit(1792757197.003:10): apparmor="STATUS" operation="profile_load" profile="unconfined" name="ch-checkns" pid=483 comm="apparmor_parser"
+[Fri Oct 23 12:06:37 2026] /dev/sr0: Can't lookup blockdev
+[Fri Oct 23 12:06:37 2026] mlx5_core 4878:00:02.0 enP18552s1: Link up
+[Fri Oct 23 12:06:37 2026] hv_netvsc 00224832-ee6f-0022-4832-ee6f00224832 eth0: Data path switched to VF: enP18552s1
+[Fri Oct 23 12:06:37 2026] mlx5_core 4878:00:02.0 mlx5_0: Port: 1 Link ACTIVE
+[Fri Oct 23 12:06:37 2026] 8021q: 802.1Q VLAN Support v1.8
+[Fri Oct 23 12:06:39 2026] hv_netvsc 00224832-ee6f-0022-4832-ee6f00224832 eth0: Data path switched from VF: enP18552s1
+[Fri Oct 23 12:06:39 2026] mlx5_core 4878:00:02.0 mlx5_0: Port: 1 Link DOWN
+[Fri Oct 23 12:06:40 2026] mlx5_core 4878:00:02.0 enP18552s1: Link up
+[Fri Oct 23 12:06:40 2026] hv_netvsc 00224832-ee6f-0022-4832-ee6f00224832 eth0: Data path switched to VF: enP18552s1
+[Fri Oct 23 12:06:40 2026] mlx5_core 4878:00:02.0 mlx5_0: Port: 1 Link ACTIVE
+[Fri Oct 23 12:06:43 2026] EXT4-fs (sda1): resizing filesystem from 19398395 to 39059195 blocks
+[Fri Oct 23 12:06:44 2026] EXT4-fs (sda1): resized filesystem to 39059195
+[Fri Oct 23 12:06:44 2026] ephemeral0: Can't lookup blockdev
+[Fri Oct 23 12:06:44 2026] systemd-fstab-generator[989]: Checking was requested for "ephemeral0", but it is not a device.
+[Fri Oct 23 12:06:44 2026] systemd-fstab-generator[989]: x-systemd.device-timeout ignored for ephemeral0
+[Fri Oct 23 12:06:45 2026] ephemeral0: Can't lookup blockdev
+[Fri Oct 23 12:06:45 2026] kauditd_printk_skb: 113 callbacks suppressed
+[Fri Oct 23 12:06:45 2026] audit: type=1400 audit(1792757205.726:124): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="rsyslogd" pid=1073 comm="apparmor_parser"
+[Fri Oct 23 12:06:45 2026] evm: overlay not supported
+[Fri Oct 23 12:06:46 2026] loop0: detected capacity change from 0 to 8
+[Fri Oct 23 12:06:46 2026] audit: type=1400 audit(1792757206.407:125): apparmor="STATUS" operation="profile_replace" info="same as current profile, skipping" profile="unconfined" name="/usr/lib/snapd/snap-confine" pid=1254 comm="apparmor_parser"
+[Fri Oct 23 12:06:46 2026] systemd-journald[157]: /var/log/journal/2d791d5cce6240faa3c626058b1ffc7d/user-1001.journal: Journal file uses a different sequence number ID, rotating.
+[Fri Oct 23 12:06:46 2026] Adding 3145724k swap on /swapfile.  Priority:-2 extents:106 across:50995196k
+[Fri Oct 23 12:06:46 2026] audit: type=1400 audit(1792757206.632:126): apparmor="STATUS" operation="profile_load" profile="unconfined" name="docker-default" pid=1471 comm="apparmor_parser"
+[Fri Oct 23 12:06:47 2026] Initializing XFRM netlink socket
+[Fri Oct 23 12:06:47 2026] bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+[Fri Oct 23 12:06:47 2026] systemd-fstab-generator[1716]: Checking was requested for "ephemeral0", but it is not a device.
+[Fri Oct 23 12:06:47 2026] systemd-fstab-generator[1716]: x-systemd.device-timeout ignored for ephemeral0
+[Fri Oct 23 12:06:59 2026] systemd-fstab-generator[2000]: Checking was requested for "ephemeral0", but it is not a device.
+[Fri Oct 23 12:06:59 2026] systemd-fstab-generator[2000]: x-systemd.device-timeout ignored for ephemeral0
+[Fri Oct 23 12:06:59 2026] systemd-fstab-generator[2057]: Checking was requested for "ephemeral0", but it is not a device.
+[Fri Oct 23 12:06:59 2026] systemd-fstab-generator[2057]: x-systemd.device-timeout ignored for ephemeral0
+[Fri Oct 23 12:07:21 2026] hv_balloon: Max. dynamic memory size: 16384 MB
+[Fri Oct 23 12:10:29 2026] kvm: kvm [3076]: vcpu0, guest rIP: 0xffffffff83e03a51 Unhandled WRMSR(0xc0010007) = 0xffff
