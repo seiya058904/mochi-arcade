@@ -1,0 +1,38 @@
+[
+  {
+    "script": "tests/integration/fruit_playthrough.gd",
+    "exit": 0,
+    "errors": [],
+    "status": "PASS"
+  },
+  {
+    "script": "tests/integration/bubble_playthrough.gd",
+    "exit": 0,
+    "errors": [],
+    "status": "PASS"
+  },
+  {
+    "script": "tests/integration/hop_playthrough.gd",
+    "exit": 0,
+    "errors": [],
+    "status": "PASS"
+  },
+  {
+    "script": "tests/integration/trio_playthrough.gd",
+    "exit": 0,
+    "errors": [],
+    "status": "PASS"
+  },
+  {
+    "script": "tests/integration/balls_playthrough.gd",
+    "exit": 0,
+    "errors": [],
+    "status": "PASS"
+  },
+  {
+    "script": "tests/integration/jelly_playthrough.gd",
+    "exit": 0,
+    "errors": [],
+    "status": "PASS"
+  }
+]

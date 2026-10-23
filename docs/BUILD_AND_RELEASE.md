@@ -1,5 +1,11 @@
 # Build and release
 
+Current source: 1.1.0 / Android versionCode 2, **NOT_RELEASED**. The public
+v1.0.0 release is intact. See [iteration status](ITERATION_1.1.md) for the current
+Android host blocker and exact release continuation. Local signing works; private
+material must stay local. Nineteen suites are now required (the original 18 plus
+the save-failure/terminal-Undo suite).
+
 ## Verified local toolchain
 
 - Godot `4.7.2.stable.official.ed1daf0bf`, standard GDScript Windows x86_64.
@@ -37,20 +43,15 @@ adb install -r dist/MochiArcade-dev.apk
 adb shell am start -n io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher
 ```
 
-Hosted Android 14 now successfully installs and starts the development package
-using the exported `GodotAppLauncher` alias. The original SwiftShader GLES backend
-failed shader compilation; swangle rendered but lost surfaces on background return.
-The pinned emulator's ANGLE/Lavapipe backend now passes all eight native lifecycle,
-round-restore/restart and settings/reinstall checks after the Back and synchronous
-checkpoint repairs in one complete run. All 87 captured native views were reviewed.
-Later Lavapipe runs reproduced intermittent black background returns. Host-GLES
-run 39670759820 passes all eight paths and the actual launcher icon, with 99 native
-captures reviewed. Surface stability is still under repeated testing. Maximum-pool
-execution is measured but software-renderer smoothness is not passed. Final
-signed-byte acceptance remains pending; all successful and adverse runs stay in QA_REPORT.
-The local Windows AVD cannot accelerate (missing hypervisor driver); software-only
-attempts never reached an online device and this task's failed process was stopped.
-No OS driver or boot security setting was changed.
+Historical development tests encountered SwiftShader shader failures and
+Lavapipe/host llvmpipe intermittent black background returns. Keep the original
+raw FAIL reports in QA_REPORT; a later green run does not erase them. v1.0.0's
+exact signed bytes passed API 34 hardware-GPU lifecycle/load acceptance on
+2026-10-22 before publication, under the explicitly scoped hosted A14 exception.
+The 2026-10-23 environment currently lacks working emulator acceleration;
+unaccelerated host/SwiftShader processes fail before usable ADB. No system driver
+or service was changed in this iteration. New signed-byte runtime/upgrade tests
+remain BLOCKED; old and development APK acceptance do not satisfy those gates.
 
 Actual audio mixer checks require a non-headless run:
 
@@ -81,20 +82,21 @@ secure location/tool. `-InitializeKey` refuses existing material and is only for
 first-time setup of a new signing identity. It restores all process environment
 variables after use and does not persist plaintext credentials. Never add the
 key or protected password to Git, logs, APK assets or release attachments.
-The current local 1.0.0 candidate is signed, but is not an accepted stable release.
+v1.0.0 is already published. Any newly built 1.1.0 candidate still needs its own
+exact-byte runtime and v1.0.0 upgrade acceptance before publication.
 
 All eight games, Android touch/lifecycle acceptance and final-SHA CI must pass
 before tagging. Then export the final SHA, compute SHA256SUMS, create a draft
 release, independently download/verify bytes and signature, and publish.
 Never replace an existing published tag or APK silently.
 
-## Prepared manual CI release path (permission pending)
+## Optional manual CI signing path (not authorized for secret upload)
 
-The local workflow draft defaults to development builds. Its optional manual
+The checked-in workflow defaults to development builds. Its optional manual
 `release_candidate` input would consume two repository encrypted secrets:
 `MOCHI_RELEASE_KEYSTORE_BASE64` and `MOCHI_RELEASE_PASSWORD`. Neither has been
-uploaded. User approval is pending because this transfers private signing material
-to GitHub. The local key and DPAPI password remain the authoritative copy.
+uploaded. This task explicitly excludes uploading private signing material to
+GitHub. Use the existing local key and DPAPI password instead.
 
 The reviewed `build_ci_release.py` creates an exclusive mode-0600 temporary key,
 exports a non-debuggable release APK, checks the expected public certificate, then
@@ -116,7 +118,7 @@ no new package, preserves all runtime assertions, and records the requested mode
 plus actual adapter details in emulator.log. Host's a032fde comparison passed all
 native paths and visual review, but still emitted EGL warnings; this is not proof
 of a product fix or physical-GPU performance. Each game now requires three
-background returns; repeated stability and final signed-byte acceptance remain open.
+background returns; final signed-byte acceptance must be repeated for each new release.
 It does not enable release signing or consume signing secrets by default.
 
 Sources: [Android emulator graphics modes](https://developer.android.com/studio/run/emulator-acceleration),

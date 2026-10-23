@@ -12,13 +12,16 @@ Home has eight illustrated cards. Every scene shares a back/pause header,
 record/score summary, help, retry/undo, result dialog and local settings.
 Game rules live in individual scenes and do not depend on another game's state.
 
-## Current playable development scope
+## Released product and current iteration
 
 All eight games have executable rules, integration tests, real rendered screenshots
-and playable input paths. Hosted Android development builds have completed all
-eight touch/lifecycle paths. Intermittent surface recovery, performance acceptance
-and final signed-byte Android verification remain release blockers; this is not
-an accepted stable release.
+and playable input paths. v1.0.0 was publicly released on 2026-10-22 after signed
+hardware-GPU API 34 emulator acceptance and the explicitly scoped hosted llvmpipe
+A14 exception. Physical-phone quantitative performance remains UNVERIFIED.
+The 1.1.0 source iteration adds save-failure feedback/recovery, terminal Number
+Bloom Undo and fewer idle canvas rebuilds. Its own signed-byte Android upgrade
+and runtime gates must pass before a new stable release; old acceptance is not
+new-version evidence. See ITERATION_1.1.md and RELEASE_CHECKLIST.md.
 
 ## Non-negotiable proof
 

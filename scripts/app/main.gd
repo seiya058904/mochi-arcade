@@ -56,6 +56,10 @@ func _ready() -> void:
 	get_viewport().size_changed.connect(_resize)
 	load_icons()
 	show_home()
+	Save.persistence_changed.connect(_save_status, CONNECT_DEFERRED)
+
+func _save_status(error: Error) -> void:
+	toast(C.words("Can't save. Check storage space. We'll retry your changes.", "无法保存，请检查存储空间。我们会重试保存。") if error != OK else C.words("Your changes are saved now.", "更改已保存。"))
 
 func _resize() -> void:
 	if not is_inside_tree() or switching:
@@ -390,7 +394,7 @@ func show_help() -> void:
 
 func confirm_restart() -> void:
 	pause_game(true)
-	show_dialog(C.words("Another little go?", "再来一局？"), C.words("Start a fresh round. Your best is already saved.", "重新开始这一局，最高纪录已保存。"), [[C.words("Keep playing", "继续本局"), resume], [C.words("Start again", "重新开始"), restart]])
+	show_dialog(C.words("Another little go?", "再来一局？"), C.words("Start a fresh round. Your best record is kept.", "重新开始这一局，保留最高纪录。"), [[C.words("Keep playing", "继续本局"), resume], [C.words("Start again", "重新开始"), restart]])
 
 func resume() -> void:
 	dismiss_overlay()
@@ -405,6 +409,8 @@ func show_result(message: String) -> void:
 	var actions := [[C.words("One more go", "再玩一次"), restart], [C.words("Back to my pocket", "返回首页"), leave_game]]
 	if current_index == 4 and game.can_undo():
 		actions.push_front([C.words("Undo last tile", "撤回最后一块"), func(): dismiss_overlay(); game.action("undo")])
+	elif current_index == 6 and not game.undo_state.is_empty():
+		actions.push_front([C.words("Undo last move", "撤回最后一步"), func(): dismiss_overlay(); game.action("undo")])
 	show_dialog(C.words("A lovely little round", "又一局小快乐"), message + "\n" + C.words("Your score  ", "本局得分  ") + str(game.score), actions)
 
 func show_dialog(title: String, body: String, actions: Array) -> void:
@@ -456,6 +462,8 @@ func _notification(what: int) -> void:
 				lifecycle_suspend_pending = true
 				_show_lifecycle_pause.call_deferred()
 	elif what == NOTIFICATION_APPLICATION_FOCUS_IN:
+		if Save.dirty:
+			Save.flush()
 		if page != "game":
 			Sound.suspend(false)
 	elif what == NOTIFICATION_WM_GO_BACK_REQUEST:
@@ -468,9 +476,14 @@ func _notification(what: int) -> void:
 func exit_application() -> void:
 	if exiting:
 		return
-	exiting = true
 	pause_game(true)
-	Save.flush()
+	if Save.flush() != OK:
+		show_dialog(C.words("Some changes aren't saved", "还有更改未保存"), C.words("Check storage space and retry. Closing now loses changes since the last successful save.", "请检查存储空间后重试。现在退出会丢失上次成功保存后的更改。"), [[C.words("Retry saving", "重试保存"), exit_application], [C.words("Stay here", "留在这里"), dismiss_overlay], [C.words("Close without saving", "不保存并退出"), _quit]])
+		return
+	_quit()
+
+func _quit() -> void:
+	exiting = true
 	await Sound.shutdown()
 	get_tree().quit()
 
@@ -495,7 +508,7 @@ func back() -> void:
 	elif page == "licenses":
 		show_settings()
 	else:
-		show_dialog(C.words("See you in a little while?", "下次再一起玩？"), C.words("Your records are tucked away safely.", "你的纪录已经妥善保存。"), [[C.words("Stay here", "再玩一会儿"), dismiss_overlay], [C.words("Close the app", "退出应用"), exit_application]])
+		show_dialog(C.words("See you in a little while?", "下次再一起玩？"), C.words("We'll save your records before closing.", "退出前会保存你的纪录。"), [[C.words("Stay here", "再玩一会儿"), dismiss_overlay], [C.words("Close the app", "退出应用"), exit_application]])
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:

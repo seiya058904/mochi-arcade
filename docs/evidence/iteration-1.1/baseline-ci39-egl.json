@@ -1,0 +1,294 @@
+{
+  "run": "39810409461",
+  "events": [
+    {
+      "line": 926,
+      "text": "10-22 16:05:36.439  2342  2373 E EGL_emulation: tid 2373: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 940,
+      "text": "10-22 16:05:36.473  2342  2373 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 1366,
+      "text": "10-22 16:06:08.184  2342  2373 E EGL_emulation: tid 2373: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 1367,
+      "text": "10-22 16:06:08.184  2342  2373 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 1549,
+      "text": "10-22 16:06:19.003  2342  2373 E EGL_emulation: tid 2373: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 1561,
+      "text": "10-22 16:06:19.005  2342  2373 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 1729,
+      "text": "10-22 16:06:27.663  2342  2373 E EGL_emulation: tid 2373: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 1730,
+      "text": "10-22 16:06:27.663  2342  2373 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 2260,
+      "text": "10-22 16:06:50.617  2711  2734 E EGL_emulation: tid 2734: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 2261,
+      "text": "10-22 16:06:50.618  2711  2734 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 2619,
+      "text": "10-22 16:07:10.997  2815  2840 E EGL_emulation: tid 2840: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 2620,
+      "text": "10-22 16:07:10.997  2815  2840 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 2826,
+      "text": "10-22 16:07:22.429  2815  2840 E EGL_emulation: tid 2840: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 2827,
+      "text": "10-22 16:07:22.429  2815  2840 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 3001,
+      "text": "10-22 16:07:30.402  2815  2840 E EGL_emulation: tid 2840: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 3002,
+      "text": "10-22 16:07:30.403  2815  2840 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 3825,
+      "text": "10-22 16:08:12.418  3121  3146 E EGL_emulation: tid 3146: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 3826,
+      "text": "10-22 16:08:12.418  3121  3146 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 4036,
+      "text": "10-22 16:08:23.728  3121  3146 E EGL_emulation: tid 3146: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 4037,
+      "text": "10-22 16:08:23.728  3121  3146 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 4214,
+      "text": "10-22 16:08:32.107  3121  3146 E EGL_emulation: tid 3146: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 4216,
+      "text": "10-22 16:08:32.116  3121  3146 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 4388,
+      "text": "10-22 16:08:40.394  3121  3146 E EGL_emulation: tid 3146: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 4389,
+      "text": "10-22 16:08:40.394  3121  3146 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 4689,
+      "text": "10-22 16:08:54.560  3324  3347 E EGL_emulation: tid 3347: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 4690,
+      "text": "10-22 16:08:54.560  3324  3347 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 5078,
+      "text": "10-22 16:09:16.347  3428  3451 E EGL_emulation: tid 3451: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 5079,
+      "text": "10-22 16:09:16.348  3428  3451 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 5293,
+      "text": "10-22 16:09:27.270  3428  3451 E EGL_emulation: tid 3451: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 5294,
+      "text": "10-22 16:09:27.270  3428  3451 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 5461,
+      "text": "10-22 16:09:35.752  3428  3451 E EGL_emulation: tid 3451: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 5462,
+      "text": "10-22 16:09:35.752  3428  3451 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 6256,
+      "text": "10-22 16:10:01.682  3712  3737 E EGL_emulation: tid 3737: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 6257,
+      "text": "10-22 16:10:01.682  3712  3737 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 6922,
+      "text": "10-22 16:10:37.080  3888  3912 E EGL_emulation: tid 3912: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 6923,
+      "text": "10-22 16:10:37.081  3888  3912 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 7115,
+      "text": "10-22 16:10:47.836  3888  3912 E EGL_emulation: tid 3912: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 7116,
+      "text": "10-22 16:10:47.836  3888  3912 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 7300,
+      "text": "10-22 16:10:56.707  3888  3912 E EGL_emulation: tid 3912: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 7301,
+      "text": "10-22 16:10:56.707  3888  3912 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 7479,
+      "text": "10-22 16:11:04.683  3888  3912 E EGL_emulation: tid 3912: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 7480,
+      "text": "10-22 16:11:04.683  3888  3912 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 7767,
+      "text": "10-22 16:11:18.705  4121  4145 E EGL_emulation: tid 4145: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 7768,
+      "text": "10-22 16:11:18.706  4121  4145 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 8152,
+      "text": "10-22 16:11:39.296  4224  4248 E EGL_emulation: tid 4248: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 8153,
+      "text": "10-22 16:11:39.297  4224  4248 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 8384,
+      "text": "10-22 16:11:50.636  4224  4248 E EGL_emulation: tid 4248: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 8385,
+      "text": "10-22 16:11:50.636  4224  4248 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 8568,
+      "text": "10-22 16:11:58.892  4224  4248 E EGL_emulation: tid 4248: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 8569,
+      "text": "10-22 16:11:58.892  4224  4248 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 8735,
+      "text": "10-22 16:12:07.781  4224  4248 E EGL_emulation: tid 4248: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 8736,
+      "text": "10-22 16:12:07.781  4224  4248 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 9029,
+      "text": "10-22 16:12:21.816  4424  4447 E EGL_emulation: tid 4447: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 9030,
+      "text": "10-22 16:12:21.817  4424  4447 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 9406,
+      "text": "10-22 16:12:43.477  4525  4549 E EGL_emulation: tid 4549: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 9407,
+      "text": "10-22 16:12:43.478  4525  4549 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 9620,
+      "text": "10-22 16:12:54.764  4525  4549 E EGL_emulation: tid 4549: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 9621,
+      "text": "10-22 16:12:54.764  4525  4549 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 9811,
+      "text": "10-22 16:13:03.535  4525  4549 E EGL_emulation: tid 4549: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 9812,
+      "text": "10-22 16:13:03.535  4525  4549 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 9992,
+      "text": "10-22 16:13:11.795  4525  4549 E EGL_emulation: tid 4549: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 9993,
+      "text": "10-22 16:13:11.795  4525  4549 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 10655,
+      "text": "10-22 16:13:49.702  4851  4874 E EGL_emulation: tid 4874: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 10656,
+      "text": "10-22 16:13:49.703  4851  4874 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 10882,
+      "text": "10-22 16:14:01.117  4851  4874 E EGL_emulation: tid 4874: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 10883,
+      "text": "10-22 16:14:01.117  4851  4874 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 11063,
+      "text": "10-22 16:14:10.014  4851  4874 E EGL_emulation: tid 4874: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 11064,
+      "text": "10-22 16:14:10.014  4851  4874 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 11245,
+      "text": "10-22 16:14:17.956  4851  4874 E EGL_emulation: tid 4874: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 11246,
+      "text": "10-22 16:14:17.956  4851  4874 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    },
+    {
+      "line": 11550,
+      "text": "10-22 16:14:32.253  5129  5152 E EGL_emulation: tid 5152: swapBuffers(817): error 0x300d (EGL_BAD_SURFACE)"
+    },
+    {
+      "line": 11551,
+      "text": "10-22 16:14:32.253  5129  5152 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+    }
+  ],
+  "assessment": "All 99 raw images reviewed: no black frame in this run. Example first warning accompanies abandoned BufferQueue after launcher Home transition. Full per-warning foreground/background classification UNVERIFIED; no engine fix claimed."
+}

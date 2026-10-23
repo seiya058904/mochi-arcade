@@ -132,8 +132,9 @@ func run() -> void:
 	save.data.settings.language = "unknown"
 	save.data.seen.number_bloom = [true]
 	save.flush()
+	var recovery_backup: Dictionary = save.decode(save.folder.path_join("save.backup.json"))
 	save.load_save()
-	check(save.best("number_bloom") == 0 and save.setting("music") == true and save.setting("language") == "en" and not save.data.seen.has("number_bloom"), "Malformed record/settings/seen values recover defaults without invalid casts")
+	check(save.best("number_bloom") == int(recovery_backup.records.get("number_bloom", 0)) and save.setting("music") == recovery_backup.settings.music and save.setting("language") == recovery_backup.settings.language and save.data.seen.get("number_bloom", false) == recovery_backup.seen.get("number_bloom", false), "Malformed fields recover exact valid backup values without invalid casts")
 	save.data.settings.music = false
 	var board: Array = []
 	board.resize(16)

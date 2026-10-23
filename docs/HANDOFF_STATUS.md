@@ -1,4 +1,23 @@
-# Handoff status — 2026-10-22 takeover
+# Handoff status
+
+## Current iteration — 2026-10-23
+
+**1.1.0 NOT_RELEASED / BLOCKED_ANDROID_RUNTIME.** The existing v1.0.0 public
+release and tag are untouched. See [ITERATION_1.1.md](ITERATION_1.1.md) for the
+audit, source changes, evidence, signing identity and exact continuation.
+The 18 original suites plus new 39-check reliability suite pass locally; 64
+desktop layout captures and save/Undo UI captures were visually reviewed. Local
+DPAPI signing identity is available. No online physical device is present;
+acceleration-on AVD startup fails its hypervisor precondition, and both unaccelerated
+GPU routes exit 0xC0000005 before usable ADB. No system drivers/services changed.
+
+Next: obtain a functioning isolated Android test environment; verify exact signed
+1.1.0 bytes and in-place upgrade from the archived public v1.0.0 APK; run/review
+signed smoke/load, then and only then tag, draft, verify, publish and independently
+download. CI development APK and old signed acceptance cannot replace these gates.
+Remote/code closeout and candidate metadata are recorded in the iteration report.
+
+## Historical 2026-10-22 takeover and v1.0.0 release
 
 Recorded while taking over the late-stage project from the previous Codex
 session. Facts below were re-checked on this Windows machine; nothing is copied

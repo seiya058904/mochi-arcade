@@ -260,9 +260,11 @@ docs/              Product, art direction, QA and release evidence
 
 ### Verification, Without Guesswork
 
-The repository includes **18 required automated test suites**, deterministic game replays, procedural-board checks, and retained Android screenshots and lifecycle evidence.
+The repository includes **19 required automated test suites** (the original 18 plus save-failure and terminal-Undo regressions), deterministic game replays, procedural-board checks, and retained Android screenshots and lifecycle evidence.
 
-A signed APK was exercised on a controlled **Android 14 / API 34 hardware-GPU emulator**, including all eight games, background return, resume, restart, save restoration, and maximum-object loads. This is **not** a claim that every Android phone will achieve the same frame rate.
+The published **v1.0.0** signed APK was exercised on a controlled **Android 14 / API 34 hardware-GPU emulator**, including all eight games, background return, resume, restart, save restoration, and maximum-object loads. This is **not** a claim that every Android phone will achieve the same frame rate.
+
+The **1.1.0 source iteration is not released**: it adds save-failure feedback and recovery, Number Bloom Undo from the result screen, and fewer idle canvas rebuilds. Final signed-APK Android runtime and in-place upgrade acceptance are blocked by the current local emulator acceleration environment. [Iteration status and evidence](docs/ITERATION_1.1.md) distinguish these gates from the published v1.0.0 evidence; the download links above continue to serve the accepted release.
 
 A dedicated cream **Mochi Arcade boot splash** replaces the default engine splash; first launch (463 ms), cold start (408 ms) and warm start (79 ms) were captured on the emulator with no Godot default logo, blue icon, progress bar, fake percentage or artificial delay. See the [startup evidence](docs/evidence/android-api34-final-splash-2026-10-22/).
 

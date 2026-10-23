@@ -12,7 +12,11 @@ func frames(count: int) -> void:
 func shot(name: String) -> void:
 	await frames(2)
 	await RenderingServer.frame_post_draw
-	var path := "res://docs/evidence/matrix-" + name + ".png"
+	var output := OS.get_environment("MOCHI_VISUAL_OUTPUT")
+	if output.is_empty():
+		output = "res://docs/evidence"
+	DirAccess.make_dir_recursive_absolute(output)
+	var path := output.path_join("matrix-" + name + ".png")
 	root.get_texture().get_image().save_png(path)
 	captures.append(path)
 
@@ -30,7 +34,7 @@ func run() -> void:
 	root.get_node("Sound").apply_settings()
 	app = load("res://scenes/app/main.tscn").instantiate()
 	root.add_child(app)
-	for profile in [[Vector2i(450, 800), "phone", "en"], [Vector2i(360, 800), "tall", "zh"], [Vector2i(640, 800), "wide", "en"]]:
+	for profile in [[Vector2i(450, 800), "phone", "en"], [Vector2i(360, 800), "tall", "zh"], [Vector2i(640, 800), "wide", "en"], [Vector2i(450, 800), "phone-zh", "zh"], [Vector2i(360, 800), "tall-en", "en"], [Vector2i(640, 800), "wide-zh", "zh"]]:
 		root.size = profile[0]
 		save.data.settings.language = profile[2]
 		await frames(2)

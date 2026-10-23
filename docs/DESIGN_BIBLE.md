@@ -40,4 +40,8 @@ Actual 450x800, 360x640 and 360x800 viewport captures reviewed. Fixed thin Latin
 and Chinese variable fonts, clipped bunny sprite, and long dialog text sizing.
 The complete 34-screen matrix now covers all eight games, three portrait ratios,
 both languages, overlays, settings and offline licenses. Tall home cards fill the
-available area; the wide 2048 board fits its footer. Android safe-area review is pending.
+available area; the wide 2048 board fits its footer. v1.0.0 Android layout and
+expanded touch regions were reviewed on the 720x1280/320dpi API 34 hardware-GPU
+AVD (see android-api34-final-splash-2026-10-22 evidence). Other cutouts, densities
+and physical-phone geometry remain UNVERIFIED; that review does not certify a
+new build automatically.

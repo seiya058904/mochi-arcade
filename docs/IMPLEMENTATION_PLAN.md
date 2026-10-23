@@ -1,5 +1,22 @@
 # Implementation board
 
+## Current 1.1.0 iteration — 2026-10-23
+
+| Phase | Status | Exit evidence / next action |
+| --- | --- | --- |
+| Takeover / baseline / audit | PASS | Clean unique root; live public remote/tag/download; original signing identity opened; baseline 18/18; eight-game review in ITERATION_1.1.md |
+| Confirmed repairs | PASS local | Save failure/recovery, terminal Bloom Undo, four idle canvas guards; 19/19 suites including 39 new regression checks |
+| Desktop rendering / audio | PASS reviewed | 64 EN/ZH captures across three ratios; terminal/failure UI; same-seed idle pixels exact; actual audio mixer checks |
+| New signed Android / upgrade | BLOCKED | AVD acceleration unavailable; no-accel startup crashes before usable ADB. Obtain functioning isolated Android environment, preserve original certificate and verify v1.0.0 upgrade |
+| Remote integration / CI | IN_PROGRESS | Push reviewed source; observe final-main workflow and review its raw Android captures |
+| New stable Release / public download | NOT_RUN / BLOCKED | No new tag or Release until exact signed-byte Android and upgrade gates pass; v1.0.0 remains intact |
+
+See [ITERATION_1.1.md](ITERATION_1.1.md) for exact continuation and evidence.
+The following phase board and checkpoints are **historical v1.0.0 development**;
+their former pending/blocker statements describe those dates, not today's release.
+
+## Historical v1.0.0 phase board
+
 Owner: current Codex. Started 2026-10-21. Goal stays active until delivered or
 an evidenced external blocker prevents all meaningful progress.
 

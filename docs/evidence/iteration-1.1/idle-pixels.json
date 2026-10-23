@@ -1,0 +1,22 @@
+{
+  "home": {
+    "same_dimensions": true,
+    "exact_rgba": true
+  },
+  "number_bloom": {
+    "same_dimensions": true,
+    "exact_rgba": true
+  },
+  "tile_trio": {
+    "same_dimensions": true,
+    "exact_rgba": true
+  },
+  "bubble_garden": {
+    "same_dimensions": true,
+    "exact_rgba": true
+  },
+  "mochi_hop": {
+    "same_dimensions": true,
+    "exact_rgba": true
+  }
+}

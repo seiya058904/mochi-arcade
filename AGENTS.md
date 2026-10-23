@@ -10,7 +10,9 @@ release artifact **MochiArcade.apk**. G06 is **Mochi Hop**, never Color Maze.
 - Follow the phases in `docs/IMPLEMENTATION_PLAN.md`; complete and verify each game
   before starting the next. Never replace playable content with a screenshot.
 - Use real image generation for concepts and production art; record provenance.
-- New remote is private. Normal commits/pushes are authorized by the adopted task.
+- Existing remote is public: seiya058904/mochi-arcade, default branch main.
+  v1.0.0 is published; never replace its tag or assets. Normal commits/pushes
+  are authorized by the adopted task. New stable releases still require all gates.
 - Stable Release is authorized only after all A01-A15 gates and Android runtime
   acceptance. Never publish a debug signature as a stable release.
 - Keep keys/passwords outside Git; use environment overrides for export signing.

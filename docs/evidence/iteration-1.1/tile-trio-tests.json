@@ -1,0 +1,8 @@
+{
+  "checks": 23,
+  "evidence": "Actual scene with legal tile clicks and button signals; no injected loss or victory flags.",
+  "failures": [],
+  "seed": 701,
+  "status": "PASS",
+  "suite": "Tile Trio runtime and recovery"
+}

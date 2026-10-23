@@ -1,5 +1,23 @@
 # QA report
 
+## Current 1.1.0 source iteration — 2026-10-23
+
+**NOT_RELEASED / BLOCKED_ANDROID_RUNTIME.** New evidence is scoped in
+[ITERATION_1.1.md](ITERATION_1.1.md) and `evidence/iteration-1.1/`.
+Baseline 18/18 PASS; new 19/19 PASS includes 39 failure/retry/recovery/terminal-Undo
+assertions. All 64 real-renderer EN/ZH three-ratio layouts plus new failure/exit/Undo
+captures reviewed. Four idle canvas rebuild counts: 180 -> 0 over identical
+180-frame samples, five exact RGBA comparisons; GPU draws unchanged, no claimed
+battery/CPU percentage. Desktop audio mixer passes. None is Android signed proof.
+
+Current local AVD acceleration is unavailable; host and SwiftShader without
+acceleration exit 0xC0000005 before usable ADB, acceleration-on exits 1. Signing
+identity can be opened but exact signed runtime and v1.0.0 upgrade are BLOCKED.
+No system driver/service changes and no new stable publication. Historical
+successful and adverse evidence below remains intact and belongs to v1.0.0.
+
+## Historical v1.0.0 acceptance
+
 Status: **v1.0.0 RELEASED** — eight playable games; final signed APK verified and
 published; A14 carries an owner-approved scoped environment exception; physical-phone
 quantitative performance remains UNVERIFIED and disclosed.

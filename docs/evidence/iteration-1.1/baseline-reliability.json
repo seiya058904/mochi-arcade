@@ -1,0 +1,16 @@
+{
+  "checks": 18,
+  "failures": [
+    "Record returns the actual write failure",
+    "Failed progress remains explicitly pending in memory",
+    "Retry commits pending progress and clears dirty status",
+    "Backup staging failure is propagated",
+    "Backup staging failure preserves previous backup",
+    "Backup failure does not commit primary",
+    "Partial corruption recovers valid backup fields",
+    "Partial backup recovery is reported",
+    "Number Bloom terminal sheet exposes Undo last move"
+  ],
+  "scope": "Isolated filesystem fault fixtures and actual terminal swipe; desktop, not Android",
+  "status": "FAIL"
+}

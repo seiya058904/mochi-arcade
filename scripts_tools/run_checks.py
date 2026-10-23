@@ -25,6 +25,7 @@ SUITES = [
     ("tests/integration/jelly_playthrough.gd", True),
     ("tests/integration/fruit_playthrough.gd", True),
     ("tests/integration/collection_audit.gd", True),
+    ("tests/integration/reliability.gd", False),
 ]
 
 

@@ -47,6 +47,8 @@ func valid_board(value: Variant) -> bool:
 	return true
 
 func _process(delta: float) -> void:
+	if animation >= 1 and particles.is_empty():
+		return
 	animation = minf(1, animation + delta / (0.04 if reduced_motion else 0.15))
 	step_effects(delta)
 	queue_redraw()

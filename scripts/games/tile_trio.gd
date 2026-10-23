@@ -161,6 +161,8 @@ func action(name: String) -> void:
 func _process(delta: float) -> void:
 	if stopped or suspended:
 		return
+	if animation.is_empty() and not pending_loss and clear_time <= 0 and particles.is_empty():
+		return
 	if not animation.is_empty():
 		animation.time += delta
 		if animation.time >= 0.18:

@@ -1,0 +1,8 @@
+{
+  "checks": 29,
+  "failures": [],
+  "note": "Real Godot 2D contacts; forced overflow fixture is not natural-failure play evidence.",
+  "seed": 817,
+  "status": "PASS",
+  "suite": "fruit-drop physics and rules"
+}

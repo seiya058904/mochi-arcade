@@ -134,6 +134,8 @@ func resolve_landing() -> void:
 func _process(delta: float) -> void:
 	if stopped or suspended:
 		return
+	if state == State.READY and camera == camera_target and particles.is_empty():
+		return
 	match state:
 		State.CHARGING:
 			held = minf(RULES.MAX_HOLD, held + delta)
@@ -154,6 +156,8 @@ func _process(delta: float) -> void:
 			if fall_time >= 0.35:
 				finish(MochiCatalog.words("A little tumble. Your next sweet landing is one hop away.", "轻轻摔了一跤，再来一次甜甜的跳跃吧。"))
 	camera = camera_target if reduced_motion else camera.lerp(camera_target, 1 - exp(-delta * 7))
+	if camera.distance_squared_to(camera_target) < 0.000001:
+		camera = camera_target
 	step_effects(delta)
 	queue_redraw()
 

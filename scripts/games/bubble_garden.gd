@@ -232,6 +232,8 @@ func action(name: String) -> void:
 func _physics_process(delta: float) -> void:
 	if stopped or suspended:
 		return
+	if not flying and reload_time <= 0 and falling.is_empty() and particles.is_empty():
+		return
 	if reload_time > 0:
 		reload_time -= delta
 		if reload_time <= 0:

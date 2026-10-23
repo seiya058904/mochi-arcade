@@ -1,0 +1,140 @@
+{
+  "status": "PASS",
+  "suite_count": 19,
+  "executed": 19,
+  "results": [
+    {
+      "script": "tests/logic/run_tests.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 2.312
+    },
+    {
+      "script": "tests/logic/hop_reachability.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 3.859
+    },
+    {
+      "script": "tests/logic/trio_solver.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 11.282
+    },
+    {
+      "script": "tests/integration/vertical_slices.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 14.25
+    },
+    {
+      "script": "tests/integration/vertical_playthrough.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 26.812
+    },
+    {
+      "script": "tests/integration/fruit_drop.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 8.516
+    },
+    {
+      "script": "tests/integration/bubble_garden.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 5.437
+    },
+    {
+      "script": "tests/integration/bubble_playthrough.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 22.938
+    },
+    {
+      "script": "tests/integration/mochi_hop.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 2.984
+    },
+    {
+      "script": "tests/integration/hop_playthrough.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 13.391
+    },
+    {
+      "script": "tests/integration/tile_trio.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 3.719
+    },
+    {
+      "script": "tests/integration/trio_playthrough.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 2.937
+    },
+    {
+      "script": "tests/integration/bouncy_balls.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 3.484
+    },
+    {
+      "script": "tests/integration/balls_playthrough.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 2.204
+    },
+    {
+      "script": "tests/integration/jelly_slice.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 2.0
+    },
+    {
+      "script": "tests/integration/jelly_playthrough.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 1.0
+    },
+    {
+      "script": "tests/integration/fruit_playthrough.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 8.953
+    },
+    {
+      "script": "tests/integration/collection_audit.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 6.547
+    },
+    {
+      "script": "tests/integration/reliability.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 0.703
+    }
+  ]
+}
