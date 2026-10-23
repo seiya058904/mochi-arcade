@@ -1,0 +1,68 @@
+{
+  "status": "PASS_PRESERVATION",
+  "old_releases": [
+    {
+      "tag": "v1.1.0",
+      "sha": "4f5d7f78159497f6f6d53d06d4acc16685c25c72",
+      "assets": [
+        [
+          668601933,
+          "SHA256SUMS",
+          83,
+          "sha256:b11d3bbc3d526494343f62e5119f2c424477697946b08dbbcb248f97c7930a0f",
+          "2026-10-23T09:17:44Z"
+        ],
+        [
+          668601934,
+          "MochiArcade.apk",
+          78471916,
+          "sha256:9676db2f517e9c206317bfce045259294e36c5014b294f155db549b81f263320",
+          "2026-10-23T09:18:17Z"
+        ]
+      ],
+      "status": "UNCHANGED"
+    },
+    {
+      "tag": "v1.0.0",
+      "sha": "2d45caf40d8334c4c9cc1567164db749d983c7ee",
+      "assets": [
+        [
+          664723744,
+          "MochiArcade.apk",
+          78467820,
+          "sha256:8fcc1ebc83cb9cb8e8947a1a33bef9cba9222b9ac775fafdcd7d3d5cd85d473c",
+          "2026-10-22T04:57:55Z"
+        ],
+        [
+          664723745,
+          "SHA256SUMS",
+          82,
+          "sha256:78bbeaf48c45ca8786e4d2a74f4c06b839aef753f685cb11e8a6c7a2c27c103e",
+          "2026-10-22T04:57:50Z"
+        ]
+      ],
+      "status": "UNCHANGED"
+    }
+  ],
+  "latest": "v1.1.0",
+  "candidate_draft_id": 421777385,
+  "candidate_is_draft": true,
+  "candidate_tag_published": false,
+  "candidate_public_download": "NOT_RUN_UNPUBLISHED",
+  "candidate_assets": [
+    [
+      668954574,
+      "MochiArcade.apk",
+      78471990,
+      "sha256:09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8",
+      "2026-10-23T11:45:34Z"
+    ],
+    [
+      668954575,
+      "SHA256SUMS",
+      83,
+      "sha256:cb873c5b2d487c55ce76414f765a42f62300010512fc62c943b77eeb34b0b0e4",
+      "2026-10-23T11:45:19Z"
+    ]
+  ]
+}

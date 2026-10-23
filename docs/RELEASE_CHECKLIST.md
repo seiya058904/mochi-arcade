@@ -11,7 +11,7 @@ Build source `920f39cfc29fc0d46b03a295f25f1197446a4027`; original-signed APK
 | A10/A11/A12 static package and signing | PASS static only | Original certificate, code 3/name 1.1.1, two ABIs, VIBRATE only, non-debuggable, v2/v3 and 16 KiB; independently downloaded draft bytes match |
 | A01/A02/A05/A07/A08/A12 signed Android and both upgrades | FAIL / incomplete | Runs 39948412473 and 39948416747: emulator SIGSEGV, ADB offline; five candidate semantic restorations completed, remaining gates blocked; no prior PASS inherited |
 | A09 physical performance | UNVERIFIED | No physical device; hosted compositor intervals will be scoped separately |
-| A13/A14 final integration and CI | IN_PROGRESS | Build branch pushed; main integration and final applicable CI pending |
+| A13/A14 final integration and CI | Integrated / CI tracked separately | Main includes S and retained failures; final-tip check URL/conclusion recorded in delivery report; no earlier green run substitutes |
 | A15 stable/public delivery | NOT_RUN | Draft only until every applicable hard gate passes |
 
 See [ITERATION_1.1.1.md](ITERATION_1.1.1.md). Historical failures and the v1.0.0

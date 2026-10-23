@@ -102,15 +102,31 @@ successful upgrades do not establish a passing eight-game upgrade.
 Full reports, load/cleanup failures, host diagnostics, source manifests and visual
 review records are under `evidence/iteration-1.1.1/run-39948412473/` and
 `run-39948416747/`. Raw downloaded artifacts remain in `.local/iteration-1.1.1/`.
-Post-S observer-only tooling adds continuous smoke logcat so a future host failure
+Post-S observer-only tooling adds continuous smoke/upgrade logcat so a future host failure
 does not lose all guest logs; this cannot retroactively diagnose these runs.
 Post-S commits change documents/evidence/observation tools only, not runtime,
 assets, scenes, version/export configuration or the tested APK.
 
 ## Exact remaining actions
 
-1. Complete normal main integration and inspect its final applicable CI separately;
-   a development APK CI cannot replace the missing signed acceptance above.
+Main was fast-forward integrated through evidence commit
+`ff349f74552cc1b5d70e91ba1a8f172ac2f49e67` and pushed normally. Runtime/source
+comparison against S is empty for scripts, scenes, assets and project/export
+configuration. The subsequent closeout commit is documentation/evidence only.
+The delivery report records the final applicable main CI URL and conclusion;
+[main checks](https://github.com/seiya058904/mochi-arcade/actions/workflows/ci.yml?query=branch%3Amain)
+remain the authoritative remote result, not historical green runs. Integration is
+complete; the required signed release gates remain BLOCKED independently of CI.
+Old release/tag/asset identities were rechecked unchanged in
+`evidence/iteration-1.1.1/release-preservation.json`. Initial worktree was clean;
+no user changes, stash, existing worktree or branch were modified. Task branches
+are removed after merge; raw `.local` evidence and the unpublished candidate are
+retained deliberately. No local AVD or Godot process remains; AEHD stays stopped.
+Archived text diagnostics normalize trailing whitespace only; raw artifacts and
+their original SHA-256 manifests remain available locally.
+
+1. Inspect the final main CI separately; a development APK CI cannot replace the
+   missing signed acceptance above. Do not treat a partial run as a passing gate.
 2. Diagnose the hosted emulator crash with retained host/guest diagnostics. Only
    retry signed acceptance after a specific cause is addressed or a documented,
    verifiable environment change; keep all original FAIL reports.
