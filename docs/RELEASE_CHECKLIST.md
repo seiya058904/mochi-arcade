@@ -1,6 +1,23 @@
-# Release gates — published v1.1.0 and historical v1.0.0
+# Release gates — current 1.1.1 candidate and published history
 
-Current iteration (2026-10-23): **v1.1.0 RELEASED**. A01-A08/A10-A12 pass
+Current candidate: **v1.1.1 / code 3; BLOCKED, not released**.
+Build source `920f39cfc29fc0d46b03a295f25f1197446a4027`; original-signed APK
+`09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8`.
+
+| Candidate gates | Status | Evidence / next action |
+| --- | --- | --- |
+| A03/A04 logical rules, regression and procedural content | PASS local | 22 checks; patch 126 assertions; 1,500 Trio boards and 2,000 Hop seeds/50,000 targets retained |
+| A06 desktop layouts / A07 desktop audio | PASS reviewed | 84 views plus six corrected version views; actual mixer and loop checks; native review still pending |
+| A10/A11/A12 static package and signing | PASS static only | Original certificate, code 3/name 1.1.1, two ABIs, VIBRATE only, non-debuggable, v2/v3 and 16 KiB; independently downloaded draft bytes match |
+| A01/A02/A05/A07/A08/A12 signed Android and both upgrades | FAIL / incomplete | Runs 39948412473 and 39948416747: emulator SIGSEGV, ADB offline; five candidate semantic restorations completed, remaining gates blocked; no prior PASS inherited |
+| A09 physical performance | UNVERIFIED | No physical device; hosted compositor intervals will be scoped separately |
+| A13/A14 final integration and CI | IN_PROGRESS | Build branch pushed; main integration and final applicable CI pending |
+| A15 stable/public delivery | NOT_RUN | Draft only until every applicable hard gate passes |
+
+See [ITERATION_1.1.1.md](ITERATION_1.1.1.md). Historical failures and the v1.0.0
+exception below do not waive candidate gates.
+
+Historical v1.1.0 iteration (2026-10-23): **v1.1.0 RELEASED**. A01-A08/A10-A12 pass
 final-source tests, reviewed layouts and exact signed API 34 hosted acceptance
 (8 x 3 returns, upgrade, recovery, audio/load and native startup review). A09 is
 PARTIAL: physical metrics and untested devices/APIs remain UNVERIFIED; hosted

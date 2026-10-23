@@ -1,6 +1,6 @@
 # 1.1.1 reliability patch — 2026-10-23
 
-Status: **IN_PROGRESS; release gates pending**. Published v1.1.0 and v1.0.0
+Status: **BLOCKED; signed Android acceptance failed after hosted emulator crashes**. Published v1.1.0 and v1.0.0
 remain unchanged. This iteration does not inherit their runtime PASS results.
 
 ## Takeover and scope
@@ -30,10 +30,10 @@ and anonymous public download/signature verification. No release with an open P1
 
 | ID | Priority / reproduced condition | Root cause / change | Evidence and status |
 | --- | --- | --- | --- |
-| F3 | P1 confirmed in deterministic Godot callback fixtures; not a claim of observed Android user data loss | Consumed pending bodies were excluded before deferred replacement. Save complete pre-merge pairs; retain pending merges during suspension and commit them once on resume. Each intermediate checkpoint is a coherent prefix of completed merges. | Old implementation fails both boundary/restoration checks. New fixture also exercises physical triple/chain contact; existing all-level/overflow/playthrough suites retained. Local PASS; signed Android pending. |
+| F3 | P1 confirmed in deterministic Godot callback fixtures; not a claim of observed Android user data loss | Consumed pending bodies were excluded before deferred replacement. Save complete pre-merge pairs; retain pending merges during suspension and commit them once on resume. Each intermediate checkpoint is a coherent prefix of completed merges. | Old implementation fails both boundary/restoration checks. New fixture also exercises physical triple/chain contact; existing all-level/overflow/playthrough suites retained. Local PASS; full signed Android BLOCKED. |
 | F1 | P2 confirmed: real terminal Bloom swipe / generated Trio full tray, WM_CLOSE save failure, actual Stay/Undo buttons | Cancel exit now releases game suspension while retaining results. Focus-in resumes terminal-screen music. | EN/ZH real GUI events restore board/tray/score/RNG/history, retain best, recover disk writes, reload and perform next action. Separate rendered old-code failures confirm audio gap. Local PASS. |
 | F2 | P2 confirmed: one malformed top-level section rolls back unrelated newer values | Parse supported version independently from sections; recover only malformed sections or existing malformed fields. Respect absent keys/valid empty sections. Unknown version and I/O failures block overwrite. | Four-section matrix, valid clear/delete, both-bad bounded fallback, reread after repair; existing short-write/backup/rename/read-denial/retry suite retained. Version remains 1. Local PASS. |
-| F4 | P2 release engineering | `release_identity.json` defines candidate, package, certificate and both independently verified public hashes. Explicit candidate SHA/source inputs bind draft transport and upgrade reports. Full semantic comparison at first-help freeze; real Undo and continuation checks. | Desktop probe of original isolated v1.0.0 rounds passes all eight full-state comparisons. Negative identity/field-loss tests included. Two exact signed upgrade runs pending. |
+| F4 | P2 release engineering | `release_identity.json` defines candidate, package, certificate and both independently verified public hashes. Explicit candidate SHA/source inputs bind draft transport and upgrade reports. Full semantic comparison at first-help freeze; real Undo and continuation checks. | Desktop probe of original isolated v1.0.0 rounds passes all eight full-state comparisons. Negative identity/field-loss tests included. Both exact signed runs FAIL after host crashes; only five candidate semantic restorations completed. |
 | F5 | Measured write amplification | Stage best record inside the synchronous scoring action and commit with its checkpoint; freeze once and commit once on home/exit. No skipped disk validation or delayed lifecycle durability. | Before/after actual transactions and 100 raw samples per path retained. Balls/Jelly batching unchanged. Local PASS. |
 | F6 | P3 maintenance | Four official Actions v4 refs pinned to live official tag SHAs; no major-version upgrade. Describe project retention policy separately from GitHub immutable protection. | Existing releases report `immutable:false`; no governance setting changed. |
 
@@ -67,12 +67,59 @@ false positives; the later baseline files supersede those assertions, without
 deleting the earlier raw failure. Real rendering is RX 7900 XT Compatibility;
 headless audio flags alone are not mixer evidence.
 
-1. Local gates PASS: 22/22 checks, 126 patch assertions, 84 reviewed views plus six corrected-version settings views, actual mixer output and bounded static audit. Final applicable CI remains required.
-2. Commit build source S, export using existing local identity, verify static bytes.
-3. Stage new draft and test v1.1.0 → candidate and v1.0.0 → candidate independently
-   on disposable API 34 x86_64 hosted AVDs; review all matching captures.
-4. Integrate main, verify required CI, publish only after gates, anonymously
-   download and verify APK/checksums, confirm old tags/assets, then clean task objects.
+Local gates PASS: 22/22 checks, 126 patch assertions, 84 reviewed views plus six
+corrected-version settings views, actual mixer output and bounded static audit.
+Both hosted runs independently passed all 22 suites at build source S.
+
+## Fixed candidate and hosted results
+
+Build source S: `920f39cfc29fc0d46b03a295f25f1197446a4027`.
+Candidate **1.1.1 / code 3**, package `io.github.seiya058904.mochiarcade`,
+78,471,990 bytes; APK SHA-256
+`09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8`.
+Original certificate above, v2/v3 signature, non-debuggable, arm64-v8a/x86_64,
+VIBRATE only, 16 KiB ZIP/ELF alignment and export/license audit PASS.
+An independent authenticated draft download matches size/hash/signature/version.
+Draft release ID **421777385**, APK asset **668954574**, checksum **668954575**;
+no stable v1.1.1 tag or publication. Anonymous candidate download is NOT_RUN:
+draft transport is not a public release. Public latest remains v1.1.0.
+
+Both runs used isolated Android 14/API 34 x86_64 userdebug, 720x1280/320 dpi,
+emulator 37.2.12, host GLES/Mesa llvmpipe (software), original signed bytes.
+
+| Source upgrade | Exact run | Result and completed scope |
+| --- | --- | --- |
+| v1.1.0/code 2 → candidate | [39948412473](https://github.com/seiya058904/mochi-arcade/actions/runs/39948412473) | FAIL: host emulator SIGSEGV while running the published predecessor after Bouncy background returns; candidate installation/upgrade/clean smoke NOT_RUN. Load and cleanup FAIL offline. 50 partial predecessor captures reviewed (47 stable and three startup observations). |
+| v1.0.0/code 1 → candidate | [39948416747](https://github.com/seiya058904/mochi-arcade/actions/runs/39948416747) | FAIL overall: predecessor smoke completed; original-signature install-r preserved both files byte-for-byte. Fruit, Bubble, Cake, Bouncy and Trio full semantics/native continuation PASS, including actual Trio Undo. Emulator SIGSEGV before Hop restoration; remaining three games, fault matrix and clean candidate smoke NOT_RUN. Load and cleanup FAIL offline. 104 predecessor and 13 upgrade captures reviewed. |
+
+The shell identifies an emulator process segmentation fault in each run. Emulator
+logs contain gfxstream null-context and libunwind messages; root cause remains
+UNVERIFIED. Host memory/disk observations do not establish OOM. No assertion was
+removed, timeout enlarged, seed changed, environment restarted, or historical A14
+exception applied. No unchanged-condition signed rerun was attempted. The five
+successful upgrades do not establish a passing eight-game upgrade.
+
+Full reports, load/cleanup failures, host diagnostics, source manifests and visual
+review records are under `evidence/iteration-1.1.1/run-39948412473/` and
+`run-39948416747/`. Raw downloaded artifacts remain in `.local/iteration-1.1.1/`.
+Post-S observer-only tooling adds continuous smoke logcat so a future host failure
+does not lose all guest logs; this cannot retroactively diagnose these runs.
+Post-S commits change documents/evidence/observation tools only, not runtime,
+assets, scenes, version/export configuration or the tested APK.
+
+## Exact remaining actions
+
+1. Complete normal main integration and inspect its final applicable CI separately;
+   a development APK CI cannot replace the missing signed acceptance above.
+2. Diagnose the hosted emulator crash with retained host/guest diagnostics. Only
+   retry signed acceptance after a specific cause is addressed or a documented,
+   verifiable environment change; keep all original FAIL reports.
+3. Complete both full upgrades, fault recovery, independent clean candidate
+   eight-game/24-return/audio/restore acceptance and 64-ball/12-jelly loads,
+   including cleanup and matching native screenshot/video review.
+4. If candidate bytes change, rebuild from a new fixed S and redo affected gates.
+   Only after all gates pass create the new tag/release and verify anonymous public
+   APK/checksum download. Do not move old tags or replace their assets.
 
 ARM64 physical phone, other APIs, 60/120 Hz, thermal and power remain
 DEVICE_UNAVAILABLE / UNVERIFIED. Historical FAIL evidence and the narrowly scoped

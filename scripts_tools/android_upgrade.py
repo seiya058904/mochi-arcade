@@ -92,6 +92,8 @@ def main():
     def passed(name):
         report["checks"].append(name)
 
+    log_stream = None
+    log_file = None
     try:
         # Require the job-owned AVD identity, not merely an emulator port.
         assert os.environ.get("GITHUB_ACTIONS") == "true", "Destructive fixtures require the isolated hosted job"
@@ -101,6 +103,9 @@ def main():
         assert shell("getprop", "ro.kernel.qemu") == "1"
         assert shell("getprop", "ro.build.type") == "userdebug" and shell("id", "-u") == "0"
         report["device"] = shell("getprop", "ro.build.fingerprint")
+        log_file = (out / "stream-logcat.txt").open("wb")
+        log_stream = subprocess.Popen(["adb", "-s", "emulator-5554", "logcat", "-v", "threadtime"],
+                                      stdout=log_file, stderr=subprocess.STDOUT)
         old_report = json.loads((args.old_evidence / "report.json").read_text())
         assert old_report["status"] == "PASS_SMOKE_AWAITING_VISUAL_REVIEW" and old_report["release_candidate"]
         assert old_report["apk_sha256"] == predecessor["sha256"]
@@ -284,6 +289,17 @@ def main():
     except Exception as error:
         report["error"] = str(error)
     finally:
+        if log_stream is not None:
+            if log_stream.poll() is None:
+                log_stream.terminate()
+                try:
+                    log_stream.wait(timeout=10)
+                except subprocess.TimeoutExpired:
+                    log_stream.kill()
+                    log_stream.wait(timeout=10)
+            report["log_stream_exit"] = log_stream.returncode
+        if log_file is not None:
+            log_file.close()
         if report["status"] == "FAIL":
             try:
                 for name in paths:

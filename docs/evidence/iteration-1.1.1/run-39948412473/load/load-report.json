@@ -1,0 +1,12 @@
+{
+  "status": "FAIL",
+  "commit": "920f39cfc29fc0d46b03a295f25f1197446a4027",
+  "apk_sha256": "09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8",
+  "scope": "Synthetic maximum-pool bursts on isolated AOSP API 34 x86_64; inspect emulator.log for actual graphics adapter",
+  "graphics_backend_requested": "host",
+  "timing_source": "https://android.googlesource.com/platform/frameworks/native/+/refs/tags/android-14.0.0_r1/services/surfaceflinger/FrameTracker.cpp",
+  "physical_phone_performance": "UNVERIFIED",
+  "loads": {},
+  "error": "ADB ('shell', 'getprop', 'ro.kernel.qemu') failed: adb: device offline\n",
+  "cleanup_error": "ADB ('shell', 'am', 'force-stop', 'io.github.seiya058904.mochiarcade') failed: adb: device offline\n"
+}

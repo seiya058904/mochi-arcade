@@ -212,6 +212,8 @@ def main():
                 "SCRIPT ERROR:" in line or "FATAL EXCEPTION" in line or "Fatal signal" in line or
                 re.search(r"\bE godot\s*:\s*ERROR:", line)]
 
+    log_stream = None
+    log_file = None
     try:
         deadline = time.monotonic() + 240
         while time.monotonic() < deadline:
@@ -250,6 +252,11 @@ def main():
         shell("svc", "data", "disable")
         report["network_disabled_for_test"] = True
         adb("logcat", "-c")
+        # Keep evidence before an emulator loss makes final adb logcat impossible.
+        # This observer does not restart the guest, app, or any failed test.
+        log_file = (output / "stream-logcat.txt").open("wb")
+        log_stream = subprocess.Popen(["adb", "-s", args.serial, "logcat", "-v", "threadtime"],
+                                      stdout=log_file, stderr=subprocess.STDOUT)
         report["install"] = install_apk()
         report["cold_launch"] = launch()
         dismiss_fullscreen_tip()
@@ -601,6 +608,17 @@ def main():
         except Exception as capture_error:
             report["capture_error"] = str(capture_error)
     finally:
+        if log_stream is not None:
+            if log_stream.poll() is None:
+                log_stream.terminate()
+                try:
+                    log_stream.wait(timeout=10)
+                except subprocess.TimeoutExpired:
+                    log_stream.kill()
+                    log_stream.wait(timeout=10)
+            report["log_stream_exit"] = log_stream.returncode
+        if log_file is not None:
+            log_file.close()
         (output / "report.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
         summary = {key: value for key, value in report.items() if key != "commands"}
         print(json.dumps(summary, indent=2))
