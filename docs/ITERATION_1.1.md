@@ -1,6 +1,6 @@
 # 1.1.0 iteration — 2026-10-23
 
-Status: **NOT_RELEASED; hosted signed acceptance NOT_RUN, local Android BLOCKED**. The published v1.0.0 remains
+Status: **NOT_RELEASED; signed runtime/upgrade PASS, startup-video review pending**. The published v1.0.0 remains
 the accepted download. No old tag, asset, visibility or history is replaced.
 This report separates source validation, development CI and signed-byte acceptance.
 
@@ -55,7 +55,7 @@ No confirmed new P0. No claim of a llvmpipe product fix. Original Bouncy Balls
 | Jelly Slice | Segment sweep sorted by hit time; claim before scoring; 12 fruit/32 halves/24 trail bounds, Zen and voluntary Finish; no per-hit disk write | None |
 | Shared shell | Owned pointer release/cancel, overlay/Back/lifecycle, 40 switches, 995 geometry/schema checks; three portrait ratios and both languages | Save failure/quit feedback |
 | Audio | Existing loop endpoint remains bounded; mute/pause/output and shutdown checks; no new resources or networking | None |
-| Security/build | Known-secret scan, runtime external-call scan, OFL notices/provenance, export exclusions and existing CI read-only permissions reviewed | No new dependencies/permissions |
+| Security/build | Known-secret scan, runtime external-call scan, OFL notices/provenance, export exclusions and scoped CI permissions reviewed (read-only tests; authorized draft transport write scope) | No new dependencies/permissions |
 
 Mutable major-version Actions tags remain a supply-chain limitation (P3, no
 dependency updates in this iteration); engine/SDK archive checksum checks remain.
@@ -100,39 +100,38 @@ or LDPlayer changes were made. This is an emulator-host blocker before app insta
 not a demonstrated new app crash. Do not repeatedly retry identical boot failures.
 
 Exact signed APK install, eight games x three returns, signed load/audio, old APK
-upgrade, clean install/uninstall and on-device damaged-save recovery: BLOCKED.
+upgrade, clean install/uninstall and on-device damaged-save recovery: PASS on the
+hosted software-rendered API 34 AVD in run 39930890985; 240 captures reviewed.
+Custom Android icon and cream transition are captured; a bounded native startup
+video is being added to isolate the brief Godot boot image.
 API 24 and other API/device/density profiles: UNVERIFIED. Desktop acceptance and
 hosted development-package checks are separately reported.
 
 ## Exact next actions
 
-1. Supply an already functioning isolated API 34 AOSP GPU AVD or USB test phone;
-   the owner explicitly declined AEHD startup. Keep the system-change
-   prohibition in force; no repeated driver-start request is required. Do not replace signing identity or upload secrets.
-2. Install the archived anonymous v1.0.0 APK, create/check eight synthetic rounds,
-   records and EN/ZH/audio settings, then `adb install -r` the exact new signed
-   candidate. Prove preservation and package/version/certificate identity.
-3. Run `android_smoke.py --release` and `android_load.py --release` on those exact
-   candidate bytes, inspect every raw capture and retain logs, save comparisons,
-   startup/icon/audio/load and backup recovery evidence. Rebuild/retest if source
-   or packaging changes. Physical quantitative results stay unverified without a phone.
-4. Only after the missing gates pass, tag the final release source, create/verify
-   draft APK + SHA256SUMS, publish, independently download anonymously and verify
-   latest/tag/assets, then perform final clean main/origin sync. v1.0.0 stays fixed.
-
+1. Review the additional native startup recording and final-SHA CI. The owner
+   explicitly declined AEHD startup; keep that restriction. Original signed bytes
+   already passed full predecessor/upgrade/candidate/load acceptance.
+2. Keep the accepted APK bytes unchanged; create a new immutable tag only after
+   review closes. Verify the existing authorized draft assets, publish, then
+   download anonymously and recheck bytes/signature/version/latest.
+3. Record post-release documentation-only commits separately from the APK build
+   source, verify runtime/packaging tree equivalence and clean main/origin sync.
+   Physical quantitative results remain unverified without a phone.
 
 ## Signed candidate and code closeout
 
-- Source commit: `b945bcebaa00df5339ac1b116d411162afdbd19f` (runtime/packaging).
+- Source commit: `5672e40968f2169dddce72d82460b7a2bfdfa7c9` (runtime/packaging).
   Later evidence-only commits do not alter the candidate source tree.
 - Local artifact: `dist/MochiArcade.apk`, versionName **1.1.0**, versionCode **2**,
   **78,471,916 bytes**, SHA-256
-  `fbf636ab9e82b757455b6960274140761d505bde0d80353b1288e53f4c28ab85`.
+  `9676db2f517e9c206317bfce045259294e36c5014b294f155db549b81f263320`.
 - Static verification PASS: original certificate, v2/v3, non-debuggable,
   package unchanged, min SDK 24 / target SDK 36, arm64-v8a + x86_64, only VIBRATE,
   zipalign 16 KiB and every ELF PT_LOAD alignment >=16 KiB; font notices and boot
-  splash present, no tests/docs/keys/save fixtures in APK. A separate local copy
-  is byte-identical; this is NOT an anonymous release-asset download.
+  splash present, no tests/docs/keys/save fixtures in APK. An independently authenticated download from unpublished draft 421633768
+  is byte-identical and separately signature-verified. Anonymous public download
+  remains pending publication.
 - Size is 4,096 bytes above v1.0.0; no size reduction claim. Original compressed
   Godot libraries occupy 49,397,173 bytes and imported CJK font 13,290,643 bytes.
 - Full local suite: 19/19 PASS, 48/48 reliability assertions. All seven real-renderer
@@ -143,11 +142,12 @@ hosted development-package checks are separately reported.
   work branch was fast-forwarded and removed after integration; no remote branch
   or stash was created. Final per-commit CI is checked separately; the local
   `.local/iteration-1.1/closeout.json` and final delivery report record its exact
-  SHA, run, downloaded reports and visual review. Signed Android install, runtime,
-  load, old-version upgrade and publication remain BLOCKED, not PASS.
+  SHA, run, downloaded reports and visual review. Signed Android install/runtime/load/upgrade pass run 39930890985; publication
+  remains pending final visual/CI closeout.
 - The owner explicitly declined starting the already-installed AEHD service.
   Keep that service stopped; do not retry this system change or request secrets.
-  Resume Android acceptance only in an already functioning test environment.
+  Hosted acceptance uses its already functioning isolated AVD; local runtime
+  remains blocked without changing the owner's system.
 
 
 ### Additional P1: unreadable is not empty
@@ -182,7 +182,8 @@ maximum-pool Android captures were visually reviewed. The raw reports and EGL
 logs are unchanged. This earlier green run does not validate later read-error or
 exit-cancellation changes. Final main is independently checked in Actions before
 closing this task; its downloadable artifacts are authoritative for that SHA.
-No new tag/draft/stable release is created while signed Android gates are blocked.
+No new tag or stable release is created while signed Android gates are blocked.
+An unpublished draft is authorized below for exact-byte hosted acceptance.
 
 ### Authorized hosted signed-byte acceptance
 
@@ -213,3 +214,54 @@ and all 48 reliability assertions pass. Same-disk ABBA save-flush timings are in
 `evidence/iteration-1.1/save-io-profile.json`; integrity checks add I/O cost, so
 this change makes no saving-speed claim. APKs produced before this repair are
 superseded, including the first staged candidate; retain their hashes/run scopes.
+
+
+### Current hosted runs and retained adverse evidence
+
+- Final runtime/packaging source `5672e40968f2169dddce72d82460b7a2bfdfa7c9`
+  passes development run [39930691818](https://github.com/seiya058904/mochi-arcade/actions/runs/39930691818).
+  All 114 captures reviewed: 101 stable smoke, ten load, three observational
+  launch transitions. Boards/pauses/settings/license/load are visible. Startup
+  captures show the Android icon, cream transition and OS fullscreen instruction;
+  the brief Godot image was not isolated. Raw reports retain AWAITING_VISUAL_REVIEW;
+  the separate reviewer manifest closes stable-frame review. This is a debug APK.
+- Superseded signed run [39929149030](https://github.com/seiya058904/mochi-arcade/actions/runs/39929149030)
+  remains FAIL. Original-signature upgrade preserved both files, and seven games
+  restored before the host emulator process segfaulted and ADB went offline.
+  All 17 partial upgrade captures were reviewed; this cannot substitute for the
+  missing eighth game or clean candidate acceptance. No OOM evidence, no restart,
+  and no use or expansion of the old A14 exception. Logs and partial checks are
+  retained under `evidence/iteration-1.1/signed-superseded-*`.
+- Current exact-byte signed run [39930890985](https://github.com/seiya058904/mochi-arcade/actions/runs/39930890985)
+  passed full predecessor/upgrade/candidate/load execution. All 240 screenshots
+  reviewed separately in `evidence/iteration-1.1/signed-39930890985/`. Its staged hash is `9676db2f517e9c206317bfce045259294e36c5014b294f155db549b81f263320`.
+- Same-disk 64-ball-format save ABBA profile (200 samples per arm): p50
+  2.010 -> 7.221 ms, p95 4.233 -> 8.824 ms. Verified temporary/backup writes add
+  cost; collision-heavy games retain their existing two-second batching. This is
+  Windows disk timing, not Android frame latency, and is not an optimization claim.
+
+
+### Signed API 34 acceptance details
+
+Run 39930890985 uses Android 14 AOSP x86_64 userdebug, 720x1280, 320 dpi,
+host GLES explicitly backed by Mesa llvmpipe. This is software emulation, not a
+phone or hardware GPU. Candidate install/launch, all 24 background returns with
+same-PID pause/checkpoint equality, eight force-stop restores/restarts, actual
+input, settings, first audio-loop survival, offline licenses and same-signature
+reinstall pass. The public predecessor passed its own complete smoke first.
+Actual code-1 -> code-2 install-r preserves primary and backup bytes; eight old
+rounds/records/settings are readable and playable. Terminal Bloom Undo survives
+restart. Invalid JSON, malformed fields and read-denied-primary protections pass;
+ordinary uninstall removes test package/data before candidate clean install.
+
+All 35 candidate EGL_BAD_SURFACE warnings have a preceding same-PID lifecycle
+stop/pause/surface event within two seconds; reviewed subsequent stable foreground
+frames are visible, with no native/script runtime errors. These observations do
+not prove a driver fix. Historical black-frame FAILs and the superseded emulator
+SIGSEGV remain adverse evidence; this run uses no A14 exception.
+
+Signed maximum-pool observations (including ADB load): 64 Balls p50/p95
+134.071/367.040 ms, 5.81 presented FPS, PSS 173636 -> 164046 KiB;
+12 Jelly p50/p95 56.895/182.072 ms, 14.12 FPS, PSS 171644 -> 157354 KiB.
+Both original save files restored. These are noisy hosted software compositor
+measurements, not physical performance claims or paired improvement percentages.

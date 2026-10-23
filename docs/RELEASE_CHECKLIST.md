@@ -1,12 +1,12 @@
 # Release gates — published v1.0.0 and unreleased 1.1.0
 
-Current iteration (2026-10-23): **1.1.0 NOT_RELEASED / BLOCKED_ANDROID_RUNTIME**.
-Original 18 plus new reliability suite: 19/19 PASS locally. New source has no
-signed-byte Android runtime/upgrade acceptance because the local AVD cannot boot
-with the currently available acceleration. A05/A08/A09/A12 for **1.1.0** remain
-BLOCKED/UNVERIFIED; A15 is NOT_RELEASED. Signing identity availability is PASS.
-The existing A14 exception cannot waive these missing tests. See
-[iteration report](ITERATION_1.1.md) for exact next actions and new evidence.
+Current iteration (2026-10-23): **1.1.0 NOT_RELEASED; signed acceptance PASS**.
+A01-A08/A10-A12 pass the final-source local suites, reviewed layouts and exact
+signed API 34 hosted run 39930890985 (upgrade + independent clean lifecycle/load).
+Additional native startup-video review is pending; A09 physical phone metrics
+remain UNVERIFIED. A13/final-SHA A14 and A15 publication are completed during final
+closeout, not inferred from earlier CI. The old A14 exception is not used by the
+passing signed run. See [iteration report](ITERATION_1.1.md) for evidence/limits.
 
 The following table and public-download section describe **v1.0.0 only**.
 

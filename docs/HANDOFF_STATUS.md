@@ -2,22 +2,22 @@
 
 ## Current iteration — 2026-10-23
 
-**1.1.0 NOT_RELEASED; signed hosted acceptance pending.** The existing v1.0.0 public
-release and tag are untouched. See [ITERATION_1.1.md](ITERATION_1.1.md) for the
-audit, source changes, evidence, signing identity and exact continuation.
-The 18 original suites plus new 48-check reliability suite pass locally; 64
-desktop layout captures and save/Undo UI captures were visually reviewed. Local
-DPAPI signing identity is available. No online physical device is present;
-acceleration-on AVD startup fails its hypervisor precondition, and both unaccelerated
-GPU routes exit 0xC0000005 before usable ADB. No system drivers/services changed. The owner explicitly declined starting AEHD;
-keep that restriction in force.
+**1.1.0 NOT_RELEASED; original signed runtime/upgrade PASS; final review pending.**
+The public v1.0.0 tag/assets remain unchanged. See [ITERATION_1.1.md](ITERATION_1.1.md)
+for audit, full artifact identity and raw evidence. Runtime source is 5672e409;
+subsequent changes concern acceptance tools, documents and evidence only.
 
-Next: use the owner-authorized unpublished draft staging path on the existing
-hosted AOSP emulator (no key upload); verify exact signed
-1.1.0 bytes and in-place upgrade from the archived public v1.0.0 APK; run/review
-signed smoke/load, then and only then tag, draft, verify, publish and independently
-download. CI development APK and old signed acceptance cannot replace these gates.
-Remote/code closeout and candidate metadata are recorded in the iteration report.
+Local 19/19 suites (48 reliability assertions), 64 EN/ZH layout captures and
+failure/Undo screens pass. Hosted exact-byte run 39930890985 passes predecessor,
+in-place upgrade, eight restored games, corrupt/read-denied recovery, clean
+candidate 8 x 3 lifecycle, audio loop and maximum pools. All 240 captures reviewed.
+An additional startup recording closes the brief Godot splash sampling gap.
+
+Next: verify final-SHA CI/startup recording, tag the release source, verify the
+existing owner-authorized draft, publish, anonymously download and verify, then
+commit only post-release evidence and confirm clean main/origin synchronization.
+No private signing material went to GitHub. The owner declined AEHD startup;
+keep it stopped. Physical device and quantitative phone metrics remain unavailable.
 
 ## Historical 2026-10-22 takeover and v1.0.0 release
 

@@ -71,6 +71,15 @@ def main():
         return frame["sha256"]
 
     def launch():
+        recording = None
+        if "startup_frames" not in report:
+            # Capture brief custom boot art that sparse ADB screenshots can miss.
+            # The bounded recorder finishes before gameplay/lifecycle measurements.
+            recording = subprocess.Popen(
+                ["adb", "-s", args.serial, "shell", "screenrecord", "--time-limit", "10",
+                 "--bit-rate", "2000000", "/sdcard/mochi-startup.mp4"],
+                stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            time.sleep(0.5)
         # Godot 4.7 exposes this launcher alias; the target activity is private.
         result = shell("am", "start", "-W", "-n", f"{package}/com.godot.game.GodotAppLauncher")
         if "Error:" in result or "Status: ok" not in result:
@@ -87,6 +96,12 @@ def main():
                 report["startup_frames"][name] = frame
                 time.sleep(0.2)
         time.sleep(5)  # Native activity visibility precedes first Godot/font rendering.
+        if recording is not None:
+            _, error = recording.communicate(timeout=20)
+            if recording.returncode:
+                raise RuntimeError(f"Startup recorder failed: {error.decode(errors='replace')}")
+            adb("pull", "/sdcard/mochi-startup.mp4", str(output / "startup.mp4"))
+            report["startup_video"] = "startup.mp4; observational, requires visual review"
         if not shell("pidof", package):
             raise RuntimeError("App process exited after launch")
         return result

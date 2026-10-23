@@ -2,19 +2,25 @@
 
 ## Current 1.1.0 source iteration — 2026-10-23
 
-**NOT_RELEASED; hosted signed acceptance NOT_RUN, local Android BLOCKED.** New evidence is scoped in
-[ITERATION_1.1.md](ITERATION_1.1.md) and `evidence/iteration-1.1/`.
-Baseline 18/18 PASS; new 19/19 PASS includes 48 failure/retry/recovery/terminal-Undo
-assertions. All 64 real-renderer EN/ZH three-ratio layouts plus new failure/exit/Undo
-captures reviewed. Four idle canvas rebuild counts: 180 -> 0 over identical
-180-frame samples, five exact RGBA comparisons; GPU draws unchanged, no claimed
-battery/CPU percentage. Desktop audio mixer passes. None is Android signed proof.
+**NOT_RELEASED; exact signed runtime/upgrade PASS; startup-video/final CI pending.**
+[ITERATION_1.1.md](ITERATION_1.1.md) and `evidence/iteration-1.1/` retain all scopes.
+Original 18 plus 48-check reliability suite: 19/19 PASS. All 64 real-renderer
+EN/ZH three-ratio layouts and failure/Undo screens reviewed; five idle RGBA pairs
+identical, four static canvas rebuilds 180 -> 0; no CPU/battery improvement claim.
+Actual desktop audio passes. Save integrity adds measured Windows I/O cost.
 
-Current local AVD acceleration is unavailable; host and SwiftShader without
-acceleration exit 0xC0000005 before usable ADB, acceleration-on exits 1. Signing
-identity can be opened but exact signed runtime and v1.0.0 upgrade are BLOCKED.
-No system driver/service changes and no new stable publication. Historical
-successful and adverse evidence below remains intact and belongs to v1.0.0.
+Original-signature APK `9676db2f...` passes hosted run 39930890985: public v1.0.0
+smoke, code-1 -> code-2 upgrade with both files byte-preserved, eight restored
+rounds/records/settings, terminal Undo/restart, corrupt/read-denied recovery,
+uninstall, independent clean smoke (8 x 3 returns), first audio loop, 64-ball and
+12-fruit load/save restoration. All 240 raw screenshots reviewed. The brief Godot
+boot image needs the additional native video review; stable frames are visible.
+35 candidate EGL warnings follow same-PID lifecycle events within two seconds;
+no native/script runtime errors. Previous black frames and host SIGSEGV stay FAIL.
+
+Physical device: DEVICE_UNAVAILABLE; physical thermal/battery/60/120 Hz and API 24
+runtime: UNVERIFIED. Hosted compositor FPS is not phone FPS. Local AEHD stays
+stopped per owner decision; no system changes or key uploads were made.
 
 ## Historical v1.0.0 acceptance
 

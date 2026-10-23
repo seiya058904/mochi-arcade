@@ -7,9 +7,9 @@
 | Takeover / baseline / audit | PASS | Clean unique root; live public remote/tag/download; original signing identity opened; baseline 18/18; eight-game review in ITERATION_1.1.md |
 | Confirmed repairs | PASS local | Save failure/recovery, terminal Bloom Undo, four idle canvas guards; 19/19 suites including 48 new regression checks |
 | Desktop rendering / audio | PASS reviewed | 64 EN/ZH captures across three ratios; terminal/failure UI; same-seed idle pixels exact; actual audio mixer checks |
-| New signed Android / upgrade | NOT_RUN hosted; BLOCKED local | AVD acceleration unavailable; no-accel startup crashes before usable ADB. Owner authorized draft staging for exact locally signed bytes on existing hosted AOSP; run predecessor, upgrade, candidate smoke/load and review all captures. Do not start AEHD |
-| Remote integration / development CI | PASS integration; per-SHA CI | Direct main integration is allowed (no protection/rulesets). Reviewed development run 39922816834 passes; it is an earlier source. Final commit status/captures are recorded by Actions and the local closeout record, never inferred from this earlier green run |
-| New stable Release / public download | NOT_RUN / BLOCKED | No new tag or Release until exact signed-byte Android and upgrade gates pass; v1.0.0 remains intact |
+| New signed Android / upgrade | PASS signed hosted API 34 | Run 39930890985: original-cert upgrade, all eight restored rounds, clean 8 x 3 lifecycle/audio/load, 240 captures reviewed. Additional native boot video pending; local AEHD stays stopped |
+| Remote integration / development CI | PASS source 5672e409 | Direct main integration; run 39930691818 passes and all 114 development captures reviewed. Final documentation/acceptance-tool SHA checked independently |
+| New stable Release / public download | NOT_RELEASED; pending final review | Authorized draft 421633768 contains exact signed APK 9676db2f...; complete startup/final CI, tag, publish and anonymous verification. v1.0.0 unchanged |
 
 See [ITERATION_1.1.md](ITERATION_1.1.md) for exact continuation and evidence.
 The following phase board and checkpoints are **historical v1.0.0 development**;

@@ -1,8 +1,7 @@
 # Mochi Arcade 1.1.0 — unreleased candidate
 
-**NOT_RELEASED:** exact signed-package Android runtime and v1.0.0 in-place upgrade
-acceptance are currently blocked by the local emulator acceleration environment.
-These notes do not announce a published release.
+Prepared release notes; publication follows final startup/CI review. The exact
+original-signature APK has passed hosted API 34 runtime and v1.0.0 upgrade tests.
 
 - Save failures are explained in English or Simplified Chinese. Pending progress
   stays in memory for a later retry; exiting after a failed save requires an
@@ -23,7 +22,16 @@ Bouncy Balls sizes remain unchanged. Android package:
 arm64-v8a and x86_64, Android 7.0/API 24 minimum. Only VIBRATE is requested.
 
 The candidate uses the original release signing identity. An official update
-must be installed over v1.0.0 without uninstalling to preserve local data; the
-upgrade must still be verified before publishing. Uninstalling removes app data.
+must be installed over v1.0.0 without uninstalling to preserve local data; an actual in-place
+upgrade has preserved eight rounds, records and settings on the test AVD. Uninstalling removes app data.
 Physical-phone thermal/battery/60/120 Hz metrics remain unverified. The prior
 scoped hosted llvmpipe A14 exception and all historical failed evidence remain.
+
+Validation: 19 suites, including 48 save/Undo failure-path assertions; 1,500 Tile
+Trio boards and 50,000 Mochi Hop targets; 64 bilingual desktop layout captures.
+The signed API 34 AOSP software-rendered emulator passed all eight games with
+three background returns each, force-stop recovery, first audio-loop survival,
+maximum pools, damaged-save recovery and ordinary uninstall. Native captures are
+reviewed separately from automated raw reports. These are emulator results; no
+physical-phone performance or universal Android-device compatibility is claimed.
+EGL background-surface warnings and historical failures remain documented.

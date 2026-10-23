@@ -1,0 +1,25 @@
+verify	Boot dedicated AVD and run Android input smoke	2026-10-23T09:19:51.4742954Z   },
+verify	Boot dedicated AVD and run Android input smoke	2026-10-23T09:19:51.4743691Z   "error": "ADB ('shell', 'chmod', '600', '/data/user/0/io.github.seiya058904.mochiarcade/files/save.json') failed: ",
+verify	Boot dedicated AVD and run Android input smoke	2026-10-23T09:19:51.4745121Z   "failure_capture_error": "ADB ('shell', 'cat', '/data/user/0/io.github.seiya058904.mochiarcade/files/save.json') failed: adb: device offline\n"
+verify	Boot dedicated AVD and run Android input smoke	2026-10-23T09:19:51.4746099Z }
+verify	Boot dedicated AVD and run Android input smoke	2026-10-23T09:19:51.4748536Z /home/runner/work/_temp/c77d1f8c-0594-4652-b64d-5e397b87bd4a.sh: line 47:  3198 Segmentation fault      (core dumped) "$ANDROID_HOME/emulator/emulator" -avd Mochi_CI_API34 -no-window -no-audio -no-boot-anim -no-snapshot -gpu "$MOCHI_EMULATOR_GPU" -accel on -memory 2048 -cores 2 -partition-size 2048 -camera-back none -camera-front none > .local/android-runtime/emulator.log 2>&1
+verify	Boot dedicated AVD and run Android input smoke	2026-10-23T09:19:51.4745121Z   "failure_capture_error": "ADB ('shell', 'cat', '/data/user/0/io.github.seiya058904.mochiarcade/files/save.json') failed: adb: device offline\n"
+verify	Boot dedicated AVD and run Android input smoke	2026-10-23T09:19:51.4746099Z }
+verify	Boot dedicated AVD and run Android input smoke	2026-10-23T09:19:51.4748536Z /home/runner/work/_temp/c77d1f8c-0594-4652-b64d-5e397b87bd4a.sh: line 47:  3198 Segmentation fault      (core dumped) "$ANDROID_HOME/emulator/emulator" -avd Mochi_CI_API34 -no-window -no-audio -no-boot-anim -no-snapshot -gpu "$MOCHI_EMULATOR_GPU" -accel on -memory 2048 -cores 2 -partition-size 2048 -camera-back none -camera-front none > .local/android-runtime/emulator.log 2>&1
+verify	Boot dedicated AVD and run Android input smoke	2026-10-23T09:19:51.4751026Z adb: device offline
+verify	Boot dedicated AVD and run Android input smoke	2026-10-23T09:19:51.4781817Z ##[error]Process completed with exit code 1.
+verify	Boot dedicated AVD and run Android input smoke	2026-10-23T09:19:51.4746099Z }
+verify	Boot dedicated AVD and run Android input smoke	2026-10-23T09:19:51.4748536Z /home/runner/work/_temp/c77d1f8c-0594-4652-b64d-5e397b87bd4a.sh: line 47:  3198 Segmentation fault      (core dumped) "$ANDROID_HOME/emulator/emulator" -avd Mochi_CI_API34 -no-window -no-audio -no-boot-anim -no-snapshot -gpu "$MOCHI_EMULATOR_GPU" -accel on -memory 2048 -cores 2 -partition-size 2048 -camera-back none -camera-front none > .local/android-runtime/emulator.log 2>&1
+verify	Boot dedicated AVD and run Android input smoke	2026-10-23T09:19:51.4751026Z adb: device offline
+verify	Boot dedicated AVD and run Android input smoke	2026-10-23T09:19:51.4781817Z ##[error]Process completed with exit code 1.
+verify	Measure maximum-pool Android render bursts	﻿2026-10-23T09:19:51.4856927Z ##[group]Run set -euo pipefail
+verify	Measure maximum-pool Android render bursts	2026-10-23T09:19:51.6345435Z   "physical_phone_performance": "UNVERIFIED",
+verify	Measure maximum-pool Android render bursts	2026-10-23T09:19:51.6345735Z   "loads": {},
+verify	Measure maximum-pool Android render bursts	2026-10-23T09:19:51.6346070Z   "error": "ADB ('shell', 'getprop', 'ro.kernel.qemu') failed: adb: device offline\n",
+verify	Measure maximum-pool Android render bursts	2026-10-23T09:19:51.6346738Z   "cleanup_error": "ADB ('shell', 'am', 'force-stop', 'io.github.seiya058904.mochiarcade') failed: adb: device offline\n"
+verify	Measure maximum-pool Android render bursts	2026-10-23T09:19:51.6347269Z }
+verify	Measure maximum-pool Android render bursts	2026-10-23T09:19:51.6345735Z   "loads": {},
+verify	Measure maximum-pool Android render bursts	2026-10-23T09:19:51.6346070Z   "error": "ADB ('shell', 'getprop', 'ro.kernel.qemu') failed: adb: device offline\n",
+verify	Measure maximum-pool Android render bursts	2026-10-23T09:19:51.6346738Z   "cleanup_error": "ADB ('shell', 'am', 'force-stop', 'io.github.seiya058904.mochiarcade') failed: adb: device offline\n"
+verify	Measure maximum-pool Android render bursts	2026-10-23T09:19:51.6347269Z }
+verify	Measure maximum-pool Android render bursts	2026-10-23T09:19:51.6416375Z ##[error]Process completed with exit code 1.

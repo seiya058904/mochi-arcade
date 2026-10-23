@@ -1,0 +1,202 @@
+{
+  "status": "PASS_LOAD_EXECUTION_AWAITING_VISUAL_REVIEW",
+  "commit": "5672e40968f2169dddce72d82460b7a2bfdfa7c9",
+  "apk_sha256": "9676db2f517e9c206317bfce045259294e36c5014b294f155db549b81f263320",
+  "scope": "Synthetic maximum-pool bursts on isolated AOSP API 34 x86_64; inspect emulator.log for actual graphics adapter",
+  "graphics_backend_requested": "host",
+  "timing_source": "https://android.googlesource.com/platform/frameworks/native/+/refs/tags/android-14.0.0_r1/services/surfaceflinger/FrameTracker.cpp",
+  "physical_phone_performance": "UNVERIFIED",
+  "loads": {
+    "bouncy_balls": {
+      "initial_active": 64,
+      "fixture": "synthetic production save restore",
+      "memory_before": {
+        "total_pss_kib": 173636
+      },
+      "layer": "SurfaceView[io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher](BLAST)#2830",
+      "input_burst_seconds": 12.354,
+      "input_samples": 32,
+      "presentation": {
+        "status": "MEASURED",
+        "frames": 71,
+        "observed_seconds": 12.043,
+        "presented_fps": 5.81,
+        "interval_ms_p50": 134.071,
+        "interval_ms_p95": 367.04,
+        "interval_ms_max": 400.674,
+        "intervals_over_50ms": 64,
+        "scope": "Compositor presentation intervals, including ADB load; not simulation step cost or physical-phone FPS"
+      },
+      "memory_after": {
+        "total_pss_kib": 164046
+      },
+      "natural_round_ended": false,
+      "final_active": 63,
+      "score": 2275,
+      "status": "PASS_LOAD_EXECUTION_AWAITING_VISUAL_REVIEW"
+    },
+    "jelly_slice": {
+      "initial_active": 12,
+      "fixture": "synthetic production save restore",
+      "memory_before": {
+        "total_pss_kib": 171644
+      },
+      "layer": "SurfaceView[io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher](BLAST)#2858",
+      "input_burst_seconds": 12.057,
+      "input_samples": 37,
+      "presentation": {
+        "status": "MEASURED",
+        "frames": 172,
+        "observed_seconds": 12.11,
+        "presented_fps": 14.12,
+        "interval_ms_p50": 56.895,
+        "interval_ms_p95": 182.072,
+        "interval_ms_max": 316.219,
+        "intervals_over_50ms": 118,
+        "scope": "Compositor presentation intervals, including ADB load; not simulation step cost or physical-phone FPS"
+      },
+      "memory_after": {
+        "total_pss_kib": 157354
+      },
+      "natural_round_ended": false,
+      "final_active": 5,
+      "score": 655,
+      "sliced": 32,
+      "status": "PASS_LOAD_EXECUTION_AWAITING_VISUAL_REVIEW"
+    }
+  },
+  "device": "Android/sdk_phone64_x86_64/emu64x:14/UE1A.230829.036.A1/11228894:userdebug/test-keys",
+  "installed_apk_sha256": "9676db2f517e9c206317bfce045259294e36c5014b294f155db549b81f263320",
+  "frame_checks": {
+    "bouncy_balls-maximum-paused": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 94,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "bouncy_balls-running-00": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 250,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "bouncy_balls-running-02": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 303,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "bouncy_balls-running-05": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 320,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "bouncy_balls-after-load": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 142,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "jelly_slice-maximum-paused": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 77,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "jelly_slice-running-00": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 252,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "jelly_slice-running-02": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 241,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "jelly_slice-running-05": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 254,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "jelly_slice-after-load": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 86,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    }
+  },
+  "original_save_restored": true,
+  "original_backup_restored": true,
+  "runtime_errors": [],
+  "graphics_swap_warnings": [
+    "10-23 09:34:27.640  6797  6821 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:34:58.432  6797  6821 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:35:09.349  6797  6821 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:35:17.676  6797  6821 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:35:39.486  7127  7150 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:35:59.286  7229  7253 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:36:09.746  7229  7253 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:36:18.000  7229  7253 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:36:39.521  7428  7451 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:36:57.287  7532  7556 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:37:07.882  7532  7556 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:37:16.415  7532  7556 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:37:24.346  7532  7556 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:37:58.883  7832  7855 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:38:09.554  7832  7855 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:38:17.676  7832  7855 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:38:43.018  8109  8132 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:38:56.150  8181  8204 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:39:18.246  8281  8305 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:39:29.408  8281  8305 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:39:37.602  8281  8305 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:39:45.877  8281  8305 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:40:20.106  8619  8643 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:40:30.775  8619  8643 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:40:38.977  8619  8643 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:41:22.031  8919  8943 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:41:32.733  8919  8943 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:41:40.814  8919  8943 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:42:02.384  9144  9168 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:42:24.801  9248  9272 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:42:35.638  9248  9272 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:42:43.641  9248  9272 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:42:51.744  9248  9272 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:43:14.715  9622  9645 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-23 09:43:28.442  9715  9739 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+  ]
+}

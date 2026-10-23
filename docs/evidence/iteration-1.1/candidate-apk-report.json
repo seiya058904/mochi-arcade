@@ -2,7 +2,7 @@
   "status": "PASS_STATIC_ONLY",
   "apk": "D:\\xia zai\\AI project\\Project in Iteration\\Mochi Arcade\\dist\\MochiArcade.apk",
   "bytes": 78471916,
-  "sha256": "fbf636ab9e82b757455b6960274140761d505bde0d80353b1288e53f4c28ab85",
+  "sha256": "9676db2f517e9c206317bfce045259294e36c5014b294f155db549b81f263320",
   "certificate_sha256": "de1458f30ad0f2a758b9c6f3de82c00b608723eaa75de22d3cf853e351f7657b",
   "package": "io.github.seiya058904.mochiarcade",
   "version_code": 2,
@@ -181,5 +181,5 @@
   ],
   "runtime": "BLOCKED_ANDROID_RUNTIME",
   "upgrade": "NOT_RUN",
-  "source_commit": "b945bcebaa00df5339ac1b116d411162afdbd19f"
+  "source_commit": "5672e40968f2169dddce72d82460b7a2bfdfa7c9"
 }

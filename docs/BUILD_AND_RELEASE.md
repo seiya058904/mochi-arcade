@@ -124,3 +124,28 @@ It does not enable release signing or consume signing secrets by default.
 Sources: [Android emulator graphics modes](https://developer.android.com/studio/run/emulator-acceleration),
 [Mesa environment variables](https://docs.mesa3d.org/envvars.html), and the
 [hosted Ubuntu image inventory](https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md).
+
+
+## Authorized locally signed draft transport (2026-10-23)
+
+For the 1.1.0 iteration the owner explicitly allowed an unpublished draft to
+stage the locally signed APK before upgrade acceptance. Stable publication still
+requires every applicable gate. This sequence exception changes no runtime gate
+and uploads no private key, password or DPAPI material.
+
+Dispatch `ci.yml` with `staged_release_id` and `staged_apk_sha256`. The isolated
+`staged_bytes` job uses `contents:write` only because GitHub requires push-level
+access to read an unpublished draft (the retained read-only attempt returned
+HTTP 403). Checkout credentials are not persisted; the helper performs GET and
+download operations only. The verification job remains `contents:read` and checks
+the expected hash, original certificate, non-debuggable manifest and version.
+It separately downloads the immutable public v1.0.0 APK and checks its hash.
+
+On the disposable API 34 AOSP userdebug AVD it executes the full predecessor
+smoke, an actual `adb install -r` upgrade with byte-preserved saves and eight
+restored games, terminal Number Bloom Undo, damaged/read-denied save recovery,
+ordinary uninstall, then an independent candidate clean-install smoke and load.
+All eight games still require three background returns. Raw screenshots must be
+reviewed; no assertion is skipped, failed guest is restarted or failure converted
+to PASS. The historical A14 exception is unchanged. The local AEHD service must
+remain stopped under the owner's explicit decision.
