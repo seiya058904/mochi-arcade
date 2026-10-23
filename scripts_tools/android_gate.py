@@ -111,6 +111,8 @@ def main():
         report['renderer']=[line for line in renderer.splitlines() if 'GLES:' in line]
         if report['profile']=='swiftshader':
             assert any('swiftshader' in line.lower() for line in report['renderer']),'Requested renderer not observed'
+        if report['profile']=='swangle':
+            assert any('angle' in line.lower() and 'swiftshader' in line.lower() for line in report['renderer']),'Requested ANGLE/SwiftShader renderer not observed'
         fresh()
         release=['--release'] if args.release else []
         if args.gate in ['U110','U100']:

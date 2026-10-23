@@ -1,0 +1,86 @@
+Display 0 name="Built-in Screen"#1
+WindowedMagnification:0:31#2
+HideDisplayCutout:0:14#3
+OneHanded:0:14#4
+FullscreenMagnification:0:12#5
+Leaf:0:1#6
+WallpaperWindowToken{d9d6791 token=android.os.Binder@f6c9db8}#62
+a769e1 com.android.systemui.wallpapers.ImageWallpaper#63
+com.android.systemui.wallpapers.ImageWallpaper#64
+Wallpaper BBQ wrapper#65
+DefaultTaskDisplayArea#7
+Task=1#44
+Task=7#94
+d089cdc ActivityRecordInputSink com.android.launcher3/.uioverrides.QuickstepLauncher#101
+ActivityRecord{a9e01e5 u0 com.android.launcher3/.uioverrides.QuickstepLauncher#95
+58d7277 com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher#96
+Task=2#45
+Task=3#46
+Dim layer#50
+Task=4#47
+Dim layer#51
+Task=8#103
+53d983d ActivityRecordInputSink io.github.seiya058904.mochiarcade/com.godot.game.GodotApp#110
+ActivityRecord{bca9832 u0 io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher#104
+435c877 io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher#111
+Background for SurfaceView[io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher]#118
+SurfaceView[io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher]#116
+SurfaceView[io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher](BLAST)#117
+io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher#112
+Bounds for - io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher#115
+ImeContainer#10
+WindowToken{245dfe4 type=2011 android.os.Binder@a534777}#87
+Surface(name=51901c4 InputMethod)/@0xbb25773 - animation-leash of insets_animation#128
+51901c4 InputMethod#88
+Leaf:3:12#8
+WindowToken{8d916bb type=2038 android.os.BinderProxy@5227e53}#48
+2881f9f ShellDropTarget#49
+ImePlaceholder:13:14#9
+OneHanded:15:15#11
+FullscreenMagnification:15:15#12
+Leaf:15:15#13
+WindowToken{1ba4170 type=2000 android.os.BinderProxy@6694122}#72
+Surface(name=2da049c StatusBar)/@0x79c86f7 - animation-leash of insets_animation#113
+2da049c StatusBar#73
+StatusBar#84
+HideDisplayCutout:16:16#14
+OneHanded:16:16#15
+FullscreenMagnification:16:16#16
+Leaf:16:16#17
+OneHanded:17:17#18
+FullscreenMagnification:17:17#19
+Leaf:17:17#20
+WindowToken{dbadf58 type=2040 android.os.BinderProxy@cb722ca}#70
+620b117 NotificationShade#71
+HideDisplayCutout:18:23#21
+OneHanded:18:23#22
+FullscreenMagnification:18:23#23
+Leaf:18:23#24
+Leaf:24:25#25
+WindowToken{afad843 type=2019 android.os.BinderProxy@b4cf1c1}#66
+Surface(name=184aec0 NavigationBar0)/@0x6067c16 - animation-leash of insets_animation#114
+184aec0 NavigationBar0#67
+NavigationBar0#83
+HideDisplayCutout:26:31#26
+OneHanded:26:31#27
+FullscreenMagnification:26:27#28
+Leaf:26:27#29
+Leaf:28:28#30
+FullscreenMagnification:29:31#31
+Leaf:29:31#32
+HideDisplayCutout:32:35#33
+OneHanded:32:32#34
+Leaf:32:32#35
+FullscreenMagnification:33:33#36
+Leaf:33:33#37
+OneHanded:34:35#38
+FullscreenMagnification:34:35#39
+Leaf:34:35#40
+Leaf:36:36#41
+Accessibility Overlays#43
+Display Overlays#42
+Input Consumer recents_animation_input_consumer#93
+WindowToken{5baf495 type=2024 android.os.BinderProxy@36bec4c}#54
+75db9aa ScreenDecorOverlay#55
+WindowToken{8b5c676 type=2024 android.os.BinderProxy@8a34511}#56
+d21a477 ScreenDecorOverlayBottom#57

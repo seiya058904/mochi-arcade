@@ -1,0 +1,247 @@
+{
+  "avd-config.ini": {
+    "sha256": "b20b3f7689a9310eaf3d20d26d6722028986e09cc14bcd3773871bc2b9000d81",
+    "bytes": 3588,
+    "archived_as": "avd-config.ini"
+  },
+  "emulator-exit.json": {
+    "sha256": "4accced370a664f84429e670010b5fd76799d8c2640e9b69b7135d994afa6fdd",
+    "bytes": 83,
+    "archived_as": "emulator-exit.json"
+  },
+  "emulator-help-gpu.txt": {
+    "sha256": "2b41d0c256896c5ef239eb26346d65fce2de08275953f3c131d639aedfa69f6f",
+    "bytes": 686,
+    "archived_as": "emulator-help-gpu.txt"
+  },
+  "emulator-package.xml": {
+    "sha256": "2fd2c4996482128e96927d491431b3aa6771c255091e34f8cd8fa305fd0a4cac",
+    "bytes": 18641,
+    "archived_as": "emulator-package.xml"
+  },
+  "emulator-process.jsonl": {
+    "sha256": "fc7176677b85da9175a02affc4d7b02bd27447e470e82067529cf8bf085529bf",
+    "bytes": 3370,
+    "archived_as": "emulator-process.jsonl"
+  },
+  "emulator-version.txt": {
+    "sha256": "ea36a35958c14ba5f003d0e68087a01947b2b1e7d3c26286417430ced3f2b811",
+    "bytes": 655,
+    "archived_as": "emulator-version.txt"
+  },
+  "emulator.log": {
+    "sha256": "ded1f22775e07d521da4a94058098e395f6d9a019f6e88a7c93fc8a86036c812",
+    "bytes": 9521,
+    "archived_as": "emulator.log"
+  },
+  "emulator.pid": {
+    "sha256": "94255a0453a7f7fb08e7213f71a171a5c57fde8fc9e062bd0dd44c0a0770ad88",
+    "bytes": 5,
+    "archived_as": "emulator.pid"
+  },
+  "gate-report.json": {
+    "sha256": "f2ecad8d63d5eac617c2be532fbc8e3f9e10a44422d242620346cddb1eed778b",
+    "bytes": 2287,
+    "archived_as": "gate-report.json"
+  },
+  "gate-stream-logcat.txt": {
+    "sha256": "8c61f90dfd48f4c400375ec55487c7485847debd2a1f9c9382ae6041e9687680",
+    "bytes": 2973613,
+    "archived_as": "gate-stream-logcat.txt.gz"
+  },
+  "host-release.json": {
+    "sha256": "cc2cd72cfc4e17340c42ee4b43e73793ccb3d0883d15923578ea23bef07ec5e7",
+    "bytes": 1593,
+    "archived_as": "host-release.json"
+  },
+  "kernel.txt": {
+    "sha256": "cd8e31ad3f05d597238a1403bb5c2d25c975d53959c3d48af034216515712dc5",
+    "bytes": 113,
+    "archived_as": "kernel.txt"
+  },
+  "public-1.1.0-home.png": {
+    "sha256": "dc331007d2aa38c17aad7b9983b4f04c8645ff0c30d0962eb398a3fbf38c65a3",
+    "bytes": 6331,
+    "archived_as": "public-1.1.0-home.png"
+  },
+  "public-1.1.0-window.xml": {
+    "sha256": "73bbd5a6d4f231ac9890e111c76a2bfa5f137cb63c330f911bbed9efa3a5c076",
+    "bytes": 3156,
+    "archived_as": "public-1.1.0-window.xml"
+  },
+  "renderer.txt": {
+    "sha256": "d7e7e27ef3ce5265ef15728360a33145f5cae8024c951d505c1532a8f10affae",
+    "bytes": 154329,
+    "archived_as": "renderer.txt.gz"
+  },
+  "source-equivalence.json": {
+    "sha256": "b631b6c60a97fb281a88cc41cd6a00e7ddd61825ea8a3142e0287ce6066470dd",
+    "bytes": 8015,
+    "archived_as": "source-equivalence.json"
+  },
+  "staged-byte-identity.json": {
+    "sha256": "f47654dfcc7c33588fd33ce672ec9e837f1f3399930ece271ae400359baa86db",
+    "bytes": 834,
+    "archived_as": "staged-byte-identity.json"
+  },
+  "system-image-package.xml": {
+    "sha256": "404f0f37d1fe7d082fdcb2a099de15d6b7864695b730bb83982f23bc44ea9417",
+    "bytes": 19112,
+    "archived_as": "system-image-package.xml"
+  },
+  "final-host/activity-manager.txt": {
+    "sha256": "f4407b7ac72fcc58a312ea4208add7ed712d83c4539f5cf48eee761884aa369f",
+    "bytes": 242861,
+    "archived_as": "final-host/activity-manager.txt.gz"
+  },
+  "final-host/app-pid.txt": {
+    "sha256": "809ad44aa2b52fc8892156d77420a9a32951bb9c4eaaa30d4b24b981215777ce",
+    "bytes": 5,
+    "archived_as": "final-host/app-pid.txt"
+  },
+  "final-host/diagnostics.json": {
+    "sha256": "4dd6a659b68cf79ec06118e7ffb750ee9e3a5cb29cb4d918db9a484d84b28041",
+    "bytes": 1238,
+    "archived_as": "final-host/diagnostics.json"
+  },
+  "final-host/emulator-kernel-stack.txt": {
+    "sha256": "f0094b2b2b2db428a0e73597078a798b3583c077b7b52d034355df8dd41cae1f",
+    "bytes": 178,
+    "archived_as": "final-host/emulator-kernel-stack.txt"
+  },
+  "final-host/emulator-status.txt": {
+    "sha256": "910412f27d9dad8a8df0f927ad3986cd7a8038c31be0a768eee05631760a22fe",
+    "bytes": 1512,
+    "archived_as": "final-host/emulator-status.txt"
+  },
+  "final-host/emulator-threads.txt": {
+    "sha256": "13822974ba5e1dc4cd285302b7c0939b6da7a47ac605a10dc96bddf9881d1eb8",
+    "bytes": 10915,
+    "archived_as": "final-host/emulator-threads.txt"
+  },
+  "final-host/guest-anr-index.txt": {
+    "sha256": "ab13c5e3b282b0cbaf6ae648ed35addb308778462a19ac0a2e694eb0f6830986",
+    "bytes": 46,
+    "archived_as": "final-host/guest-anr-index.txt"
+  },
+  "final-host/guest-logcat.txt": {
+    "sha256": "fbf90141b0f8dbac45a1ff38d31c9002884ea79a17ddde90c56d07f22856c113",
+    "bytes": 2976049,
+    "archived_as": "final-host/guest-logcat.txt.gz"
+  },
+  "final-host/guest-processes.txt": {
+    "sha256": "4e4031d4f8055b1adafc4e560631793942053b52852261e9718321056771cb1f",
+    "bytes": 137218,
+    "archived_as": "final-host/guest-processes.txt.gz"
+  },
+  "final-host/host-disk.txt": {
+    "sha256": "40ab48d6d1d3dfcab5677ae279f66060576e5535a60e8579a30c7b77d1a3ac52",
+    "bytes": 380,
+    "archived_as": "final-host/host-disk.txt"
+  },
+  "final-host/host-memory.txt": {
+    "sha256": "c008b3d8b79007189a3e678dce648790e28d92e6eb779e3cd036598233cccc66",
+    "bytes": 207,
+    "archived_as": "final-host/host-memory.txt"
+  },
+  "final-host/host-processes.txt": {
+    "sha256": "f477c2683281a7a1ba0399dfd15834e07d782f81a6ae7e5bbc3c3573735f3e3f",
+    "bytes": 13979,
+    "archived_as": "final-host/host-processes.txt"
+  },
+  "final-host/light-shell.txt": {
+    "sha256": "107f901eb7c0cf6d2ba1c67a088bebeeea16ccec90d8379c9e8869695b69e6e9",
+    "bytes": 12,
+    "archived_as": "final-host/light-shell.txt"
+  },
+  "final-host/surface-flinger.txt": {
+    "sha256": "6d1721cfc13c2e7fca3f36b3d34774749611d02c81042ac91ef9bcf8edac2601",
+    "bytes": 3161,
+    "archived_as": "final-host/surface-flinger.txt"
+  },
+  "final-host/transport.txt": {
+    "sha256": "c9a2e4a402645c32cd837fc076b8909d511918f856fa4f52c236dee62535e805",
+    "bytes": 147,
+    "archived_as": "final-host/transport.txt"
+  },
+  "gate/adb-timeline.jsonl": {
+    "sha256": "caaa334a58c3c4ae812a9a5f98d2ef55ef1456af3e6f045b087af68f45296ae3",
+    "bytes": 7247,
+    "archived_as": "gate/adb-timeline.jsonl"
+  },
+  "gate-failure/activity-manager.txt": {
+    "sha256": "e2121c08adf3e266481e6a7037bf25d4ccdb706afd0a81132b6f5df9f09efed7",
+    "bytes": 243753,
+    "archived_as": "gate-failure/activity-manager.txt.gz"
+  },
+  "gate-failure/app-pid.txt": {
+    "sha256": "809ad44aa2b52fc8892156d77420a9a32951bb9c4eaaa30d4b24b981215777ce",
+    "bytes": 5,
+    "archived_as": "gate-failure/app-pid.txt"
+  },
+  "gate-failure/diagnostics.json": {
+    "sha256": "39b949365930b5fc66a0e9b10347c300604196c9e3d91e9119ebb2fad2287ae3",
+    "bytes": 1235,
+    "archived_as": "gate-failure/diagnostics.json"
+  },
+  "gate-failure/emulator-kernel-stack.txt": {
+    "sha256": "f0094b2b2b2db428a0e73597078a798b3583c077b7b52d034355df8dd41cae1f",
+    "bytes": 178,
+    "archived_as": "gate-failure/emulator-kernel-stack.txt"
+  },
+  "gate-failure/emulator-status.txt": {
+    "sha256": "d5469a7da736fc37e319af792e8da9fd5e5ee597c7b03262a9c9b16c21921812",
+    "bytes": 1512,
+    "archived_as": "gate-failure/emulator-status.txt"
+  },
+  "gate-failure/emulator-threads.txt": {
+    "sha256": "eaf3c8d4509a6bd0ad6b036a73c62e206db4378717f399bfcd2b035fa625c666",
+    "bytes": 12553,
+    "archived_as": "gate-failure/emulator-threads.txt"
+  },
+  "gate-failure/guest-anr-index.txt": {
+    "sha256": "ab13c5e3b282b0cbaf6ae648ed35addb308778462a19ac0a2e694eb0f6830986",
+    "bytes": 46,
+    "archived_as": "gate-failure/guest-anr-index.txt"
+  },
+  "gate-failure/guest-logcat.txt": {
+    "sha256": "8c61f90dfd48f4c400375ec55487c7485847debd2a1f9c9382ae6041e9687680",
+    "bytes": 2973613,
+    "archived_as": "gate-failure/guest-logcat.txt.gz"
+  },
+  "gate-failure/guest-processes.txt": {
+    "sha256": "c61c01493575a03f50c337cf83f336190d5dd1ae15af789e489e083ac71b01d8",
+    "bytes": 137889,
+    "archived_as": "gate-failure/guest-processes.txt.gz"
+  },
+  "gate-failure/host-disk.txt": {
+    "sha256": "40ab48d6d1d3dfcab5677ae279f66060576e5535a60e8579a30c7b77d1a3ac52",
+    "bytes": 380,
+    "archived_as": "gate-failure/host-disk.txt"
+  },
+  "gate-failure/host-memory.txt": {
+    "sha256": "922a370422728b8b6891f43b41913d97d7df03cc2acc2b82751aa8eaeffe7089",
+    "bytes": 207,
+    "archived_as": "gate-failure/host-memory.txt"
+  },
+  "gate-failure/host-processes.txt": {
+    "sha256": "7d4f8aa761fe0f5fb9d4cf0b730e9bf8863a910cbf2f3c35621ccc5b04cc5e84",
+    "bytes": 14069,
+    "archived_as": "gate-failure/host-processes.txt"
+  },
+  "gate-failure/light-shell.txt": {
+    "sha256": "107f901eb7c0cf6d2ba1c67a088bebeeea16ccec90d8379c9e8869695b69e6e9",
+    "bytes": 12,
+    "archived_as": "gate-failure/light-shell.txt"
+  },
+  "gate-failure/surface-flinger.txt": {
+    "sha256": "6d1721cfc13c2e7fca3f36b3d34774749611d02c81042ac91ef9bcf8edac2601",
+    "bytes": 3161,
+    "archived_as": "gate-failure/surface-flinger.txt"
+  },
+  "gate-failure/transport.txt": {
+    "sha256": "c9a2e4a402645c32cd837fc076b8909d511918f856fa4f52c236dee62535e805",
+    "bytes": 147,
+    "archived_as": "gate-failure/transport.txt"
+  }
+}

@@ -29,7 +29,7 @@ on:
       graphics_backend:
         description: Emulator graphics diagnostic using software rendering on this runner
         type: choice
-        options: [host, lavapipe, swiftshader]
+        options: [host, lavapipe, swiftshader, swangle]
         default: host
 permissions:
   contents: read
@@ -214,11 +214,11 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "$ANDROID_AVD_HOME" .local/android-runtime
-          case "$MOCHI_EMULATOR_GPU" in lavapipe|host|swiftshader) ;; *) exit 1 ;; esac
+          case "$MOCHI_EMULATOR_GPU" in lavapipe|host|swiftshader|swangle) ;; *) exit 1 ;; esac
           "$ANDROID_HOME/emulator/emulator" -help-gpu > .local/android-runtime/emulator-help-gpu.txt 2>&1
           "$ANDROID_HOME/emulator/emulator" -no-window -version > .local/android-runtime/emulator-version.txt 2>&1
-          if [[ "$MOCHI_EMULATOR_GPU" == 'swiftshader' ]]; then
-            grep -w swiftshader .local/android-runtime/emulator-help-gpu.txt
+          if [[ "$MOCHI_EMULATOR_GPU" == 'swiftshader' || "$MOCHI_EMULATOR_GPU" == 'swangle' ]]; then
+            grep -w "$MOCHI_EMULATOR_GPU" .local/android-runtime/emulator-help-gpu.txt
             unset LIBGL_ALWAYS_SOFTWARE GALLIUM_DRIVER DISPLAY
           fi
           if [[ "$MOCHI_EMULATOR_GPU" == 'host' ]]; then

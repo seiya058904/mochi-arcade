@@ -1,9 +1,9 @@
-"""Exact signed v1.0.0 -> candidate upgrade on the job's disposable rooted AVD.
+"""Exact signed public predecessor -> candidate upgrade on an owned rooted AVD.
 
 The predecessor smoke must already have created real rounds in all eight games.
 Only synthetic records and the two explicitly named app saves are modified.
-After preserving upgrade/fault evidence, ordinary uninstall prepares the separate
-candidate clean-install smoke. Never run this against a phone or shared AVD.
+After preserving upgrade/fault evidence, ordinary uninstall verifies removal.
+Candidate clean-install smoke uses its own AVD. Never target a phone/shared AVD.
 """
 import argparse
 import copy

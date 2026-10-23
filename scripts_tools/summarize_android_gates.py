@@ -10,6 +10,7 @@ GAMES={'fruit_drop','bubble_garden','cake_stack','bouncy_balls','tile_trio','moc
 
 def summarize(root, sha, source, tool, profile):
     result={'status':'FAIL','apk_sha256':sha,'build_source':source,'tool_commit':tool,'profile':profile,'gates':{}}
+    renderers=[]
     for gate in GATES:
         folder=Path(root)/('android-runtime-evidence-'+gate)
         try:
@@ -18,6 +19,11 @@ def summarize(root, sha, source, tool, profile):
             for key,value in [('apk_sha256',sha),('build_source',source),('tool_commit',tool),('profile',profile)]:
                 assert report[key]==value,key+' mismatch'
             assert report['renderer'], 'Actual renderer missing'
+            renderers.append(report['renderer'])
+            proof=json.loads((folder/'source-equivalence.json').read_text(encoding='utf-8'))
+            assert proof['status']=='PASS' and proof['S']==source and proof['T']==tool and proof['apk_sha256']==sha
+            release=json.loads((folder/'host-release.json').read_text(encoding='utf-8'))
+            assert release['process_release'].get('emulator')=='TERMINATED', 'Owned emulator release did not finish normally'
             child=json.loads((folder/('upgrade/upgrade-report.json' if gate.startswith('U') else 'clean/report.json' if gate=='CLEAN' else 'load/load-report.json')).read_text(encoding='utf-8'))
             assert child['status'].startswith('PASS') and child['apk_sha256']==sha
             if gate.startswith('U'):
@@ -42,7 +48,7 @@ def summarize(root, sha, source, tool, profile):
             result['gates'][gate]={'status':'PASS','run_id':report['run_id'],'attempt':report['attempt'],'reviewed_files':len(actual)}
         except Exception as error:
             result['gates'][gate]={'status':'FAIL_OR_INCOMPLETE','error':str(error)}
-    if all(v['status']=='PASS' for v in result['gates'].values()):result['status']='PASS'
+    if all(v['status']=='PASS' for v in result['gates'].values()) and all(r==renderers[0] for r in renderers):result['status']='PASS'
     return result
 
 

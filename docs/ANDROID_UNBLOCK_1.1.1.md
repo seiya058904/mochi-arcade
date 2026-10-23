@@ -60,8 +60,8 @@ The release summary rejects absent, failed, mismatched or unreviewed gates.
 
 | Profile | Unique change | Fixed controls | Status |
 | --- | --- | --- | --- |
-| E1 explicit `-gpu swiftshader` | Replace host GLES/Mesa llvmpipe profile; remove inherited Mesa/Xvfb overrides for this route | Emulator 37.2.12, AOSP API 34 x86_64 r4, 720x1280/320 dpi, 2 cores/2048 MiB, original APKs, three Bouncy returns and stop per APK, candidate 64-ball/12-jelly load and restoration | NOT_RUN |
-| E2 | Only choose if E1 evidence supports a specific independent change | No seed/timeout relaxation or random retry | NOT_SELECTED |
+| E1 explicit `-gpu swiftshader` | Replace host GLES/Mesa llvmpipe profile; remove inherited Mesa/Xvfb overrides for this route | Emulator 37.2.12, AOSP API 34 x86_64 r4, 720x1280/320 dpi, 2 cores/2048 MiB, original APKs, three Bouncy returns and stop per APK, candidate 64-ball/12-jelly load and restoration | FAIL, 39959705397: public v1.1.0 blank home and shader linking errors; candidate/control/load NOT_RUN |
+| E2 explicit `-gpu swangle` | Use ANGLE GLES frontend with SwiftShader, supported by installed emulator help; test a different shader compiler/capability route after E1 uniform-limit failure | Same fixed controls and assertions as E1; no seed/timeout relaxation | SELECTED, not yet run |
 
 One diagnostic attempt per profile; maximum two new profiles. Read emulator GPU
 help and actual SurfaceFlinger renderer before app tests. E1 runs public v1.1.0
@@ -74,7 +74,23 @@ Tool preflight failures are retained separately from renderer experiments:
 failed the version probe before creating or starting an AVD. The windowed QEMU
 binary could not load `libpulse.so.0`. The probe now uses `-no-window`, matching
 the actual launch. No library installation or environment change was made.
-E1 is still NOT_RUN until an AVD actually starts.
+These preflight failures did not launch an AVD and did not consume graphics attempts.
+
+E1 at T `7a44b7aaf34050f817be5adefde6b133be5342b6` actually selected
+`Android Emulator OpenGL ES Translator (Google SwiftShader)`, ES 3.0 / SwiftShader
+4.0.0.1. The public v1.1.0 home was uniformly cream (native screenshot reviewed).
+Godot reported CanvasShaderGLES3 and SceneShaderGLES3 linking failures:
+`Fragment shader active uniforms exceed GL_MAX_FRAGMENT_UNIFORM_VECTORS (261)`.
+ADB, ActivityManager, SurfaceFlinger and application PID remained responsive;
+emulator exited 0 after owned-process termination, no SIGSEGV observed.
+This failure is not attributed to the candidate, which was never installed.
+Full logs, actual renderer, process state, screenshot and hashes are retained in
+`evidence/iteration-1.1.1/unblock/E1-39959705397/`.
+
+E2 is justified by this specific GLES linking failure: the installed help lists
+`swangle` as ANGLE with SwiftShader, rather than the direct SwiftShader GLES route.
+It is a hypothesis, not a promised fix. It is the second and final new profile in
+this bounded task; only a passing diagnosis permits full gates.
 
 Official [graphics modes](https://developer.android.com/studio/run/emulator-acceleration)
 list explicit swiftshader; swiftshader_indirect is deprecated. This motivates an

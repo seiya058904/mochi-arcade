@@ -1,0 +1,83 @@
+{
+  "diagnostics": {
+    "transport": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.002
+    },
+    "light-shell": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.039
+    },
+    "app-pid": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.034
+    },
+    "activity-manager": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.101
+    },
+    "surface-flinger": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.04
+    },
+    "guest-processes": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.577
+    },
+    "guest-anr-index": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.027
+    },
+    "guest-logcat": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.192
+    },
+    "host-processes": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.014
+    },
+    "host-memory": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.006
+    },
+    "host-disk": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.004
+    },
+    "emulator-threads": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.023
+    },
+    "emulator-status": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.002
+    },
+    "emulator-kernel-stack": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.013
+    }
+  },
+  "process_release": {
+    "emulator": "TERMINATED"
+  },
+  "runner": {
+    "ImageOS": "ubuntu24",
+    "ImageVersion": "20261012.334.1",
+    "RUNNER_OS": "Linux",
+    "RUNNER_ARCH": "X64"
+  }
+}

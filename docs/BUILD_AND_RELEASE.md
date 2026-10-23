@@ -4,8 +4,9 @@ Published release: **v1.1.0**, Android versionCode 2. Its original signed bytes 
 API 34 hosted runtime/upgrade and independent public-download verification; the
 v1.0.0 release is intact. See [iteration evidence](ITERATION_1.1.md) for source
 identity, retained failures and device limits. Local signing works; private
-material must stay local. Twenty-two checks are required for the 1.1.1 candidate: original suites,
-patch boundary/terminal regressions, full restore probe and Python identity tests.
+material must stay local. Twenty-three checks are required for the 1.1.1 candidate: original suites,
+patch boundary/terminal regressions, full restore probe, Python identity tests and
+Android restoration/release-summary rejection tests.
 See [current patch](ITERATION_1.1.1.md); previous release PASS is not candidate acceptance.
 
 ## Verified local toolchain
@@ -157,14 +158,28 @@ remain stopped under the owner's explicit decision.
 `release_identity.json` is the trusted version/package/certificate/predecessor
 configuration. Export preset consistency is a required test. Candidate hash and
 exact build source SHA are explicit inputs, never inferred from the untrusted APK.
-Dispatch the workflow twice with the same `staged_release_id`,
-`staged_apk_sha256`, `staged_source_sha` and `upgrade_from` set respectively to
-`v1.1.0` and `v1.0.0`. The draft target must equal that exact source SHA.
-Each disposable AVD first tests its hash-pinned predecessor, compares complete
-persistent semantics while first-help freezes simulation, exercises native Undo
-and continuation, checks recovery, then uninstalls and independently tests the
-clean candidate plus maximum pools. Reports keep raw visual-review-pending states.
-Both runs and matching independent visual reviews are mandatory.
+Dispatch the workflow with the same `staged_release_id`, `staged_apk_sha256`,
+`staged_source_sha` and `acceptance_gate=ALL`, or dispatch the four gates separately
+at the same tool commit and accepted graphics profile. The draft target must equal
+that exact source SHA. Runtime/export Git blob identities are independently
+compared between APK source S and test tools T before starting an AVD.
+
+U110 and U100 select hash-pinned v1.1.0 and v1.0.0 respectively. Each uses one fresh
+AVD for the uninterrupted predecessor smoke/install-r/semantic restore/fault
+chain. First-help freezes simulation for comparisons; actual native Undo and
+continuation are required. CLEAN starts a separate AVD with no package/data and
+ends with ordinary uninstall and absence checks. LOAD uses another AVD, preserves
+both original save files on the host, and must stop, restore and read back both.
+All four jobs run independently with fail-fast disabled; no failed guest is reset
+mid-upgrade. DIAG is a bounded environment experiment and cannot satisfy a gate.
+
+Reports keep raw visual-review-pending states. Review every native PNG/video and
+write the matching hash inventory to each artifact's `visual-review.json`.
+`summarize_android_gates.py --root <artifacts> --sha <APK> --source <S> --tool <T>
+--profile <accepted-profile>` fails for missing, failed, mismatched or unreviewed
+gates. Required identities come from trusted configuration and explicit inputs,
+not from the APK being tested. See [unblock audit](ANDROID_UNBLOCK_1.1.1.md) for
+the bounded graphics experiment and retained preflight failures.
 
 Old tags/assets are preserved by project rule. GitHub reports immutable=false
 for the existing releases; no platform immutable-protection claim or setting
