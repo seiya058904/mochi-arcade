@@ -1,0 +1,19 @@
+{
+  "boards": 1500,
+  "checks": 439506,
+  "elapsed_ms": 1999,
+  "failures": [],
+  "levels": [
+    1,
+    4,
+    10
+  ],
+  "maximum_search_nodes": 176,
+  "seeds": [
+    1,
+    500
+  ],
+  "status": "PASS",
+  "suite": "Tile Trio construction and independent solver",
+  "worst_seed": 491
+}

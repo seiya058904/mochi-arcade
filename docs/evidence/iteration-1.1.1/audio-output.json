@@ -1,0 +1,123 @@
+{
+  "failures": [],
+  "mix_rate": 48000.0,
+  "observations": {
+    "all_muted": {
+      "clipped": false,
+      "frames": 15360,
+      "peak": 0.0,
+      "rms": 0.0
+    },
+    "eight_voice_burst": {
+      "clipped": false,
+      "frames": 15360,
+      "peak": 0.438314229249954,
+      "rms": 0.0614507678564152
+    },
+    "music_after_two_full_loops": {
+      "clipped": false,
+      "frames": 58368,
+      "peak": 0.00903606135398149,
+      "rms": 0.00239288268337047
+    },
+    "music_disabled": {
+      "clipped": false,
+      "frames": 15872,
+      "peak": 0.0,
+      "rms": 0.0
+    },
+    "music_enabled": {
+      "clipped": false,
+      "frames": 57856,
+      "peak": 0.00903269089758396,
+      "rms": 0.00240186174315765
+    },
+    "music_loop_boundary_0": {
+      "clipped": false,
+      "frames": 38400,
+      "peak": 0.00901829358190298,
+      "rms": 0.00213845321215642
+    },
+    "music_loop_boundary_1": {
+      "clipped": false,
+      "frames": 38400,
+      "peak": 0.00901829358190298,
+      "rms": 0.00213468083592547
+    },
+    "music_loop_boundary_2": {
+      "clipped": false,
+      "frames": 38400,
+      "peak": 0.00901829358190298,
+      "rms": 0.00213468083592547
+    },
+    "paused": {
+      "clipped": false,
+      "frames": 15360,
+      "peak": 0.0,
+      "rms": 0.0
+    },
+    "resumed": {
+      "clipped": false,
+      "frames": 57856,
+      "peak": 0.00906612258404493,
+      "rms": 0.00180090714418721
+    },
+    "sfx_disabled": {
+      "clipped": false,
+      "frames": 15360,
+      "peak": 0.0,
+      "rms": 0.0
+    },
+    "tone_0": {
+      "clipped": false,
+      "frames": 15360,
+      "peak": 0.101674109697342,
+      "rms": 0.0222126894411033
+    },
+    "tone_1": {
+      "clipped": false,
+      "frames": 15872,
+      "peak": 0.102975733578205,
+      "rms": 0.0218784126146362
+    },
+    "tone_2": {
+      "clipped": false,
+      "frames": 15360,
+      "peak": 0.101929433643818,
+      "rms": 0.022230937739315
+    },
+    "tone_3": {
+      "clipped": false,
+      "frames": 15360,
+      "peak": 0.101202681660652,
+      "rms": 0.022227307701622
+    },
+    "tone_4": {
+      "clipped": false,
+      "frames": 15360,
+      "peak": 0.102543540298939,
+      "rms": 0.0222278046617331
+    },
+    "tone_5": {
+      "clipped": false,
+      "frames": 15360,
+      "peak": 0.102875642478466,
+      "rms": 0.0222328920744646
+    },
+    "tone_6": {
+      "clipped": false,
+      "frames": 15360,
+      "peak": 0.102336294949055,
+      "rms": 0.0222257389448578
+    },
+    "tone_7": {
+      "clipped": false,
+      "frames": 15872,
+      "peak": 0.102434456348419,
+      "rms": 0.0218687248423714
+    }
+  },
+  "scope": "Actual Windows Godot mixer output captured through AudioEffectCapture; not a claim about phone speakers or subjective preference",
+  "status": "PASS",
+  "voice_count": 8
+}

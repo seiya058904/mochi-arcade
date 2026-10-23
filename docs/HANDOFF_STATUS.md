@@ -1,6 +1,12 @@
 # Handoff status
 
-## Current iteration — 2026-10-23
+## Current 1.1.1 patch — 2026-10-23
+
+**IN_PROGRESS; new signed Android and release gates NOT_RUN.** See
+[ITERATION_1.1.1.md](ITERATION_1.1.1.md) for F1–F6, exact next actions and
+current evidence. The v1.1.0 sections below describe the previous delivery.
+
+## Historical iteration — 2026-10-23
 
 **v1.1.0 RELEASED; original signed runtime/upgrade and anonymous bytes PASS.**
 The public v1.0.0 tag/assets remain unchanged. See [ITERATION_1.1.md](ITERATION_1.1.md)

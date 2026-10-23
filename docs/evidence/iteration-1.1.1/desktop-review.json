@@ -1,0 +1,25 @@
+{
+  "status": "PASS_REVIEWED",
+  "capture_count": 84,
+  "sheets": [
+    "review-0.jpg",
+    "review-1.jpg",
+    "review-2.jpg",
+    "review-3.jpg",
+    "review-4.jpg",
+    "review-5.jpg"
+  ],
+  "observations": [
+    "64 EN/ZH layouts across three ratios: boards, controls, home, settings, licenses readable and unclipped",
+    "20 terminal/failed-exit/Undo views: translated choices visible, unsaved message retained, restored board/tray visible",
+    "Settings showed old project version; corrected to 1.1.1 and separate final settings captures required"
+  ],
+  "scope": "Windows RX 7900 XT Compatibility; not Android",
+  "final_settings_review": {
+    "status": "PASS_REVIEWED",
+    "count": 6,
+    "sheet": "final-settings.jpg",
+    "version": "1.1.1",
+    "manifest": "final-settings-manifest.json"
+  }
+}

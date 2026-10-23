@@ -1,0 +1,2815 @@
+{
+  "failures": [],
+  "method": "100 samples per path after 10 warmups; fixed seed and board; real verified disk writes; serializer count equals write_temp calls (each supplied one JSON.stringify); Windows headless Godot 4.7.2; elapsed synchronous action wall time",
+  "samples": {
+    "exit": [
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.045,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.779,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.902,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 11.486,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.897,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.819,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.141,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.665,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.996,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.027,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.39,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.509,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.91,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.343,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.804,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.99,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.984,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.2,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.972,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.7,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.076,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.188,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.531,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.738,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.221,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.931,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.055,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.777,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.513,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.213,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.586,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.097,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.069,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.437,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.696,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.229,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.196,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 9.5,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.375,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.741,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.149,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.035,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.679,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.689,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.829,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 9.552,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.405,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.687,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 10.224,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.341,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 9.378,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.344,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 9.86,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.988,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.182,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.891,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.831,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.788,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.846,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.666,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.525,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.68,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.517,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.333,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.79,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.662,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.854,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.976,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 10.313,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.823,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.526,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.962,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.572,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.771,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.05,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.085,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.74,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.863,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.101,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.196,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.57,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.879,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.378,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.334,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 9.677,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.062,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.06,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.032,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 9.29,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.872,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.416,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.378,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.585,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.3,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.197,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 10.127,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 10.579,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.593,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 6.284,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 5.718,
+        "serializations": 4,
+        "writes": 4
+      }
+    ],
+    "home": [
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.784,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.781,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.191,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 11.093,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.719,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.511,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.78,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.133,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.639,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.358,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.739,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.163,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.833,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.642,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.845,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.634,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.827,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.202,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.044,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.418,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.85,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.679,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.797,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 9.322,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.72,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.773,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.647,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.902,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.776,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.106,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.459,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.284,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.745,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.602,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.09,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.509,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.394,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 10.914,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.584,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.031,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.223,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.155,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.799,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.212,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.583,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 11.608,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 11.198,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.361,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.891,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.508,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 12.149,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.237,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 11.135,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.751,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.223,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.497,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.254,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.561,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.935,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 10.606,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.524,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.128,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.624,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.924,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.389,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.137,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.959,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.637,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 10.876,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.936,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.231,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.19,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 11.367,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.187,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.065,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 7.931,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.647,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.288,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.674,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.854,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.793,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.666,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.933,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.88,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 11.651,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.598,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 9.023,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.907,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 12.616,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.849,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.971,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.32,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.326,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.165,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.558,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 11.33,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 11.896,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.637,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.579,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 8.277,
+        "serializations": 4,
+        "writes": 4
+      }
+    ],
+    "pause": [
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.615,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.729,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.389,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 6.408,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.827,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.354,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.812,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.285,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.793,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.946,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.276,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.451,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 5.709,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.299,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 6.6,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.505,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.543,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.468,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.463,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.51,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.419,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.969,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.307,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.49,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.299,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 6.327,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 6.802,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.262,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.59,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.311,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.537,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.342,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.243,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.484,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 6.353,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 6.109,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.784,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 6.015,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.626,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 6.742,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.548,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.327,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.366,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.634,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.98,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 5.982,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 6.015,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.253,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.573,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.292,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.614,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.397,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.303,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.598,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 4.291,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.331,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.952,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.485,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.496,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.439,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 6.788,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 6.097,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.364,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.56,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.729,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 6.093,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.471,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.565,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 6.958,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.51,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.344,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.305,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 5.795,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.729,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.725,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.837,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.233,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.983,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.635,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.457,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.588,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.373,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.746,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.168,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 6.353,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.431,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.652,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.299,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 6.284,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.583,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.592,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.524,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.27,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.307,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.532,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 6.963,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 6.074,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 4.036,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.791,
+        "serializations": 2,
+        "writes": 2
+      },
+      {
+        "commits": 1,
+        "flush": 1,
+        "ms": 3.493,
+        "serializations": 2,
+        "writes": 2
+      }
+    ],
+    "scoring_swipe": [
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.348,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.787,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.205,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.704,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.816,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.762,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.948,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.712,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.907,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.532,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.383,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.205,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.862,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.817,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.19,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.759,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.027,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.024,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.015,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 15.421,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.826,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 15.949,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.306,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.019,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.36,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.458,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 15.974,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.39,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.676,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.317,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.679,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.361,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.879,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.942,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.902,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.741,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.129,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.75,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.268,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.623,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.025,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.487,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.034,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.088,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 15.9,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.008,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.954,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.929,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 15.818,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.864,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.56,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.449,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.001,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.753,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.237,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.451,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.641,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.704,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.783,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.982,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 15.967,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.965,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.852,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.358,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.213,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.901,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.395,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.209,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.272,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.251,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.249,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.69,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.609,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.521,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.639,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.402,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.13,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.152,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.019,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.759,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.273,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.048,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.678,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.58,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 15.967,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.56,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.261,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.141,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.822,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.908,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.539,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.535,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.106,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 15.882,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 15.974,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 17.488,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.758,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.299,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.239,
+        "serializations": 4,
+        "writes": 4
+      },
+      {
+        "commits": 2,
+        "flush": 2,
+        "ms": 16.276,
+        "serializations": 4,
+        "writes": 4
+      }
+    ]
+  },
+  "status": "PASS"
+}

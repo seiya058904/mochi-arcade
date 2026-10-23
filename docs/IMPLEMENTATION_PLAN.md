@@ -1,6 +1,12 @@
 # Implementation board
 
-## Current 1.1.0 iteration — 2026-10-23
+## Current 1.1.1 patch — 2026-10-23
+
+**IN_PROGRESS; new signed Android and release gates NOT_RUN.** See
+[ITERATION_1.1.1.md](ITERATION_1.1.1.md) for F1–F6, exact next actions and
+current evidence. The v1.1.0 sections below describe the previous delivery.
+
+## Historical 1.1.0 iteration — 2026-10-23
 
 | Phase | Status | Exit evidence / next action |
 | --- | --- | --- |
@@ -9,7 +15,7 @@
 | Desktop rendering / audio | PASS reviewed | 64 EN/ZH captures across three ratios; terminal/failure UI; same-seed idle pixels exact; actual audio mixer checks |
 | New signed Android / upgrade | PASS signed hosted API 34 | Run 39930890985: original-cert upgrade, all eight restored rounds, clean 8 x 3 lifecycle/audio/load, 240 captures reviewed. Additional native boot video reviewed; local AEHD stays stopped |
 | Remote integration / development CI | PASS release source 4f5d7f7 | Direct main integration; development run 39934851867 and exact signed run 39934863776 pass with separate screenshot/video review. Post-release documentation SHA is checked independently |
-| New stable Release / public download | PASS | Published v1.1.0, immutable tag 4f5d7f7, exact signed APK 9676db2f... and checksum anonymously re-downloaded and verified. v1.0.0 unchanged |
+| New stable Release / public download | PASS | Published v1.1.0, project-retained tag 4f5d7f7, exact signed APK 9676db2f... and checksum anonymously re-downloaded and verified. v1.0.0 unchanged |
 
 See [ITERATION_1.1.md](ITERATION_1.1.md) for exact continuation and evidence.
 The following phase board and checkpoints are **historical v1.0.0 development**;

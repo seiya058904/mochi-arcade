@@ -11,6 +11,8 @@ var last_error := OK
 var dirty := false
 var read_error := OK
 var load_error := OK
+var decode_status := "MISSING"
+var recovery_details: Array[String] = []
 
 func _ready() -> void:
 	load_save()
@@ -22,32 +24,43 @@ func defaults() -> Dictionary:
 
 func decode(path: String) -> Dictionary:
 	read_error = OK
+	decode_status = "MISSING"
 	if not FileAccess.file_exists(path):
 		return {}
 	var file := FileAccess.open(path, FileAccess.READ)
 	if file == null:
 		read_error = FileAccess.get_open_error()
+		decode_status = "IO_ERROR"
 		return {}
+	decode_status = "INVALID_JSON"
 	if file.get_length() > 2000000:
 		return {}
 	var contents := file.get_as_text()
 	var error := file.get_error()
 	if error != OK and error != ERR_FILE_EOF:
 		read_error = error
+		decode_status = "IO_ERROR"
 		return {}
 	var parser := JSON.new()
 	if parser.parse(contents) != OK:
 		return {}
 	var parsed = parser.data
-	if not parsed is Dictionary or not SCHEMA.number(parsed.get("version"), VERSION, VERSION, true):
+	if not parsed is Dictionary:
 		return {}
+	if not SCHEMA.number(parsed.get("version"), VERSION, VERSION, true):
+		decode_status = "UNSUPPORTED_VERSION"
+		read_error = ERR_FILE_UNRECOGNIZED
+		return {}
+	decode_status = "VALID"
 	for key in ["settings", "records", "sessions", "seen"]:
 		if not parsed.get(key) is Dictionary:
-			return {}
+			decode_status = "INVALID_SECTION"
 	return parsed
 
 func load_save() -> void:
+	recovery_details.clear()
 	data = decode(folder.path_join("save.json"))
+	var primary_status := decode_status
 	load_error = read_error
 	var backup := decode(folder.path_join("save.backup.json"))
 	if load_error == OK:
@@ -56,16 +69,29 @@ func load_save() -> void:
 	if data.is_empty():
 		data = backup.duplicate(true)
 		recovered = not data.is_empty()
+		if recovered:
+			recovery_details.append("primary:" + primary_status + ":backup")
 	if data.is_empty():
 		data = defaults()
 	# The primary wins for valid fields. Recover only malformed fields from the
 	# backup; never replace a valid newer score/round with an older one.
-	if not backup.is_empty():
-		for section in ["settings", "records", "sessions", "seen"]:
-			for key in data[section].keys():
-				if not valid_field(section, key, data[section][key]) and valid_field(section, key, backup[section].get(key)):
-					data[section][key] = backup[section][key]
-					recovered = true
+	for section in ["settings", "records", "sessions", "seen"]:
+		var old_section: Dictionary = backup[section] if backup.get(section) is Dictionary else {}
+		if not data.get(section) is Dictionary:
+			data[section] = old_section.duplicate(true)
+			recovered = true
+			recovery_details.append(section + ":invalid_section:" + ("backup" if backup.get(section) is Dictionary else "default"))
+		# Only malformed existing fields recover. Missing keys and empty valid
+		# sections represent legitimate deletion/reset and must stay absent.
+		for key in data[section].keys():
+			if not valid_field(section, key, data[section][key]):
+				recovered = true
+				if valid_field(section, key, old_section.get(key)):
+					data[section][key] = old_section[key]
+					recovery_details.append(section + "." + key + ":backup")
+				else:
+					data[section].erase(key)
+					recovery_details.append(section + "." + key + ":default")
 	var settings: Dictionary = defaults().settings
 	for key in ["music", "sfx", "reduced_motion", "haptics"]:
 		if data.settings.get(key) is bool:
@@ -79,7 +105,7 @@ func load_save() -> void:
 	for id in data.seen.keys():
 		if not data.seen[id] is bool:
 			data.seen.erase(id)
-	dirty = load_error != OK
+	dirty = load_error != OK or recovered
 	last_error = load_error
 
 func valid_field(section: String, key: String, value: Variant) -> bool:
@@ -98,6 +124,8 @@ func valid_backup(value: Dictionary) -> bool:
 	if value.is_empty():
 		return false
 	for section in ["settings", "records", "sessions", "seen"]:
+		if not value.get(section) is Dictionary:
+			return false
 		for key in value[section]:
 			if not valid_field(section, key, value[section][key]):
 				return false
@@ -157,9 +185,16 @@ func best(id: String) -> int:
 
 func record(id: String, score: int) -> Error:
 	if score > best(id):
-		data.records[id] = score
+		stage_record(id, score)
 		return flush()
 	return last_error
+
+func stage_record(id: String, score: int) -> void:
+	# Internal logical-action staging, not a successful persistence operation.
+	# Callers commit the matching session/terminal deletion synchronously.
+	if score > best(id):
+		data.records[id] = score
+		dirty = true
 
 func setting(key: String) -> Variant:
 	return data.settings.get(key, defaults().settings.get(key))

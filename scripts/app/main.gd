@@ -376,15 +376,17 @@ func update_score(value: int) -> void:
 	if is_instance_valid(best_label) and current_index >= 0:
 		best_label.text = str(maxi(value, Save.best(C.GAMES[current_index][0])))
 
-func pause_game(value: bool) -> void:
+func pause_game(value: bool, persist: bool = true) -> void:
 	active_pointer = -2
 	if is_instance_valid(game):
 		game.set_suspended(value)
-		game.checkpoint()
+		if persist:
+			game.checkpoint()
 	Sound.suspend(value)
 
 func leave_game() -> void:
-	pause_game(true)
+	# clear_page commits this same frozen state synchronously.
+	pause_game(true, false)
 	show_home()
 
 func show_pause() -> void:
@@ -469,7 +471,7 @@ func _notification(what: int) -> void:
 	elif what == NOTIFICATION_APPLICATION_FOCUS_IN:
 		if Save.dirty:
 			Save.flush()
-		if page != "game":
+		if page != "game" or (is_instance_valid(game) and game.stopped):
 			Sound.suspend(false)
 	elif what == NOTIFICATION_WM_GO_BACK_REQUEST:
 		# System notification propagation can hold the scene tree's child lock.
@@ -481,8 +483,14 @@ func _notification(what: int) -> void:
 func exit_application() -> void:
 	if exiting:
 		return
-	pause_game(true)
-	if Save.flush() != OK:
+	pause_game(true, false)
+	var error: Error
+	if is_instance_valid(game) and not game.stopped:
+		game.checkpoint()
+		error = Save.last_error
+	else:
+		error = Save.flush()
+	if error != OK:
 		var actions := [[C.words("Stay here", "留在这里"), _cancel_exit], [C.words("Close without saving", "不保存并退出"), _quit]]
 		var message := C.words("Check storage space and retry. Closing now loses changes since the last successful save.", "请检查存储空间后重试。现在退出会丢失上次成功保存后的更改。")
 		if Save.load_error != OK:
@@ -495,6 +503,8 @@ func exit_application() -> void:
 
 func _cancel_exit() -> void:
 	if is_instance_valid(game) and game.stopped:
+		game.set_suspended(false)
+		Sound.suspend(false)
 		show_result(C.words("Your round is still here.", "本局结果还在这里。"))
 	else:
 		resume()

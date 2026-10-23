@@ -5,6 +5,7 @@ import re
 from pathlib import Path
 import subprocess
 import time
+import sys
 
 SUITES = [
     ("tests/logic/run_tests.gd", False),
@@ -26,6 +27,9 @@ SUITES = [
     ("tests/integration/fruit_playthrough.gd", True),
     ("tests/integration/collection_audit.gd", True),
     ("tests/integration/reliability.gd", False),
+    ("tests/integration/patch_reliability.gd", False),
+    ("tests/integration/upgrade_restore.gd", False),
+    ("scripts_tools/test_release_tools.py", False),
 ]
 
 
@@ -41,6 +45,8 @@ def main():
         if fixed:
             command += ["--fixed-fps", "60"]
         command += ["--script", script]
+        if script.endswith(".py"):
+            command = [sys.executable, script]
         start = time.monotonic()
         result = subprocess.run(command, capture_output=True, encoding="utf-8", errors="replace", timeout=180)
         combined = result.stdout + result.stderr

@@ -1,0 +1,10 @@
+{
+  "repository": "seiya058904/mochi-arcade",
+  "package": "io.github.seiya058904.mochiarcade",
+  "certificate_sha256": "de1458f30ad0f2a758b9c6f3de82c00b608723eaa75de22d3cf853e351f7657b",
+  "candidate": {"tag": "v1.1.1", "version": "1.1.1", "code": 3},
+  "predecessors": {
+    "v1.1.0": {"version": "1.1.0", "code": 2, "asset": "MochiArcade.apk", "sha256": "9676db2f517e9c206317bfce045259294e36c5014b294f155db549b81f263320"},
+    "v1.0.0": {"version": "1.0.0", "code": 1, "asset": "MochiArcade.apk", "sha256": "8fcc1ebc83cb9cb8e8947a1a33bef9cba9222b9ac775fafdcd7d3d5cd85d473c"}
+  }
+}

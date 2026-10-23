@@ -6,6 +6,7 @@ const BODY := preload("res://scripts/games/fruit_body.gd")
 var textures: Array[Texture2D] = []
 var fruits: Array[RigidBody2D] = []
 var claimed: Dictionary = {}
+var pending_merges: Array = []
 var next_id := 0
 var next_level := 0
 var aim_x := 324.0
@@ -87,11 +88,17 @@ func contact(a: RigidBody2D, b: Node) -> void:
 	if RULES.claim(a.number, b.number, a.level, b.level, claimed):
 		a.consumed = true
 		b.consumed = true
+		pending_merges.append([a, b])
 		merge_pair.call_deferred(a, b)
 
 func merge_pair(a: RigidBody2D, b: RigidBody2D) -> void:
 	if not is_instance_valid(a) or not is_instance_valid(b) or not is_inside_tree():
 		return
+	# A claimed pair is still the complete pre-merge state until committed.
+	# Lifecycle suspension must not let deferred work change a frozen snapshot.
+	if suspended or not pending_merges.has([a, b]):
+		return
+	pending_merges.erase([a, b])
 	var point := (a.position + b.position) / 2
 	var level: int = a.level
 	var velocity := (a.linear_velocity + b.linear_velocity) * 0.25
@@ -174,6 +181,9 @@ func set_suspended(value: bool) -> void:
 	super.set_suspended(value)
 	for fruit in fruits:
 		fruit.freeze = value or stopped
+	if not value:
+		for pair in pending_merges:
+			merge_pair.call_deferred(pair[0], pair[1])
 
 func _draw() -> void:
 	rounded(Rect2(0, 0, area.x, area.y), Color("fcf0e5"), 30)
@@ -197,6 +207,8 @@ func checkpoint() -> void:
 		return
 	var state: Array = []
 	for fruit in fruits:
-		if is_instance_valid(fruit) and not fruit.consumed:
+		# Pending pairs remain in fruits until their synchronous replacement and
+		# score update finish. Include them so every commit is a coherent prefix.
+		if is_instance_valid(fruit):
 			state.append({"level": fruit.level, "x": fruit.position.x, "y": fruit.position.y, "vx": fruit.linear_velocity.x, "vy": fruit.linear_velocity.y, "angle": fruit.rotation})
 	Save.save_session(game_id, {"fruit": state, "score": score, "next": next_level, "rng": str(rng.state), "seed": run_seed})

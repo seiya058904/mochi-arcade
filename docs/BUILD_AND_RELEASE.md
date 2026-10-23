@@ -1,11 +1,12 @@
 # Build and release
 
-Current release: **v1.1.0**, Android versionCode 2. Its original signed bytes passed
+Published release: **v1.1.0**, Android versionCode 2. Its original signed bytes passed
 API 34 hosted runtime/upgrade and independent public-download verification; the
 v1.0.0 release is intact. See [iteration evidence](ITERATION_1.1.md) for source
 identity, retained failures and device limits. Local signing works; private
-material must stay local. Nineteen suites are now required (the original 18 plus
-the save-failure/terminal-Undo suite).
+material must stay local. Twenty-two checks are required for the 1.1.1 candidate: original suites,
+patch boundary/terminal regressions, full restore probe and Python identity tests.
+See [current patch](ITERATION_1.1.1.md); previous release PASS is not candidate acceptance.
 
 ## Verified local toolchain
 
@@ -140,7 +141,7 @@ access to read an unpublished draft (the retained read-only attempt returned
 HTTP 403). Checkout credentials are not persisted; the helper performs GET and
 download operations only. The verification job remains `contents:read` and checks
 the expected hash, original certificate, non-debuggable manifest and version.
-It separately downloads the immutable public v1.0.0 APK and checks its hash.
+It separately downloads the project-retained public v1.0.0 APK and checks its hash.
 
 On the disposable API 34 AOSP userdebug AVD it executes the full predecessor
 smoke, an actual `adb install -r` upgrade with byte-preserved saves and eight
@@ -150,3 +151,21 @@ All eight games still require three background returns. Raw screenshots must be
 reviewed; no assertion is skipped, failed guest is restarted or failure converted
 to PASS. The historical A14 exception is unchanged. The local AEHD service must
 remain stopped under the owner's explicit decision.
+
+## 1.1.1 identity and two upgrade sources
+
+`release_identity.json` is the trusted version/package/certificate/predecessor
+configuration. Export preset consistency is a required test. Candidate hash and
+exact build source SHA are explicit inputs, never inferred from the untrusted APK.
+Dispatch the workflow twice with the same `staged_release_id`,
+`staged_apk_sha256`, `staged_source_sha` and `upgrade_from` set respectively to
+`v1.1.0` and `v1.0.0`. The draft target must equal that exact source SHA.
+Each disposable AVD first tests its hash-pinned predecessor, compares complete
+persistent semantics while first-help freezes simulation, exercises native Undo
+and continuation, checks recovery, then uninstalls and independently tests the
+clean candidate plus maximum pools. Reports keep raw visual-review-pending states.
+Both runs and matching independent visual reviews are mandatory.
+
+Old tags/assets are preserved by project rule. GitHub reports immutable=false
+for the existing releases; no platform immutable-protection claim or setting
+change is made. Official Actions v4 commit pins were verified on 2026-10-23.

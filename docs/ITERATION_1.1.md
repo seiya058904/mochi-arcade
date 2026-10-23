@@ -24,7 +24,7 @@ This report separates source validation, development CI and signed-byte acceptan
   nine assertions on the old implementation; retained in
   `evidence/iteration-1.1/baseline-reliability.json`.
 - Release requires final-source tests, exact signed-byte native runtime,
-  v1.0.0 in-place upgrade preserving all eight saves/settings, CI, immutable new
+  v1.0.0 in-place upgrade preserving all eight saves/settings, CI, new project-retained
   tag, verified draft and anonymous published downloads. A successful build,
   desktop run or debug CI cannot substitute for missing release-package tests.
 
@@ -112,7 +112,7 @@ hosted development-package checks are separately reported.
 - Published v1.1.0: https://github.com/seiya058904/mochi-arcade/releases/tag/v1.1.0.
   `releases/latest` resolves to v1.1.0. APK and SHA256SUMS anonymously downloaded
   to a separate directory, byte-compared and independently signature-verified.
-- Immutable v1.1.0 tag: `4f5d7f78159497f6f6d53d06d4acc16685c25c72`.
+- Project-retained v1.1.0 tag (not platform immutable protection): `4f5d7f78159497f6f6d53d06d4acc16685c25c72`.
   APK build source: `5672e40968f2169dddce72d82460b7a2bfdfa7c9`; runtime/asset/export
   trees are identical. Later main changes only record release docs/evidence and
   do not change the tagged build or signed APK.

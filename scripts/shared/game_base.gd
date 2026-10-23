@@ -34,14 +34,14 @@ func setup(id: String, bounds: Vector2, game_font: Font, seed_value: int = -1) -
 func add_score(value: int) -> void:
 	score += value
 	score_changed.emit(score)
-	Save.record(game_id, score)
+	Save.stage_record(game_id, score)
 
 func finish(message: String) -> void:
 	if stopped:
 		return
 	stopped = true
 	cancel_pointer()
-	Save.record(game_id, score)
+	Save.stage_record(game_id, score)
 	Save.clear_session(game_id)
 	ended.emit(message)
 

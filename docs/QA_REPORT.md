@@ -1,6 +1,12 @@
 # QA report
 
-## Current 1.1.0 source iteration — 2026-10-23
+## Current 1.1.1 patch — 2026-10-23
+
+**IN_PROGRESS; new signed Android and release gates NOT_RUN.** See
+[ITERATION_1.1.1.md](ITERATION_1.1.1.md) for F1–F6, exact next actions and
+current evidence. The v1.1.0 sections below describe the previous delivery.
+
+## Historical 1.1.0 source iteration — 2026-10-23
 
 **v1.1.0 RELEASED; exact signed runtime/upgrade, startup review and public bytes PASS.**
 [ITERATION_1.1.md](ITERATION_1.1.md) and `evidence/iteration-1.1/` retain all scopes.
