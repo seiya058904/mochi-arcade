@@ -1,6 +1,6 @@
 # 1.1.0 iteration — 2026-10-23
 
-Status: **NOT_RELEASED / BLOCKED_ANDROID_RUNTIME**. The published v1.0.0 remains
+Status: **NOT_RELEASED; hosted signed acceptance NOT_RUN, local Android BLOCKED**. The published v1.0.0 remains
 the accepted download. No old tag, asset, visibility or history is replaced.
 This report separates source validation, development CI and signed-byte acceptance.
 
@@ -183,3 +183,22 @@ logs are unchanged. This earlier green run does not validate later read-error or
 exit-cancellation changes. Final main is independently checked in Actions before
 closing this task; its downloadable artifacts are authoritative for that SHA.
 No new tag/draft/stable release is created while signed Android gates are blocked.
+
+### Authorized hosted signed-byte acceptance
+
+The owner kept the prohibition on starting AEHD, then explicitly authorized a
+sequence exception: an unpublished draft may stage the locally signed APK before
+upgrade acceptance. The existing Actions AOSP emulator can fetch the exact
+checksum-pinned bytes with its repository token; no private key/DPAPI/password is
+uploaded. `fetch_staged_release.py` verifies both APK hashes, original certificate,
+versions and non-debuggable manifests. `android_upgrade.py` uses real old-version
+rounds plus named synthetic record fixtures, compares both save files across
+`install -r`, exercises restored games and damaged/read-denied saves, then checks
+ordinary uninstall before the independent candidate clean-install smoke/load.
+All raw assertions/black-frame gates remain. A staged draft is not a published release.
+
+Final desktop replay invocation initially omitted the required `--fixed-fps 60`,
+causing frame-count-based tests to fail at the wrong simulated time. Those failed
+results are retained separately. Re-running all seven real-renderer scripts with
+the same fixed simulation clock as `run_checks.py` passes all eight game paths;
+this is renderer/input correctness evidence, not real-time performance evidence.

@@ -2,7 +2,7 @@
 
 ## Current 1.1.0 source iteration — 2026-10-23
 
-**NOT_RELEASED / BLOCKED_ANDROID_RUNTIME.** New evidence is scoped in
+**NOT_RELEASED; hosted signed acceptance NOT_RUN, local Android BLOCKED.** New evidence is scoped in
 [ITERATION_1.1.md](ITERATION_1.1.md) and `evidence/iteration-1.1/`.
 Baseline 18/18 PASS; new 19/19 PASS includes 46 failure/retry/recovery/terminal-Undo
 assertions. All 64 real-renderer EN/ZH three-ratio layouts plus new failure/exit/Undo

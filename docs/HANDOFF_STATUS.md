@@ -2,7 +2,7 @@
 
 ## Current iteration — 2026-10-23
 
-**1.1.0 NOT_RELEASED / BLOCKED_ANDROID_RUNTIME.** The existing v1.0.0 public
+**1.1.0 NOT_RELEASED; signed hosted acceptance pending.** The existing v1.0.0 public
 release and tag are untouched. See [ITERATION_1.1.md](ITERATION_1.1.md) for the
 audit, source changes, evidence, signing identity and exact continuation.
 The 18 original suites plus new 46-check reliability suite pass locally; 64
@@ -12,7 +12,8 @@ acceleration-on AVD startup fails its hypervisor precondition, and both unaccele
 GPU routes exit 0xC0000005 before usable ADB. No system drivers/services changed. The owner explicitly declined starting AEHD;
 keep that restriction in force.
 
-Next: obtain a functioning isolated Android test environment; verify exact signed
+Next: use the owner-authorized unpublished draft staging path on the existing
+hosted AOSP emulator (no key upload); verify exact signed
 1.1.0 bytes and in-place upgrade from the archived public v1.0.0 APK; run/review
 signed smoke/load, then and only then tag, draft, verify, publish and independently
 download. CI development APK and old signed acceptance cannot replace these gates.

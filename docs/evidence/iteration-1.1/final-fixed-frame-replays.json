@@ -1,0 +1,110 @@
+{
+  "source_commit": "fbb24ed2c32645e68ee8728abb09c7553329a8fb",
+  "results": [
+    {
+      "script": "tests/integration/vertical_playthrough.gd",
+      "command": [
+        "D:\\tools\\godot\\4.7.2\\Godot_v4.7.2-stable_win64.exe",
+        "--path",
+        ".",
+        "--fixed-fps",
+        "60",
+        "--script",
+        "res://tests/integration/vertical_playthrough.gd"
+      ],
+      "exit": 0,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "script": "tests/integration/fruit_playthrough.gd",
+      "command": [
+        "D:\\tools\\godot\\4.7.2\\Godot_v4.7.2-stable_win64.exe",
+        "--path",
+        ".",
+        "--fixed-fps",
+        "60",
+        "--script",
+        "res://tests/integration/fruit_playthrough.gd"
+      ],
+      "exit": 0,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "script": "tests/integration/bubble_playthrough.gd",
+      "command": [
+        "D:\\tools\\godot\\4.7.2\\Godot_v4.7.2-stable_win64.exe",
+        "--path",
+        ".",
+        "--fixed-fps",
+        "60",
+        "--script",
+        "res://tests/integration/bubble_playthrough.gd"
+      ],
+      "exit": 0,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "script": "tests/integration/hop_playthrough.gd",
+      "command": [
+        "D:\\tools\\godot\\4.7.2\\Godot_v4.7.2-stable_win64.exe",
+        "--path",
+        ".",
+        "--fixed-fps",
+        "60",
+        "--script",
+        "res://tests/integration/hop_playthrough.gd"
+      ],
+      "exit": 0,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "script": "tests/integration/trio_playthrough.gd",
+      "command": [
+        "D:\\tools\\godot\\4.7.2\\Godot_v4.7.2-stable_win64.exe",
+        "--path",
+        ".",
+        "--fixed-fps",
+        "60",
+        "--script",
+        "res://tests/integration/trio_playthrough.gd"
+      ],
+      "exit": 0,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "script": "tests/integration/balls_playthrough.gd",
+      "command": [
+        "D:\\tools\\godot\\4.7.2\\Godot_v4.7.2-stable_win64.exe",
+        "--path",
+        ".",
+        "--fixed-fps",
+        "60",
+        "--script",
+        "res://tests/integration/balls_playthrough.gd"
+      ],
+      "exit": 0,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "script": "tests/integration/jelly_playthrough.gd",
+      "command": [
+        "D:\\tools\\godot\\4.7.2\\Godot_v4.7.2-stable_win64.exe",
+        "--path",
+        ".",
+        "--fixed-fps",
+        "60",
+        "--script",
+        "res://tests/integration/jelly_playthrough.gd"
+      ],
+      "exit": 0,
+      "errors": [],
+      "status": "PASS"
+    }
+  ]
+}

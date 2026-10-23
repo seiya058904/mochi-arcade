@@ -129,6 +129,13 @@ def main():
         if not args.serial.startswith("emulator-") or shell("getprop", "ro.kernel.qemu") != "1":
             raise RuntimeError("Load fixtures require the dedicated test emulator")
         report["device"] = shell("getprop", "ro.build.fingerprint")
+        installed_path = shell("pm", "path", PACKAGE)
+        if not installed_path.startswith("package:") or "\n" in installed_path:
+            raise RuntimeError("Expected exactly one installed APK for this test")
+        installed_sha = shell("sha256sum", installed_path.removeprefix("package:")).split()[0]
+        report["installed_apk_sha256"] = installed_sha
+        if installed_sha != hashlib.sha256(args.apk.read_bytes()).hexdigest():
+            raise RuntimeError("Installed APK differs from the claimed load-test bytes")
         if args.release:
             if shell("getprop", "ro.build.type") != "userdebug" or shell("id", "-u") != "0":
                 raise RuntimeError("Non-debuggable save access requires the already-rooted dedicated userdebug AVD")

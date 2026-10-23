@@ -9,6 +9,14 @@ on:
         description: Build and test using the explicitly authorized release signing secrets
         type: boolean
         default: false
+      staged_release_id:
+        description: Authorized unpublished draft ID containing a locally signed APK; no signing secrets used
+        type: string
+        default: ''
+      staged_apk_sha256:
+        description: Expected SHA-256 of those exact locally signed APK bytes
+        type: string
+        default: ''
       graphics_backend:
         description: Emulator graphics diagnostic; both choices use software rendering on this runner
         type: choice
@@ -23,6 +31,8 @@ jobs:
     env:
       GODOT_VERSION: 4.7.2
       MOCHI_EMULATOR_GPU: ${{ inputs.graphics_backend || 'host' }}
+      MOCHI_STAGED_RELEASE_ID: ${{ inputs.staged_release_id }}
+      MOCHI_STAGED_APK_SHA256: ${{ inputs.staged_apk_sha256 }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -74,7 +84,7 @@ jobs:
           mkdir -p "$HOME/.config/godot"
           printf '[gd_resource type="EditorSettings" format=3]\n\n[resource]\nexport/android/android_sdk_path = "%s"\nexport/android/java_sdk_path = "%s"\n' "$ANDROID_HOME" "$JAVA_HOME" > "$HOME/.config/godot/editor_settings-4.7.tres"
       - name: Build development APK
-        if: ${{ !inputs.release_candidate }}
+        if: ${{ !inputs.release_candidate && !inputs.staged_release_id }}
         env:
           GODOT_ANDROID_KEYSTORE_DEBUG_PATH: ${{ github.workspace }}/.local/android/debug.keystore
           GODOT_ANDROID_KEYSTORE_DEBUG_USER: androiddebugkey
@@ -84,12 +94,19 @@ jobs:
           Godot_v${GODOT_VERSION}-stable_linux.x86_64 --headless --path . --export-debug Android dist/MochiArcade-dev.apk
           echo 'MOCHI_APK=dist/MochiArcade-dev.apk' >> "$GITHUB_ENV"
       - name: Build and verify signed release candidate
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_candidate }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_candidate && !inputs.staged_release_id }}
         env:
           MOCHI_RELEASE_KEYSTORE_BASE64: ${{ secrets.MOCHI_RELEASE_KEYSTORE_BASE64 }}
           MOCHI_RELEASE_PASSWORD: ${{ secrets.MOCHI_RELEASE_PASSWORD }}
         run: |
           python3 scripts_tools/build_ci_release.py --engine "Godot_v${GODOT_VERSION}-stable_linux.x86_64"
+          echo 'MOCHI_APK=dist/MochiArcade.apk' >> "$GITHUB_ENV"
+      - name: Fetch and verify locally signed staged bytes
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.staged_release_id }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 scripts_tools/fetch_staged_release.py --release-id "$MOCHI_STAGED_RELEASE_ID" --sha256 "$MOCHI_STAGED_APK_SHA256"
           echo 'MOCHI_APK=dist/MochiArcade.apk' >> "$GITHUB_ENV"
       - name: Install pinned Android runtime tools
         shell: bash
@@ -177,16 +194,32 @@ jobs:
           "$ANDROID_HOME/emulator/emulator" -avd Mochi_CI_API34 -no-window -no-audio -no-boot-anim -no-snapshot -gpu "$MOCHI_EMULATOR_GPU" -accel on -memory 2048 -cores 2 -partition-size 2048 -camera-back none -camera-front none > .local/android-runtime/emulator.log 2>&1 &
           emulator_pid=$!
           printf '%s\n' "$emulator_pid" > .local/android-runtime/emulator.pid
+          signed_preflight=0
+          if [[ -n "$MOCHI_STAGED_RELEASE_ID" ]]; then
+            # First exercise the anonymous published predecessor on this fresh AVD.
+            # Keep its complete evidence separate from the candidate and upgrade.
+            if ! python3 scripts_tools/android_smoke.py --apk dist/MochiArcade-v1.0.0.apk --output .local/android-runtime/old-version --emulator-pid "$emulator_pid" --release; then signed_preflight=1; fi
+            if [[ "$signed_preflight" == 0 ]]; then
+              if ! python3 scripts_tools/android_upgrade.py --apk "$MOCHI_APK" --old-evidence .local/android-runtime/old-version --output .local/android-runtime/upgrade; then signed_preflight=1; fi
+            fi
+            if [[ "$signed_preflight" != 0 ]]; then
+              # Preserve earlier FAIL and its evidence, but still test the independent
+              # clean candidate. This removes only this job's synthetic test app.
+              adb -s emulator-5554 uninstall io.github.seiya058904.mochiarcade
+            fi
+          fi
           smoke_args=(--apk "$MOCHI_APK" --output .local/android-runtime --emulator-pid "$emulator_pid")
-          if [[ "${{ inputs.release_candidate }}" == 'true' ]]; then smoke_args+=(--release); fi
-          python3 scripts_tools/android_smoke.py "${smoke_args[@]}"
+          if [[ "${{ inputs.release_candidate }}" == 'true' || -n "$MOCHI_STAGED_RELEASE_ID" ]]; then smoke_args+=(--release); fi
+          candidate_smoke=0
+          if ! python3 scripts_tools/android_smoke.py "${smoke_args[@]}"; then candidate_smoke=1; fi
+          if [[ "$signed_preflight" != 0 || "$candidate_smoke" != 0 ]]; then exit 1; fi
       - name: Measure maximum-pool Android render bursts
         if: ${{ !cancelled() && (steps.android_smoke.outcome == 'success' || steps.android_smoke.outcome == 'failure') }}
         shell: bash
         run: |
           set -euo pipefail
           load_args=(--apk "$MOCHI_APK" --output .local/android-runtime/load)
-          if [[ "${{ inputs.release_candidate }}" == 'true' ]]; then load_args+=(--release); fi
+          if [[ "${{ inputs.release_candidate }}" == 'true' || -n "$MOCHI_STAGED_RELEASE_ID" ]]; then load_args+=(--release); fi
           # Preserve guest logs even if the AVD becomes unreachable during a load.
           adb -s emulator-5554 logcat -v threadtime > .local/android-runtime/load-stream-logcat.txt 2>&1 &
           mochi_logcat_pid=$!
@@ -222,7 +255,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: ${{ inputs.release_candidate && 'signed-candidate-and-tests' || 'development-apk-and-tests' }}
+          name: ${{ (inputs.release_candidate || inputs.staged_release_id) && 'signed-candidate-and-tests' || 'development-apk-and-tests' }}
           path: |
             dist/MochiArcade-dev.apk
             dist/MochiArcade.apk

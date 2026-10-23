@@ -1,0 +1,57 @@
+{
+  "source_commit": "fbb24ed2c32645e68ee8728abb09c7553329a8fb",
+  "results": [
+    {
+      "script": "tests/integration/vertical_playthrough.gd",
+      "exit": 1,
+      "errors": [],
+      "status": "FAIL"
+    },
+    {
+      "script": "tests/integration/fruit_playthrough.gd",
+      "exit": 0,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "script": "tests/integration/bubble_playthrough.gd",
+      "exit": 0,
+      "errors": [],
+      "status": "PASS"
+    },
+    {
+      "script": "tests/integration/hop_playthrough.gd",
+      "exit": 1,
+      "errors": [],
+      "status": "FAIL"
+    },
+    {
+      "script": "tests/integration/trio_playthrough.gd",
+      "exit": 1,
+      "errors": [],
+      "status": "FAIL"
+    },
+    {
+      "script": "tests/integration/balls_playthrough.gd",
+      "exit": 1,
+      "errors": [],
+      "status": "FAIL"
+    },
+    {
+      "script": "tests/integration/jelly_playthrough.gd",
+      "exit": 1,
+      "errors": [],
+      "status": "FAIL"
+    },
+    {
+      "script": "tests/integration/visual_matrix.gd",
+      "exit": 0,
+      "status": "PASS"
+    },
+    {
+      "script": "tests/integration/audio_output.gd",
+      "exit": 0,
+      "status": "PASS"
+    }
+  ]
+}

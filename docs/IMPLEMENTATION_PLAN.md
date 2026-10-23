@@ -7,7 +7,7 @@
 | Takeover / baseline / audit | PASS | Clean unique root; live public remote/tag/download; original signing identity opened; baseline 18/18; eight-game review in ITERATION_1.1.md |
 | Confirmed repairs | PASS local | Save failure/recovery, terminal Bloom Undo, four idle canvas guards; 19/19 suites including 46 new regression checks |
 | Desktop rendering / audio | PASS reviewed | 64 EN/ZH captures across three ratios; terminal/failure UI; same-seed idle pixels exact; actual audio mixer checks |
-| New signed Android / upgrade | BLOCKED | AVD acceleration unavailable; no-accel startup crashes before usable ADB. Obtain functioning isolated Android environment, preserve original certificate and verify v1.0.0 upgrade |
+| New signed Android / upgrade | NOT_RUN hosted; BLOCKED local | AVD acceleration unavailable; no-accel startup crashes before usable ADB. Owner authorized draft staging for exact locally signed bytes on existing hosted AOSP; run predecessor, upgrade, candidate smoke/load and review all captures. Do not start AEHD |
 | Remote integration / development CI | PASS integration; per-SHA CI | Direct main integration is allowed (no protection/rulesets). Reviewed development run 39922816834 passes; it is an earlier source. Final commit status/captures are recorded by Actions and the local closeout record, never inferred from this earlier green run |
 | New stable Release / public download | NOT_RUN / BLOCKED | No new tag or Release until exact signed-byte Android and upgrade gates pass; v1.0.0 remains intact |
 
