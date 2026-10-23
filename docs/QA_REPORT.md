@@ -1,6 +1,17 @@
 # QA report
 
-## Current 1.1.1 patch — 2026-10-23
+Current signed run 39961466842: **U100 and LOAD PASS reviewed; U110 and CLEAN FAIL**.
+The complete v1.0.0 upgrade includes eight semantic states, real terminal Undo and
+fault recovery. The v1.1.0 upgrade and independent new-install gates remain incomplete.
+
+## Current Android unblock acceptance — 2026-10-23
+
+**BLOCKED.** See [current gate and visual evidence](ANDROID_UNBLOCK_1.1.1.md).
+Signed LOAD now restores both original files and passes independent review;
+CLEAN/U110 show sustained black frames after background return. Short diagnostic
+success and a later diagnostic surface recovery do not convert either FAIL to PASS.
+
+## Historical 1.1.1 patch QA before continuation — 2026-10-23
 
 **BLOCKED; both signed upgrade runs FAIL after hosted emulator SIGSEGV.** See
 [ITERATION_1.1.1.md](ITERATION_1.1.1.md) for F1–F6, exact next actions and

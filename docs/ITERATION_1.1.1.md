@@ -1,5 +1,16 @@
 # 1.1.1 reliability patch — 2026-10-23
 
+Current signed run 39961466842: **U100 and LOAD PASS reviewed; U110 and CLEAN FAIL**.
+The complete v1.0.0 upgrade includes eight semantic states, real terminal Undo and
+fault recovery. The v1.1.0 upgrade and independent new-install gates remain incomplete.
+
+Current continuation: **BLOCKED** by full Android lifecycle surface failures.
+The signed LOAD restoration gap is closed; [the unblock audit](ANDROID_UNBLOCK_1.1.1.md)
+is authoritative for current gate status. The original product fixes and candidate
+remain unchanged. The following report preserves the previous iteration's evidence.
+
+## Historical patch audit before Android unblock work
+
 Status: **BLOCKED; signed Android acceptance failed after hosted emulator crashes**. Published v1.1.0 and v1.0.0
 remain unchanged. This iteration does not inherit their runtime PASS results.
 

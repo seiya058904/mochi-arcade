@@ -1,6 +1,6 @@
 # 1.1.1 Android acceptance unblock — 2026-10-23
 
-Status: **IN_PROGRESS; publication remains BLOCKED**. The user explicitly asked
+Status: **BLOCKED for publication**. The user explicitly asked
 to preserve the candidate and finish bounded environment diagnostics, four
 independent acceptance gates and conditional publication. No subagents.
 
@@ -113,11 +113,71 @@ Official [graphics modes](https://developer.android.com/studio/run/emulator-acce
 list explicit swiftshader; swiftshader_indirect is deprecated. This motivates an
 experiment, not a claim that the prior gfxstream failure has been fixed.
 
-## Next actions
+## Full signed gate result (not superseded by the short diagnosis)
 
-1. Commit/test the observation and independent-gate tools as T; dispatch E1 once.
-2. Review actual renderer, each control, stop/restoration and diagnostic captures.
-3. If viable, execute all four full signed gates at one T/profile/hash, review
-   native captures/video, and run strict aggregate including manual review hashes.
-4. Integrate main and complete final applicable CI. Publish only after every gate;
-   otherwise finish evidence/synchronization with precise BLOCKED conditions.
+Run [39961466842](https://github.com/seiya058904/mochi-arcade/actions/runs/39961466842),
+T `6d1286a0db86d03786db217b5df3420582ba9ea8`, frozen candidate S/hash and swangle.
+All four fresh AVD jobs completed their own 23 required suites before Android.
+
+| Gate | Status | Actual completed scope and failure |
+| --- | --- | --- |
+| U110 | FAIL | Public v1.1.0 completed five game paths, then Hop background-return was black. Candidate install/upgrade, terminal Undo and recovery matrix NOT_RUN. Additional launcher observation failed because UIAutomator XML was absent. 71 native PNGs and startup video reviewed. |
+| U100 | PASS reviewed | Complete v1.0.0 smoke, original-signature install-r with both files preserved, all eight semantic states and native continuation, both terminal background-return/Undo paths, damaged/read-denied recovery and uninstall. 131 PNGs plus all 99 startup video frames (63 unique) reviewed. |
+| CLEAN | FAIL | Candidate first two game paths completed; Cake Stack first background-return was black. Remaining paths and clean uninstall NOT_RUN. 39 PNGs and startup video reviewed; no full new-install claim. |
+| LOAD | PASS reviewed | 64 balls and 12 fruit restored and exercised. Stop/no PID/live shell, both writes and both read-back byte/metadata comparisons PASS. 11 PNGs reviewed; emulator terminated normally. |
+
+U110 and CLEAN both retain the original black frame after five extra seconds.
+A further background/foreground surface cycle restores the pause UI with the same
+application PID, solely as diagnosis; the run stays FAIL. ADB, ActivityManager and
+SurfaceFlinger responded, no host SIGSEGV was observed, emulator termination exited
+0. CLEAN logs around 13:35:19 UTC show abandoned BufferQueue, EGL_BAD_SURFACE and
+GLThread `!readyToDraw()` after OnResume. These observations narrow the failure to
+the surface/rendering path but do not establish an engine/emulator/driver root cause.
+The public predecessor also failing means it is not unique to candidate changes.
+
+Raw automation reports, native captures/video, exact visual hash lists and separate
+PASS/FAIL reviews are retained under `evidence/iteration-1.1.1/unblock/gates-39961466842/`.
+The review decoded all startup frames (68 each for CLEAN/U110), inspecting all
+unique pixel frames; repeated identical frames are indexed, not sampled away.
+No third profile, unchanged signed rerun, timeout increase, relaxed assertion,
+seed change, app reset within an upgrade or runtime/APK modification is authorized
+as a way to erase this failure. The final main CI remains a separate gate and cannot replace these exact-signed failures.
+
+## Remaining external condition and continuation boundary
+
+Two bounded configurations are exhausted. A future continuation needs a specific,
+evidence-backed correction for GLES surface recovery or a separately validated
+Android acceptance environment that survives the complete lifecycle chain. First
+use the retained public-v1.1.0/Cake/Hop traces to isolate engine, emulator and driver
+behavior; do not infer a GDScript repair from a black screenshot. Keep Godot 4.7.2,
+the original candidate, original signing identity and existing published assets
+until a concrete product/export fix is demonstrated. No local AVD, AEHD/system
+change, temporary physical-device request or paid runner is part of this task.
+
+F1–F3 repairs, version-1 storage and measured transaction reductions are preserved.
+No additional product fix or save optimization was made. The 126-assertion patch
+and 119-assertion rendered reports remain distinct historical tests. U100 now independently proves Android terminal Undo and full upgrade semantics for
+v1.0.0. U110 remains incomplete. AudioFlinger shows active/advancing output tracks
+after terminal return, but no Android PCM recording/listening was performed.
+ARM64 devices, other APIs, physical 60/120 Hz, heat/battery and audible Android
+output remain UNVERIFIED/DEVICE_UNAVAILABLE; CPU-rendered host rates are not phone FPS.
+
+## Closeout and next actions
+
+The strict four-gate aggregate is **FAIL**: U100 and LOAD PASS with matching native
+visual reviews; U110 and CLEAN FAIL. See
+[`release-gates.json`](evidence/iteration-1.1.1/unblock/gates-39961466842/release-gates.json).
+No v1.1.1 public tag/release or anonymous candidate-download claim is made.
+
+1. Integrate the reviewed tools/evidence into main and run the required final main
+   CI (development bytes, separately identified). Record exact final SHA/run in
+   the local delivery JSON and retained draft handoff; do not inherit signed PASS.
+2. Keep the original candidate draft and published v1.0.0/v1.1.0 assets unchanged.
+3. Future work needs the concrete surface-recovery/environment condition above.
+   Two configuration experiments are exhausted; do not repeat unchanged full gates.
+
+No additional save optimization was performed. The historical paired Windows
+100-sample nearest-rank results remain: record swipe 2→1 commits, p50 16.704→6.181
+ms / p95 17.532→9.384; pause 1→1, 3.565→3.567 / 6.600→6.464; home 2→1,
+8.237→5.451 / 11.367→8.752; exit 2→1, 6.076→2.972 / 9.860→6.382.
+These are prior measured observations, not new Android performance results.

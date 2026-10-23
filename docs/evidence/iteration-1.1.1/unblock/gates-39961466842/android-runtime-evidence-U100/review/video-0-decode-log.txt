@@ -1,0 +1,28 @@
+[image2 @ 000001fadc284440] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 5 >= 5
+[image2 @ 000001fadc284440] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 7 >= 7
+[image2 @ 000001fadc284440] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 9 >= 9
+    Last message repeated 1 times
+[image2 @ 000001fadc284440] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 10 >= 10
+[image2 @ 000001fadc284440] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 11 >= 11
+    Last message repeated 1 times
+[image2 @ 000001fadc284440] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 12 >= 12
+    Last message repeated 1 times
+[image2 @ 000001fadc284440] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 13 >= 13
+    Last message repeated 1 times
+[image2 @ 000001fadc284440] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 14 >= 14
+    Last message repeated 1 times
+[image2 @ 000001fadc284440] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 16 >= 16
+[image2 @ 000001fadc284440] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 18 >= 18
+[image2 @ 000001fadc284440] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 20 >= 20
+[image2 @ 000001fadc284440] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 26 >= 26
+[image2 @ 000001fadc284440] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 30 >= 30
+[image2 @ 000001fadc284440] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 33 >= 33
+[image2 @ 000001fadc284440] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 41 >= 41
+[image2 @ 000001fadc284440] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 59 >= 59
+[image2 @ 000001fadc284440] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 69 >= 69
+[image2 @ 000001fadc284440] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 71 >= 71
+[image2 @ 000001fadc284440] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 73 >= 73
+[image2 @ 000001fadc284440] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 78 >= 78
+[image2 @ 000001fadc284440] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 80 >= 80
+[image2 @ 000001fadc284440] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 86 >= 86
+[image2 @ 000001fadc284440] Application provided invalid, non monotonically increasing dts to muxer in stream 0: 95 >= 95

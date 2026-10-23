@@ -1,0 +1,827 @@
+{
+  "avd-config.ini": {
+    "sha256": "b20b3f7689a9310eaf3d20d26d6722028986e09cc14bcd3773871bc2b9000d81",
+    "bytes": 3588,
+    "archived_as": "avd-config.ini"
+  },
+  "emulator-exit.json": {
+    "sha256": "3c0ee5ac8814eac58a26565d34f794d38047b92db7a25839237890ad8011629a",
+    "bytes": 84,
+    "archived_as": "emulator-exit.json"
+  },
+  "emulator-help-gpu.txt": {
+    "sha256": "2b41d0c256896c5ef239eb26346d65fce2de08275953f3c131d639aedfa69f6f",
+    "bytes": 686,
+    "archived_as": "emulator-help-gpu.txt"
+  },
+  "emulator-package.xml": {
+    "sha256": "2fd2c4996482128e96927d491431b3aa6771c255091e34f8cd8fa305fd0a4cac",
+    "bytes": 18641,
+    "archived_as": "emulator-package.xml"
+  },
+  "emulator-process.jsonl": {
+    "sha256": "f25b15a7a9de77ca6730c1379d0eb06ca4b573f2052446f67179c645c3992f46",
+    "bytes": 26756,
+    "archived_as": "emulator-process.jsonl"
+  },
+  "emulator-version.txt": {
+    "sha256": "ea36a35958c14ba5f003d0e68087a01947b2b1e7d3c26286417430ced3f2b811",
+    "bytes": 655,
+    "archived_as": "emulator-version.txt"
+  },
+  "emulator.log": {
+    "sha256": "50477dc16bff0364aae4907b24f1009964bfe0d299362fcb0296012fc14da419",
+    "bytes": 10388,
+    "archived_as": "emulator.log"
+  },
+  "emulator.pid": {
+    "sha256": "a352ef9c1f4f05b33f60e07a8472b4106974ac6e3deda452fc2072b2f68301cd",
+    "bytes": 5,
+    "archived_as": "emulator.pid"
+  },
+  "gate-report.json": {
+    "sha256": "9e22b4e7b89f9d454e09416511224747d2d68013cc454ad7125d1c94d3a3d4a3",
+    "bytes": 2172,
+    "archived_as": "gate-report.json"
+  },
+  "gate-stream-logcat.txt": {
+    "sha256": "3890d29c9c07c211c682d9000daa16cc7ac550fb6bcd5be8c38fe2fea5aa8769",
+    "bytes": 4059567,
+    "archived_as": "gate-stream-logcat.txt.gz"
+  },
+  "host-release.json": {
+    "sha256": "fbd3bd8e91ecdaccf3f3971ffc51c734dd5ede87e753e9ca5a8b8750c45327fb",
+    "bytes": 1594,
+    "archived_as": "host-release.json"
+  },
+  "kernel.txt": {
+    "sha256": "cd8e31ad3f05d597238a1403bb5c2d25c975d53959c3d48af034216515712dc5",
+    "bytes": 113,
+    "archived_as": "kernel.txt"
+  },
+  "renderer.txt": {
+    "sha256": "f3f12d4bf5c8efe50efda96ed7c08a980688ee45de92ee54a540af3628f8f132",
+    "bytes": 154723,
+    "archived_as": "renderer.txt.gz"
+  },
+  "source-equivalence.json": {
+    "sha256": "def060fabd2964aac33a260f775059e7b529b448e49e17e734c9ca1551dcdea8",
+    "bytes": 8015,
+    "archived_as": "source-equivalence.json"
+  },
+  "staged-byte-identity.json": {
+    "sha256": "f47654dfcc7c33588fd33ce672ec9e837f1f3399930ece271ae400359baa86db",
+    "bytes": 834,
+    "archived_as": "staged-byte-identity.json"
+  },
+  "system-image-package.xml": {
+    "sha256": "404f0f37d1fe7d082fdcb2a099de15d6b7864695b730bb83982f23bc44ea9417",
+    "bytes": 19112,
+    "archived_as": "system-image-package.xml"
+  },
+  "visual-review.json": {
+    "sha256": "612574edd0b25ce44397dc59b8781f0b6050a37bcae4a132814b121f8973f254",
+    "bytes": 9482,
+    "archived_as": "visual-review.json"
+  },
+  "final-host/activity-manager.txt": {
+    "sha256": "1ad7c087611a2b0c0d48ebf50adb9071cf714d3db7a7ed95a292fce78cd67c7d",
+    "bytes": 243954,
+    "archived_as": "final-host/activity-manager.txt.gz"
+  },
+  "final-host/app-pid.txt": {
+    "sha256": "05946080643240a8f84fb6ffcc10e1bc3125654b6c1b79b7f656ec3e2af044bf",
+    "bytes": 5,
+    "archived_as": "final-host/app-pid.txt"
+  },
+  "final-host/diagnostics.json": {
+    "sha256": "d0d2fed3dec33a0d67b006b1e283b1707461499d921c9fd3fa0236e60e6e48ad",
+    "bytes": 1239,
+    "archived_as": "final-host/diagnostics.json"
+  },
+  "final-host/emulator-kernel-stack.txt": {
+    "sha256": "f0094b2b2b2db428a0e73597078a798b3583c077b7b52d034355df8dd41cae1f",
+    "bytes": 178,
+    "archived_as": "final-host/emulator-kernel-stack.txt"
+  },
+  "final-host/emulator-status.txt": {
+    "sha256": "7d477fdd9f7f2d709fa7567ef9886500f65a4f2ad4277d819cf39b75cd24258d",
+    "bytes": 1511,
+    "archived_as": "final-host/emulator-status.txt"
+  },
+  "final-host/emulator-threads.txt": {
+    "sha256": "a6cb7698b7069ce56b1920c2761b7a92676854b8618d14d460ed93dc7dd7ce59",
+    "bytes": 6085,
+    "archived_as": "final-host/emulator-threads.txt"
+  },
+  "final-host/guest-anr-index.txt": {
+    "sha256": "ab13c5e3b282b0cbaf6ae648ed35addb308778462a19ac0a2e694eb0f6830986",
+    "bytes": 46,
+    "archived_as": "final-host/guest-anr-index.txt"
+  },
+  "final-host/guest-logcat.txt": {
+    "sha256": "b0d7f38b97396ace7069236c616f0b2e0ed7553c6aca4cd6b2f58f385848c332",
+    "bytes": 1147483,
+    "archived_as": "final-host/guest-logcat.txt.gz"
+  },
+  "final-host/guest-processes.txt": {
+    "sha256": "8863bdc04955c70b710211563494208c4d4c5002247cd354fa23ae7923407da6",
+    "bytes": 132957,
+    "archived_as": "final-host/guest-processes.txt.gz"
+  },
+  "final-host/host-disk.txt": {
+    "sha256": "419aed03dfab9696bf8cb1314d52269189dffaa2fb5daf67c9aad8b380bd791b",
+    "bytes": 436,
+    "archived_as": "final-host/host-disk.txt"
+  },
+  "final-host/host-memory.txt": {
+    "sha256": "8679803d963631e890c966057b08e9d76292e91ef871710a86d1d27a0c3c277e",
+    "bytes": 207,
+    "archived_as": "final-host/host-memory.txt"
+  },
+  "final-host/host-processes.txt": {
+    "sha256": "133b93f756ab4b91b178fd60f8ee3b04e3a30984df985355bf22f52e8501daf0",
+    "bytes": 14612,
+    "archived_as": "final-host/host-processes.txt"
+  },
+  "final-host/light-shell.txt": {
+    "sha256": "107f901eb7c0cf6d2ba1c67a088bebeeea16ccec90d8379c9e8869695b69e6e9",
+    "bytes": 12,
+    "archived_as": "final-host/light-shell.txt"
+  },
+  "final-host/surface-flinger.txt": {
+    "sha256": "1ff30999be6ae19f613fa79ffc2a6378e7e9043ffe370ac1db176f63893d3bbe",
+    "bytes": 3161,
+    "archived_as": "final-host/surface-flinger.txt"
+  },
+  "final-host/transport.txt": {
+    "sha256": "c9a2e4a402645c32cd837fc076b8909d511918f856fa4f52c236dee62535e805",
+    "bytes": 147,
+    "archived_as": "final-host/transport.txt"
+  },
+  "gate/adb-timeline.jsonl": {
+    "sha256": "59ab9bc00ea39ae22254859d6af61423607f314d9805e8794bd0418813ad3a63",
+    "bytes": 4733,
+    "archived_as": "gate/adb-timeline.jsonl"
+  },
+  "gate-failure/activity-manager.txt": {
+    "sha256": "81543f065b0ad1d1da01dc2a7724c57eccdf95e4640ded2374a549f4a667baf9",
+    "bytes": 244117,
+    "archived_as": "gate-failure/activity-manager.txt.gz"
+  },
+  "gate-failure/app-pid.txt": {
+    "sha256": "05946080643240a8f84fb6ffcc10e1bc3125654b6c1b79b7f656ec3e2af044bf",
+    "bytes": 5,
+    "archived_as": "gate-failure/app-pid.txt"
+  },
+  "gate-failure/diagnostics.json": {
+    "sha256": "752ce45390b6ef552f48a815e55ea324e0adb5cc5186ab8483938f4f3f847261",
+    "bytes": 1239,
+    "archived_as": "gate-failure/diagnostics.json"
+  },
+  "gate-failure/emulator-kernel-stack.txt": {
+    "sha256": "f0094b2b2b2db428a0e73597078a798b3583c077b7b52d034355df8dd41cae1f",
+    "bytes": 178,
+    "archived_as": "gate-failure/emulator-kernel-stack.txt"
+  },
+  "gate-failure/emulator-status.txt": {
+    "sha256": "a8af49ac005a3026a57842658f4199f6611b5429b0b46c22770700650700c08c",
+    "bytes": 1511,
+    "archived_as": "gate-failure/emulator-status.txt"
+  },
+  "gate-failure/emulator-threads.txt": {
+    "sha256": "eff2d823530548d21eedf39ff0bb8dedd11c77544aeab18983c8ebfa057753c3",
+    "bytes": 6085,
+    "archived_as": "gate-failure/emulator-threads.txt"
+  },
+  "gate-failure/guest-anr-index.txt": {
+    "sha256": "ab13c5e3b282b0cbaf6ae648ed35addb308778462a19ac0a2e694eb0f6830986",
+    "bytes": 46,
+    "archived_as": "gate-failure/guest-anr-index.txt"
+  },
+  "gate-failure/guest-logcat.txt": {
+    "sha256": "d1d98fbd8ad946cf7a3e90296d7978061fd26489acb53be7ef1332e4e72cf978",
+    "bytes": 1146464,
+    "archived_as": "gate-failure/guest-logcat.txt.gz"
+  },
+  "gate-failure/guest-processes.txt": {
+    "sha256": "34c049c05a4f520a8173016a776a79438e20edd12fb39121d72952530c5ab39e",
+    "bytes": 133214,
+    "archived_as": "gate-failure/guest-processes.txt.gz"
+  },
+  "gate-failure/host-disk.txt": {
+    "sha256": "419aed03dfab9696bf8cb1314d52269189dffaa2fb5daf67c9aad8b380bd791b",
+    "bytes": 436,
+    "archived_as": "gate-failure/host-disk.txt"
+  },
+  "gate-failure/host-memory.txt": {
+    "sha256": "b136ebf62bae5c1c32dbf3169d944eb35640d48d85d1f729ed42f45eb95a32f2",
+    "bytes": 207,
+    "archived_as": "gate-failure/host-memory.txt"
+  },
+  "gate-failure/host-processes.txt": {
+    "sha256": "7d73e002958d0058da1ee2793ea1a4a76ce7a88fd30d8cfec20e3010c9d86118",
+    "bytes": 14710,
+    "archived_as": "gate-failure/host-processes.txt"
+  },
+  "gate-failure/light-shell.txt": {
+    "sha256": "107f901eb7c0cf6d2ba1c67a088bebeeea16ccec90d8379c9e8869695b69e6e9",
+    "bytes": 12,
+    "archived_as": "gate-failure/light-shell.txt"
+  },
+  "gate-failure/surface-flinger.txt": {
+    "sha256": "1ff30999be6ae19f613fa79ffc2a6378e7e9043ffe370ac1db176f63893d3bbe",
+    "bytes": 3161,
+    "archived_as": "gate-failure/surface-flinger.txt"
+  },
+  "gate-failure/transport.txt": {
+    "sha256": "c9a2e4a402645c32cd837fc076b8909d511918f856fa4f52c236dee62535e805",
+    "bytes": 147,
+    "archived_as": "gate-failure/transport.txt"
+  },
+  "old-version/00-home.png": {
+    "sha256": "b99d2b895e90bd338e9c25cc03e1d3bd3dc9bbb411229c4e2af0ade97eeb0e2e",
+    "bytes": 428171,
+    "archived_as": "old-version/00-home.png"
+  },
+  "old-version/01-fruit_drop-after-back.png": {
+    "sha256": "4293209f9da2ab94500f258e0ca91de158f569abff5d35fcea57110fae804ea1",
+    "bytes": 85588,
+    "archived_as": "old-version/01-fruit_drop-after-back.png"
+  },
+  "old-version/01-fruit_drop-after-input.png": {
+    "sha256": "4266ddbe0f08747b5901aadb1d738e0c5fe9ddc1ecd1139996f0ce57fe3ac9f3",
+    "bytes": 77744,
+    "archived_as": "old-version/01-fruit_drop-after-input.png"
+  },
+  "old-version/01-fruit_drop-background-paused-again.png": {
+    "sha256": "c40c395ea14990c2f6fc221b53d1a02045a77bc6ab0257cd8af9596afe5fd63c",
+    "bytes": 85632,
+    "archived_as": "old-version/01-fruit_drop-background-paused-again.png"
+  },
+  "old-version/01-fruit_drop-background-return.png": {
+    "sha256": "c2e0d1f73d678df949a3c09d9bbe0cdeab96141fc9764bdb015505c040b91181",
+    "bytes": 85535,
+    "archived_as": "old-version/01-fruit_drop-background-return.png"
+  },
+  "old-version/01-fruit_drop-background-save.json": {
+    "sha256": "7e6e9d53a0d7ca7c515fcc1c1e017e6eb730574d884f911f496684026f503cf8",
+    "bytes": 653,
+    "archived_as": "old-version/01-fruit_drop-background-save.json"
+  },
+  "old-version/01-fruit_drop-edge-help.png": {
+    "sha256": "f454c4e05b4b6d0b7d787a7f5f2479cceefdf80ced79218c6795d31df7a8b208",
+    "bytes": 70147,
+    "archived_as": "old-version/01-fruit_drop-edge-help.png"
+  },
+  "old-version/01-fruit_drop-edge-resumed.png": {
+    "sha256": "ef1c69552d8fbf2648557ed9c8cdcddcd6733f332eb3d52eb8352d1be2de90b5",
+    "bytes": 53253,
+    "archived_as": "old-version/01-fruit_drop-edge-resumed.png"
+  },
+  "old-version/01-fruit_drop-help.png": {
+    "sha256": "f454c4e05b4b6d0b7d787a7f5f2479cceefdf80ced79218c6795d31df7a8b208",
+    "bytes": 70147,
+    "archived_as": "old-version/01-fruit_drop-help.png"
+  },
+  "old-version/01-fruit_drop-ready.png": {
+    "sha256": "ef1c69552d8fbf2648557ed9c8cdcddcd6733f332eb3d52eb8352d1be2de90b5",
+    "bytes": 53253,
+    "archived_as": "old-version/01-fruit_drop-ready.png"
+  },
+  "old-version/01-fruit_drop-repeat-2-background-return.png": {
+    "sha256": "c40c395ea14990c2f6fc221b53d1a02045a77bc6ab0257cd8af9596afe5fd63c",
+    "bytes": 85632,
+    "archived_as": "old-version/01-fruit_drop-repeat-2-background-return.png"
+  },
+  "old-version/01-fruit_drop-repeat-2-checkpoints.json": {
+    "sha256": "3f0bd5cdce25cbecceddb689b98bf5e65ecd955b5796ed4fdcab4b0d205b5bde",
+    "bytes": 1461,
+    "archived_as": "old-version/01-fruit_drop-repeat-2-checkpoints.json"
+  },
+  "old-version/01-fruit_drop-repeat-3-background-return.png": {
+    "sha256": "c40c395ea14990c2f6fc221b53d1a02045a77bc6ab0257cd8af9596afe5fd63c",
+    "bytes": 85632,
+    "archived_as": "old-version/01-fruit_drop-repeat-3-background-return.png"
+  },
+  "old-version/01-fruit_drop-repeat-3-checkpoints.json": {
+    "sha256": "3f0bd5cdce25cbecceddb689b98bf5e65ecd955b5796ed4fdcab4b0d205b5bde",
+    "bytes": 1461,
+    "archived_as": "old-version/01-fruit_drop-repeat-3-checkpoints.json"
+  },
+  "old-version/01-fruit_drop-restarted.png": {
+    "sha256": "78c4f420fac464d447e60c04da084e1373adac282ad5fe135763d401436c1492",
+    "bytes": 62498,
+    "archived_as": "old-version/01-fruit_drop-restarted.png"
+  },
+  "old-version/01-fruit_drop-restored.png": {
+    "sha256": "2101d88ae78bf2a5a73855c6560daf31749358db1fde1db005a2c32fda121539",
+    "bytes": 85629,
+    "archived_as": "old-version/01-fruit_drop-restored.png"
+  },
+  "old-version/01-fruit_drop-resumed.png": {
+    "sha256": "516ee70ba15ebda50523207842b4370eeb071ab753f2ec866aaf49818150b664",
+    "bytes": 77613,
+    "archived_as": "old-version/01-fruit_drop-resumed.png"
+  },
+  "old-version/01-fruit_drop-returned-save.json": {
+    "sha256": "7e6e9d53a0d7ca7c515fcc1c1e017e6eb730574d884f911f496684026f503cf8",
+    "bytes": 653,
+    "archived_as": "old-version/01-fruit_drop-returned-save.json"
+  },
+  "old-version/01-fruit_drop-save.json": {
+    "sha256": "2d20030d54fcf07ee5aac499d1aee964bbbac4236b8e487230736a509f5c278e",
+    "bytes": 1021,
+    "archived_as": "old-version/01-fruit_drop-save.json"
+  },
+  "old-version/02-bubble_garden-after-back.png": {
+    "sha256": "b40b29db12cf5515e0f0680e49a101a5f94fb9edf1c4a67c480d92d9706797dc",
+    "bytes": 81157,
+    "archived_as": "old-version/02-bubble_garden-after-back.png"
+  },
+  "old-version/02-bubble_garden-after-input.png": {
+    "sha256": "4babc1f4b62b106a37693003428d9e022971d307ad908a29ae472b6fb86ac3ad",
+    "bytes": 137847,
+    "archived_as": "old-version/02-bubble_garden-after-input.png"
+  },
+  "old-version/02-bubble_garden-background-paused-again.png": {
+    "sha256": "1ed6d1cba23e9901d0bb25de2d662b4839d652e7844113abb1af789542a7cf6a",
+    "bytes": 81273,
+    "archived_as": "old-version/02-bubble_garden-background-paused-again.png"
+  },
+  "old-version/02-bubble_garden-background-return.png": {
+    "sha256": "b40b29db12cf5515e0f0680e49a101a5f94fb9edf1c4a67c480d92d9706797dc",
+    "bytes": 81157,
+    "archived_as": "old-version/02-bubble_garden-background-return.png"
+  },
+  "old-version/02-bubble_garden-background-save.json": {
+    "sha256": "3dab4b41480ea8b6c9d2836a49fd860dee47d0ba6f526f9fe9d4e04e534b0f62",
+    "bytes": 1234,
+    "archived_as": "old-version/02-bubble_garden-background-save.json"
+  },
+  "old-version/02-bubble_garden-help.png": {
+    "sha256": "02014255f40ce176c6e034606b53a851467c329fd7cee97f794905749e6b665d",
+    "bytes": 122868,
+    "archived_as": "old-version/02-bubble_garden-help.png"
+  },
+  "old-version/02-bubble_garden-ready.png": {
+    "sha256": "6b1046c62cd1f5c8b49d1574886b66113fbf3c08094a0f11b950341428eb44b9",
+    "bytes": 128915,
+    "archived_as": "old-version/02-bubble_garden-ready.png"
+  },
+  "old-version/02-bubble_garden-repeat-2-background-return.png": {
+    "sha256": "1ed6d1cba23e9901d0bb25de2d662b4839d652e7844113abb1af789542a7cf6a",
+    "bytes": 81273,
+    "archived_as": "old-version/02-bubble_garden-repeat-2-background-return.png"
+  },
+  "old-version/02-bubble_garden-repeat-2-checkpoints.json": {
+    "sha256": "1788834d60fcd10245b28311666431b6ed3086e03b783af6b02307f3dbdf7236",
+    "bytes": 3097,
+    "archived_as": "old-version/02-bubble_garden-repeat-2-checkpoints.json"
+  },
+  "old-version/02-bubble_garden-repeat-3-background-return.png": {
+    "sha256": "1ed6d1cba23e9901d0bb25de2d662b4839d652e7844113abb1af789542a7cf6a",
+    "bytes": 81273,
+    "archived_as": "old-version/02-bubble_garden-repeat-3-background-return.png"
+  },
+  "old-version/02-bubble_garden-repeat-3-checkpoints.json": {
+    "sha256": "1788834d60fcd10245b28311666431b6ed3086e03b783af6b02307f3dbdf7236",
+    "bytes": 3097,
+    "archived_as": "old-version/02-bubble_garden-repeat-3-checkpoints.json"
+  },
+  "old-version/02-bubble_garden-restarted.png": {
+    "sha256": "dff4e96967651640696aab5bab6b2dc2d8e75ef21e160a5afa4ce0dab40a11c3",
+    "bytes": 80624,
+    "archived_as": "old-version/02-bubble_garden-restarted.png"
+  },
+  "old-version/02-bubble_garden-restored.png": {
+    "sha256": "560106dc0fd52b117f20944230a91580ef9e34bdf5790f49fa5f37ed9d40d137",
+    "bytes": 80679,
+    "archived_as": "old-version/02-bubble_garden-restored.png"
+  },
+  "old-version/02-bubble_garden-resumed.png": {
+    "sha256": "4babc1f4b62b106a37693003428d9e022971d307ad908a29ae472b6fb86ac3ad",
+    "bytes": 137847,
+    "archived_as": "old-version/02-bubble_garden-resumed.png"
+  },
+  "old-version/02-bubble_garden-returned-save.json": {
+    "sha256": "3dab4b41480ea8b6c9d2836a49fd860dee47d0ba6f526f9fe9d4e04e534b0f62",
+    "bytes": 1234,
+    "archived_as": "old-version/02-bubble_garden-returned-save.json"
+  },
+  "old-version/02-bubble_garden-save.json": {
+    "sha256": "67e81735030091f447fa6833c75f60e64f03891fc6ec2404a5cef28b883e6cd4",
+    "bytes": 2257,
+    "archived_as": "old-version/02-bubble_garden-save.json"
+  },
+  "old-version/03-cake_stack-after-back.png": {
+    "sha256": "61afac42784d28d3e3050ee8eac7bc25f201efd2bc5342829bd67c3a0e5811a4",
+    "bytes": 65783,
+    "archived_as": "old-version/03-cake_stack-after-back.png"
+  },
+  "old-version/03-cake_stack-after-input.png": {
+    "sha256": "f8a98291c1c0682c38ed60ac7b7c1a9c2669036d3062d3bd2b54cb072e6a22c3",
+    "bytes": 71884,
+    "archived_as": "old-version/03-cake_stack-after-input.png"
+  },
+  "old-version/03-cake_stack-background-paused-again.png": {
+    "sha256": "c2d5d741d897440e6b22383a855fa85226f42f1fc674814649aaa91a94ee3b7a",
+    "bytes": 65891,
+    "archived_as": "old-version/03-cake_stack-background-paused-again.png"
+  },
+  "old-version/03-cake_stack-background-return.png": {
+    "sha256": "d0b632b942ff563af6dd62b9b82c69e6d3e5da16a834bc553e94bf0ebc271214",
+    "bytes": 65785,
+    "archived_as": "old-version/03-cake_stack-background-return.png"
+  },
+  "old-version/03-cake_stack-background-save.json": {
+    "sha256": "2c5a44dfec0a8cc336437304233b7f7335fe3979fe6d04648f71dc4c45a8c2f0",
+    "bytes": 244,
+    "archived_as": "old-version/03-cake_stack-background-save.json"
+  },
+  "old-version/03-cake_stack-help.png": {
+    "sha256": "c0e1d4b864be2cd190f086c3421eb8a8120bb7aa2d1d40b127d8e446dfba5cb6",
+    "bytes": 79486,
+    "archived_as": "old-version/03-cake_stack-help.png"
+  },
+  "old-version/03-cake_stack-ready.png": {
+    "sha256": "3ff6a2524069964dde2e252bd411916d4e30a37ae9759d77f79908cb8b9c680b",
+    "bytes": 71830,
+    "archived_as": "old-version/03-cake_stack-ready.png"
+  },
+  "old-version/03-cake_stack-repeat-2-background-return.png": {
+    "sha256": "c2d5d741d897440e6b22383a855fa85226f42f1fc674814649aaa91a94ee3b7a",
+    "bytes": 65891,
+    "archived_as": "old-version/03-cake_stack-repeat-2-background-return.png"
+  },
+  "old-version/03-cake_stack-repeat-2-checkpoints.json": {
+    "sha256": "b7156e5181f3e000c9ecd87cbe68ecb2b62861656ba23591ca7266a6759337c8",
+    "bytes": 589,
+    "archived_as": "old-version/03-cake_stack-repeat-2-checkpoints.json"
+  },
+  "old-version/03-cake_stack-repeat-3-background-return.png": {
+    "sha256": "c2d5d741d897440e6b22383a855fa85226f42f1fc674814649aaa91a94ee3b7a",
+    "bytes": 65891,
+    "archived_as": "old-version/03-cake_stack-repeat-3-background-return.png"
+  },
+  "old-version/03-cake_stack-repeat-3-checkpoints.json": {
+    "sha256": "b7156e5181f3e000c9ecd87cbe68ecb2b62861656ba23591ca7266a6759337c8",
+    "bytes": 589,
+    "archived_as": "old-version/03-cake_stack-repeat-3-checkpoints.json"
+  },
+  "old-version/03-cake_stack-restarted.png": {
+    "sha256": "867e287fd2bca6a681544a9acc604b776c992dcff30ee5c90dc8e46edde53251",
+    "bytes": 66079,
+    "archived_as": "old-version/03-cake_stack-restarted.png"
+  },
+  "old-version/03-cake_stack-restored.png": {
+    "sha256": "ac5631012a5c1072f91ba12d5cf9e589378bf9492dcc7a643b6b70805614220e",
+    "bytes": 65832,
+    "archived_as": "old-version/03-cake_stack-restored.png"
+  },
+  "old-version/03-cake_stack-resumed.png": {
+    "sha256": "73e3e2636398e5007239876b11dc74565f5d8a59a68e30cee31224bdb4619d7f",
+    "bytes": 71914,
+    "archived_as": "old-version/03-cake_stack-resumed.png"
+  },
+  "old-version/03-cake_stack-returned-save.json": {
+    "sha256": "2c5a44dfec0a8cc336437304233b7f7335fe3979fe6d04648f71dc4c45a8c2f0",
+    "bytes": 244,
+    "archived_as": "old-version/03-cake_stack-returned-save.json"
+  },
+  "old-version/03-cake_stack-save.json": {
+    "sha256": "971d9c6b17e5187fc19695ad0d2440c238479f15b3d859f6a8dfdbd07a716e95",
+    "bytes": 2754,
+    "archived_as": "old-version/03-cake_stack-save.json"
+  },
+  "old-version/04-bouncy_balls-after-back.png": {
+    "sha256": "0bf9e4dbd2246e24da2210064ed927fc2925126a21b8cdd62ef1ee8935ec5c81",
+    "bytes": 62900,
+    "archived_as": "old-version/04-bouncy_balls-after-back.png"
+  },
+  "old-version/04-bouncy_balls-after-input.png": {
+    "sha256": "f0758576fd75919bcc6e557bbe7bf188abb59d26fd30a4b014f8c9e458f53704",
+    "bytes": 65689,
+    "archived_as": "old-version/04-bouncy_balls-after-input.png"
+  },
+  "old-version/04-bouncy_balls-background-paused-again.png": {
+    "sha256": "0e265b22bbb6fddfbf98216117c2c90df0a63ea14bbf124de06a01802c9e84d4",
+    "bytes": 63006,
+    "archived_as": "old-version/04-bouncy_balls-background-paused-again.png"
+  },
+  "old-version/04-bouncy_balls-background-return.png": {
+    "sha256": "0bf9e4dbd2246e24da2210064ed927fc2925126a21b8cdd62ef1ee8935ec5c81",
+    "bytes": 62900,
+    "archived_as": "old-version/04-bouncy_balls-background-return.png"
+  },
+  "old-version/04-bouncy_balls-background-save.json": {
+    "sha256": "4f302522d4e7d8c86791594593162275c6260d624b13d409aab53cd0bd3440f6",
+    "bytes": 454,
+    "archived_as": "old-version/04-bouncy_balls-background-save.json"
+  },
+  "old-version/04-bouncy_balls-help.png": {
+    "sha256": "d9d2db38ff203ccef02697749cf13fcd7f94a0c2671f2225d290592ad1a32593",
+    "bytes": 70034,
+    "archived_as": "old-version/04-bouncy_balls-help.png"
+  },
+  "old-version/04-bouncy_balls-ready.png": {
+    "sha256": "073ffcb051b54e4ac81dc181884ecfcd87c447a34c1fa808e6d936f84dd7b8e6",
+    "bytes": 80998,
+    "archived_as": "old-version/04-bouncy_balls-ready.png"
+  },
+  "old-version/04-bouncy_balls-repeat-2-background-return.png": {
+    "sha256": "0e265b22bbb6fddfbf98216117c2c90df0a63ea14bbf124de06a01802c9e84d4",
+    "bytes": 63006,
+    "archived_as": "old-version/04-bouncy_balls-repeat-2-background-return.png"
+  },
+  "old-version/04-bouncy_balls-repeat-2-checkpoints.json": {
+    "sha256": "8e20ea4d75f56a0b08962d9722adee9a51e8d44e8535af7e2175f93499a5812d",
+    "bytes": 1121,
+    "archived_as": "old-version/04-bouncy_balls-repeat-2-checkpoints.json"
+  },
+  "old-version/04-bouncy_balls-repeat-3-background-return.png": {
+    "sha256": "0e265b22bbb6fddfbf98216117c2c90df0a63ea14bbf124de06a01802c9e84d4",
+    "bytes": 63006,
+    "archived_as": "old-version/04-bouncy_balls-repeat-3-background-return.png"
+  },
+  "old-version/04-bouncy_balls-repeat-3-checkpoints.json": {
+    "sha256": "8e20ea4d75f56a0b08962d9722adee9a51e8d44e8535af7e2175f93499a5812d",
+    "bytes": 1121,
+    "archived_as": "old-version/04-bouncy_balls-repeat-3-checkpoints.json"
+  },
+  "old-version/04-bouncy_balls-restarted.png": {
+    "sha256": "1724274ee4ff3591d6c51fb773792a77d534dfbdcd13e62ea99ed80a3121c703",
+    "bytes": 66086,
+    "archived_as": "old-version/04-bouncy_balls-restarted.png"
+  },
+  "old-version/04-bouncy_balls-restored.png": {
+    "sha256": "03457edb03564fc2de9abdafe1f77af7c00d0b557292306dcac2eae92ea36375",
+    "bytes": 66031,
+    "archived_as": "old-version/04-bouncy_balls-restored.png"
+  },
+  "old-version/04-bouncy_balls-resumed.png": {
+    "sha256": "9a8056e840ec27b669acc7a7bcc545bbf70f4caedaecb6b716f42dda5420ce79",
+    "bytes": 80832,
+    "archived_as": "old-version/04-bouncy_balls-resumed.png"
+  },
+  "old-version/04-bouncy_balls-returned-save.json": {
+    "sha256": "4f302522d4e7d8c86791594593162275c6260d624b13d409aab53cd0bd3440f6",
+    "bytes": 454,
+    "archived_as": "old-version/04-bouncy_balls-returned-save.json"
+  },
+  "old-version/04-bouncy_balls-save.json": {
+    "sha256": "7c612ffa4351ecd31bc0e5d14fb4bc53b853a5e357ef73f4a9d3e7392a42e7a1",
+    "bytes": 3365,
+    "archived_as": "old-version/04-bouncy_balls-save.json"
+  },
+  "old-version/05-tile_trio-after-back.png": {
+    "sha256": "d74c9dfe9536511a90636d2786d1f41aba16316ef2900580a1c7d3c486d60d87",
+    "bytes": 80848,
+    "archived_as": "old-version/05-tile_trio-after-back.png"
+  },
+  "old-version/05-tile_trio-after-input.png": {
+    "sha256": "ae672673d213746bf26fb40c5d606ff6d341910edf31c166416791eb7c6ffd84",
+    "bytes": 266589,
+    "archived_as": "old-version/05-tile_trio-after-input.png"
+  },
+  "old-version/05-tile_trio-background-paused-again.png": {
+    "sha256": "55dcd0dc06a9b64620a3f0a66afd10762027d2f365f22e0af7146e3450635768",
+    "bytes": 80955,
+    "archived_as": "old-version/05-tile_trio-background-paused-again.png"
+  },
+  "old-version/05-tile_trio-background-return.png": {
+    "sha256": "d74c9dfe9536511a90636d2786d1f41aba16316ef2900580a1c7d3c486d60d87",
+    "bytes": 80848,
+    "archived_as": "old-version/05-tile_trio-background-return.png"
+  },
+  "old-version/05-tile_trio-background-save.json": {
+    "sha256": "cfa543e28e3048530990577d7138e94167736fe370f1cd16c3d01cb7183d04ac",
+    "bytes": 541,
+    "archived_as": "old-version/05-tile_trio-background-save.json"
+  },
+  "old-version/05-tile_trio-help.png": {
+    "sha256": "8afd9db3b51e1a0d1ba13a3c6b3aa9171dba29b3dfe70fcb75834e56d4601173",
+    "bytes": 71228,
+    "archived_as": "old-version/05-tile_trio-help.png"
+  },
+  "old-version/05-tile_trio-ready.png": {
+    "sha256": "eedf61aaa4e3c3cdae607165384083a2a67c327b339e07b063606860e42ca865",
+    "bytes": 241636,
+    "archived_as": "old-version/05-tile_trio-ready.png"
+  },
+  "old-version/05-tile_trio-repeat-2-background-return.png": {
+    "sha256": "55dcd0dc06a9b64620a3f0a66afd10762027d2f365f22e0af7146e3450635768",
+    "bytes": 80955,
+    "archived_as": "old-version/05-tile_trio-repeat-2-background-return.png"
+  },
+  "old-version/05-tile_trio-repeat-2-checkpoints.json": {
+    "sha256": "bf1f0c23f0222517666184cabeee87d6aa82ccaf51b1cfe6537488266e56f9d8",
+    "bytes": 1279,
+    "archived_as": "old-version/05-tile_trio-repeat-2-checkpoints.json"
+  },
+  "old-version/05-tile_trio-repeat-3-background-return.png": {
+    "sha256": "55dcd0dc06a9b64620a3f0a66afd10762027d2f365f22e0af7146e3450635768",
+    "bytes": 80955,
+    "archived_as": "old-version/05-tile_trio-repeat-3-background-return.png"
+  },
+  "old-version/05-tile_trio-repeat-3-checkpoints.json": {
+    "sha256": "bf1f0c23f0222517666184cabeee87d6aa82ccaf51b1cfe6537488266e56f9d8",
+    "bytes": 1279,
+    "archived_as": "old-version/05-tile_trio-repeat-3-checkpoints.json"
+  },
+  "old-version/05-tile_trio-restarted.png": {
+    "sha256": "b282d5fe4eee2f8037b53950f16b413f0a463a85fd61019363643aa40c1c5624",
+    "bytes": 60875,
+    "archived_as": "old-version/05-tile_trio-restarted.png"
+  },
+  "old-version/05-tile_trio-restored.png": {
+    "sha256": "2acd6f46348165f54dcfce4a67ee36b8efe443d07d1bd34bc4c41548b4f036eb",
+    "bytes": 80895,
+    "archived_as": "old-version/05-tile_trio-restored.png"
+  },
+  "old-version/05-tile_trio-resumed.png": {
+    "sha256": "ae672673d213746bf26fb40c5d606ff6d341910edf31c166416791eb7c6ffd84",
+    "bytes": 266589,
+    "archived_as": "old-version/05-tile_trio-resumed.png"
+  },
+  "old-version/05-tile_trio-returned-save.json": {
+    "sha256": "cfa543e28e3048530990577d7138e94167736fe370f1cd16c3d01cb7183d04ac",
+    "bytes": 541,
+    "archived_as": "old-version/05-tile_trio-returned-save.json"
+  },
+  "old-version/05-tile_trio-save.json": {
+    "sha256": "9fbc2e8575ebb05996153903208119d757c5bd03f950ff261b960bc216735c1d",
+    "bytes": 4174,
+    "archived_as": "old-version/05-tile_trio-save.json"
+  },
+  "old-version/06-mochi_hop-after-back.png": {
+    "sha256": "6bc4224c8fec3eb44694585769e1545282bf33cea5fbdfa85c677bcd97364419",
+    "bytes": 61372,
+    "archived_as": "old-version/06-mochi_hop-after-back.png"
+  },
+  "old-version/06-mochi_hop-after-input.png": {
+    "sha256": "7e62625e64f42c5b5b90334295bd9eabcb0e2e5c85aeeaee92e0b1d524b8f0ac",
+    "bytes": 158150,
+    "archived_as": "old-version/06-mochi_hop-after-input.png"
+  },
+  "old-version/06-mochi_hop-background-return.png": {
+    "sha256": "cfc80ccb6c70119363e7e3da3bbb361f4c4c2628e4856bfdce139ea7b8cdf249",
+    "bytes": 6805,
+    "archived_as": "old-version/06-mochi_hop-background-return.png"
+  },
+  "old-version/06-mochi_hop-background-save.json": {
+    "sha256": "fb217701abcd236c9359d6f7291c4aaed3d0f9f6a4e34d747a7cab2ec1009845",
+    "bytes": 381,
+    "archived_as": "old-version/06-mochi_hop-background-save.json"
+  },
+  "old-version/06-mochi_hop-help.png": {
+    "sha256": "de0a36bedeb60dfa78e88e273d20a3cdb5cd501bf4ce3e1649214614cc03e209",
+    "bytes": 58461,
+    "archived_as": "old-version/06-mochi_hop-help.png"
+  },
+  "old-version/06-mochi_hop-ready.png": {
+    "sha256": "1d851ac5f5e5cc1d2a8baa16c94293fdd4c537ee43aaa57eea02f81c3487c5e5",
+    "bytes": 135815,
+    "archived_as": "old-version/06-mochi_hop-ready.png"
+  },
+  "old-version/06-mochi_hop-resumed.png": {
+    "sha256": "7e62625e64f42c5b5b90334295bd9eabcb0e2e5c85aeeaee92e0b1d524b8f0ac",
+    "bytes": 158150,
+    "archived_as": "old-version/06-mochi_hop-resumed.png"
+  },
+  "old-version/adb-timeline.jsonl": {
+    "sha256": "280fe6b80853621542ee809426e0a5ed10252a230569246449a55c3aa2f2c587",
+    "bytes": 101012,
+    "archived_as": "old-version/adb-timeline.jsonl.gz"
+  },
+  "old-version/diagnostic-delayed-return.png": {
+    "sha256": "cfc80ccb6c70119363e7e3da3bbb361f4c4c2628e4856bfdce139ea7b8cdf249",
+    "bytes": 6805,
+    "archived_as": "old-version/diagnostic-delayed-return.png"
+  },
+  "old-version/diagnostic-new-surface-return.png": {
+    "sha256": "6bc4224c8fec3eb44694585769e1545282bf33cea5fbdfa85c677bcd97364419",
+    "bytes": 61372,
+    "archived_as": "old-version/diagnostic-new-surface-return.png"
+  },
+  "old-version/failure-save.json": {
+    "sha256": "59c0381742b73b176f7ddd88d5378b264cb74983f29ac290e360cbf97f74c25c",
+    "bytes": 4154,
+    "archived_as": "old-version/failure-save.json"
+  },
+  "old-version/failure-screen.png": {
+    "sha256": "cfc80ccb6c70119363e7e3da3bbb361f4c4c2628e4856bfdce139ea7b8cdf249",
+    "bytes": 6805,
+    "archived_as": "old-version/failure-screen.png"
+  },
+  "old-version/failure-surface-layers.txt": {
+    "sha256": "c603997a99790884f93840331b36c05e0be7306fd7f9110ea737085a69e21680",
+    "bytes": 3160,
+    "archived_as": "old-version/failure-surface-layers.txt"
+  },
+  "old-version/fullscreen-window.xml": {
+    "sha256": "367acdae981a9676ddec586f016edf1d57ea2843dc4634db8193a254097c9387",
+    "bytes": 2536,
+    "archived_as": "old-version/fullscreen-window.xml"
+  },
+  "old-version/launcher-failure.png": {
+    "sha256": "a35002464120a01d5eba9b20c099369b5e03c72fc4b1f178d99c06f209d09b9e",
+    "bytes": 704481,
+    "archived_as": "old-version/launcher-failure.png"
+  },
+  "old-version/logcat.txt": {
+    "sha256": "10b8ff6049f6b75a114792650235a3e102ce62cc5546de846c4df71ddc586ed3",
+    "bytes": 1146024,
+    "archived_as": "old-version/logcat.txt.gz"
+  },
+  "old-version/report.json": {
+    "sha256": "38487e2b02b3e35fa341c66916ee918a7ea7d69e2944d912ebbbbdf88900035e",
+    "bytes": 30933,
+    "archived_as": "old-version/report.json"
+  },
+  "old-version/startup-00.png": {
+    "sha256": "d26a4ebb559a94991b61c6fd6b48e4bf571afb98695b564b15442c063394b917",
+    "bytes": 48698,
+    "archived_as": "old-version/startup-00.png"
+  },
+  "old-version/startup-01.png": {
+    "sha256": "b2e9593fc8495841d6624ba6ce939324ce9a74ef8adcff27d94bb62fe0fa8bb2",
+    "bytes": 6332,
+    "archived_as": "old-version/startup-01.png"
+  },
+  "old-version/startup-02.png": {
+    "sha256": "5f7b8e51cd74ea4df58b642c386f089546e10bc63c50e22e14312fdfeaca8805",
+    "bytes": 20499,
+    "archived_as": "old-version/startup-02.png"
+  },
+  "old-version/startup.mp4": {
+    "sha256": "0ad8abfc63476576a833e64a4ed928f558b45aee3a5d440dd832099a9164cc37",
+    "bytes": 458231,
+    "archived_as": "old-version/startup.mp4"
+  },
+  "old-version/stream-logcat.txt": {
+    "sha256": "b5d5eae0301f9970a989acfbb62320566b509bc36177161c0e5ba40c21f5ac10",
+    "bytes": 1146025,
+    "archived_as": "old-version/stream-logcat.txt.gz"
+  },
+  "review/screens-00.jpg": {
+    "sha256": "222b4d09e0b7b0a643390a8fe8bd7785775a7dd09180b8517bb09e266cbafa40",
+    "bytes": 442228,
+    "archived_as": "review/screens-00.jpg"
+  },
+  "review/screens-01.jpg": {
+    "sha256": "a1fcbaa5871dbd09ad73fd4e9ca6a0da334302ee9a8bcc5fbc14dad880e565ea",
+    "bytes": 461984,
+    "archived_as": "review/screens-01.jpg"
+  },
+  "review/screens-02.jpg": {
+    "sha256": "8b95376ed957055b70846c13e21ddd0ad6feff73cd1ff574ca4c7e3a33b7831f",
+    "bytes": 460152,
+    "archived_as": "review/screens-02.jpg"
+  },
+  "review/screens-03.jpg": {
+    "sha256": "61ab96ec108c1349e44876495889193d80b60f7f247fc34374ad02355ea06739",
+    "bytes": 448838,
+    "archived_as": "review/screens-03.jpg"
+  },
+  "review/screens-04.jpg": {
+    "sha256": "b1623a6013f488415ca84313814dd4d15d058e966a1ce809794490d9130cb418",
+    "bytes": 118093,
+    "archived_as": "review/screens-04.jpg"
+  },
+  "review/video-0-00.jpg": {
+    "sha256": "73f837b88e217b86920f457d07b32cf7a0cedf2dae145eec0cdcf4b6469f9498",
+    "bytes": 276776,
+    "archived_as": "review/video-0-00.jpg"
+  },
+  "review/video-0-01.jpg": {
+    "sha256": "e3942e1b5563f34adc5eab722b8ba48043bee715cfe364589f38467f9475f905",
+    "bytes": 209437,
+    "archived_as": "review/video-0-01.jpg"
+  },
+  "review/video-0-02.jpg": {
+    "sha256": "82c31d71be73b19b794a44733512b42ac4a8692c63a5b5fa10c18654f826213f",
+    "bytes": 344984,
+    "archived_as": "review/video-0-02.jpg"
+  },
+  "review/video-0-03.jpg": {
+    "sha256": "4f49e47fe777cd7047a4e048d611336d495cfc9d035676015819c0371af7af2b",
+    "bytes": 301976,
+    "archived_as": "review/video-0-03.jpg"
+  },
+  "review/video-0-decode-log.txt": {
+    "sha256": "fc376795d225c27912e107145d0ccebcb89343cf8bdd1d119336f63b47957a1b",
+    "bytes": 2590,
+    "archived_as": "review/video-0-decode-log.txt"
+  },
+  "review/video-decoding.json": {
+    "sha256": "cd35a14b908326651d9e7bd345bd86eab628301bc68869357559c758f48a13db",
+    "bytes": 2532,
+    "archived_as": "review/video-decoding.json"
+  },
+  "review/visual-inputs.json": {
+    "sha256": "194140f60f3e876a370fbbdb26999cd021bca71746fc6a0b92b52a4c88821547",
+    "bytes": 8410,
+    "archived_as": "review/visual-inputs.json"
+  }
+}

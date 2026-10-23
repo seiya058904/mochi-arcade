@@ -1,0 +1,48 @@
+{
+  "captured": true,
+  "originals": {
+    "save.json": {
+      "exists": true,
+      "metadata": "10141:10141:600",
+      "sha256": "8be8bddfcf39efef628e52e4ffede243661e0490141c1fff7f08dfdda927ea5b"
+    },
+    "save.backup.json": {
+      "exists": true,
+      "metadata": "10141:10141:600",
+      "sha256": "b95aea2caa34e27aec86816e27428a773fffd960a7a80267582fef3cf2f1e1b6"
+    }
+  },
+  "phases": {
+    "capture-save.json": {
+      "status": "PASS",
+      "seconds": 0.028
+    },
+    "capture-save.backup.json": {
+      "status": "PASS",
+      "seconds": 0.029
+    },
+    "stop-app-and-confirm-no-pid": {
+      "status": "PASS",
+      "seconds": 0.157
+    },
+    "write-save.json": {
+      "status": "PASS",
+      "seconds": 0.045
+    },
+    "write-save.backup.json": {
+      "status": "PASS",
+      "seconds": 0.023
+    },
+    "verify-save.json": {
+      "status": "PASS",
+      "seconds": 0.077
+    },
+    "verify-save.backup.json": {
+      "status": "PASS",
+      "seconds": 0.075
+    },
+    "restore": {
+      "status": "PASS"
+    }
+  }
+}

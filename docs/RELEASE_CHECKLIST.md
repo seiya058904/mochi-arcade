@@ -1,8 +1,19 @@
 # Release gates — current 1.1.1 candidate and published history
 
+Current signed run 39961466842: **U100 and LOAD PASS reviewed; U110 and CLEAN FAIL**.
+The complete v1.0.0 upgrade includes eight semantic states, real terminal Undo and
+fault recovery. The v1.1.0 upgrade and independent new-install gates remain incomplete.
+
 Current candidate: **v1.1.1 / code 3; BLOCKED, not released**.
 Build source `920f39cfc29fc0d46b03a295f25f1197446a4027`; original-signed APK
 `09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8`.
+
+Current continuation: original-signed LOAD, including both file restorations and
+native review, PASS. Full CLEAN/U110 background-return rendering FAIL; no release
+waiver. See [the complete current gate record](ANDROID_UNBLOCK_1.1.1.md).
+
+The next table is the **historical patch snapshot before unblock work**; its
+FAIL/NOT_RUN records remain intact and do not replace the current four-gate audit.
 
 | Candidate gates | Status | Evidence / next action |
 | --- | --- | --- |

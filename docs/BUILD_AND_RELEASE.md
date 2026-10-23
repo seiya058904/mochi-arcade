@@ -115,7 +115,9 @@ No workflow or script creates a tag or publishes a Release automatically.
 
 The current default `graphics_backend=swangle` uses ANGLE/SwiftShader after bounded
 diagnostic 39960486671 passed lifecycle, load/restoration and native review. Full
-signed gates remain separate. The previous `graphics_backend=host` uses the emulator's host GLES route. Manual
+signed run 39961466842 subsequently failed CLEAN and U110 background-return
+rendering. This default records the current reproducible test profile, not a
+fully accepted release environment. The previous `graphics_backend=host` uses the emulator's host GLES route. Manual
 runs can select `lavapipe` to reproduce the retained failing comparison. Both
 remain software-rendered on the hosted runner. Host starts the image's existing Xvfb and
 sets Mesa's `LIBGL_ALWAYS_SOFTWARE=true` and `GALLIUM_DRIVER=llvmpipe`; it installs

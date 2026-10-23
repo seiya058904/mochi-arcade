@@ -34,6 +34,9 @@ class AdbEvidence:
             result = subprocess.run(['adb', '-s', self.serial, *args], input=data,
                                     capture_output=True, timeout=timeout or self.timeout)
             event['exit'] = result.returncode
+            if args[:2] == ['shell', 'uiautomator']:
+                # dump may exit zero without creating XML; retain its diagnostic text.
+                event['uiautomator_output'] = (result.stdout+result.stderr).decode(errors='replace')[:4096]
             self.last_exit = result.returncode
             if args[:2] == ['shell', 'pidof']:
                 self.app_pid = result.stdout.decode(errors='replace').strip() or 'ABSENT'

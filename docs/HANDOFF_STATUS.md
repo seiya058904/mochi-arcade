@@ -1,6 +1,18 @@
 # Handoff status
 
-## Current 1.1.1 patch — 2026-10-23
+Current signed run 39961466842: **U100 and LOAD PASS reviewed; U110 and CLEAN FAIL**.
+The complete v1.0.0 upgrade includes eight semantic states, real terminal Undo and
+fault recovery. The v1.1.0 upgrade and independent new-install gates remain incomplete.
+
+## Current Android acceptance continuation — 2026-10-23
+
+**BLOCKED.** [Current audit and exact gate results](ANDROID_UNBLOCK_1.1.1.md):
+the original-signed LOAD gate now proves both file restorations. Full CLEAN/U110
+still fail background-return rendering on swangle after the short diagnosis passed.
+Candidate bytes and prior product fixes remain frozen; no stable release authorized
+by these incomplete gates. Final main CI is recorded separately at closeout.
+
+## Historical 1.1.1 patch handoff before continuation — 2026-10-23
 
 **BLOCKED; both signed upgrade runs FAIL after hosted emulator SIGSEGV.** See
 [ITERATION_1.1.1.md](ITERATION_1.1.1.md) for F1–F6, exact next actions and

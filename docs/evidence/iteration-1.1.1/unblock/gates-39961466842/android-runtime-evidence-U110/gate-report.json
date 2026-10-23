@@ -1,0 +1,93 @@
+{
+  "status": "FAIL",
+  "gate": "U110",
+  "tool_commit": "6d1286a0db86d03786db217b5df3420582ba9ea8",
+  "build_source": "920f39cfc29fc0d46b03a295f25f1197446a4027",
+  "run_id": "39961466842",
+  "attempt": "1",
+  "apk_sha256": "09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8",
+  "profile": "swangle",
+  "children": {
+    "predecessor": {
+      "exit": 1,
+      "seconds": 456.731
+    }
+  },
+  "visual_review": "PENDING",
+  "renderer": [
+    "GLES: Google (Google Inc. (Google)), Android Emulator OpenGL ES Translator (ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver-5.0.0)), OpenGL ES 3.1 (OpenGL ES 3.1.0 (ANGLE 2.1.17841 git hash: 5fa2e61da947))"
+  ],
+  "error": "predecessor failed; original report retained",
+  "diagnostics": {
+    "transport": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.011
+    },
+    "light-shell": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.033
+    },
+    "app-pid": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.032
+    },
+    "activity-manager": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.119
+    },
+    "surface-flinger": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.165
+    },
+    "guest-processes": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 1.278
+    },
+    "guest-anr-index": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.325
+    },
+    "guest-logcat": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.343
+    },
+    "host-processes": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.067
+    },
+    "host-memory": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.004
+    },
+    "host-disk": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.004
+    },
+    "emulator-threads": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.067
+    },
+    "emulator-status": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.003
+    },
+    "emulator-kernel-stack": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.013
+    }
+  }
+}

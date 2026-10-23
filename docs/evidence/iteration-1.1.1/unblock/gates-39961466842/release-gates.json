@@ -1,0 +1,29 @@
+{
+  "status": "FAIL",
+  "apk_sha256": "09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8",
+  "build_source": "920f39cfc29fc0d46b03a295f25f1197446a4027",
+  "tool_commit": "6d1286a0db86d03786db217b5df3420582ba9ea8",
+  "profile": "swangle",
+  "gates": {
+    "U110": {
+      "status": "FAIL_OR_INCOMPLETE",
+      "error": "predecessor failed; original report retained"
+    },
+    "U100": {
+      "status": "PASS",
+      "run_id": "39961466842",
+      "attempt": "1",
+      "reviewed_files": 132
+    },
+    "CLEAN": {
+      "status": "FAIL_OR_INCOMPLETE",
+      "error": "clean failed; original report retained"
+    },
+    "LOAD": {
+      "status": "PASS",
+      "run_id": "39961466842",
+      "attempt": "1",
+      "reviewed_files": 11
+    }
+  }
+}

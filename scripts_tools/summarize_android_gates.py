@@ -15,7 +15,8 @@ def summarize(root, sha, source, tool, profile):
         folder=Path(root)/('android-runtime-evidence-'+gate)
         try:
             report=json.loads((folder/'gate-report.json').read_text(encoding='utf-8'))
-            assert report['gate']==gate and report['status']=='PASS_AUTOMATION_AWAITING_VISUAL_REVIEW'
+            assert report['gate']==gate, 'Gate identity mismatch'
+            assert report['status']=='PASS_AUTOMATION_AWAITING_VISUAL_REVIEW', str(report.get('error',report['status']))
             for key,value in [('apk_sha256',sha),('build_source',source),('tool_commit',tool),('profile',profile)]:
                 assert report[key]==value,key+' mismatch'
             assert report['renderer'], 'Actual renderer missing'
