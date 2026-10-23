@@ -1,5 +1,5 @@
 {
-  "checks": 44,
+  "checks": 46,
   "failures": [],
   "scope": "Isolated filesystem fault fixtures and actual terminal swipe; desktop, not Android",
   "status": "PASS"

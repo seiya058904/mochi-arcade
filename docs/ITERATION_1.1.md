@@ -107,8 +107,8 @@ hosted development-package checks are separately reported.
 ## Exact next actions
 
 1. Supply an already functioning isolated API 34 AOSP GPU AVD or USB test phone;
-   any required driver repair needs separate explicit authority under this task's
-   system-change prohibition. Do not replace signing identity or upload secrets.
+   the owner explicitly declined AEHD startup. Keep the system-change
+   prohibition in force; no repeated driver-start request is required. Do not replace signing identity or upload secrets.
 2. Install the archived anonymous v1.0.0 APK, create/check eight synthetic rounds,
    records and EN/ZH/audio settings, then `adb install -r` the exact new signed
    candidate. Prove preservation and package/version/certificate identity.
@@ -123,11 +123,11 @@ hosted development-package checks are separately reported.
 
 ## Signed candidate and code closeout
 
-- Source commit: `37c9a877283f63d2acc340e21b6263d2f15833a9` (runtime/packaging).
+- Source commit: `b945bcebaa00df5339ac1b116d411162afdbd19f` (runtime/packaging).
   Later evidence-only commits do not alter the candidate source tree.
 - Local artifact: `dist/MochiArcade.apk`, versionName **1.1.0**, versionCode **2**,
   **78,471,916 bytes**, SHA-256
-  `96531cb4bd98712a43b8f76e09236e200a1a84cbdb0af4eb56e0fc1278cbc81c`.
+  `fbf636ab9e82b757455b6960274140761d505bde0d80353b1288e53f4c28ab85`.
 - Static verification PASS: original certificate, v2/v3, non-debuggable,
   package unchanged, min SDK 24 / target SDK 36, arm64-v8a + x86_64, only VIBRATE,
   zipalign 16 KiB and every ELF PT_LOAD alignment >=16 KiB; font notices and boot
@@ -135,14 +135,19 @@ hosted development-package checks are separately reported.
   is byte-identical; this is NOT an anonymous release-asset download.
 - Size is 4,096 bytes above v1.0.0; no size reduction claim. Original compressed
   Godot libraries occupy 49,397,173 bytes and imported CJK font 13,290,643 bytes.
-- Full local suite: 19/19 PASS, new reliability suite (see latest report). All seven real-renderer
+- Full local suite: 19/19 PASS, 46/46 reliability assertions. All seven real-renderer
   replay scripts (covering eight games) PASS; vertical replay includes a retained
   earlier timeout and independent successful rerun. Actual desktop audio PASS.
-- CI must still be observed on the integrated main SHA. Signed Android install,
-  runtime, load, old-version upgrade and publication remain BLOCKED, not PASS.
-- A narrowly scoped request to start the already-installed AEHD service was made
-  because the task forbids system-driver changes; no such action is authorized
-  or taken without an explicit response. No secret upload is requested.
+- Source is integrated directly into existing public main; repository protection
+  and rulesets are empty, so no PR/merge approval is required. The temporary local
+  work branch was fast-forwarded and removed after integration; no remote branch
+  or stash was created. Final per-commit CI is checked separately; the local
+  `.local/iteration-1.1/closeout.json` and final delivery report record its exact
+  SHA, run, downloaded reports and visual review. Signed Android install, runtime,
+  load, old-version upgrade and publication remain BLOCKED, not PASS.
+- The owner explicitly declined starting the already-installed AEHD service.
+  Keep that service stopped; do not retry this system change or request secrets.
+  Resume Android acceptance only in an already functioning test environment.
 
 
 ### Additional P1: unreadable is not empty
@@ -157,4 +162,24 @@ An explicit localized message explains checking access and reopening the app;
 pending progress is not falsely described as saved. The same ACL experiment now
 returns Error 12 and leaves the 9999-point primary intact. ACLs on the task's
 synthetic fixture were restored. CI also runs portable fault regressions.
-The initial signed candidate above is superseded and must not be published.
+The first signed candidate (source `37c9a87`, SHA-256 `96531cb4bd98712a43b8f76e09236e200a1a84cbdb0af4eb56e0fc1278cbc81c`) is superseded and retained locally; it must not be published.
+
+### Failed-exit cancellation regression
+
+Final review found that Stay here dismissed the failed-save dialog without
+resuming an active game. Two actual-button regression cases fail before the
+repair and pass afterward: resume an active round, or retain result actions for
+a stopped round. The 46-check reliability suite includes both. The earlier
+comparison harness timed out because it called a helper absent from the old
+implementation; that harness was corrected to click the actual button on both
+versions, without weakening either assertion. Raw logs remain local.
+
+### Development CI evidence scope
+
+Run [39922816834](https://github.com/seiya058904/mochi-arcade/actions/runs/39922816834)
+passed on `b14091b8445bfa2832d57073abf476f533b892de`; all 99 smoke and 10
+maximum-pool Android captures were visually reviewed. The raw reports and EGL
+logs are unchanged. This earlier green run does not validate later read-error or
+exit-cancellation changes. Final main is independently checked in Actions before
+closing this task; its downloadable artifacts are authoritative for that SHA.
+No new tag/draft/stable release is created while signed Android gates are blocked.

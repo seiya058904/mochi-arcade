@@ -1,5 +1,11 @@
 [
   {
+    "script": "tests/integration/vertical_playthrough.gd",
+    "exit": 0,
+    "errors": [],
+    "status": "PASS"
+  },
+  {
     "script": "tests/integration/fruit_playthrough.gd",
     "exit": 0,
     "errors": [],

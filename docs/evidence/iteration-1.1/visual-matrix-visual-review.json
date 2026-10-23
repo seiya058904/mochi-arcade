@@ -1,6 +1,7 @@
 {
   "status": "PASS_VISUAL_REVIEW",
-  "scope": "Current 1.1.0 desktop Compatibility renderer; not Android",
+  "source_commit": "7fd704395ab1875fcc46af7dc167fa9c2ed6f6ed",
+  "scope": "64 actual desktop Compatibility screenshots; three ratios, both languages; not Android",
   "images": {
     "matrix-phone-bouncy_balls.png": "32b1745277228a519b548e8e101d649f4d87d3a230241a808599fe0fb7ec072d",
     "matrix-phone-bubble_garden.png": "8a6b1e7b60fd9c28c0612680637a0f18240c35e12fd4d80105416204a9873cc8",
@@ -67,5 +68,5 @@
     "matrix-wide-zh-settings.png": "bc1b2396e3628f9d2fe23c604863390fa1358e5147583d969bfb4b5f548db3f9",
     "matrix-wide-zh-tile_trio.png": "2b239637cdcaa5e152c88d8af187d2da1780f6d86a2ad4e0d62e2223f2edc63e"
   },
-  "review": "Visible game boards, pause/resume, readable controls, settings and layouts; originals retained locally, no raw report status overwritten."
+  "review": "All 64 inspected; readable menus, boards, buttons and dialogs. Raw PNGs retained in .local/iteration-1.1/final-visual."
 }

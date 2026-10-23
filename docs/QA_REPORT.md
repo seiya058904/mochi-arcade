@@ -4,7 +4,7 @@
 
 **NOT_RELEASED / BLOCKED_ANDROID_RUNTIME.** New evidence is scoped in
 [ITERATION_1.1.md](ITERATION_1.1.md) and `evidence/iteration-1.1/`.
-Baseline 18/18 PASS; new 19/19 PASS includes 44 failure/retry/recovery/terminal-Undo
+Baseline 18/18 PASS; new 19/19 PASS includes 46 failure/retry/recovery/terminal-Undo
 assertions. All 64 real-renderer EN/ZH three-ratio layouts plus new failure/exit/Undo
 captures reviewed. Four idle canvas rebuild counts: 180 -> 0 over identical
 180-frame samples, five exact RGBA comparisons; GPU draws unchanged, no claimed

@@ -5,11 +5,12 @@
 **1.1.0 NOT_RELEASED / BLOCKED_ANDROID_RUNTIME.** The existing v1.0.0 public
 release and tag are untouched. See [ITERATION_1.1.md](ITERATION_1.1.md) for the
 audit, source changes, evidence, signing identity and exact continuation.
-The 18 original suites plus new 44-check reliability suite pass locally; 64
+The 18 original suites plus new 46-check reliability suite pass locally; 64
 desktop layout captures and save/Undo UI captures were visually reviewed. Local
 DPAPI signing identity is available. No online physical device is present;
 acceleration-on AVD startup fails its hypervisor precondition, and both unaccelerated
-GPU routes exit 0xC0000005 before usable ADB. No system drivers/services changed.
+GPU routes exit 0xC0000005 before usable ADB. No system drivers/services changed. The owner explicitly declined starting AEHD;
+keep that restriction in force.
 
 Next: obtain a functioning isolated Android test environment; verify exact signed
 1.1.0 bytes and in-place upgrade from the archived public v1.0.0 APK; run/review
