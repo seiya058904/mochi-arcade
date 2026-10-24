@@ -260,7 +260,7 @@ docs/              Product, art direction, QA and release evidence
 
 ### Verification, Without Guesswork
 
-The repository includes **23 required automated checks** (game suites, save/terminal boundary regressions, full restore semantics, release identity and Android restoration/release-summary rejection tests), deterministic game replays, procedural-board checks, and retained Android screenshots and lifecycle evidence.
+The repository includes **24 required automated checks** (game suites, save/terminal boundary regressions, full restore semantics, release identity, Android restoration/release-summary rejection tests, and Android UI probe regressions), deterministic game replays, procedural-board checks, and retained Android screenshots and lifecycle evidence.
 
 The published **v1.0.0** signed APK was exercised on a controlled **Android 14 / API 34 hardware-GPU emulator**, including all eight games, background return, resume, restart, save restoration, and maximum-object loads. This is **not** a claim that every Android phone will achieve the same frame rate.
 
