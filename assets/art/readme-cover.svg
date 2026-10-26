@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="470" viewBox="0 0 1500 470" role="img" aria-labelledby="t d">
+<title id="t">Mochi Arcade — a softer place to play</title>
+<desc id="d">Original pastel vector illustration of eight small arcade-game motifs, bouncy objects, fruit, tiles and a smiling bunny. Not an in-game screenshot.</desc>
+<defs>
+<linearGradient id="bg" x2="1" y2="1"><stop stop-color="#FFF3E9"/><stop offset=".52" stop-color="#F8E8EE"/><stop offset="1" stop-color="#E4EAFB"/></linearGradient>
+<linearGradient id="coral" x2="1"><stop stop-color="#DC778A"/><stop offset="1" stop-color="#BB70A2"/></linearGradient>
+<pattern id="confetti" width="63" height="63" patternUnits="userSpaceOnUse"><circle cx="10" cy="16" r="3" fill="#EAADAA" opacity=".36"/><circle cx="48" cy="49" r="2.5" fill="#A1B9E8" opacity=".38"/></pattern>
+</defs>
+<rect width="1500" height="470" rx="21" fill="url(#bg)"/>
+<rect width="1500" height="470" rx="21" fill="url(#confetti)"/>
+<path d="M0 430Q300 405 570 436T1500 425V470H0Z" fill="#FFFFFF" opacity=".36"/>
+<g font-family="Segoe UI,Arial,sans-serif">
+<rect x="82" y="63" width="238" height="36" rx="18" fill="#FEFDFB" stroke="#E9C7C1"/>
+<circle cx="105" cy="81" r="5" fill="#E8A6A2"/>
+<text x="123" y="88" font-size="16" font-weight="750" letter-spacing="2.3" fill="#967186">EIGHT LITTLE GAMES</text>
+<text x="74" y="200" font-size="76" font-weight="850" letter-spacing="-3" fill="#825E7B">A SOFTER</text>
+<text x="75" y="287" font-size="76" font-weight="850" letter-spacing="-3" fill="url(#coral)">PLACE TO PLAY</text>
+<text x="81" y="348" font-size="26" fill="#977A8A">Drop. Bounce. Stack. Match. Smile.</text>
+<path d="M83 377H678" stroke="#B28FA4" stroke-opacity=".4"/>
+<text x="83" y="414" font-size="16" letter-spacing="2.6" font-weight="700" fill="#AB7C8E">COZY  ·  OFFLINE  ·  NO ACCOUNTS</text>
+</g>
+<!-- Eight original symbolic cards, not captured UIs. -->
+<g stroke="#FFFFFF" stroke-width="4">
+<rect x="812" y="59" width="133" height="161" rx="28" fill="#FFDCDA"/>
+<rect x="963" y="59" width="133" height="161" rx="28" fill="#D0EBF0"/>
+<rect x="1114" y="59" width="133" height="161" rx="28" fill="#F9E5B9"/>
+<rect x="1265" y="59" width="133" height="161" rx="28" fill="#E6D9F8"/>
+<rect x="812" y="239" width="133" height="161" rx="28" fill="#D7E7CD"/>
+<rect x="963" y="239" width="133" height="161" rx="28" fill="#F9D2DF"/>
+<rect x="1114" y="239" width="133" height="161" rx="28" fill="#D9E1FA"/>
+<rect x="1265" y="239" width="133" height="161" rx="28" fill="#F5D8CE"/>
+</g>
+<!-- fruit -->
+<path d="M862 116Q838 104 841 142Q842 174 881 182Q919 169 918 141Q918 109 883 116Q877 100 892 92" fill="#EE8894" stroke="#B66C77" stroke-width="4"/>
+<path d="M883 108Q900 95 908 101Q904 117 883 116" fill="#8CA68A"/>
+<!-- bubbles -->
+<g fill="#FFFFFF" fill-opacity=".55" stroke="#70ADBE" stroke-width="4"><circle cx="1019" cy="130" r="29"/><circle cx="1063" cy="159" r="20"/><circle cx="1007" cy="178" r="14"/></g>
+<!-- cake -->
+<path d="M1147 171H1217V182H1147Z" fill="#C79188"/><rect x="1155" y="134" width="56" height="33" rx="8" fill="#F5B9C4"/><rect x="1162" y="110" width="42" height="24" rx="7" fill="#FFFAE6"/><circle cx="1183" cy="102" r="10" fill="#D77184"/>
+<!-- bouncy -->
+<path d="M1295 179H1367" stroke="#9B81D2" stroke-width="7"/><circle cx="1302" cy="150" r="14" fill="#ECAAEF"/><circle cx="1334" cy="117" r="22" fill="#C6B1F5"/><circle cx="1364" cy="160" r="13" fill="#A8A9F4"/>
+<!-- tile trio -->
+<g fill="#FCF7E9" stroke="#9FB59D" stroke-width="3"><rect x="836" y="273" width="41" height="41" rx="9"/><rect x="876" y="296" width="41" height="41" rx="9"/><rect x="851" y="336" width="41" height="41" rx="9"/></g>
+<!-- bunny -->
+<g fill="#FFF8F2" stroke="#CE96AD" stroke-width="4"><ellipse cx="1018" cy="291" rx="17" ry="43" transform="rotate(-14 1018 291)"/><ellipse cx="1057" cy="290" rx="17" ry="43" transform="rotate(14 1057 290)"/><circle cx="1037" cy="345" r="41"/></g>
+<g fill="#946C82"><circle cx="1020" cy="339" r="4"/><circle cx="1054" cy="339" r="4"/></g><path d="M1032 349q5 8 10 0" fill="none" stroke="#946C82" stroke-width="3"/>
+<!-- number merge -->
+<g font-family="Segoe UI,Arial,sans-serif" text-anchor="middle" font-size="28" font-weight="800" fill="#637BA7"><rect x="1134" y="290" width="41" height="44" rx="9" fill="#F4F6FF"/><rect x="1186" y="290" width="41" height="44" rx="9" fill="#F4F6FF"/><text x="1155" y="321">2</text><text x="1207" y="321">4</text><rect x="1160" y="343" width="42" height="42" rx="10" fill="#FAF7FF"/><text x="1181" y="374">8</text></g>
+<!-- jelly slice -->
+<path d="M1295 344q25-53 73-42q22 55-35 78q-38 0-38-36" fill="#F2A38E"/><path d="M1298 358L1372 312" stroke="#FFF7EC" stroke-width="8"/><g fill="#A05F77"><circle cx="1320" cy="339" r="4"/><circle cx="1343" cy="324" r="4"/></g>
+</svg>

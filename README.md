@@ -5,6 +5,12 @@
 <h1 align="center">Mochi Arcade</h1>
 
 <p align="center">
+  <img src="assets/art/readme-cover.svg" width="100%" alt="Pastel Mochi Arcade illustrated cover with eight mini-game symbols" />
+  <br />
+  <sub>ORIGINAL VECTOR ILLUSTRATION · REAL ANDROID SCREENSHOTS BELOW</sub>
+</p>
+
+<p align="center">
   <strong>Eight little games. One softer place to play.</strong>
 </p>
 
