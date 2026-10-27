@@ -290,7 +290,7 @@ Mochi Arcade combines **original project illustrations and icons**, bespoke 2D d
 
 The app uses **Nunito** and **Noto Sans SC** under the **SIL Open Font License**, alongside the Godot engine and its applicable notices. Credits and third-party license information are available inside the app without an internet connection.
 
-The repository's [LICENSE](LICENSE) is all rights reserved: the source code, artwork, audio, and branding are public for viewing, review, and personal installation of the official signed release, and no other rights are granted. Copying, modifying, or redistributing them requires prior written permission. Third-party components remain under their own licenses.
+This public repository does **not** declare a blanket license for its original code, illustrations, or sound. Public visibility alone does not grant permission to copy, redistribute, or relicense those original assets. See [LICENSE](LICENSE) for the repository license; third-party components remain under their own licenses.
 
 ---
 
