@@ -1,8 +1,0 @@
-{
-  "status": "FAIL",
-  "script": "tests/integration/vertical_playthrough.gd",
-  "reason": "180 second real-renderer timeout; process killed by subprocess timeout",
-  "last_capture": "cake-tall",
-  "cause": "UNVERIFIED; concurrent test/host focus timing possible",
-  "independent_retest": "PASS natural Cake 60 layers, cuts, miss/retry and Bloom 63 moves terminal/retry; no test assertion changed"
-}

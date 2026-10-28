@@ -1,9 +1,0 @@
-{
-  "status": "PASS",
-  "release_id": 421777385,
-  "apk_sha256": "09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8",
-  "bytes": 78471990,
-  "source": "920f39cfc29fc0d46b03a295f25f1197446a4027",
-  "download": "Authenticated unpublished draft download to a separate directory; not anonymous/public acceptance",
-  "certificate": "de1458f30ad0f2a758b9c6f3de82c00b608723eaa75de22d3cf853e351f7657b"
-}

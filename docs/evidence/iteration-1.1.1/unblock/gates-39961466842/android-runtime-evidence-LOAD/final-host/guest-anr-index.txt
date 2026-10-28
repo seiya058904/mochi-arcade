@@ -1,5 +1,0 @@
-/data/anr:
-total 0
-
-/data/tombstones:
-total 0

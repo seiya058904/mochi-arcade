@@ -1,8 +1,0 @@
-{
-  "status": "FAIL",
-  "graphics_diagnostic": "NOT_RUN",
-  "run_id": "39958584887",
-  "cause": "Version probe selected windowed QEMU and failed to load libpulse.so.0 before AVD creation or start",
-  "correction": "Use -no-window for version probe, matching actual emulator launch",
-  "earlier_workflow_validation_failure": "39958474343: runner context unavailable in job-level env; fixed at 6fbb7a4"
-}

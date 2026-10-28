@@ -1,5 +1,12 @@
 # Implementation board
 
+## Evidence housekeeping — 2026-10-28
+
+Owner-authorized one-time cleanup completed locally: historical raw logs and
+screenshots were recycled; current README images and product files were retained.
+See [the retention record](EVIDENCE-RETIREMENT-20261028.md). This changes no gate
+result or release approval; any future release still requires the existing gates.
+
 ## Current local retest and CI policy — 2026-10-23
 
 The owner authorized a fresh local Android retest, superseding the prior closed

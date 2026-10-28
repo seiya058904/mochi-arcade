@@ -1,7 +1,0 @@
-{
-  "checks": 47,
-  "failures": [],
-  "note": "Injected Godot inputs/state fixtures; not Android touch evidence.",
-  "status": "PASS",
-  "suite": "vertical-slice integration"
-}
