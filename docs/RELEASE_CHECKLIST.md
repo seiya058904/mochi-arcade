@@ -2,10 +2,10 @@
 
 ## Current signed acceptance — 2026-10-29
 
-**All four local original-signed gates PASS reviewed; release-ready in the tested scope.**
+**v1.1.1 RELEASED; four local original-signed gates and public-byte verification PASS.**
 See [the current signed-byte report](ANDROID_SIGNED_20261029.md) for exact package,
 source/tool identities, independent CLEAN/U110/U100/LOAD results, current CI, preserved
-failed attempts and device limits. Publication verification is tracked there.
+failed attempts, public-download verification and retained device limits.
 The dated material below is historical and does not override that current record.
 
 ## Historical record (through 2026-10-28)

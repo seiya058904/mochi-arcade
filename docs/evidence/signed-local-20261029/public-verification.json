@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "checkedAt": "2026-10-29T14:39:13.893152+08:00",
+  "release_id": 421777385,
+  "url": "https://github.com/seiya058904/mochi-arcade/releases/tag/v1.1.1",
+  "tag": "v1.1.1",
+  "tag_sha": "920f39cfc29fc0d46b03a295f25f1197446a4027",
+  "latest": true,
+  "published_at": "2026-10-29T06:39:01Z",
+  "downloads": [
+    {
+      "name": "MochiArcade.apk",
+      "asset_id": 668954574,
+      "bytes": 78471990,
+      "sha256": "09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8",
+      "anonymous_http": 200
+    },
+    {
+      "name": "SHA256SUMS",
+      "asset_id": 668954575,
+      "bytes": 83,
+      "sha256": "cb873c5b2d487c55ce76414f765a42f62300010512fc62c943b77eeb34b0b0e4",
+      "anonymous_http": 200
+    }
+  ],
+  "signed_identity": {
+    "sha256": "09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8",
+    "bytes": 78471990,
+    "certificate_sha256": "de1458f30ad0f2a758b9c6f3de82c00b608723eaa75de22d3cf853e351f7657b",
+    "version_name": "1.1.1",
+    "version_code": 3,
+    "debuggable": false
+  },
+  "previous_release_assets_unchanged": true,
+  "download_count_scope": "Own verification downloads are not external-user adoption."
+}

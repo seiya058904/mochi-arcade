@@ -1,6 +1,6 @@
 # Signed 1.1.1 acceptance — 2026-10-29
 
-**RELEASE_READY in the tested local Android scope; publication verification follows below.**
+**v1.1.1 RELEASED — CLOSED_WITH_LIMITATIONS in the tested Android scope.**
 The owner requested completion of signed acceptance and publication after the gates.
 This fresh signed-byte acceptance replaces the missing local candidate evidence;
 it does not change historical hosted failures into passes.
@@ -89,6 +89,13 @@ rules; this compact formal record is committed in Mochi and has no 48-hour polic
 
 ## Publication verification
 
-Pending publication of the existing draft after this evidence commit is synchronized
-and its current CI succeeds. Public-download, latest-release and tag checks must be
-recorded before calling A15 complete. Existing v1.0.0/v1.1.0 assets remain unchanged.
+Published 2026-10-29 06:39:01 UTC. Pre-publication evidence commit
+`48386582e250f610de8d250097372a26af1a1a8c` was synchronized and
+[CI 40830225231 passed](https://github.com/seiya058904/mochi-arcade/actions/runs/40830225231).
+The same draft is now public/latest. Tag v1.1.1 resolves to frozen S. Anonymous
+downloads of APK and SHA256SUMS returned HTTP 200 and matched their original asset
+IDs, byte counts and digests; the downloaded APK passed signature/version/alignment
+verification again. Public v1.0.0/v1.1.0 asset IDs, digests, targets and publication
+times are unchanged. [Public verification receipt](evidence/signed-local-20261029/public-verification.json).
+A15 is complete. Post-publication documentation CI is verified separately in the
+final closeout; this paragraph does not borrow the earlier CI result for a new SHA.
