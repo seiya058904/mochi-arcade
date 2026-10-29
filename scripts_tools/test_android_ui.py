@@ -43,6 +43,19 @@ class Guest:
 
 
 class UiTests(unittest.TestCase):
+    def test_package_version_text_handles_windows_adb_newlines_without_changing_bytes(self):
+        # Windows adb shell returns CRLF; exact signed version checks still require
+        # the complete version token, while save/APK binary reads must stay exact.
+        with tempfile.TemporaryDirectory() as temp:
+            recorder = AdbEvidence(temp)
+            for ending in (b'\n', b'\r\n'):
+                raw = ending.join((b'  versionCode=2 minSdk=24', b'  versionName=1.1.0', b'  enabled=true'))
+                with patch('android_evidence.subprocess.run', return_value=subprocess.CompletedProcess([], 0, raw, b'')):
+                    text = recorder('shell', 'dumpsys', 'package', PACKAGE)
+                    self.assertIn('versionName=1.1.0\n', text)
+                    self.assertNotIn('versionName=1.1.1\n', text)
+                    self.assertEqual(recorder('shell', 'cat', 'save.json', binary=True), raw)
+
     def test_unexpected_existing_path_is_not_read_or_removed(self):
         with tempfile.TemporaryDirectory() as temp:
             guest = Guest(); guest.files['/sdcard/mochi-ui-collision.xml'] = VALID

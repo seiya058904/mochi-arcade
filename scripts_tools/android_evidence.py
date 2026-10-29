@@ -47,7 +47,9 @@ class AdbEvidence:
                 self.app_pid = result.stdout.decode(errors='replace').strip() or 'ABSENT'
             if check and result.returncode:
                 raise RuntimeError(f'ADB {args}: {result.stderr.decode(errors="replace")}')
-            return result.stdout if binary else result.stdout.decode(errors='replace').strip()
+            # Windows adb emits CRLF even for Android shell output. Normalize
+            # text transport only; binary save/APK evidence must remain exact.
+            return result.stdout if binary else result.stdout.decode(errors='replace').replace('\r\n', '\n').strip()
         except subprocess.TimeoutExpired as error:
             event['timeout'] = True
             event['stdout'] = (error.stdout or b'').decode(errors='replace')

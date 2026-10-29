@@ -133,11 +133,12 @@ def main():
         for name, data in original.items():
             (out / ("before-" + name)).write_bytes(data)
         before_package = shell("dumpsys", "package", PACKAGE)
-        assert f"versionCode={predecessor['code']} " in before_package and f"versionName={predecessor['version']}\n" in before_package
+        (out / "before-package.txt").write_text(before_package, encoding='utf-8')
+        assert f"versionCode={predecessor['code']} " in before_package and f"versionName={predecessor['version']}\n" in before_package, "Installed predecessor version does not match expected package metadata"
         result = adb("install", "--no-incremental", "-r", str(args.apk.resolve()))
         assert "Success" in result
         after_package = shell("dumpsys", "package", PACKAGE)
-        (out / "after-package.txt").write_text(after_package)
+        (out / "after-package.txt").write_text(after_package, encoding='utf-8')
         assert f"versionCode={candidate['code']} " in after_package and f"versionName={candidate['version']}\n" in after_package
         assert all(read(name) == data for name, data in original.items()), "Install -r changed save bytes"
         launch()
@@ -304,7 +305,7 @@ def main():
         shell("chmod", "600", paths["save.json"])
         passed("Read-denied primary survives settings mutation and process stop byte-for-byte")
         logs = adb("logcat", "-d", "-v", "threadtime")
-        (out / "logcat.txt").write_text(logs)
+        (out / "logcat.txt").write_text(logs, encoding='utf-8')
         errors = [line for line in logs.splitlines() if "SCRIPT ERROR:" in line or "FATAL EXCEPTION" in line or "Fatal signal" in line or re.search(r"\bE godot\s*:\s*ERROR:", line)]
         report["runtime_errors"] = errors
         assert not errors, "Native/script runtime error during upgrade"
@@ -336,10 +337,10 @@ def main():
                 for name in paths:
                     (out / ("failure-" + name)).write_bytes(read(name))
                 shot("failure")
-                (out / "failure-logcat.txt").write_text(adb("logcat", "-d", "-v", "threadtime"))
+                (out / "failure-logcat.txt").write_text(adb("logcat", "-d", "-v", "threadtime"), encoding='utf-8')
             except Exception as capture_error:
                 report["failure_capture_error"] = str(capture_error)
-        (out / "upgrade-report.json").write_text(json.dumps(report, indent=2) + "\n")
+        (out / "upgrade-report.json").write_text(json.dumps(report, indent=2) + "\n", encoding='utf-8')
         print(json.dumps({key: value for key, value in report.items() if key != "commands"}, indent=2))
     return 0 if report["status"].startswith("PASS") else 1
 
