@@ -1,0 +1,638 @@
+{
+  "status": "FAIL",
+  "commit": "bf786e1052314345d82e2fc25181f766b8ac510f",
+  "apk_sha256": "8fcc1ebc83cb9cb8e8947a1a33bef9cba9222b9ac775fafdcd7d3d5cd85d473c",
+  "environment": "Dedicated local Windows AMD host-GPU Android API 34 x86_64 emulator; not a physical phone",
+  "graphics_backend_requested": "host",
+  "visual_review": "PENDING",
+  "commands": [],
+  "release_candidate": true,
+  "game_checks": {
+    "fruit_drop": {
+      "entered": true,
+      "system_back_keeps_process_and_freezes_round": true,
+      "background_freeze": true,
+      "background_render_and_input": true,
+      "background_cycles": [
+        {
+          "cycle": 1,
+          "visible": true,
+          "checkpoint_equal": true,
+          "resume_and_back_input": true
+        },
+        {
+          "cycle": 2,
+          "visible": true,
+          "checkpoint_equal": true,
+          "pid_before": "2437",
+          "pid_after": "2437",
+          "same_process": true
+        },
+        {
+          "cycle": 3,
+          "visible": true,
+          "checkpoint_equal": true,
+          "pid_before": "2437",
+          "pid_after": "2437",
+          "same_process": true
+        }
+      ],
+      "round_restored_after_force_stop": true,
+      "restart_zero_score": true
+    },
+    "bubble_garden": {
+      "entered": true,
+      "system_back_keeps_process_and_freezes_round": true,
+      "background_freeze": true,
+      "background_render_and_input": true,
+      "background_cycles": [
+        {
+          "cycle": 1,
+          "visible": true,
+          "checkpoint_equal": true,
+          "resume_and_back_input": true
+        },
+        {
+          "cycle": 2,
+          "visible": true,
+          "checkpoint_equal": true,
+          "pid_before": "3361",
+          "pid_after": "3361",
+          "same_process": true
+        },
+        {
+          "cycle": 3,
+          "visible": true,
+          "checkpoint_equal": true,
+          "pid_before": "3361",
+          "pid_after": "3361",
+          "same_process": true
+        }
+      ],
+      "round_restored_after_force_stop": true,
+      "restart_zero_score": true
+    },
+    "cake_stack": {
+      "entered": true,
+      "system_back_keeps_process_and_freezes_round": true,
+      "background_freeze": true,
+      "background_render_and_input": true,
+      "background_cycles": [
+        {
+          "cycle": 1,
+          "visible": true,
+          "checkpoint_equal": true,
+          "resume_and_back_input": true
+        },
+        {
+          "cycle": 2,
+          "visible": true,
+          "checkpoint_equal": true,
+          "pid_before": "3663",
+          "pid_after": "3663",
+          "same_process": true
+        },
+        {
+          "cycle": 3,
+          "visible": true,
+          "checkpoint_equal": true,
+          "pid_before": "3663",
+          "pid_after": "3663",
+          "same_process": true
+        }
+      ],
+      "round_restored_after_force_stop": true,
+      "restart_zero_score": true
+    },
+    "bouncy_balls": {
+      "entered": true,
+      "natural_result_seen": true,
+      "system_back_keeps_process_and_freezes_round": true
+    }
+  },
+  "command_timeline": "adb-timeline.jsonl",
+  "device": {
+    "ro.product.model": "Android SDK built for x86_64",
+    "ro.build.version.release": "14",
+    "ro.build.version.sdk": "34",
+    "ro.product.cpu.abi": "x86_64",
+    "ro.build.fingerprint": "Android/sdk_phone64_x86_64/emu64x:14/UE1A.230829.036.A1/11228894:userdebug/test-keys"
+  },
+  "display": "Physical size: 720x1280",
+  "adb_root": "adbd is already running as root",
+  "save_access": "Rooted dedicated test AVD; APK remains non-debuggable",
+  "network_disabled_for_test": true,
+  "install": "Performing Streamed Install\nSuccess",
+  "startup_frames": {
+    "startup-00": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 69,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "111d20fe96d3caaf7efcd44bf2cc8ebeda8f48d5264767e4839490db133d5f06"
+    },
+    "startup-01": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 1,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": false,
+      "sha256": "b2e9593fc8495841d6624ba6ce939324ce9a74ef8adcff27d94bb62fe0fa8bb2"
+    },
+    "startup-02": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 322,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "28f200d728274d82f400f68913e9c28d32841575e5b5f0070b8370e1ce17f3dc"
+    }
+  },
+  "startup_video": "startup.mp4; observational, requires visual review",
+  "cold_launch": "Starting: Intent { cmp=io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher }\nStatus: ok\nLaunchState: COLD\nActivity: io.github.seiya058904.mochiarcade/com.godot.game.GodotApp\nTotalTime: 637\nWaitTime: 651\nComplete",
+  "fullscreen_tip_dismissed": true,
+  "frame_checks": {
+    "00-home": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 572,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "1f38a67f5c27553b618a2a5c3206e5a64b711ac8038eda7b2f3d3d9145066b89"
+    },
+    "15-android-launcher-icon": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 191,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "d8a09b7393d48798249ca0f311c35eea1cd379ddb483b09a3dc39e34747c648a"
+    },
+    "16-launcher-icon-opened-app": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 572,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "1f38a67f5c27553b618a2a5c3206e5a64b711ac8038eda7b2f3d3d9145066b89"
+    },
+    "01-fruit_drop-help": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 102,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "9bdb52c4c35547b3b44e3a76d3d046280d1e472309046b1b37248f2d974bf4b5"
+    },
+    "01-fruit_drop-ready": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 63,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "75b3d54868f0b0ca18d92134bc7df64b2f9c294e320b6ec9938d6d0f5645003a"
+    },
+    "01-fruit_drop-edge-help": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 102,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "9bdb52c4c35547b3b44e3a76d3d046280d1e472309046b1b37248f2d974bf4b5"
+    },
+    "01-fruit_drop-edge-resumed": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 63,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "75b3d54868f0b0ca18d92134bc7df64b2f9c294e320b6ec9938d6d0f5645003a"
+    },
+    "01-fruit_drop-after-input": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 92,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "d2b1c33fd8957a7056c92fa74ac8eabd26a6caa540c35065e848913eccf7647f"
+    },
+    "01-fruit_drop-after-back": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 126,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "af6d89e18f6ded063b4ff764a9d5b957415d126f97a0bcba4b019dba62aa7671"
+    },
+    "01-fruit_drop-resumed": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 89,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "fe43388f36bd03dde5dee30456c1198735a5fece5bd457450ec41ebf9265d4ed"
+    },
+    "01-fruit_drop-background-return": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 125,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "eee16ef97ee09107d439898281aabe8163fe0307d4e56da61de8b73a2124cd4e"
+    },
+    "01-fruit_drop-background-paused-again": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 124,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "39e745d009fdf1c89df40fb408b35644e90ecc4dd2a329cc1a419b31de1224c6"
+    },
+    "01-fruit_drop-repeat-2-background-return": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 124,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "39e745d009fdf1c89df40fb408b35644e90ecc4dd2a329cc1a419b31de1224c6"
+    },
+    "01-fruit_drop-repeat-3-background-return": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 124,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "39e745d009fdf1c89df40fb408b35644e90ecc4dd2a329cc1a419b31de1224c6"
+    },
+    "01-fruit_drop-restored": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 124,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "2635999f76ea0a12cff460fcf23e0e4212da82a337689df14f7df62790cc9eb4"
+    },
+    "01-fruit_drop-restarted": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 92,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "f4ca701b4011fe7c83370bf941e444fcb4ebc23bacb9b125daccd79ed0330a65"
+    },
+    "02-bubble_garden-help": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 303,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "1cf2761370ec6c2d0c9082579b00ed7c16c2d2d550e679ea9db8a884601b62ae"
+    },
+    "02-bubble_garden-ready": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 351,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "111cc8b2d1807dad84909e3633d2f75724ec0cc2c9b631a88540300cbc0f3472"
+    },
+    "02-bubble_garden-after-input": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 325,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "9d3564ff1c1aa98fdcffa9a243fa1776a47c6bc52b677674be7b2c0e9f2e9157"
+    },
+    "02-bubble_garden-after-back": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 115,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "e28be7fd200cf495dc0788f0b8058a7aed5c1585edfd1863861d341038cad6b3"
+    },
+    "02-bubble_garden-resumed": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 325,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "9d3564ff1c1aa98fdcffa9a243fa1776a47c6bc52b677674be7b2c0e9f2e9157"
+    },
+    "02-bubble_garden-background-return": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 115,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "e28be7fd200cf495dc0788f0b8058a7aed5c1585edfd1863861d341038cad6b3"
+    },
+    "02-bubble_garden-background-paused-again": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 115,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "d5c9ebb445b2947a014b180addeb2acbb8009193f35b19ffea8e452b88f1a4c8"
+    },
+    "02-bubble_garden-repeat-2-background-return": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 115,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "d5c9ebb445b2947a014b180addeb2acbb8009193f35b19ffea8e452b88f1a4c8"
+    },
+    "02-bubble_garden-repeat-3-background-return": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 115,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "d5c9ebb445b2947a014b180addeb2acbb8009193f35b19ffea8e452b88f1a4c8"
+    },
+    "02-bubble_garden-restored": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 114,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "981422e3da5ce098cf07bf9fbbd9cc31f6ae8e093f93b5a5f8c5c0393726ab5d"
+    },
+    "02-bubble_garden-restarted": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 113,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "cec0a02ce4acfa683e7198d036f8ca5a0fac30a12cf65da9be3ba7343bc805c7"
+    },
+    "03-cake_stack-help": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 107,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "fb392bfd7c17fe2ad8da00246912e0ad02c61626b75b7241f778caf87dca2c99"
+    },
+    "03-cake_stack-ready": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 66,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "fdd2d6040056aaa9e7ba21816dbc99219ae0cdeaca448836cd1061cfb8dd58eb"
+    },
+    "03-cake_stack-after-input": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 71,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "d8d7fa2efa2a0990f6b93662d9f0868fd97540624e5ccd343bb2e3e0660663ce"
+    },
+    "03-cake_stack-after-back": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 84,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "31866895084a449677f9e94c43fbf4bbfd6829b86aded6b31b58530ee241cf1b"
+    },
+    "03-cake_stack-resumed": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 70,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "3ecd3c744cc6c8a0a3a45ea875068fe246d6cd39937fb6eb6e19556df38999b9"
+    },
+    "03-cake_stack-background-return": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 84,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "a76a59655c31e1d41c55ba6330218e3a334558aa0400e7294b2c61f8afc03945"
+    },
+    "03-cake_stack-background-paused-again": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 85,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "264a532cf43dd29bba3781bbba0de2245ded11375b4ea2062c9a0241fceea952"
+    },
+    "03-cake_stack-repeat-2-background-return": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 85,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "264a532cf43dd29bba3781bbba0de2245ded11375b4ea2062c9a0241fceea952"
+    },
+    "03-cake_stack-repeat-3-background-return": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 85,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "264a532cf43dd29bba3781bbba0de2245ded11375b4ea2062c9a0241fceea952"
+    },
+    "03-cake_stack-restored": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 84,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "6dc9f90fc0132826b9d6462f1f4dfb29dc1bad47ae69476ce5024b8feb526ae5"
+    },
+    "03-cake_stack-restarted": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 83,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "1c0163091053240b913a3568b7208d32d7ee4eb84bc76a8cb4e00a8a179e2586"
+    },
+    "04-bouncy_balls-help": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 117,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "bff8b4511666bb033388ae1969696e1305d88f8522767397a8a2a7139efe6ff0"
+    },
+    "04-bouncy_balls-ready": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 104,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "ee6ab44cdf6167551ce12533142386a20f71eb17de09f258129ad9cf95a35c4b"
+    },
+    "04-bouncy_balls-after-input": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 95,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "e8a1851f39f71ed21a44e278f6d2373a3768d33a5125c6d62b071da45850d68c"
+    },
+    "04-bouncy_balls-after-back": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 95,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "f82b37c8ff2063d4b45a5204c1324384bea270d1c6325e3f2f7a8976c008eaf6"
+    },
+    "04-bouncy_balls-resumed": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 104,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "490a4cabc42d17b107406d8971730e639bea18eb00faa822cea185373740ae82"
+    },
+    "04-bouncy_balls-background-return": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 95,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "2dc99909e495e344ba3e45d731fcebf13d882b2ed8fb6dc88af3d31536b128ec"
+    },
+    "failure-screen": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 95,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "2dc99909e495e344ba3e45d731fcebf13d882b2ed8fb6dc88af3d31536b128ec"
+    }
+  },
+  "first_music_loop_survived": true,
+  "launcher_icon_tapped": true,
+  "footer_and_dialog_edge_taps": true,
+  "error": "bouncy_balls background and returned checkpoints differ; inspect both retained saves",
+  "runtime_errors": [],
+  "graphics_swap_warnings": [
+    "10-29 06:07:37.283  2437  2475 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-29 06:08:05.732  2437  2475 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-29 06:08:15.129  2437  2475 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-29 06:08:22.434  2437  2475 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-29 06:08:29.784  2437  2475 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-29 06:08:41.785  3257  3281 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-29 06:09:00.384  3361  3384 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-29 06:09:09.779  3361  3384 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-29 06:09:17.080  3361  3384 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-29 06:09:24.411  3361  3384 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-29 06:09:36.480  3560  3583 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-29 06:09:52.934  3663  3686 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-29 06:10:02.329  3663  3686 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-29 06:10:09.831  3663  3686 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-29 06:10:17.132  3663  3686 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-29 06:10:29.381  3863  3886 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-29 06:10:49.137  3967  3990 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+  ],
+  "log_stream_exit": 1
+}

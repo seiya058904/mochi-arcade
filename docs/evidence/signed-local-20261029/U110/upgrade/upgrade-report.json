@@ -1,0 +1,1716 @@
+{
+  "status": "PASS_UPGRADE_AWAITING_VISUAL_REVIEW",
+  "commit": "bf786e1052314345d82e2fc25181f766b8ac510f",
+  "apk_sha256": "09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8",
+  "scope": "Disposable AOSP API 34 userdebug AVD; real predecessor rounds plus explicit synthetic records; not phone performance",
+  "checks": [
+    "Original signed upgrade preserves both files byte-for-byte and all eight rounds/records/settings after launch",
+    "fruit_drop full persistent semantics and native continuation; records/settings retained",
+    "bubble_garden full persistent semantics and native continuation; records/settings retained",
+    "cake_stack full persistent semantics and native continuation; records/settings retained",
+    "bouncy_balls full persistent semantics and native continuation; records/settings retained",
+    "tile_trio full persistent semantics and native continuation; records/settings retained",
+    "mochi_hop full persistent semantics and native continuation; records/settings retained",
+    "number_bloom full persistent semantics and native continuation; records/settings retained",
+    "jelly_slice full persistent semantics and native continuation; records/settings retained",
+    "Actual terminal swipe and result Undo restore board/score and survive process restart",
+    "Seven native Trio picks reach full tray; terminal background return, actual Undo and next input pass",
+    "invalid-json recovers all eight records/rounds from valid backup",
+    "damaged-fields recovers all eight records/rounds from valid backup",
+    "settings-section recovers all eight records/rounds from valid backup",
+    "Read-denied primary survives settings mutation and process stop byte-for-byte",
+    "Ordinary uninstall removes package and app data; next smoke is a clean install"
+  ],
+  "commands": [],
+  "build_source": "920f39cfc29fc0d46b03a295f25f1197446a4027",
+  "predecessor_tag": "v1.1.0",
+  "predecessor_sha256": "9676db2f517e9c206317bfce045259294e36c5014b294f155db549b81f263320",
+  "semantics": {
+    "fruit_drop": {
+      "fields": [
+        "fruit",
+        "next",
+        "rng",
+        "score",
+        "seed"
+      ],
+      "normalizations": [
+        "Spawn clamps each restored circle to jar bounds; level/count/velocity/angle/next/RNG/score retained"
+      ],
+      "expected": {
+        "fruit": [
+          {
+            "angle": 0.0548010095953941,
+            "level": 0,
+            "vx": -0.277085423469543,
+            "vy": 0.0,
+            "x": 247.253143310547,
+            "y": 812
+          },
+          {
+            "angle": 1.7803382661441e-06,
+            "level": 2,
+            "vx": -1.06055935589211e-07,
+            "vy": 3.36923427220572e-15,
+            "x": 404.267578125,
+            "y": 797
+          },
+          {
+            "angle": -2.92531704902649,
+            "level": 2,
+            "vx": -4.25942420959473,
+            "vy": 0.0,
+            "x": 140.091979980469,
+            "y": 797
+          }
+        ],
+        "next": 1,
+        "rng": "-5815122111590809737",
+        "score": 0,
+        "seed": 105224933
+      },
+      "observed": {
+        "fruit": [
+          {
+            "angle": 0.0548010095953941,
+            "level": 0,
+            "vx": -0.277085423469543,
+            "vy": 0.0,
+            "x": 247.253143310547,
+            "y": 812.0
+          },
+          {
+            "angle": 1.7803382661441e-06,
+            "level": 2,
+            "vx": -1.06055935589211e-07,
+            "vy": 3.36923427220572e-15,
+            "x": 404.267578125,
+            "y": 797.0
+          },
+          {
+            "angle": -2.92531704902649,
+            "level": 2,
+            "vx": -4.25942420959473,
+            "vy": 0.0,
+            "x": 140.091979980469,
+            "y": 797.0
+          }
+        ],
+        "next": 1,
+        "rng": "-5815122111590809737",
+        "score": 0,
+        "seed": 105224933
+      },
+      "status": "PASS",
+      "continued_state": {
+        "fruit": [
+          {
+            "angle": 0.0497058033943176,
+            "level": 0,
+            "vx": -0.0525991879403591,
+            "vy": -5.37898074526311e-07,
+            "x": 247.158294677734,
+            "y": 812.238159179688
+          },
+          {
+            "angle": 1.79790799847979e-06,
+            "level": 2,
+            "vx": -2.32770062780219e-07,
+            "vy": 4.16159696018715e-15,
+            "x": 404.267578125,
+            "y": 797.242919921875
+          },
+          {
+            "angle": -2.96893048286438,
+            "level": 2,
+            "vx": -0.841696739196777,
+            "vy": 0.0,
+            "x": 138.486801147461,
+            "y": 797.227661132812
+          },
+          {
+            "angle": 0.0,
+            "level": 1,
+            "vx": 0.0,
+            "vy": 48.5116348266602,
+            "x": 244.5341796875,
+            "y": 109.622467041016
+          }
+        ],
+        "next": 1,
+        "rng": "2674225732930319242",
+        "score": 0,
+        "seed": 105224933
+      }
+    },
+    "bubble_garden": {
+      "fields": [
+        "grid",
+        "missed",
+        "next",
+        "rng",
+        "score",
+        "seed",
+        "shot",
+        "stage"
+      ],
+      "normalizations": [],
+      "expected": {
+        "grid": [
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            0,
+            2
+          ],
+          [
+            2,
+            1,
+            2
+          ],
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            3,
+            1,
+            0
+          ],
+          [
+            3,
+            2,
+            1
+          ],
+          [
+            4,
+            0,
+            0
+          ],
+          [
+            4,
+            1,
+            0
+          ],
+          [
+            4,
+            2,
+            1
+          ],
+          [
+            5,
+            0,
+            0
+          ],
+          [
+            5,
+            1,
+            0
+          ],
+          [
+            5,
+            2,
+            1
+          ],
+          [
+            6,
+            0,
+            1
+          ],
+          [
+            6,
+            1,
+            1
+          ],
+          [
+            6,
+            2,
+            2
+          ],
+          [
+            7,
+            0,
+            1
+          ],
+          [
+            7,
+            1,
+            1
+          ],
+          [
+            7,
+            2,
+            2
+          ],
+          [
+            8,
+            0,
+            1
+          ],
+          [
+            8,
+            1,
+            1
+          ],
+          [
+            8,
+            2,
+            2
+          ]
+        ],
+        "missed": 0,
+        "next": 0,
+        "rng": "7622473234151033395",
+        "score": 40,
+        "seed": 105283376,
+        "shot": 1,
+        "stage": 1
+      },
+      "observed": {
+        "grid": [
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            0,
+            2
+          ],
+          [
+            2,
+            1,
+            2
+          ],
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            3,
+            1,
+            0
+          ],
+          [
+            3,
+            2,
+            1
+          ],
+          [
+            4,
+            0,
+            0
+          ],
+          [
+            4,
+            1,
+            0
+          ],
+          [
+            4,
+            2,
+            1
+          ],
+          [
+            5,
+            0,
+            0
+          ],
+          [
+            5,
+            1,
+            0
+          ],
+          [
+            5,
+            2,
+            1
+          ],
+          [
+            6,
+            0,
+            1
+          ],
+          [
+            6,
+            1,
+            1
+          ],
+          [
+            6,
+            2,
+            2
+          ],
+          [
+            7,
+            0,
+            1
+          ],
+          [
+            7,
+            1,
+            1
+          ],
+          [
+            7,
+            2,
+            2
+          ],
+          [
+            8,
+            0,
+            1
+          ],
+          [
+            8,
+            1,
+            1
+          ],
+          [
+            8,
+            2,
+            2
+          ]
+        ],
+        "missed": 0,
+        "next": 0,
+        "rng": "7622473234151033395",
+        "score": 40,
+        "seed": 105283376,
+        "shot": 1,
+        "stage": 1
+      },
+      "status": "PASS",
+      "continued_state": {
+        "grid": [
+          [
+            0,
+            0,
+            2
+          ],
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            2,
+            0,
+            2
+          ],
+          [
+            3,
+            0,
+            0
+          ],
+          [
+            4,
+            0,
+            0
+          ],
+          [
+            5,
+            0,
+            0
+          ],
+          [
+            6,
+            0,
+            1
+          ],
+          [
+            7,
+            0,
+            1
+          ],
+          [
+            8,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            2
+          ],
+          [
+            3,
+            1,
+            0
+          ],
+          [
+            4,
+            1,
+            0
+          ],
+          [
+            5,
+            1,
+            0
+          ],
+          [
+            6,
+            1,
+            1
+          ],
+          [
+            7,
+            1,
+            1
+          ],
+          [
+            8,
+            1,
+            1
+          ],
+          [
+            6,
+            2,
+            2
+          ],
+          [
+            7,
+            2,
+            2
+          ],
+          [
+            8,
+            2,
+            2
+          ]
+        ],
+        "missed": 0,
+        "next": 0,
+        "rng": "-3779011431453238634",
+        "score": 80,
+        "seed": 105283376,
+        "shot": 0,
+        "stage": 1
+      }
+    },
+    "cake_stack": {
+      "fields": [
+        "combo",
+        "layers",
+        "score",
+        "seed",
+        "tier",
+        "time"
+      ],
+      "normalizations": [],
+      "expected": {
+        "combo": 0,
+        "layers": [
+          {
+            "tier": 0,
+            "w": 320.0,
+            "x": 164.0
+          },
+          {
+            "tier": 1,
+            "w": 237.839215,
+            "x": 164.0
+          }
+        ],
+        "score": 1,
+        "seed": 105337806,
+        "tier": 1,
+        "time": 3.62101911111111
+      },
+      "observed": {
+        "combo": 0,
+        "layers": [
+          {
+            "tier": 0.0,
+            "w": 320.0,
+            "x": 164.0
+          },
+          {
+            "tier": 1.0,
+            "w": 237.839215,
+            "x": 164.0
+          }
+        ],
+        "score": 1,
+        "seed": 105337806,
+        "tier": 1,
+        "time": 3.62101911111111
+      },
+      "status": "PASS",
+      "continued_state": {
+        "combo": 0,
+        "layers": [
+          {
+            "tier": 0.0,
+            "w": 320.0,
+            "x": 164.0
+          },
+          {
+            "tier": 1.0,
+            "w": 237.839215,
+            "x": 164.0
+          }
+        ],
+        "score": 1,
+        "seed": 105337806,
+        "tier": 1,
+        "time": 4.85713022222222
+      }
+    },
+    "bouncy_balls": {
+      "fields": [
+        "area",
+        "balls",
+        "clear",
+        "health",
+        "paddle",
+        "score",
+        "seed",
+        "wave"
+      ],
+      "normalizations": [
+        "Same-area survivor positions bounded and velocities normalized by existing safe_velocity; all gate bits/health/wave/paddle/clear retained"
+      ],
+      "expected": {
+        "area": [
+          648.0,
+          894.0
+        ],
+        "balls": [
+          [
+            0.558084370177469,
+            0.62097775589433,
+            -282.6251606046937,
+            283.06009714046786,
+            0,
+            0
+          ]
+        ],
+        "clear": 0.0,
+        "health": [
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "paddle": 0.5,
+        "score": 0,
+        "seed": 105419544,
+        "wave": 1
+      },
+      "observed": {
+        "area": [
+          648.0,
+          894.0
+        ],
+        "balls": [
+          [
+            0.558084370177469,
+            0.62097775589433,
+            -282.625152587891,
+            283.060089111328,
+            0,
+            0
+          ]
+        ],
+        "clear": 0.0,
+        "health": [
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "paddle": 0.5,
+        "score": 0,
+        "seed": 105419544,
+        "wave": 1
+      },
+      "status": "PASS",
+      "continued_state": {
+        "area": [
+          648.0,
+          894.0
+        ],
+        "balls": [
+          [
+            0.121934490439333,
+            0.937598653021008,
+            -282.625152587891,
+            283.060089111328,
+            0,
+            0
+          ]
+        ],
+        "clear": 0.0,
+        "health": [
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "paddle": 0.608383367091049,
+        "score": 0,
+        "seed": 105419544,
+        "wave": 1
+      }
+    },
+    "tile_trio": {
+      "fields": [
+        "history",
+        "mask",
+        "score",
+        "seed",
+        "stage",
+        "tray"
+      ],
+      "normalizations": [],
+      "expected": {
+        "history": [
+          {
+            "mask": "68719476735",
+            "score": 0,
+            "tray": []
+          },
+          {
+            "mask": "60129542143",
+            "score": 0,
+            "tray": [
+              33
+            ]
+          },
+          {
+            "mask": "25769803775",
+            "score": 0,
+            "tray": [
+              33,
+              35
+            ]
+          },
+          {
+            "mask": "21474836479",
+            "score": 0,
+            "tray": [
+              33,
+              35,
+              32
+            ]
+          }
+        ],
+        "mask": "4294967295",
+        "score": 0,
+        "seed": 105458378,
+        "stage": 1,
+        "tray": [
+          33,
+          35,
+          32,
+          34
+        ]
+      },
+      "observed": {
+        "history": [
+          {
+            "mask": "68719476735",
+            "score": 0,
+            "tray": []
+          },
+          {
+            "mask": "60129542143",
+            "score": 0,
+            "tray": [
+              33
+            ]
+          },
+          {
+            "mask": "25769803775",
+            "score": 0,
+            "tray": [
+              33,
+              35
+            ]
+          },
+          {
+            "mask": "21474836479",
+            "score": 0,
+            "tray": [
+              33,
+              35,
+              32
+            ]
+          }
+        ],
+        "mask": "4294967295",
+        "score": 0,
+        "seed": 105458378,
+        "stage": 1,
+        "tray": [
+          33,
+          35,
+          32,
+          34
+        ]
+      },
+      "status": "PASS",
+      "continuation": "Actual native Undo restores the last tile and reduces history by one",
+      "undo": "PASS",
+      "continued_state": {
+        "history": [
+          {
+            "mask": "68719476735",
+            "score": 0,
+            "tray": []
+          },
+          {
+            "mask": "60129542143",
+            "score": 0,
+            "tray": [
+              33
+            ]
+          },
+          {
+            "mask": "25769803775",
+            "score": 0,
+            "tray": [
+              33,
+              35
+            ]
+          }
+        ],
+        "mask": "21474836479",
+        "score": 0,
+        "seed": 105458378,
+        "stage": 1,
+        "tray": [
+          33,
+          35,
+          32
+        ]
+      }
+    },
+    "mochi_hop": {
+      "fields": [
+        "combo",
+        "current",
+        "foot",
+        "landed",
+        "rng",
+        "score",
+        "seed",
+        "target"
+      ],
+      "normalizations": [
+        "Restart returns to READY, clamps unsafe foot to current center; target/RNG/landed/combo/score retained and charge interval nonempty"
+      ],
+      "expected": {
+        "combo": 1,
+        "current": {
+          "center": [
+            216.046310424805,
+            0.0
+          ],
+          "kind": 0,
+          "radius": 62.0
+        },
+        "foot": [
+          216.046310424805,
+          0.0
+        ],
+        "landed": 1,
+        "rng": "-1103416575365724432",
+        "score": 3,
+        "seed": 105514190,
+        "target": {
+          "center": [
+            216.046310424805,
+            184.500274658203
+          ],
+          "kind": 3,
+          "radius": 61.65
+        }
+      },
+      "observed": {
+        "combo": 1,
+        "current": {
+          "center": [
+            216.046310424805,
+            0.0
+          ],
+          "kind": 0,
+          "radius": 62.0
+        },
+        "foot": [
+          216.046310424805,
+          0.0
+        ],
+        "landed": 1,
+        "rng": "-1103416575365724432",
+        "score": 3,
+        "seed": 105514190,
+        "target": {
+          "center": [
+            216.046310424805,
+            184.500274658203
+          ],
+          "kind": 3,
+          "radius": 61.65
+        }
+      },
+      "status": "PASS",
+      "continued_state": {
+        "combo": 2,
+        "current": {
+          "center": [
+            216.046310424805,
+            184.500274658203
+          ],
+          "kind": 3,
+          "radius": 61.65
+        },
+        "foot": [
+          216.046310424805,
+          184.500274658203
+        ],
+        "landed": 2,
+        "rng": "-6271461166352801948",
+        "score": 7,
+        "seed": 105514190,
+        "target": {
+          "center": [
+            411.419738769531,
+            184.500274658203
+          ],
+          "kind": 1,
+          "radius": 61.3
+        }
+      }
+    },
+    "number_bloom": {
+      "fields": [
+        "board",
+        "rng",
+        "score",
+        "seed",
+        "undo",
+        "won"
+      ],
+      "normalizations": [],
+      "expected": {
+        "board": [
+          8,
+          4,
+          0,
+          2,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "rng": "-797974986044946292",
+        "score": 20,
+        "seed": 105568074,
+        "undo": {
+          "board": [
+            4,
+            4,
+            0,
+            0,
+            4,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2
+          ],
+          "rng": "-9181924124648393129",
+          "score": 12,
+          "won": false
+        },
+        "won": false
+      },
+      "observed": {
+        "board": [
+          8,
+          4,
+          0,
+          2,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "rng": "-797974986044946292",
+        "score": 20,
+        "seed": 105568074,
+        "undo": {
+          "board": [
+            4.0,
+            4.0,
+            0.0,
+            0.0,
+            4.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            2.0
+          ],
+          "rng": "-9181924124648393129",
+          "score": 12.0,
+          "won": false
+        },
+        "won": false
+      },
+      "status": "PASS",
+      "undo": "PASS",
+      "continued_state": {
+        "board": [
+          8,
+          0,
+          0,
+          2,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        "rng": "-797974986044946292",
+        "score": 20,
+        "seed": 105568074,
+        "undo": {
+          "board": [
+            4.0,
+            4.0,
+            0.0,
+            0.0,
+            4.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            2.0
+          ],
+          "rng": "-9181924124648393129",
+          "score": 12,
+          "won": false
+        },
+        "won": false
+      }
+    },
+    "jelly_slice": {
+      "fields": [
+        "fruit",
+        "launched",
+        "missed",
+        "rng",
+        "score",
+        "seed",
+        "sliced",
+        "spawn_time"
+      ],
+      "normalizations": [
+        "Existing spawn timer/velocity bounds; combo and held finger intentionally absent from save and reset; all persistent fruit/RNG/counters retained"
+      ],
+      "expected": {
+        "fruit": [
+          [
+            2,
+            0.457010292712553,
+            0.421394774844449,
+            63.2482643127441,
+            -171.413553873697,
+            43.9805145263672,
+            0.0704052299261093,
+            0.212157547473907
+          ],
+          [
+            3,
+            0.259688389154128,
+            0.99659985023857,
+            88.3154067993164,
+            -895.420776367188,
+            42.5312919616699,
+            0.0371596187353134,
+            -0.311346411705017
+          ],
+          [
+            0,
+            0.763964570598838,
+            0.412360752455607,
+            -30.0625534057617,
+            -177.200052897135,
+            42.1728248596191,
+            0.217001527547836,
+            0.137998044490814
+          ],
+          [
+            0,
+            0.471800156581549,
+            0.637514664822777,
+            96.0191268920898,
+            533.964355468748,
+            50.0164794921875,
+            0.912036284804346,
+            0.465165078639984
+          ],
+          [
+            0,
+            0.330393708782432,
+            1.0037509312299,
+            45.13037109375,
+            -800.01025390625,
+            44.1538696289062,
+            -0.185272917151451,
+            -0.508786737918854
+          ],
+          [
+            2,
+            0.373439647533275,
+            0.761028725028838,
+            -9.15792369842529,
+            583.943176269529,
+            50.4846572875977,
+            -1.06334397792816,
+            -0.410448044538498
+          ],
+          [
+            3,
+            0.525978276759018,
+            0.647107561696029,
+            -71.7275314331055,
+            539.584716796873,
+            46.227783203125,
+            -0.783160874247549,
+            -0.280494511127472
+          ],
+          [
+            0,
+            0.268970583692009,
+            0.350157189422539,
+            15.4317684173584,
+            -231.568827311197,
+            45.4623413085938,
+            0.578592290480932,
+            0.460838258266449
+          ],
+          [
+            0,
+            0.761896486635561,
+            0.997643251013702,
+            -117.232948303223,
+            -877.476379394531,
+            42.5669021606445,
+            -0.113823254406452,
+            -0.227136105298996
+          ],
+          [
+            1,
+            0.473445280098621,
+            1.00118192463647,
+            -12.186469078064,
+            -901.284118652344,
+            46.9208450317383,
+            0.208101183176041,
+            0.506298243999481
+          ]
+        ],
+        "launched": 29,
+        "missed": 9,
+        "rng": "-9010371269892023900",
+        "score": 160,
+        "seed": 105622925,
+        "sliced": 10,
+        "spawn_time": 1.28865703741709
+      },
+      "observed": {
+        "fruit": [
+          [
+            2,
+            0.457010292712553,
+            0.421394774844449,
+            63.2482643127441,
+            -171.413558959961,
+            43.9805145263672,
+            0.0704052299261093,
+            0.212157547473907
+          ],
+          [
+            3,
+            0.259688389154128,
+            0.99659985023857,
+            88.3154067993164,
+            -895.420776367188,
+            42.5312919616699,
+            0.0371596187353134,
+            -0.311346411705017
+          ],
+          [
+            0,
+            0.763964570598838,
+            0.412360752455607,
+            -30.0625534057617,
+            -177.200057983398,
+            42.1728248596191,
+            0.217001527547836,
+            0.137998044490814
+          ],
+          [
+            0,
+            0.471800156581549,
+            0.637514664822777,
+            96.0191268920898,
+            533.96435546875,
+            50.0164794921875,
+            0.912036284804346,
+            0.465165078639984
+          ],
+          [
+            0,
+            0.330393708782432,
+            1.0037509312299,
+            45.13037109375,
+            -800.01025390625,
+            44.1538696289062,
+            -0.185272917151451,
+            -0.508786737918854
+          ],
+          [
+            2,
+            0.373439647533275,
+            0.761028725028838,
+            -9.15792369842529,
+            583.943176269531,
+            50.4846572875977,
+            -1.06334397792816,
+            -0.410448044538498
+          ],
+          [
+            3,
+            0.525978276759018,
+            0.647107561696029,
+            -71.7275314331055,
+            539.584716796875,
+            46.227783203125,
+            -0.783160874247549,
+            -0.280494511127472
+          ],
+          [
+            0,
+            0.268970583692009,
+            0.350157189422539,
+            15.4317684173584,
+            -231.568832397461,
+            45.4623413085938,
+            0.578592290480932,
+            0.460838258266449
+          ],
+          [
+            0,
+            0.761896486635561,
+            0.997643251013702,
+            -117.232948303223,
+            -877.476379394531,
+            42.5669021606445,
+            -0.113823254406452,
+            -0.227136105298996
+          ],
+          [
+            1,
+            0.473445280098621,
+            1.00118192463647,
+            -12.186469078064,
+            -901.284118652344,
+            46.9208450317383,
+            0.208101183176041,
+            0.506298243999481
+          ]
+        ],
+        "launched": 29,
+        "missed": 9,
+        "rng": "-9010371269892023900",
+        "score": 160,
+        "seed": 105622925,
+        "sliced": 10,
+        "spawn_time": 1.28865703741709
+      },
+      "status": "PASS",
+      "continued_state": {
+        "fruit": [
+          [
+            2,
+            0.538348068425685,
+            0.510184029871452,
+            63.2482643127441,
+            361.919774373373,
+            43.9805145263672,
+            0.0704052299261093,
+            0.212157547473907
+          ],
+          [
+            0,
+            0.725303885377484,
+            0.495756179160986,
+            -30.0625534057617,
+            356.133275349936,
+            42.1728248596191,
+            0.217001527547836,
+            0.137998044490814
+          ],
+          [
+            0,
+            0.288815957528573,
+            0.382873296204296,
+            15.4317684173584,
+            301.764500935873,
+            45.4623413085938,
+            0.578592290480932,
+            0.460838258266449
+          ],
+          [
+            0,
+            0.611133952199677,
+            0.428283008686381,
+            -117.232948303223,
+            -344.143046061197,
+            42.5669021606445,
+            -0.113823254406452,
+            -0.227136105298996
+          ],
+          [
+            1,
+            0.457773373450762,
+            0.4096295316214,
+            -12.186469078064,
+            -367.95078531901,
+            46.9208450317383,
+            0.208101183176041,
+            0.506298243999481
+          ]
+        ],
+        "launched": 29,
+        "missed": 12,
+        "rng": "-9010371269892023900",
+        "score": 185,
+        "seed": 105622925,
+        "sliced": 12,
+        "spawn_time": 0.455323704083756
+      }
+    }
+  },
+  "command_timeline": "adb-timeline.jsonl",
+  "device": "Android/sdk_phone64_x86_64/emu64x:14/UE1A.230829.036.A1/11228894:userdebug/test-keys",
+  "frames": {
+    "old-en-records": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 557,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "old-zh-records": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 566,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "upgraded-zh-records": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 566,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "upgraded-fruit_drop-restored": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 161,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "upgraded-fruit_drop-after-input": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 145,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "upgraded-bubble_garden-restored": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 327,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "upgraded-bubble_garden-after-input": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 143,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "upgraded-cake_stack-restored": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 132,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "upgraded-cake_stack-after-input": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 104,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "upgraded-bouncy_balls-restored": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 121,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "upgraded-bouncy_balls-after-input": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 117,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "upgraded-tile_trio-restored": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 141,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "upgraded-tile_trio-after-input": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 116,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "upgraded-mochi_hop-restored": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 124,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "upgraded-mochi_hop-after-input": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 112,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "upgraded-number_bloom-restored": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 127,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "upgraded-number_bloom-after-input": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 121,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "upgraded-jelly_slice-restored": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 190,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "upgraded-jelly_slice-after-input": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 108,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "bloom-terminal-before-undo": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 100,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "bloom-terminal-background-return": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 100,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "bloom-terminal-undone": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 81,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "trio-terminal-before-undo": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 108,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "trio-terminal-background-return": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 108,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "trio-terminal-undone": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 318,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "recovery-invalid-json": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 72,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "recovery-damaged-fields": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 72,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "recovery-settings-section": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 72,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "read-denied-settings": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 72,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    }
+  },
+  "terminal_audio_scope": "Enabled music and retained AudioFlinger state; Android output not captured/listened. Desktop mixer evidence remains separate.",
+  "runtime_errors": [],
+  "log_stream_exit": 1
+}

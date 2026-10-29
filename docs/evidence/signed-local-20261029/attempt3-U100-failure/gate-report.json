@@ -1,0 +1,93 @@
+{
+  "status": "FAIL",
+  "gate": "U100",
+  "tool_commit": "bf786e1052314345d82e2fc25181f766b8ac510f",
+  "build_source": "920f39cfc29fc0d46b03a295f25f1197446a4027",
+  "run_id": "local-20261029-attempt3-U100",
+  "attempt": "3",
+  "apk_sha256": "09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8",
+  "profile": "host",
+  "children": {
+    "predecessor": {
+      "exit": 1,
+      "seconds": 255.937
+    }
+  },
+  "visual_review": "PENDING",
+  "renderer": [
+    "GLES: Google (ATI Technologies Inc.), Android Emulator OpenGL ES Translator (AMD Radeon RX 7900 XT), OpenGL ES 3.1 (4.5.0 Core Profile Context 24.5.1.240502)"
+  ],
+  "error": "predecessor failed; original report retained",
+  "diagnostics": {
+    "transport": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.016
+    },
+    "light-shell": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.047
+    },
+    "app-pid": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.047
+    },
+    "activity-manager": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.078
+    },
+    "surface-flinger": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.047
+    },
+    "guest-processes": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.875
+    },
+    "guest-anr-index": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.047
+    },
+    "guest-logcat": {
+      "status": "OBSERVED",
+      "exit": 0,
+      "seconds": 0.047
+    },
+    "host-processes": {
+      "status": "NOT_AVAILABLE",
+      "error": "[WinError 2] \u7cfb\u7edf\u627e\u4e0d\u5230\u6307\u5b9a\u7684\u6587\u4ef6\u3002",
+      "seconds": 0.0
+    },
+    "host-memory": {
+      "status": "NOT_AVAILABLE",
+      "error": "[WinError 2] \u7cfb\u7edf\u627e\u4e0d\u5230\u6307\u5b9a\u7684\u6587\u4ef6\u3002",
+      "seconds": 0.0
+    },
+    "host-disk": {
+      "status": "NOT_AVAILABLE",
+      "error": "[WinError 2] \u7cfb\u7edf\u627e\u4e0d\u5230\u6307\u5b9a\u7684\u6587\u4ef6\u3002",
+      "seconds": 0.015
+    },
+    "emulator-threads": {
+      "status": "NOT_AVAILABLE",
+      "error": "[WinError 2] \u7cfb\u7edf\u627e\u4e0d\u5230\u6307\u5b9a\u7684\u6587\u4ef6\u3002",
+      "seconds": 0.0
+    },
+    "emulator-status": {
+      "status": "NOT_AVAILABLE",
+      "error": "[WinError 2] \u7cfb\u7edf\u627e\u4e0d\u5230\u6307\u5b9a\u7684\u6587\u4ef6\u3002",
+      "seconds": 0.0
+    },
+    "emulator-kernel-stack": {
+      "status": "NOT_AVAILABLE",
+      "error": "[WinError 2] \u7cfb\u7edf\u627e\u4e0d\u5230\u6307\u5b9a\u7684\u6587\u4ef6\u3002",
+      "seconds": 0.016
+    }
+  }
+}

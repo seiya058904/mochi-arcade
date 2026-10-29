@@ -1,0 +1,7 @@
+{
+  "process_release": {
+    "emulator": "TERMINATED"
+  },
+  "launcher_exit": 0,
+  "scope": "Owned isolated Windows AVD only; existing AVD/user saves/services unchanged"
+}

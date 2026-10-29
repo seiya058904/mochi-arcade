@@ -1,0 +1,38 @@
+{
+  "status": "PASS_AUTOMATION_AWAITING_VISUAL_REVIEW",
+  "gate": "LOAD",
+  "tool_commit": "bf786e1052314345d82e2fc25181f766b8ac510f",
+  "build_source": "920f39cfc29fc0d46b03a295f25f1197446a4027",
+  "run_id": "local-20261029-attempt3-LOAD",
+  "attempt": "3",
+  "apk_sha256": "09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8",
+  "profile": "host",
+  "children": {
+    "load": {
+      "exit": 0,
+      "seconds": 41.125
+    }
+  },
+  "visual_review": "PENDING",
+  "renderer": [
+    "GLES: Google (ATI Technologies Inc.), Android Emulator OpenGL ES Translator (AMD Radeon RX 7900 XT), OpenGL ES 3.1 (4.5.0 Core Profile Context 24.5.1.240502)"
+  ],
+  "frames": {
+    "candidate-home": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 572,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true,
+      "sha256": "1f38a67f5c27553b618a2a5c3206e5a64b711ac8038eda7b2f3d3d9145066b89"
+    }
+  },
+  "baselines": {
+    "candidate": {
+      "status": "PASS",
+      "source": "This fresh AVD, actual settings inputs"
+    }
+  }
+}

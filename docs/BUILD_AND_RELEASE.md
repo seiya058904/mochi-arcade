@@ -1,5 +1,15 @@
 # Build and release
 
+## Current signed acceptance — 2026-10-29
+
+**All four local original-signed gates PASS reviewed; release-ready in the tested scope.**
+See [the current signed-byte report](ANDROID_SIGNED_20261029.md) for exact package,
+source/tool identities, independent CLEAN/U110/U100/LOAD results, current CI, preserved
+failed attempts and device limits. Publication verification is tracked there.
+The dated material below is historical and does not override that current record.
+
+## Historical record (through 2026-10-28)
+
 Published release: **v1.1.0**, Android versionCode 2. Its original signed bytes passed
 API 34 hosted runtime/upgrade and independent public-download verification; the
 v1.0.0 release is intact. See [iteration evidence](ITERATION_1.1.md) for source

@@ -1,0 +1,9 @@
+{
+  "lines": [
+    "b'    versionCode=2 minSdk=24 targetSdk=36\\r'",
+    "b'    versionName=1.1.0\\r'"
+  ],
+  "old_assertion": false,
+  "normalized_assertion": true,
+  "scope": "Independent fresh AVD; original v1.1.0 install and same-signature reinstall, no candidate install"
+}

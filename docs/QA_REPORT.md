@@ -1,5 +1,15 @@
 # QA report
 
+## Current signed acceptance — 2026-10-29
+
+**All four local original-signed gates PASS reviewed; release-ready in the tested scope.**
+See [the current signed-byte report](ANDROID_SIGNED_20261029.md) for exact package,
+source/tool identities, independent CLEAN/U110/U100/LOAD results, current CI, preserved
+failed attempts and device limits. Publication verification is tracked there.
+The dated material below is historical and does not override that current record.
+
+## Historical record (through 2026-10-28)
+
 ## Current local retest and CI policy — 2026-10-23
 
 The owner authorized a fresh local Android retest, superseding the prior closed

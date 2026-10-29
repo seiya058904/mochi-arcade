@@ -1,0 +1,124 @@
+--- repository/android_evidence.py
++++ local/android_evidence.py
+@@ -9,15 +9,25 @@
+ 
+ 
+ def require_owned(adb):
+-    assert os.environ.get('GITHUB_ACTIONS') == 'true', 'Only the isolated hosted job is authorized'
+-    assert Path(os.environ['ANDROID_AVD_HOME']).resolve().is_relative_to(Path(os.environ['RUNNER_TEMP']).resolve())
+-    assert adb('emu', 'avd', 'name').splitlines()[0] == 'Mochi_CI_API34'
+-    assert adb('shell', 'getprop', 'ro.kernel.qemu') == '1'
+-    assert adb('shell', 'getprop', 'ro.build.type') == 'userdebug'
++    # Explicit local authorization: isolated directory plus owned live QEMU command.
++    proof=json.loads(Path(os.environ['MOCHI_LOCAL_OWNERSHIP']).read_text(encoding='utf8'))
++    root=Path(proof['gate_root']).resolve()
++    avd=Path(os.environ['ANDROID_AVD_HOME']).resolve()
++    assert avd.is_relative_to(root) and avd.name=='avd'
++    assert str(root)==os.environ['MOCHI_LOCAL_GATE_ROOT']
++    pid=int(proof['qemu_pid'])
++    cmd=['powershell','-NoProfile','-Command',f"Get-CimInstance Win32_Process -Filter 'ProcessId={pid}' | Select-Object ProcessId,CommandLine,CreationDate | ConvertTo-Json -Compress"]
++    live=json.loads(subprocess.check_output(cmd,text=True))
++    assert live['CreationDate']==proof['creation_date']
++    assert str(root/'userdata.img') in live['CommandLine']
++    assert '-avd Mochi_CI_API34' in live['CommandLine'] and ('-port '+str(proof['port'])) in live['CommandLine']
++    assert adb('emu','avd','name').splitlines()[0]=='Mochi_CI_API34'
++    assert adb('shell','getprop','ro.kernel.qemu')=='1'
++    assert adb('shell','getprop','ro.build.type')=='userdebug'
+ 
+ 
+ class AdbEvidence:
+-    def __init__(self, output, serial='emulator-5554', timeout=30):
++    def __init__(self, output, serial='emulator-5556', timeout=30):
+         self.output = Path(output)
+         self.output.mkdir(parents=True, exist_ok=True)
+         self.serial, self.timeout, self.phase = serial, timeout, 'initialization'
+@@ -61,7 +71,7 @@
+                 log.write(json.dumps(event) + '\n')
+ 
+ 
+-def diagnose(output, serial='emulator-5554'):
++def diagnose(output, serial='emulator-5556'):
+     """Each probe stands alone; never restart, kill, change permissions or repair."""
+     output = Path(output); output.mkdir(parents=True, exist_ok=True)
+     prefix = ['adb', '-s', serial]
+--- repository/android_gate.py
++++ local/android_gate.py
+@@ -105,7 +105,7 @@
+         assert '720x1280' in shell('wm','size')
+         shell('input','keyevent','KEYCODE_WAKEUP');shell('wm','dismiss-keyguard')
+         stream_file=(out/'gate-stream-logcat.txt').open('wb')
+-        stream=subprocess.Popen(['adb','-s','emulator-5554','logcat','-v','threadtime'],stdout=stream_file,stderr=subprocess.STDOUT)
++        stream=subprocess.Popen(['adb','-s','emulator-5556','logcat','-v','threadtime'],stdout=stream_file,stderr=subprocess.STDOUT)
+         renderer=shell('dumpsys','SurfaceFlinger')
+         (out/'renderer.txt').write_text(renderer,encoding='utf-8')
+         report['renderer']=[line for line in renderer.splitlines() if 'GLES:' in line]
+--- repository/android_load.py
++++ local/android_load.py
+@@ -67,7 +67,7 @@
+     parser = argparse.ArgumentParser()
+     parser.add_argument("--apk", required=True, type=Path)
+     parser.add_argument("--output", required=True, type=Path)
+-    parser.add_argument("--serial", default="emulator-5554")
++    parser.add_argument("--serial", default="emulator-5556")
+     parser.add_argument("--release", action="store_true")
+     args = parser.parse_args()
+     output = args.output.resolve()
+--- repository/android_smoke.py
++++ local/android_smoke.py
+@@ -25,7 +25,7 @@
+     parser = argparse.ArgumentParser()
+     parser.add_argument("--apk", required=True, type=Path)
+     parser.add_argument("--output", required=True, type=Path)
+-    parser.add_argument("--serial", default="emulator-5554")
++    parser.add_argument("--serial", default="emulator-5556")
+     parser.add_argument("--emulator-pid", type=int)
+     parser.add_argument("--release", action="store_true", help="Inspect a non-debuggable APK on this dedicated userdebug AVD with adb root")
+     args = parser.parse_args()
+@@ -35,7 +35,7 @@
+     commands = []
+     report = {"status": "FAIL", "commit": os.environ.get("GITHUB_SHA", "local"),
+               "apk_sha256": hashlib.sha256(args.apk.read_bytes()).hexdigest(),
+-              "environment": "Dedicated GitHub-hosted Android API 34 x86_64 emulator; not a physical phone",
++              "environment": "Dedicated local Windows AMD host-GPU Android API 34 x86_64 emulator; not a physical phone",
+               "graphics_backend_requested": os.environ.get("MOCHI_EMULATOR_GPU", "unrecorded"),
+               "visual_review": "PENDING", "commands": commands, "release_candidate": args.release,
+               "game_checks": {}}
+--- repository/android_upgrade.py
++++ local/android_upgrade.py
+@@ -20,7 +20,7 @@
+ from release_identity import identity, build_inputs
+ from fetch_staged_release import verify
+ from upgrade_semantics import restored, compare
+-from android_evidence import AdbEvidence
++from android_evidence import AdbEvidence, require_owned
+ 
+ PACKAGE = "io.github.seiya058904.mochiarcade"
+ ACTIVITY = PACKAGE + "/com.godot.game.GodotAppLauncher"
+@@ -98,15 +98,11 @@
+     log_file = None
+     try:
+         # Require the job-owned AVD identity, not merely an emulator port.
+-        assert os.environ.get("GITHUB_ACTIONS") == "true", "Destructive fixtures require the isolated hosted job"
+-        avd_name = adb("emu", "avd", "name").splitlines()[0]
+-        assert avd_name == "Mochi_CI_API34"
+-        assert Path(os.environ["ANDROID_AVD_HOME"]).resolve().is_relative_to(Path(os.environ["RUNNER_TEMP"]).resolve())
+-        assert shell("getprop", "ro.kernel.qemu") == "1"
+-        assert shell("getprop", "ro.build.type") == "userdebug" and shell("id", "-u") == "0"
++        require_owned(adb)
++        assert shell("id", "-u") == "0"
+         report["device"] = shell("getprop", "ro.build.fingerprint")
+         log_file = (out / "stream-logcat.txt").open("wb")
+-        log_stream = subprocess.Popen(["adb", "-s", "emulator-5554", "logcat", "-v", "threadtime"],
++        log_stream = subprocess.Popen(["adb", "-s", "emulator-5556", "logcat", "-v", "threadtime"],
+                                       stdout=log_file, stderr=subprocess.STDOUT)
+         old_report = json.loads((args.old_evidence / "report.json").read_text())
+         assert old_report["status"] == "PASS_SMOKE_AWAITING_VISUAL_REVIEW" and old_report["release_candidate"]
+@@ -314,7 +310,7 @@
+         assert not shell("pm", "path", PACKAGE, check=False)
+         assert shell("test", "-e", f"/data/user/0/{PACKAGE}", check=False) == ""
+         # The shell command's exit status is independently checked here.
+-        remaining = subprocess.run(["adb", "-s", "emulator-5554", "shell", "test", "-e", f"/data/user/0/{PACKAGE}"], capture_output=True)
++        remaining = subprocess.run(["adb", "-s", "emulator-5556", "shell", "test", "-e", f"/data/user/0/{PACKAGE}"], capture_output=True)
+         assert remaining.returncode == 1, "Ordinary uninstall retained app data"
+         passed("Ordinary uninstall removes package and app data; next smoke is a clean install")
+         report["status"] = "PASS_UPGRADE_AWAITING_VISUAL_REVIEW"

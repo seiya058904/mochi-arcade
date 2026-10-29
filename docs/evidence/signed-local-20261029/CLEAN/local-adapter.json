@@ -1,0 +1,25 @@
+{
+  "changes": {
+    "android_evidence.py": {
+      "original_sha256": "2537bddfbc79f17daa5a9cfa1a3ea7e7eeb4df53c418ed96d5e22fb9f9504470",
+      "local_sha256": "1a8e41ba7d99cd4195ccb8414870b7d7970f8748e6e967b1ab4c94de805356e8"
+    },
+    "android_gate.py": {
+      "original_sha256": "1c01006a731fe3f89cadbe40491e8b118e883130c693b1b78aceb7332c4adbc3",
+      "local_sha256": "60e88bb750ff8d8d06a5699519dc5e56a841cd6033e521487cb53ad5c43daa25"
+    },
+    "android_load.py": {
+      "original_sha256": "9ffe7b5f5bbcc26e3257a0d91e71746c977ed5bc7e4971f320f0e56129f30e29",
+      "local_sha256": "df6ff7757cdda1bd1e327987b33fb4d21641691ee462edadac87a29bb4d9060a"
+    },
+    "android_smoke.py": {
+      "original_sha256": "5c09068a3be5319ac847060c8248b3ea39c3a3c3a3132d75e57cf043e45fdf48",
+      "local_sha256": "0c543a8bdce9e2e528f0c724393e0384b52a6a673a81709c2aed16125ab61779"
+    },
+    "android_upgrade.py": {
+      "original_sha256": "8bee3f8e503181cbe5adeecc5776dd3a52ff0a83d6cdcbf5872aa65b65e623b9",
+      "local_sha256": "c88667998c46d78b2224d31c7deca899ae54481546c9e0bee08a1c35a1202803"
+    }
+  },
+  "scope": "Only local process/AVD ownership and truthful environment label; game/upgrade/load assertions unchanged"
+}

@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "remote": "/sdcard/mochi-ui-0306977cbd4c4c15ab0654370287525a.xml",
+  "started_unix": 1793254061.9589567,
+  "command_timeline": "adb-timeline.jsonl",
+  "dump": {
+    "exit": 0,
+    "stdout": "UI hierchary dumped to: /sdcard/mochi-ui-0306977cbd4c4c15ab0654370287525a.xml",
+    "stderr": ""
+  },
+  "foreground_exit": 0,
+  "remote_cleanup_exit": 0
+}

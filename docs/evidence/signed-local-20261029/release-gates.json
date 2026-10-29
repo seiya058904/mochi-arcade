@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "apk_sha256": "09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8",
+  "build_source": "920f39cfc29fc0d46b03a295f25f1197446a4027",
+  "tool_commit": "bf786e1052314345d82e2fc25181f766b8ac510f",
+  "profile": "host",
+  "gates": {
+    "U110": {
+      "status": "PASS",
+      "run_id": "local-20261029-attempt3-U110",
+      "attempt": "3",
+      "reviewed_files": 134
+    },
+    "U100": {
+      "status": "PASS",
+      "run_id": "local-20261029-attempt4-U100",
+      "attempt": "4",
+      "reviewed_files": 134
+    },
+    "CLEAN": {
+      "status": "PASS",
+      "run_id": "local-20261029-attempt3-CLEAN",
+      "attempt": "3",
+      "reviewed_files": 105
+    },
+    "LOAD": {
+      "status": "PASS",
+      "run_id": "local-20261029-attempt3-LOAD",
+      "attempt": "3",
+      "reviewed_files": 11
+    }
+  }
+}

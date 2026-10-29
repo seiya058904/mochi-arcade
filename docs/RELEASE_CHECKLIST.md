@@ -1,5 +1,15 @@
 # Release gates — current 1.1.1 candidate and published history
 
+## Current signed acceptance — 2026-10-29
+
+**All four local original-signed gates PASS reviewed; release-ready in the tested scope.**
+See [the current signed-byte report](ANDROID_SIGNED_20261029.md) for exact package,
+source/tool identities, independent CLEAN/U110/U100/LOAD results, current CI, preserved
+failed attempts and device limits. Publication verification is tracked there.
+The dated material below is historical and does not override that current record.
+
+## Historical record (through 2026-10-28)
+
 Current signed run 39961466842: **U100 and LOAD PASS reviewed; U110 and CLEAN FAIL**.
 The complete v1.0.0 upgrade includes eight semantic states, real terminal Undo and
 fault recovery. The v1.1.0 upgrade and independent new-install gates remain incomplete.

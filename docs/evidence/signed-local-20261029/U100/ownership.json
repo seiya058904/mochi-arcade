@@ -1,0 +1,8 @@
+{
+  "gate_root": "D:\\xia zai\\AI project\\PROJECT-CLUSTER-DASHBOARD\\.maintenance\\mochi-signed-20261029\\attempt4\\U100",
+  "qemu_pid": 31792,
+  "creation_date": "/Date(1793254741967)/",
+  "command": "C:\\Users\\admin\\AppData\\Local\\Android\\Sdk\\emulator\\qemu\\windows-x86_64\\qemu-system-x86_64-headless.exe -avd Mochi_CI_API34 -no-window -no-audio -no-boot-anim -no-snapshot -gpu host -accel on -memory 2048 -cores 2 -port 5556 -data \"D:\\xia zai\\AI project\\PROJECT-CLUSTER-DASHBOARD\\.maintenance\\mochi-signed-20261029\\attempt4\\U100\\userdata.img\" -wipe-data -camera-back none -camera-front none",
+  "launcher_pid": 36552,
+  "port": 5556
+}

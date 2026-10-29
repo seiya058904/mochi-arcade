@@ -1,0 +1,13 @@
+...F....
+======================================================================
+FAIL: test_package_version_text_handles_windows_adb_newlines_without_changing_bytes (__main__.UiTests.test_package_version_text_handles_windows_adb_newlines_without_changing_bytes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "D:\xia zai\AI project\Project in Iteration\Mochi Arcade\scripts_tools\test_android_ui.py", line 55, in test_package_version_text_handles_windows_adb_newlines_without_changing_bytes
+    self.assertIn('versionName=1.1.0\n', text)
+AssertionError: 'versionName=1.1.0\n' not found in 'versionCode=2 minSdk=24\r\n  versionName=1.1.0\r\n  enabled=true'
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.062s
+
+FAILED (failures=1)

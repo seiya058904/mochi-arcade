@@ -1,0 +1,202 @@
+{
+  "status": "PASS_LOAD_EXECUTION_AWAITING_VISUAL_REVIEW",
+  "commit": "bf786e1052314345d82e2fc25181f766b8ac510f",
+  "apk_sha256": "09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8",
+  "scope": "Synthetic maximum-pool bursts on isolated AOSP API 34 x86_64; inspect emulator.log for actual graphics adapter",
+  "graphics_backend_requested": "host",
+  "timing_source": "https://android.googlesource.com/platform/frameworks/native/+/refs/tags/android-14.0.0_r1/services/surfaceflinger/FrameTracker.cpp",
+  "physical_phone_performance": "UNVERIFIED",
+  "loads": {
+    "bouncy_balls": {
+      "initial_active": 64,
+      "fixture": "synthetic production save restore",
+      "memory_before": {
+        "total_pss_kib": 175017
+      },
+      "layer": "SurfaceView[io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher](BLAST)#150",
+      "input_burst_seconds": 12.094,
+      "input_samples": 31,
+      "presentation": {
+        "status": "MEASURED",
+        "frames": 699,
+        "observed_seconds": 12.1,
+        "presented_fps": 57.69,
+        "interval_ms_p50": 16.695,
+        "interval_ms_p95": 21.899,
+        "interval_ms_max": 49.785,
+        "intervals_over_50ms": 0,
+        "scope": "Compositor presentation intervals, including ADB load; not simulation step cost or physical-phone FPS"
+      },
+      "memory_after": {
+        "total_pss_kib": 165184
+      },
+      "natural_round_ended": false,
+      "final_active": 35,
+      "score": 2825,
+      "status": "PASS_LOAD_EXECUTION_AWAITING_VISUAL_REVIEW"
+    },
+    "jelly_slice": {
+      "initial_active": 12,
+      "fixture": "synthetic production save restore",
+      "memory_before": {
+        "total_pss_kib": 172691
+      },
+      "layer": "SurfaceView[io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher](BLAST)#178",
+      "input_burst_seconds": 12.187,
+      "input_samples": 39,
+      "presentation": {
+        "status": "MEASURED",
+        "frames": 734,
+        "observed_seconds": 12.215,
+        "presented_fps": 60.01,
+        "interval_ms_p50": 16.686,
+        "interval_ms_p95": 17.849,
+        "interval_ms_max": 22.809,
+        "intervals_over_50ms": 0,
+        "scope": "Compositor presentation intervals, including ADB load; not simulation step cost or physical-phone FPS"
+      },
+      "memory_after": {
+        "total_pss_kib": 158549
+      },
+      "natural_round_ended": false,
+      "final_active": 6,
+      "score": 690,
+      "sliced": 33,
+      "status": "PASS_LOAD_EXECUTION_AWAITING_VISUAL_REVIEW"
+    }
+  },
+  "device": "Android/sdk_phone64_x86_64/emu64x:14/UE1A.230829.036.A1/11228894:userdebug/test-keys",
+  "installed_apk_sha256": "09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8",
+  "frame_checks": {
+    "bouncy_balls-maximum-paused": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 97,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "bouncy_balls-running-00": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 318,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "bouncy_balls-running-02": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 277,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "bouncy_balls-running-05": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 224,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "bouncy_balls-after-load": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 125,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "jelly_slice-maximum-paused": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 78,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "jelly_slice-running-00": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 259,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "jelly_slice-running-02": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 306,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "jelly_slice-running-05": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 160,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    },
+    "jelly_slice-after-load": {
+      "width": 720,
+      "height": 1280,
+      "pixel_format": 1,
+      "colorspace": 1,
+      "sampled_colors": 131,
+      "non_dark_fraction": 1.0,
+      "has_visible_content": true
+    }
+  },
+  "load_execution": "PASS_LOAD_EXECUTION_AWAITING_VISUAL_REVIEW",
+  "restoration": {
+    "capture-save.json": {
+      "status": "PASS",
+      "seconds": 0.093
+    },
+    "capture-save.backup.json": {
+      "status": "PASS",
+      "seconds": 0.078
+    },
+    "stop-app-and-confirm-no-pid": {
+      "status": "PASS",
+      "seconds": 0.172
+    },
+    "write-save.json": {
+      "status": "PASS",
+      "seconds": 0.016
+    },
+    "write-save.backup.json": {
+      "status": "PASS",
+      "seconds": 0.031
+    },
+    "verify-save.json": {
+      "status": "PASS",
+      "seconds": 0.078
+    },
+    "verify-save.backup.json": {
+      "status": "PASS",
+      "seconds": 0.078
+    },
+    "restore": {
+      "status": "PASS"
+    }
+  },
+  "original_save_restored": true,
+  "original_backup_restored": true,
+  "runtime_errors": [],
+  "graphics_swap_warnings": [],
+  "log_collection": "PASS",
+  "runner_process_release": "SEPARATE_JOB_FINALIZER"
+}

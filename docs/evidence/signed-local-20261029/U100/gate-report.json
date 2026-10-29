@@ -1,0 +1,24 @@
+{
+  "status": "PASS_AUTOMATION_AWAITING_VISUAL_REVIEW",
+  "gate": "U100",
+  "tool_commit": "bf786e1052314345d82e2fc25181f766b8ac510f",
+  "build_source": "920f39cfc29fc0d46b03a295f25f1197446a4027",
+  "run_id": "local-20261029-attempt4-U100",
+  "attempt": "4",
+  "apk_sha256": "09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8",
+  "profile": "host",
+  "children": {
+    "predecessor": {
+      "exit": 0,
+      "seconds": 537.297
+    },
+    "upgrade": {
+      "exit": 0,
+      "seconds": 165.406
+    }
+  },
+  "visual_review": "PENDING",
+  "renderer": [
+    "GLES: Google (ATI Technologies Inc.), Android Emulator OpenGL ES Translator (AMD Radeon RX 7900 XT), OpenGL ES 3.1 (4.5.0 Core Profile Context 24.5.1.240502)"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "count": 11,
+  "files": {
+    "candidate-home.png": "1f38a67f5c27553b618a2a5c3206e5a64b711ac8038eda7b2f3d3d9145066b89",
+    "load/bouncy_balls-after-load.png": "87f8fb726ebb665db7c7ed5b04d71a3bf1e1fc288d15f2b44b3bd8e50f5b3b5d",
+    "load/bouncy_balls-maximum-paused.png": "41db3560455e6d04667206fc9a30ecbf1402f51b65dd185bbdb890b55753562b",
+    "load/bouncy_balls-running-00.png": "1d26fddc75c59fe72a2259ba83905a30e7e85fcf9139604a3b4f676df675ed7b",
+    "load/bouncy_balls-running-02.png": "754449ccd8dfc05426c280ab051254158f74f6b1cf27bd71c6ef148c6120d73f",
+    "load/bouncy_balls-running-05.png": "4a43e146181ef12a72142ac73cd0a6ac35bcc9caed145517de577fef68e68f30",
+    "load/jelly_slice-after-load.png": "d91fda7bce4f0859b3c42d17b5cbda76c762e3a8f7a9bf4d22c3324c8a385986",
+    "load/jelly_slice-maximum-paused.png": "4cd42cd28f5b67e912d1751ebc1e644177f066c53144022c76bde0a90782e469",
+    "load/jelly_slice-running-00.png": "b4411a4f455825c936acc6a19b551190ad7932f451b168283455051b70004f38",
+    "load/jelly_slice-running-02.png": "30bbb5499ff0ddf4ad1cbb143ba9a53235c492654b5c97e18741e59c930bf6bf",
+    "load/jelly_slice-running-05.png": "f884b320c4858240119d3187c862d4a0639a7814a14c8bbe05622f29c8879073"
+  }
+}

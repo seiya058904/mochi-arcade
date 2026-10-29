@@ -1,0 +1,109 @@
+Activity Resolver Table:
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        e75e566 io.github.seiya058904.mochiarcade/com.godot.game.GodotAppLauncher filter 6fbf0a7
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.LAUNCHER"
+
+Receiver Resolver Table:
+  Non-Data Actions:
+      androidx.profileinstaller.action.SAVE_PROFILE:
+        4c28954 io.github.seiya058904.mochiarcade/androidx.profileinstaller.ProfileInstallReceiver filter f6cf043
+          Action: "androidx.profileinstaller.action.SAVE_PROFILE"
+      androidx.profileinstaller.action.INSTALL_PROFILE:
+        4c28954 io.github.seiya058904.mochiarcade/androidx.profileinstaller.ProfileInstallReceiver filter 7a440fd
+          Action: "androidx.profileinstaller.action.INSTALL_PROFILE"
+      androidx.profileinstaller.action.SKIP_FILE:
+        4c28954 io.github.seiya058904.mochiarcade/androidx.profileinstaller.ProfileInstallReceiver filter d6af1f2
+          Action: "androidx.profileinstaller.action.SKIP_FILE"
+      androidx.profileinstaller.action.BENCHMARK_OPERATION:
+        4c28954 io.github.seiya058904.mochiarcade/androidx.profileinstaller.ProfileInstallReceiver filter 968e6c0
+          Action: "androidx.profileinstaller.action.BENCHMARK_OPERATION"
+
+Domain verification status:
+
+Registered ContentProviders:
+  io.github.seiya058904.mochiarcade/androidx.startup.InitializationProvider:
+    Provider{d81b2bd io.github.seiya058904.mochiarcade/androidx.startup.InitializationProvider}
+  io.github.seiya058904.mochiarcade/androidx.core.content.FileProvider:
+    Provider{fdce0b2 io.github.seiya058904.mochiarcade/androidx.core.content.FileProvider}
+
+ContentProvider Authorities:
+  [io.github.seiya058904.mochiarcade.fileprovider]:
+    Provider{fdce0b2 io.github.seiya058904.mochiarcade/androidx.core.content.FileProvider}
+      applicationInfo=ApplicationInfo{92e1803 io.github.seiya058904.mochiarcade}
+
+Key Set Manager:
+  [io.github.seiya058904.mochiarcade]
+      Signing KeySets: 19
+
+Packages:
+  Package [io.github.seiya058904.mochiarcade] (9435380):
+    appId=10141
+    pkg=Package{a1bbdb9 io.github.seiya058904.mochiarcade}
+    codePath=/data/app/~~OQZamJ9aJIsSlvfu3SqNPA==/io.github.seiya058904.mochiarcade-e2IDbQmCgH_hAjm7dkH03w==
+    resourcePath=/data/app/~~OQZamJ9aJIsSlvfu3SqNPA==/io.github.seiya058904.mochiarcade-e2IDbQmCgH_hAjm7dkH03w==
+    legacyNativeLibraryDir=/data/app/~~OQZamJ9aJIsSlvfu3SqNPA==/io.github.seiya058904.mochiarcade-e2IDbQmCgH_hAjm7dkH03w==/lib
+    extractNativeLibs=true
+    primaryCpuAbi=x86_64
+    secondaryCpuAbi=null
+    cpuAbiOverride=null
+    versionCode=3 minSdk=24 targetSdk=36
+    minExtensionVersions=[]
+    versionName=1.1.1
+    usesNonSdkApi=false
+    splits=[base]
+    apkSigningVersion=3
+    flags=[ HAS_CODE ALLOW_CLEAR_USER_DATA ]
+    privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]
+    forceQueryable=false
+    dataDir=/data/user/0/io.github.seiya058904.mochiarcade
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    timeStamp=2026-10-29 06:16:01
+    lastUpdateTime=2026-10-29 06:16:02
+    installerPackageName=null
+    installerPackageUid=-1
+    initiatingPackageName=com.android.shell
+    originatingPackageName=null
+    packageSource=1
+    appMetadataFilePath=null
+    signatures=PackageSignatures{87f46e1 version:3, signatures:[bf59a019], past signatures:[]}
+    installPermissionsFixed=true
+    pkgFlags=[ HAS_CODE ALLOW_CLEAR_USER_DATA ]
+    privatePkgFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]
+    apexModuleName=null
+    requested permissions:
+      android.permission.VIBRATE
+    install permissions:
+      android.permission.VIBRATE: granted=true
+    User 0: ceDataInode=319608 installed=true hidden=false suspended=false distractionFlags=0 stopped=true notLaunched=false enabled=0 instant=false virtual=false
+      installReason=0
+      firstInstallTime=2026-10-29 06:06:58
+      uninstallReason=0
+      overlay paths:
+        /data/resource-cache/com.android.systemui-neutral-BNVb.frro
+        /data/resource-cache/com.android.systemui-accent-Hsi1.frro
+        /data/resource-cache/com.android.systemui-dynamic-iU4v.frro
+      runtime permissions:
+
+Queries:
+  system apps queryable: false
+  queries via forceQueryable:
+  queries via package name:
+  queries via component:
+    com.android.settings.intelligence:
+      io.github.seiya058904.mochiarcade
+  queryable via interaction:
+    User 0:
+  queryable via uses-library:
+
+Dexopt state:
+  [io.github.seiya058904.mochiarcade]
+    path: /data/app/~~OQZamJ9aJIsSlvfu3SqNPA==/io.github.seiya058904.mochiarcade-e2IDbQmCgH_hAjm7dkH03w==/base.apk
+      x86_64: [status=verify] [reason=install] [primary-abi]
+        [location is /data/app/~~OQZamJ9aJIsSlvfu3SqNPA==/io.github.seiya058904.mochiarcade-e2IDbQmCgH_hAjm7dkH03w==/oat/x86_64/base.odex]
+
+Compiler stats:
+  [io.github.seiya058904.mochiarcade]
+     base.apk - 505

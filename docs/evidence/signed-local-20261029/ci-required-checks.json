@@ -1,0 +1,177 @@
+{
+  "status": "PASS",
+  "suite_count": 24,
+  "tool_commit": "bf786e1052314345d82e2fc25181f766b8ac510f",
+  "run_id": 40827126343,
+  "url": "https://github.com/seiya058904/mochi-arcade/actions/runs/40827126343",
+  "results": [
+    {
+      "script": "tests/logic/run_tests.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 0.439
+    },
+    {
+      "script": "tests/logic/hop_reachability.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 1.088
+    },
+    {
+      "script": "tests/logic/trio_solver.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 4.162
+    },
+    {
+      "script": "tests/integration/vertical_slices.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 2.021
+    },
+    {
+      "script": "tests/integration/vertical_playthrough.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 2.301
+    },
+    {
+      "script": "tests/integration/fruit_drop.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 4.627
+    },
+    {
+      "script": "tests/integration/bubble_garden.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 0.815
+    },
+    {
+      "script": "tests/integration/bubble_playthrough.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 4.816
+    },
+    {
+      "script": "tests/integration/mochi_hop.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 0.815
+    },
+    {
+      "script": "tests/integration/hop_playthrough.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 1.463
+    },
+    {
+      "script": "tests/integration/tile_trio.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 0.718
+    },
+    {
+      "script": "tests/integration/trio_playthrough.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 2.301
+    },
+    {
+      "script": "tests/integration/bouncy_balls.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 6.951
+    },
+    {
+      "script": "tests/integration/balls_playthrough.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 3.048
+    },
+    {
+      "script": "tests/integration/jelly_slice.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 2.952
+    },
+    {
+      "script": "tests/integration/jelly_playthrough.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 1.002
+    },
+    {
+      "script": "tests/integration/fruit_playthrough.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 3.418
+    },
+    {
+      "script": "tests/integration/collection_audit.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 5.281
+    },
+    {
+      "script": "tests/integration/reliability.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 0.722
+    },
+    {
+      "script": "tests/integration/patch_reliability.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 11.14
+    },
+    {
+      "script": "tests/integration/upgrade_restore.gd",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 0.91
+    },
+    {
+      "script": "scripts_tools/test_release_tools.py",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 0.143
+    },
+    {
+      "script": "scripts_tools/test_android_restore.py",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 0.086
+    },
+    {
+      "script": "scripts_tools/test_android_ui.py",
+      "status": "PASS",
+      "exit_code": 0,
+      "runtime_errors": [],
+      "seconds": 0.106
+    }
+  ]
+}

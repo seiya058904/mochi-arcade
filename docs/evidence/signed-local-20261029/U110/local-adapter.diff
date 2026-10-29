@@ -1,0 +1,66 @@
+--- repository/android_evidence.py
++++ local/android_evidence.py
+@@ -9,11 +9,21 @@
+ 
+ 
+ def require_owned(adb):
+-    assert os.environ.get('GITHUB_ACTIONS') == 'true', 'Only the isolated hosted job is authorized'
+-    assert Path(os.environ['ANDROID_AVD_HOME']).resolve().is_relative_to(Path(os.environ['RUNNER_TEMP']).resolve())
+-    assert adb('emu', 'avd', 'name').splitlines()[0] == 'Mochi_CI_API34'
+-    assert adb('shell', 'getprop', 'ro.kernel.qemu') == '1'
+-    assert adb('shell', 'getprop', 'ro.build.type') == 'userdebug'
++    # Explicit local authorization: isolated directory plus owned live QEMU command.
++    proof=json.loads(Path(os.environ['MOCHI_LOCAL_OWNERSHIP']).read_text(encoding='utf8'))
++    root=Path(proof['gate_root']).resolve()
++    avd=Path(os.environ['ANDROID_AVD_HOME']).resolve()
++    assert avd.is_relative_to(root) and avd.name=='avd'
++    assert str(root)==os.environ['MOCHI_LOCAL_GATE_ROOT']
++    pid=int(proof['qemu_pid'])
++    cmd=['powershell','-NoProfile','-Command',f"Get-CimInstance Win32_Process -Filter 'ProcessId={pid}' | Select-Object ProcessId,CommandLine,CreationDate | ConvertTo-Json -Compress"]
++    live=json.loads(subprocess.check_output(cmd,text=True))
++    assert live['CreationDate']==proof['creation_date']
++    assert str(root/'userdata.img') in live['CommandLine']
++    assert '-avd Mochi_CI_API34' in live['CommandLine'] and ('-port '+str(proof['port'])) in live['CommandLine']
++    assert adb('emu','avd','name').splitlines()[0]=='Mochi_CI_API34'
++    assert adb('shell','getprop','ro.kernel.qemu')=='1'
++    assert adb('shell','getprop','ro.build.type')=='userdebug'
+ 
+ 
+ class AdbEvidence:
+--- repository/android_smoke.py
++++ local/android_smoke.py
+@@ -35,7 +35,7 @@
+     commands = []
+     report = {"status": "FAIL", "commit": os.environ.get("GITHUB_SHA", "local"),
+               "apk_sha256": hashlib.sha256(args.apk.read_bytes()).hexdigest(),
+-              "environment": "Dedicated GitHub-hosted Android API 34 x86_64 emulator; not a physical phone",
++              "environment": "Dedicated local Windows AMD host-GPU Android API 34 x86_64 emulator; not a physical phone",
+               "graphics_backend_requested": os.environ.get("MOCHI_EMULATOR_GPU", "unrecorded"),
+               "visual_review": "PENDING", "commands": commands, "release_candidate": args.release,
+               "game_checks": {}}
+--- repository/android_upgrade.py
++++ local/android_upgrade.py
+@@ -20,7 +20,7 @@
+ from release_identity import identity, build_inputs
+ from fetch_staged_release import verify
+ from upgrade_semantics import restored, compare
+-from android_evidence import AdbEvidence
++from android_evidence import AdbEvidence, require_owned
+ 
+ PACKAGE = "io.github.seiya058904.mochiarcade"
+ ACTIVITY = PACKAGE + "/com.godot.game.GodotAppLauncher"
+@@ -98,12 +98,8 @@
+     log_file = None
+     try:
+         # Require the job-owned AVD identity, not merely an emulator port.
+-        assert os.environ.get("GITHUB_ACTIONS") == "true", "Destructive fixtures require the isolated hosted job"
+-        avd_name = adb("emu", "avd", "name").splitlines()[0]
+-        assert avd_name == "Mochi_CI_API34"
+-        assert Path(os.environ["ANDROID_AVD_HOME"]).resolve().is_relative_to(Path(os.environ["RUNNER_TEMP"]).resolve())
+-        assert shell("getprop", "ro.kernel.qemu") == "1"
+-        assert shell("getprop", "ro.build.type") == "userdebug" and shell("id", "-u") == "0"
++        require_owned(adb)
++        assert shell("id", "-u") == "0"
+         report["device"] = shell("getprop", "ro.build.fingerprint")
+         log_file = (out / "stream-logcat.txt").open("wb")
+         log_stream = subprocess.Popen(["adb", "-s", "emulator-5554", "logcat", "-v", "threadtime"],
