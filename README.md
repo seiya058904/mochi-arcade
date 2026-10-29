@@ -268,15 +268,20 @@ docs/              Product, art direction, QA and release evidence
 
 The repository includes **24 required automated checks** (game suites, save/terminal boundary regressions, full restore semantics, release identity, Android restoration/release-summary rejection tests, and Android UI probe regressions), deterministic game replays, procedural-board checks, and retained Android screenshots and lifecycle evidence.
 
-The published **v1.0.0** signed APK was exercised on a controlled **Android 14 / API 34 hardware-GPU emulator**, including all eight games, background return, resume, restart, save restoration, and maximum-object loads. This is **not** a claim that every Android phone will achieve the same frame rate.
-
 The published **v1.1.1** repairs pending Fruit Drop merge snapshots, terminal recovery and section-level save recovery, and reduces measured duplicate save transactions. Its original-signed APK passed independent clean installation, in-place upgrades from v1.0.0 and v1.1.0, and maximum-object load/save-restoration gates on a local Android 14 / API 34 host-GPU emulator. All native captures were reviewed; public downloads, signature and tag identity were verified. [Signed acceptance and limits](docs/ANDROID_SIGNED_20261029.md) retain historical hosted failures and physical-device/audio limitations. [Patch details](docs/ITERATION_1.1.1.md).
+
+<details>
+<summary><strong>Earlier releases, startup measurements &amp; retained failures</strong></summary>
+
+The published **v1.0.0** signed APK was exercised on a controlled **Android 14 / API 34 hardware-GPU emulator**, including all eight games, background return, resume, restart, save restoration, and maximum-object loads. This is **not** a claim that every Android phone will achieve the same frame rate.
 
 The previous **v1.1.0** adds save-failure feedback and recovery, Number Bloom Undo from the result screen, and fewer idle canvas rebuilds. Its exact original-signature APK passed Android 14 / API 34 software-emulator runtime, in-place v1.0.0 upgrade, eight games with three background returns each, and maximum-object loads; native captures were reviewed. [Iteration status and evidence](docs/ITERATION_1.1.md) retain both passes and failures. No physical phone was available for this version; phone performance, thermal/battery results and other API/device coverage remain unverified.
 
 A dedicated cream **Mochi Arcade boot splash** replaces the default engine splash; first launch (463 ms), cold start (408 ms) and warm start (79 ms) were captured on the emulator with no Godot default logo, blue icon, progress bar, fake percentage or artificial delay. See the [historical startup evidence and cleanup record](docs/EVIDENCE-RETIREMENT-20261028.md).
 
 The GitHub-hosted **software-rendered** Android emulator has also reproduced an intermittent blank frame on background return. Its failed runs are preserved, with a narrowly scoped, documented owner-approved environment exception rather than a claim that those runs passed. See the [QA Report](docs/QA_REPORT.md) and [Release Checklist](docs/RELEASE_CHECKLIST.md) for precise status and limitations.
+
+</details>
 
 ## 🔒 Privacy & Local Saves
 
