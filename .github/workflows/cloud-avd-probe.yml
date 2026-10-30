@@ -28,7 +28,15 @@ jobs:
           distribution: temurin
           java-version: '17'
       - name: Isolate AVD state
-        run: echo "ANDROID_AVD_HOME=$RUNNER_TEMP/mochi-probe-avd" >> "$GITHUB_ENV"
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/mochi-probe-avd" "$HOME/.android"
+          # This action resets ANDROID_AVD_HOME to its default. Only create a
+          # new link on a clean runner; never replace an existing AVD directory.
+          test ! -e "$HOME/.android/avd" && test ! -L "$HOME/.android/avd"
+          ln -s "$RUNNER_TEMP/mochi-probe-avd" "$HOME/.android/avd"
+          echo "ANDROID_AVD_HOME=$RUNNER_TEMP/mochi-probe-avd" >> "$GITHUB_ENV"
       - name: Prepare exact published signed bytes
         shell: bash
         run: |
