@@ -1,0 +1,43 @@
+{
+  "run_id": 41099724452,
+  "gate": "U100",
+  "status": "FAIL",
+  "tool_commit": "3e76696ab6b8ff7cea20354aa6cedacdb3a11b71",
+  "apk_sha256": "09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8",
+  "source_equivalence": "FAIL",
+  "renderer": [
+    "GLES: Google (Google Inc. (Google)), Android Emulator OpenGL ES Translator (ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver-5.0.0)), OpenGL ES 3.1 (OpenGL ES 3.1.0 (ANGLE 2.1.17841 git hash: 5fa2e61da947))"
+  ],
+  "failed_phase": "predecessor failed; original report retained",
+  "error": "Android screenshot 01-fruit_drop-background-return is blank: {'width': 720, 'height': 1280, 'pixel_format': 1, 'colorspace': 1, 'sampled_colors': 1, 'non_dark_fraction': 0.0, 'has_visible_content': False, 'sha256': 'cfc80ccb6c70119363e7e3da3bbb361f4c4c2628e4856bfdce139ea7b8cdf249'}",
+  "surface_failure_diagnostic": {
+    "pid_before": "2422",
+    "visible_after_extra_5_seconds": false,
+    "visible_after_new_surface_cycle": true,
+    "same_process": true
+  },
+  "egl_warnings": [
+    "10-30 17:35:05.596  2422  2453 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE",
+    "10-30 17:35:38.346  2422  2453 W GLThread: eglSwapBuffers failed: EGL_BAD_SURFACE"
+  ],
+  "files": {
+    "old-version/00-home.png": "b99d2b895e90bd338e9c25cc03e1d3bd3dc9bbb411229c4e2af0ade97eeb0e2e",
+    "old-version/01-fruit_drop-after-back.png": "54504064e9f4e30ba777378aed81b07bedce79d587bee4c6a26ddddcaa8f0460",
+    "old-version/01-fruit_drop-after-input.png": "9e5f731e8777415c4ac851dc396f24e93ff3a4fd9186ed082dfefe52f4ff5e29",
+    "old-version/01-fruit_drop-background-return.png": "cfc80ccb6c70119363e7e3da3bbb361f4c4c2628e4856bfdce139ea7b8cdf249",
+    "old-version/01-fruit_drop-edge-help.png": "f454c4e05b4b6d0b7d787a7f5f2479cceefdf80ced79218c6795d31df7a8b208",
+    "old-version/01-fruit_drop-edge-resumed.png": "ef1c69552d8fbf2648557ed9c8cdcddcd6733f332eb3d52eb8352d1be2de90b5",
+    "old-version/01-fruit_drop-help.png": "f454c4e05b4b6d0b7d787a7f5f2479cceefdf80ced79218c6795d31df7a8b208",
+    "old-version/01-fruit_drop-ready.png": "ef1c69552d8fbf2648557ed9c8cdcddcd6733f332eb3d52eb8352d1be2de90b5",
+    "old-version/01-fruit_drop-resumed.png": "de50f474e9df33e6a45dc018babadc730288fda332002d4c3f6fda23fd3ac659",
+    "old-version/15-android-launcher-icon.png": "90a33452b759b0c2f37f8db28e52abdd7720bc54ca0dfc8493de98eacb4a1ed6",
+    "old-version/16-launcher-icon-opened-app.png": "b99d2b895e90bd338e9c25cc03e1d3bd3dc9bbb411229c4e2af0ade97eeb0e2e",
+    "old-version/diagnostic-delayed-return.png": "cfc80ccb6c70119363e7e3da3bbb361f4c4c2628e4856bfdce139ea7b8cdf249",
+    "old-version/diagnostic-new-surface-return.png": "aa3504589b6201c36938c241323d98b2b9dcfe4bfd4acd9628317992bc1d5734",
+    "old-version/failure-screen.png": "cfc80ccb6c70119363e7e3da3bbb361f4c4c2628e4856bfdce139ea7b8cdf249",
+    "old-version/startup-00.png": "d4e79859b9d5b87d431769ebb093ba1216241c57635b515d8b339c0c9bf325d5",
+    "old-version/startup-01.png": "b2e9593fc8495841d6624ba6ce939324ce9a74ef8adcff27d94bb62fe0fa8bb2",
+    "old-version/startup-02.png": "5f7b8e51cd74ea4df58b642c386f089546e10bc63c50e22e14312fdfeaca8805",
+    "old-version/startup.mp4": "437104b5892399a9b4c4dee7d620d5c321580d7a2f92c7c67ea557e130b95f55"
+  }
+}

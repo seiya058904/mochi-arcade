@@ -1,0 +1,23 @@
+{
+  "run_id": 41101132279,
+  "gate": "U100-swiftshader",
+  "status": "FAIL",
+  "tool_commit": "ff181cc687d1a2d339fe85abdbaedea7849946d6",
+  "apk_sha256": "09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8",
+  "source_equivalence": "FAIL",
+  "renderer": [
+    "GLES: Google (Google Inc.), Android Emulator OpenGL ES Translator (Google SwiftShader), OpenGL ES 3.0 (OpenGL ES 3.0 SwiftShader 4.0.0.1)"
+  ],
+  "failed_phase": "predecessor failed; original report retained",
+  "error": "Android screenshot 00-home is blank: {'width': 720, 'height': 1280, 'pixel_format': 1, 'colorspace': 1, 'sampled_colors': 1, 'non_dark_fraction': 1.0, 'has_visible_content': False, 'sha256': 'dc331007d2aa38c17aad7b9983b4f04c8645ff0c30d0962eb398a3fbf38c65a3'}",
+  "surface_failure_diagnostic": null,
+  "egl_warnings": [],
+  "files": {
+    "old-version/00-home.png": "dc331007d2aa38c17aad7b9983b4f04c8645ff0c30d0962eb398a3fbf38c65a3",
+    "old-version/failure-screen.png": "dc331007d2aa38c17aad7b9983b4f04c8645ff0c30d0962eb398a3fbf38c65a3",
+    "old-version/startup-00.png": "d0b8b02cd6695ebf19a4b85b38d7a01ae0863935a17c3e3522c4b1b7eaeb3b57",
+    "old-version/startup-01.png": "b2e9593fc8495841d6624ba6ce939324ce9a74ef8adcff27d94bb62fe0fa8bb2",
+    "old-version/startup-02.png": "be7dc71474c1cd3ceda1dcea708d030b528d92b203edd6726318d96db708e6f8",
+    "old-version/startup.mp4": "6c0cc871a538c5fae9bcc3280216868cfbb610b6f928a44f6c3940c1a04e8af6"
+  }
+}

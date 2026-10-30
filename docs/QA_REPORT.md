@@ -84,7 +84,15 @@ health probes. This is not an extended multi-hour stability test.
   are retained; local AVD remains.
   [CLEAN receipt](evidence/cloud-migration-20261031/clean.json) and
   [LOAD receipt](evidence/cloud-migration-20261031/load.json) preserve the
-  reviewed-file hashes; CI artifacts have seven-day retention.
+  reviewed-file hashes; [U100](evidence/cloud-migration-20261031/u100.json),
+  [U110](evidence/cloud-migration-20261031/u110.json), and
+  [U100 SwiftShader](evidence/cloud-migration-20261031/u100-swiftshader.json)
+  retain failure observations and evidence hashes. CI artifacts have seven-day
+  retention. The host/llvmpipe comparison run 41101786085 was dispatched and
+  is **PENDING**; this diagnostic does not alter the existing failures. GitHub
+  reported U110 as in progress and two newer probes as queued after their
+  diagnostic artifacts were already downloadable, so final run metadata was
+  inconsistent and is not treated as evidence of completion.
 - **PASS, isolated root diagnostic:** Run 41099892058 verified the job-owned AVD,
   API 34, x86_64 and userdebug, restarted `adbd` as root and observed UID 0. This
   checks root capability on that disposable emulator, not on the physical phone.

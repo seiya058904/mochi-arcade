@@ -16,8 +16,9 @@ because the current exported assets contain an additional README image. The
 independent root and owned-process release diagnostics passed. U100 and U110
 **FAIL** reproduced hosted black returns before candidate installation; a
 SwiftShader U100 comparison also **FAIL** with a blank predecessor home. Next:
-investigate rendering without removing failures or weakening assertions, resolve
-exact source equivalence, and rerun all gates on one tool revision.
+review the pending host/llvmpipe comparison, investigate rendering without
+removing failures or weakening assertions, resolve exact source equivalence, and
+rerun all gates on one tool revision.
 
 ## Physical phone final retest — 2026-10-31
 
