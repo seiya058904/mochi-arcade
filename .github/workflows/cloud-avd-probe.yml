@@ -5,7 +5,7 @@ on:
       gate:
         description: Existing signed gate to run on a fresh isolated guest
         type: choice
-        options: [CLEAN, LOAD, U110, U100]
+        options: [ROOT, CLEAN, LOAD, U110, U100]
         default: CLEAN
 permissions:
   contents: read
@@ -84,7 +84,7 @@ jobs:
             cp "$ANDROID_HOME/emulator/package.xml" .local/android-runtime/emulator-package.xml
             cp "$ANDROID_HOME/system-images/android-34/default/x86_64/package.xml" .local/android-runtime/system-image-package.xml
             adb devices -l
-            env PYTHONUNBUFFERED=1 timeout --signal=TERM --kill-after=30s 30m python3 scripts_tools/android_gate.py --gate "$MOCHI_GATE" --apk dist/MochiArcade.apk --release
+            if [ "$MOCHI_GATE" = ROOT ]; then python3 scripts_tools/cloud_probe_root.py; else env PYTHONUNBUFFERED=1 timeout --signal=TERM --kill-after=30s 30m python3 scripts_tools/android_gate.py --gate "$MOCHI_GATE" --apk dist/MochiArcade.apk --release; fi
       - name: Preserve diagnostics and screenshots
         if: ${{ always() }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
