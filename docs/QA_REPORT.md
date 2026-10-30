@@ -72,8 +72,14 @@ health probes. This is not an extended multi-hour stability test.
   objects and restored scenes. Its initial home capture contains the system
   fullscreen prompt. U100 run 41099724452 **FAIL**: its v1.0.0 predecessor
   precheck returned an all-black Fruit Drop frame after backgrounding, with
-  `EGL_BAD_SURFACE`; the candidate upgrade did not run. U110 remains
+  `EGL_BAD_SURFACE`; the candidate upgrade did not run. In preserved diagnostics
+  the frame stayed black after five seconds, then became visible after another
+  surface cycle without changing process ID. This observation does not prove the
+  cause or make the original failure pass. U110 remains
   **IN_PROGRESS**. The failed evidence is retained; local AVD remains.
+  [CLEAN receipt](evidence/cloud-migration-20261031/clean.json) and
+  [LOAD receipt](evidence/cloud-migration-20261031/load.json) preserve the
+  reviewed-file hashes; CI artifacts have seven-day retention.
 - **PASS, isolated root diagnostic:** Run 41099892058 verified the job-owned AVD,
   API 34, x86_64 and userdebug, restarted `adbd` as root and observed UID 0. This
   checks root capability on that disposable emulator, not on the physical phone.
