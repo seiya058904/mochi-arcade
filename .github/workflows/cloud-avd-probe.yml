@@ -14,7 +14,6 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     env:
-      ANDROID_AVD_HOME: ${{ runner.temp }}/mochi-probe-avd
       MOCHI_GATE: ${{ inputs.gate }}
       MOCHI_EMULATOR_GPU: swangle
       MOCHI_STAGED_SOURCE_SHA: 920f39cfc29fc0d46b03a295f25f1197446a4027
@@ -28,6 +27,8 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+      - name: Isolate AVD state
+        run: echo "ANDROID_AVD_HOME=$RUNNER_TEMP/mochi-probe-avd" >> "$GITHUB_ENV"
       - name: Prepare exact published signed bytes
         shell: bash
         run: |
