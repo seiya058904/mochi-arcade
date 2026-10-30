@@ -49,8 +49,10 @@ health probes. This is not an extended multi-hour stability test.
   must still be switched explicitly when another UiAutomation backend is needed.
 - **FAIL, source equivalence:** The existing strict `candidate_source.py` detects
   one added README image in the current asset tree versus the published v1.1.1
-  candidate source. This discrepancy is recorded, not suppressed; the added image
-  is excluded by the Android export preset, but the strict check has not passed.
+  candidate source. Correction: the export preset does not exclude that image.
+  Inspection of the current debug APK found its imported texture and metadata;
+  the checksum-matched published APK contains neither. The strict check has not
+  passed; the discrepancy is recorded and is not suppressed.
 - **FAIL:** Cloud CLEAN probe run 41097746223 booted an AVD and verified signed
   APK bytes, but the action reset the AVD directory and the unchanged ownership
   assertion stopped the gate before root or app testing. The separate diagnostic
