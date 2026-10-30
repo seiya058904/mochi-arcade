@@ -1,5 +1,45 @@
 # Implementation board
 
+## Cloud AVD migration — 2026-10-31
+
+**IN PROGRESS:** A separate manually dispatched ReactiveCircus probe preserves
+the original signed gate code and published APK bytes. Strict source equivalence
+currently **FAILS** because the current asset tree has an additional README image;
+this probe cannot grant release acceptance. Next: run and inspect the CLEAN probe,
+including root, isolated AVD, renderer and visual evidence; run other signed
+gates only if conditions justify it. Keep the local emulator until equivalent
+coverage and reviewed results are actually established.
+
+## Physical phone final retest — 2026-10-31
+
+**PASS, bounded:** Two fresh Codex CLI sessions invoked the project-configured
+Mobile MCP; discovery, screenshot, launch, clicks, batch calls and recovery from
+an invalid device ID were exercised. The rebuilt debug APK installed and ran; ten
+pause/resume cycles and five swipes were exercised. The owner reported the tuned
+scrcpy view usable. **BLOCKED:** AVD-specific local acceptance has no verified
+replacement, so retain emulator, image and AVD. Next: verify cross-project config
+in its intended project, longer stability, and a safe equivalent for AVD-only gates.
+
+## Device automation comparison — 2026-10-31
+
+**PARTIAL:** Mobile MCP and uiautomator2 performed repeated phone input after
+isolating the Android automation session; Maestro's current device session became
+stale and its CLI flow stalled. Project-local Codex MCP configuration is present,
+but discovery in a fresh Codex session is **UNVERIFIED**. Next: validate native
+Codex tool discovery, repeat stability measurements and debug Maestro in isolation.
+Keep the current tools and AVD gates. See [QA report](QA_REPORT.md).
+
+## Physical-device workflow — 2026-10-31
+
+**PARTIAL: physical-device workflow established; emulator replacement BLOCKED.**
+The debug APK built, installed twice and ran on an Android 11 phone; two games
+and background returns were exercised; the owner heard phone audio with scrcpy
+audio forwarding disabled. A USB disconnect occurred and recovered.
+No emulator components were removed: existing AVD-dependent gates have no verified
+replacement. Next: assess connection stability, forwarded audio, remaining games,
+scrcpy controls and device coverage; retain the AVD gates until a safe equivalent
+exists. See [QA report](QA_REPORT.md) for evidence and commands.
+
 ## Current signed acceptance — 2026-10-29
 
 **v1.1.1 RELEASED; four local original-signed gates and public-byte verification PASS.**

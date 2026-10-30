@@ -1,5 +1,163 @@
 # QA report
 
+## Cloud AVD migration investigation — 2026-10-31
+
+- **PASS, bounded:** A user-level pinned Mobile MCP configuration was exercised
+  in a new Codex session from a second Android project; device discovery, launch,
+  foreground identity and screenshot succeeded. The system notification dialog
+  obscured part of the app, so full interaction was not reviewed. The package is
+  resolved independently of the Mochi checkout. The device-side automation owner
+  must still be switched explicitly when another UiAutomation backend is needed.
+- **FAIL, source equivalence:** The existing strict `candidate_source.py` detects
+  one added README image in the current asset tree versus the published v1.1.1
+  candidate source. This discrepancy is recorded, not suppressed; the added image
+  is excluded by the Android export preset, but the strict check has not passed.
+- **NOT_RUN:** Manual cloud AVD migration probe and all associated signed gates;
+  the separate workflow is diagnostic and preserves current acceptance scripts.
+  Its output requires actual gate success, source identity, evidence and visual
+  review before any equivalence or release claim. Existing local AVD remains.
+- **BLOCKED:** Personal Actions billing API returned HTTP 404, so current account
+  quota and actual charges cannot be verified from this credential. The repository
+  is public and the observed Actions cache usage is zero. GitHub states standard
+  hosted runners are free for public repositories; artifact storage has separate
+  limits and billing. No account-specific charge or remaining quota is claimed.
+
+## Physical phone and native Codex retest — 2026-10-31
+
+- **PASS, bounded:** An explicitly requested fresh ephemeral Codex CLI session
+  discovered and invoked project-configured Mobile MCP 1.0.15 directly. It listed
+  the phone, obtained screenshots, launched the app, used batch calls and tapped
+  Bubble Garden with visual verification of pause and resume. Initial launch
+  acknowledgement did not match one subsequent screenshot; a repeat launch and
+  foreground query confirmed the app. Evidence: `.local/device-test/codex-native.jsonl`.
+- **PASS, bounded:** After the owner reported USB unplug/reconnect, ADB saw the
+  phone and a second fresh Codex session recovered from an intentionally invalid
+  device ID, discovered the real device and launched it. The disconnected state
+  itself was not observed. Restarting scrcpy restored its window. No long-duration
+  disconnect soak or persistent-session reconnect test was performed.
+- **PASS:** Rebuilt `.local/device-test/MochiArcade-retest.apk` with Godot 4.7.2,
+  verified its debug certificate and installed it in place without clearing data.
+  The app ran and ADB screenshots and process-filtered Logcat were captured.
+  Crash-buffer diagnostics identified a failed `uiautomator dump` process caused
+  by an already registered UiAutomation service, not an app crash; no app fatal
+  exception was found in the captured process log. Do not run competing UI
+  automation services simultaneously.
+- **PASS, bounded:** Ten Mobile MCP pause/resume cycles each had both screen
+  states verified; full cycle including two screenshots and two 0.4 s waits took
+  1.70–2.14 s. Five swipes returned without tool errors; reviewed pre/post images
+  show the board changed and score rose from 170 to 230. This is not a proof of
+  all five individual game outcomes or long-term reliability.
+- **PASS, subjective:** Owner reported scrcpy noticeably laggy at default size,
+  then noticeably improved and usable with `--max-size=1024 --max-fps=30
+  --video-bit-rate=4M --no-audio`; actual latency and FPS were not measured.
+- **BLOCKED:** Local release gate scripts demand isolated AVDs and, for some
+  signed cases, `adb root`; hosted CI provisions its own emulator. The phone and
+  native Codex tests do not replace these gates. Emulator, image and AVD remain;
+  nothing was removed. Android build tools and SDK paths remain intact.
+
+The user-level Mobile MCP configuration uses a pinned npm package and was tested
+in two project contexts. Keep the device server as the sole UI automation
+owner. When switching to Maestro or uiautomator2, stop the identified active
+Mobile MCP device-server process first, and stop the other tool's own helper before
+returning. Do not stop unrelated phone processes. The installed alternatives and
+test artifacts are retained; no automatic cleanup was authorized.
+
+For tuned observation, from this repository:
+
+```powershell
+$env:ADB = Join-Path $env:ANDROID_HOME 'platform-tools\adb.exe'
+& .\.local\scrcpy\scrcpy-win64-v5.0.1\scrcpy.exe --select-usb --no-audio --max-size=1024 --max-fps=30 --video-bit-rate=4M
+```
+
+## Android automation comparison — 2026-10-31
+
+Same vivo V2158A, USB, Android 11, 720x1600, Bubble Garden: pause at (650,95),
+resume at (360,840). Three iterations per working method; after each step a
+separate ADB screenshot sampled the modal background pixel. Timings below cover
+command completion, not image capture, the 0.4 s validation delay, agent reasoning,
+or end-to-end visual latency. No app data was cleared.
+
+| Method | Results | Timing / limits |
+| --- | --- | --- |
+| ADB separate processes | 3/3 pause and resume validated | Pause 0.774–0.808 s, resume 0.787–0.866 s per command |
+| uiautomator2 3.7.1 | 3/3 validated | Initial connect 0.844 s; clicks 0.179–0.268 s; isolated venv 56.6 MB |
+| Mobile MCP 1.0.15 | 3/3 validated with separate calls | MCP initialize 0.251 s; first click 0.422 s with server already warm; remaining calls 0.097–0.102 s. Fresh device-server batch 1.366 s; later two-command batches 0.177–0.210 s returned success, but intermediate states were not verified |
+| Maestro MCP / CLI | **BLOCKED** | First hierarchy call 100.9 s including installation prompts. Game hierarchy exposed no game controls. MCP connection became stale after its helper was stopped; two CLI attempts stalled on first tap, including one with 1 s settle timeout. No completed repeated-flow timing or success rate |
+
+Five separate ADB screenshots took 0.361–0.393 s each. These samples exclude
+agent/tool round trips and human or model image interpretation, so they do not
+establish scrcpy display latency or prove which component dominates wall time.
+Observed repeated screenshot-and-reasoning cycles add overhead; grouped known
+actions avoid those round trips. scrcpy remained open for viewing; no frame latency
+or CPU benchmark was performed. One observed working set: scrcpy about 55 MiB;
+Maestro MCP Java about 241 MiB, not peak or incremental RAM. Mobile MCP npm tree
+73.9 MB on disk; Node server observed about 80 MB while running. Comparisons are
+small samples, not long-term reliability or complete resource profiles.
+
+**Service contention:** With Maestro's UiAutomation service registered, three
+Mobile MCP batches timed out in 5.7–6.2 s and uiautomator2 reported
+`AccessibilityServiceAlreadyRegisteredError`. After stopping the Maestro helper,
+both worked. Do not run the automation backends simultaneously. The installed
+Maestro helper remains; no user app data was removed. A fresh project-local Codex
+session must verify `.codex/config.toml` actually exposes Mobile MCP; the active
+chat did not dynamically acquire it. MCP protocol handshake, discovery, native
+Android hierarchy extraction and coordinate actions were tested directly. Native
+Chinese labels appeared garbled in the Windows output; game controls were absent
+from all observed accessibility trees. Use coordinates for this Godot build and
+verify state periodically; use element references for compatible native apps.
+
+**Next:** Test Mobile MCP from a fresh Codex session; measure actual scrcpy latency
+and longer-run disconnect/failure rates; investigate Maestro separately with its
+own server and verified device state. The benchmark scripts and local npm/venv
+are under `.local/` and retained. The project MCP config uses this machine's
+absolute paths and is not a portable project dependency.
+
+## Physical-device workflow audit — 2026-10-31
+
+- **PASS:** Godot 4.7.2 imported and exported a debug APK using JDK 17 and SDK
+  Build Tools 36.0.0; output is `.local/device-test/MochiArcade-dev.apk`.
+- **PASS:** Official scrcpy 5.0.1 Windows archive SHA-256 matched
+  `b12a2c4ee8be317422451fc7dcf8ee20a71b5ea7ef9ad73ddd825a25316227a5`;
+  executable reports 5.0.1. Actual device operation is not yet tested.
+- **PASS, bounded:** USB-authorized vivo V2158A, Android 11/API 30, 720x1600;
+  debug APK fresh install, `install -r`, launch, screenshots, Logcat, Fruit Drop
+  taps and Bubble Garden swipe, and one background return in each game. Captures
+  show the games and pause overlays after return. Godot logged OpenGL ES 3.2,
+  Qualcomm Adreno 610, Compatibility. This does not establish the cause or fix of
+  historical hosted-emulator EGL/black-frame failures. Debug signing differs from
+  the published release; do not uninstall an existing package or erase its data
+  to resolve a signature conflict.
+- **PASS, bounded:** The owner heard game sound on the phone after scrcpy was
+  restarted with `--no-audio`. A default audio-forwarding recording succeeded
+  but measured very low output; PC playback quality is **UNVERIFIED**.
+- **UNVERIFIED:** scrcpy mouse/keyboard/resize, long-term USB
+  stability, other games, landscape apps, wider device/API coverage and full
+  acceptance. One USB disconnect occurred; ADB and scrcpy subsequently reconnected.
+  Android 11 supports scrcpy audio forwarding when the screen is unlocked at
+  startup; actual audible output remains unverified.
+- **BLOCKED:** Emulator cleanup and post-cleanup regression require a verified
+  phone workflow and resolution of local AVD dependencies. Existing acceptance
+  scripts explicitly require an isolated emulator, including root-dependent tests.
+  Retain AVD, API 34 image and emulator. Hosted CI provisions its own SDK.
+- **Next:** Check the cable and connection stability; validate audible sound and
+  scrcpy controls, expand game coverage and assess AVD-only gates before cleanup.
+  Local evidence is in `.local/device-test/` and is not release acceptance.
+
+For a USB-connected device, use the repository's existing build command, then:
+
+```powershell
+$env:ADB = Join-Path $env:ANDROID_HOME 'platform-tools\adb.exe'
+& .\.local\scrcpy\scrcpy-win64-v5.0.1\scrcpy.exe --select-usb
+adb devices -l
+adb install -r .local\device-test\MochiArcade-dev.apk
+adb shell monkey -p io.github.seiya058904.mochiarcade -c android.intent.category.LAUNCHER 1
+adb logcat -d -v threadtime > .local\device-test\logcat.txt
+python -c "import subprocess,pathlib; pathlib.Path('.local/device-test/screen.png').write_bytes(subprocess.check_output(['adb','exec-out','screencap','-p']))"
+```
+
+Run scrcpy in a separate terminal; select a serial with `adb -s` when multiple
+devices are attached. Vivo may require an on-device install confirmation each time.
+
 ## Current signed acceptance — 2026-10-29
 
 **v1.1.1 RELEASED; four local original-signed gates and public-byte verification PASS.**

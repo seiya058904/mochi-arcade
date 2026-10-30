@@ -1,0 +1,85 @@
+name: Cloud AVD migration probe
+on:
+  workflow_dispatch:
+    inputs:
+      gate:
+        description: Existing signed gate to run on a fresh isolated guest
+        type: choice
+        options: [CLEAN, LOAD, U110, U100]
+        default: CLEAN
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      ANDROID_AVD_HOME: ${{ runner.temp }}/mochi-probe-avd
+      MOCHI_GATE: ${{ inputs.gate }}
+      MOCHI_EMULATOR_GPU: swangle
+      MOCHI_STAGED_SOURCE_SHA: 920f39cfc29fc0d46b03a295f25f1197446a4027
+      MOCHI_STAGED_APK_SHA256: 09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Prepare exact published signed bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist .local/android-runtime "$ANDROID_AVD_HOME"
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" 'platform-tools' 'platforms;android-34' 'build-tools;36.0.0'
+          curl -fsSL --retry 3 https://github.com/seiya058904/mochi-arcade/releases/download/v1.1.1/MochiArcade.apk -o dist/MochiArcade.apk
+          old=v1.1.0
+          if [[ "$MOCHI_GATE" == U100 ]]; then old=v1.0.0; fi
+          curl -fsSL --retry 3 "https://github.com/seiya058904/mochi-arcade/releases/download/$old/MochiArcade.apk" -o dist/MochiArcade-predecessor.apk
+          OLD_TAG="$old" PYTHONPATH=scripts_tools python3 - <<'PY'
+          import os
+          from pathlib import Path
+          from fetch_staged_release import verify, CONFIG
+          candidate = CONFIG['candidate']
+          old = CONFIG['predecessors'][os.environ['OLD_TAG']]
+          print(verify(Path('dist/MochiArcade.apk'), os.environ['MOCHI_STAGED_APK_SHA256'], candidate['version'], candidate['code']))
+          print(verify(Path('dist/MochiArcade-predecessor.apk'), old['sha256'], old['version'], old['code']))
+          PY
+          # Record strict source-equivalence outcome; this probe is not a release gate.
+          if python3 scripts_tools/candidate_source.py > .local/android-runtime/source-check.log 2>&1; then
+            echo PASS > .local/android-runtime/source-check-status.txt
+          else
+            echo FAIL > .local/android-runtime/source-check-status.txt
+          fi
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-mochi-kvm.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Run unchanged signed gate on action-owned AVD
+        uses: ReactiveCircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d # v2.38.0
+        with:
+          api-level: 34
+          target: default
+          arch: x86_64
+          avd-name: Mochi_CI_API34
+          profile: pixel_2
+          cores: 2
+          ram-size: 2048M
+          disk-size: 2048M
+          disable-animations: false
+          emulator-options: -no-window -no-audio -no-boot-anim -no-snapshot -gpu swangle -accel on -memory 2048 -cores 2 -partition-size 2048 -camera-back none -camera-front none
+          pre-emulator-launch-script: |
+            printf '\nhw.lcd.width=720\nhw.lcd.height=1280\nhw.lcd.density=320\nhw.sdCard=no\n' >> "$ANDROID_AVD_HOME/Mochi_CI_API34.avd/config.ini"
+          script: |
+            cp "$ANDROID_HOME/emulator/package.xml" .local/android-runtime/emulator-package.xml
+            cp "$ANDROID_HOME/system-images/android-34/default/x86_64/package.xml" .local/android-runtime/system-image-package.xml
+            adb devices -l
+            python3 scripts_tools/android_gate.py --gate "$MOCHI_GATE" --apk dist/MochiArcade.apk --release
+      - name: Preserve diagnostics and screenshots
+        if: ${{ always() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: cloud-avd-probe-${{ inputs.gate }}
+          path: .local/android-runtime/
+          retention-days: 7
