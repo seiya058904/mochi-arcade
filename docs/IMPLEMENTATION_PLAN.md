@@ -13,10 +13,11 @@ requesting the owner's separate approval for any destructive action.
 **IN PROGRESS:** The isolated ReactiveCircus CLEAN and LOAD probes passed
 automation and their 102 and 11 screenshots were reviewed; strict source equivalence still **FAILS**
 because the current exported assets contain an additional README image. The
-independent root diagnostic passed. U100 **FAIL** reproduced the hosted black
-return/EGL problem before candidate installation; U110 is running. Next: inspect
-U110 and retained diagnostics, compare a distinct renderer without removing the
-failed result or weakening assertions, and resolve exact source equivalence.
+independent root and owned-process release diagnostics passed. U100 and U110
+**FAIL** reproduced hosted black returns before candidate installation; a
+SwiftShader U100 comparison also **FAIL** with a blank predecessor home. Next:
+investigate rendering without removing failures or weakening assertions, resolve
+exact source equivalence, and rerun all gates on one tool revision.
 
 ## Physical phone final retest — 2026-10-31
 

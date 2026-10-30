@@ -10,7 +10,7 @@ on:
       graphics_backend:
         description: Emulator GPU backend for an independent diagnostic
         type: choice
-        options: [swangle, swiftshader]
+        options: [swangle, swiftshader, host]
         default: swangle
 permissions:
   contents: read
@@ -70,6 +70,23 @@ jobs:
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-mochi-kvm.rules
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
+      - name: Prepare software host display
+        if: ${{ inputs.graphics_backend == 'host' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          command -v Xvfb
+          Xvfb -displayfd 3 -screen 0 720x1280x24 -nolisten tcp 3>.local/android-runtime/xvfb-display.txt >.local/android-runtime/xvfb.log 2>&1 &
+          printf '%s\n' "$!" > .local/android-runtime/xvfb.pid
+          for attempt in {1..20}; do
+            if [[ -s .local/android-runtime/xvfb-display.txt ]]; then break; fi
+            sleep 0.25
+          done
+          read -r display_number < .local/android-runtime/xvfb-display.txt
+          [[ "$display_number" =~ ^[0-9]+$ ]]
+          echo "DISPLAY=:$display_number" >> "$GITHUB_ENV"
+          echo 'LIBGL_ALWAYS_SOFTWARE=true' >> "$GITHUB_ENV"
+          echo 'GALLIUM_DRIVER=llvmpipe' >> "$GITHUB_ENV"
       - name: Run unchanged signed gate on action-owned AVD
         uses: ReactiveCircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d # v2.38.0
         with:

@@ -75,14 +75,22 @@ health probes. This is not an extended multi-hour stability test.
   `EGL_BAD_SURFACE`; the candidate upgrade did not run. In preserved diagnostics
   the frame stayed black after five seconds, then became visible after another
   surface cycle without changing process ID. This observation does not prove the
-  cause or make the original failure pass. U110 remains
-  **IN_PROGRESS**. The failed evidence is retained; local AVD remains.
+  cause or make the original failure pass. U110 run 41099718519 also **FAIL**:
+  its v1.1.0 predecessor produced an all-black Fruit Drop frame on its second
+  return, with the same five-second persistence, recovery after another surface
+  cycle and EGL warnings. Neither candidate upgrade executed. A separate U100
+  SwiftShader probe 41101132279 **FAIL** returned a single-color predecessor home
+  frame before reaching the upgrade, without the same EGL warnings. All failures
+  are retained; local AVD remains.
   [CLEAN receipt](evidence/cloud-migration-20261031/clean.json) and
   [LOAD receipt](evidence/cloud-migration-20261031/load.json) preserve the
   reviewed-file hashes; CI artifacts have seven-day retention.
 - **PASS, isolated root diagnostic:** Run 41099892058 verified the job-owned AVD,
   API 34, x86_64 and userdebug, restarted `adbd` as root and observed UID 0. This
   checks root capability on that disposable emulator, not on the physical phone.
+- **PASS, isolated process release:** Run 41100915851 repeated the root check
+  after identifying the job-owned emulator and recorded `TERMINATED` through the
+  existing host-release script. Both upgrade failures still block replacement.
 - **BLOCKED:** Personal Actions billing API returned HTTP 404, so current account
   quota and actual charges cannot be verified from this credential. The repository
   is public and the observed Actions cache usage is zero. GitHub states standard
