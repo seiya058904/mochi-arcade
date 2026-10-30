@@ -1,8 +1,16 @@
 # Implementation board
 
+## Maestro retirement and D: audit — 2026-10-31
+
+**PASS, bounded:** The retired Maestro MCP process was stopped and its exclusive Windows files were recycled. With explicit authorization, both inactive Maestro helper packages were uninstalled from the phone. Historical evidence was retained. ADB, Mobile MCP discovery and screenshot, and the existing scrcpy process were checked afterward; a debug APK export passed after Windows cleanup. D: project files were audited read-only. **Next:** preserve evidence and recycled items; act on D: cleanup or permanent deletion only under the owner’s separate authorization. See `QA_REPORT.md`.
+
+## Android environment follow-up — 2026-10-31
+
+**PASS, bounded / UNVERIFIED:** Four fresh CLI sessions in each of two Android projects invoked the user-level Mobile MCP and discovered the phone when explicitly asked to discover deferred tools. Earlier native discovery failures remain unexplained; no configuration change or stability guarantee is claimed. Android-related allocated-space samples and Recycle Bin cleanup were measured without deleting retained data. **Next:** if native tools do not appear, request deferred tool discovery, check `codex mcp get mobile-mcp` and `adb devices -l`, and reopen the session; retain uncertain shared caches and historical evidence. See `QA_REPORT.md`.
+
 ## Android workflow consolidation — 2026-10-31
 
-**PARTIAL:** A shared Android guide is being installed across identified personal Android repositories. User-level Mobile MCP is retained; duplicate project configuration and the AVD backup were recycled. A debug APK built, installed and launched on the phone, and scrcpy connected using the tuned profile. MCP discovery was intermittent in fresh sessions and a concurrent ADB server caused USB contention. **Next:** finish cross-project fresh-session verification, disk inventory, repository synchronization and CI checks; do not claim full Android or release acceptance. See `QA_REPORT.md`.
+**Historical status at that checkpoint (superseded by the follow-up above):** A shared Android guide was being installed across identified personal Android repositories. User-level Mobile MCP is retained; duplicate project configuration and the AVD backup were recycled. A debug APK built, installed and launched on the phone, and scrcpy connected using the tuned profile. MCP discovery was intermittent in fresh sessions and a concurrent ADB server caused USB contention. **Next:** finish cross-project fresh-session verification, disk inventory, repository synchronization and CI checks; do not claim full Android or release acceptance. See `QA_REPORT.md`.
 
 ## Daily Android workflow and local emulator retirement — 2026-10-31
 
