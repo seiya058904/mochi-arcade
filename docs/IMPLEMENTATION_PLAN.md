@@ -1,5 +1,21 @@
 # Implementation board
 
+## Daily Android workflow and local emulator retirement — 2026-10-31
+
+**PASS, bounded:** Per the owner's revised test policy, daily work uses the
+physical phone, Mobile MCP, scrcpy and ADB; ordinary CI retains source tests and
+APK construction. Root, exact signed upgrades, isolated AVD and graphics/load
+gates remain available as manual specialist tests; their past failures are not
+overridden. This changes local cleanup criteria, not A01–A15 or stable-release
+requirements. The local AVD was backed up and recycled; the SDK emulator and
+API 34 x86_64 image were uninstalled. Post-removal debug build, installation,
+save retention and phone control passed. See [QA report](QA_REPORT.md).
+
+Strict candidate-source comparison passed at the README artwork relocation
+commit after moving the image outside the exported asset tree. The earlier cloud
+records remain tied to their original source checks and test revisions; they are
+not retroactively reclassified as a matching four-gate release acceptance.
+
 ## Physical-device root investigation — 2026-10-31
 
 **BLOCKED:** The spare phone reports a locked bootloader. No verified unlock and

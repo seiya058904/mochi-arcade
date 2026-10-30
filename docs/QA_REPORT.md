@@ -1,5 +1,56 @@
 # QA report
 
+## Daily Android workflow and emulator retirement — 2026-10-31
+
+The owner explicitly revised local cleanup criteria: routine build, phone
+installation, launch, input, pause/resume, background return, persistence and
+logs are required; signed upgrades, root, isolated AVD, load and alternative GPU
+checks remain manual specialist tests. This does not alter the existing stable
+release gates, test assertions or historical cloud failures. Ordinary CI already
+runs source checks and a debug APK build; emulator gates remain manual.
+
+- **PASS:** The README SVG moved byte-identically in Git to `docs/assets/` and
+  its README reference was updated. A rebuilt debug APK contained no
+  `readme-cover` entries; the original published APK was unchanged. The existing
+  unmodified strict `candidate_source.py` passed at relocation commit 84466af.
+- **PASS, phone:** The relocated debug APK built and installed. Both debug save
+  files remained byte-identical across reinstall; after force-stop and relaunch,
+  records, sessions and settings matched. Bubble Garden input, pause and background
+  return were visually checked; ADB screenshot and application Logcat were captured.
+- **PASS, recovery:** With emulator components removed, another debug APK built,
+  installed and preserved both save files. A new Codex session used Mobile MCP
+  to enter Bubble Garden, confirmed by a phone screenshot; scrcpy reconnected.
+  An earlier new session failed to discover the tool, while a retry succeeded;
+  this intermittent discovery issue remains **UNVERIFIED**. No application fatal
+  error was found in the captured process log. This is one phone/API, not broad
+  Android compatibility or the signed-release acceptance.
+- **PASS, scoped retirement:** The exact `Mochi_CI_API34.avd` and `.ini` were
+  placed in Windows Recycle Bin and both names verified there. Beforeward a ZIP
+  containing all 29 AVD/config files was created under ignored local evidence;
+  its entries and archive hash were verified. The snapshot directory was empty.
+  The official SDK manager uninstalled `system-images;android-34;default;x86_64`
+  and `emulator`; their directories and installed-package entries are absent.
+  Platform tools, Android platforms 34/36, Build Tools 34/36, ADB and JDK remain.
+- **Space:** C: free space increased approximately 2.64 GiB during the operation;
+  this observed delta includes ordinary background variation. The recycled AVD
+  remains on C: and is not reclaimed; its earlier allocated size was about
+  1.93 GiB. The separate verified AVD backup uses 1,929,225,035 bytes on the
+  project drive, so whole-machine net savings are lower. SDK logical size after
+  removal is about 0.66 GiB. Workspace logical size is about 2.62 GiB, mostly
+  `.local` (2.35 GiB), including the backup; it is reasonable for recoverability.
+- **UNVERIFIED / retained:** One-minute input and two-minute transport tests do
+  not establish multi-hour stability. Cloud swangle U100/U110 failures and the
+  SwiftShader U100 failure are retained below. Host/llvmpipe run 41101786085
+  reports **PASS automation** for U100 and normal emulator/Xvfb termination, but
+  visual review is pending and its source check failed at that historical commit.
+  No new full signed release acceptance is claimed.
+
+To restore the optional local environment, reinstall the two SDK packages via
+`sdkmanager`, then restore the AVD and `.ini` from Recycle Bin or the verified
+local ZIP. Restoring the exact previous SDK versions may require separately
+obtaining matching official package revisions. Do not erase the backup or recycle
+contents without separate authorization.
+
 ## Physical-device root investigation — 2026-10-31
 
 - **PASS, read-only identification:** vivo Y32 / V2158A / PD2158, Android 11,
