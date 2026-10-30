@@ -1,5 +1,9 @@
 # Implementation board
 
+## Android workflow consolidation — 2026-10-31
+
+**PARTIAL:** A shared Android guide is being installed across identified personal Android repositories. User-level Mobile MCP is retained; duplicate project configuration and the AVD backup were recycled. A debug APK built, installed and launched on the phone, and scrcpy connected using the tuned profile. MCP discovery was intermittent in fresh sessions and a concurrent ADB server caused USB contention. **Next:** finish cross-project fresh-session verification, disk inventory, repository synchronization and CI checks; do not claim full Android or release acceptance. See `QA_REPORT.md`.
+
 ## Daily Android workflow and local emulator retirement — 2026-10-31
 
 **PASS, bounded:** Per the owner's revised test policy, daily work uses the

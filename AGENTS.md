@@ -19,3 +19,7 @@ release artifact **MochiArcade.apk**. G06 is **Mochi Hop**, never Color Maze.
 - README is English only. Logs must distinguish PASS, FAIL, NOT_RUN, BLOCKED,
   DEVICE_UNAVAILABLE and UNVERIFIED. Desktop evidence is not Android evidence.
 - Before stopping, update the phase board and QA evidence with exact next actions.
+
+## Android Development
+
+For any Android-related build, debugging, device automation, or testing task, read `docs/ANDROID_WORKFLOW.md` before proceeding. Use the shared Windows toolchain, Mobile MCP, scrcpy and ADB as documented. Prefer physical-device testing for daily work and cloud emulator tests when specifically required. Follow repository-specific instructions and safety requirements.

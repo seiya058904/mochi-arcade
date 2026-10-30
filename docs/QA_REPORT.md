@@ -1,5 +1,12 @@
 # QA report
 
+## Android workflow consolidation — 2026-10-31
+
+- **PASS:** A new debug APK exported with Godot 4.7.2, installed after the phone-side installer confirmation, and launched with a live application PID. The tuned scrcpy 5.0.1 profile connected. An attempted concurrent `uiautomator dump` generated a UiAutomation-already-registered error; it is a test-helper conflict, not proof of an application crash. The historical logs and cloud scripts remain intact.
+- **PASS, bounded:** A new Mochi Codex session read the guide, exposed the user-level Mobile MCP, listed the phone and captured its home screen. A forest-match session read its workflow and invoked Mobile MCP, but returned an empty device list while two ADB servers competed. A later session read the workflow and successfully queried the configured server directly; a further session did not expose the native tool. Native tool exposure was intermittent. **UNVERIFIED:** consistent discovery and full interaction in fresh sessions across projects.
+- **PASS, scoped cleanup:** The exact retired AVD ZIP (1,929,225,035 bytes), duplicate project MCP config and isolated uiautomator2 comparison virtual environment were moved to the Recycle Bin. They have not been permanently deleted or freed from disk. User-level Maestro MCP was removed; the installed Maestro files and existing processes are retained pending dependency and session review. No cloud evidence was removed.
+- **BLOCKED / next:** Finish the machine-wide, non-overlapping allocated-size inventory and cross-project discovery verification. Recheck ADB ownership if port 5037 is occupied. Never claim Android release acceptance from these checks.
+
 ## Daily Android workflow and emulator retirement — 2026-10-31
 
 The owner explicitly revised local cleanup criteria: routine build, phone
