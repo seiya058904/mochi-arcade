@@ -1,6 +1,45 @@
 # QA report
 
+## Physical-device root investigation — 2026-10-31
+
+- **PASS, read-only identification:** vivo Y32 / V2158A / PD2158, Android 11,
+  Qualcomm Snapdragon 680 (vendor specification), security patch 2024-02-01.
+  Boot verification reports green, flash locked, vbmeta device state locked;
+  the OEM-unlock permission property is not proof of a supported unlock path.
+  A single named `boot`, `recovery`, `vbmeta` and `super` partition was observed;
+  slot and A/B properties did not establish an A/B layout.
+- **PASS, narrow backup:** The debug build's `save.json` and `save.backup.json`
+  were copied by `run-as` into ignored local evidence and byte verified. This is
+  not a complete device backup; shader caches and other apps were not backed up.
+- **BLOCKED:** No vendor-confirmed bootloader unlock for this exact model/build,
+  no verified matching stock image and no tested recovery path were established.
+  ADB shell cannot read the boot block device and `su` was not found on PATH;
+  this does not prove no hidden or alternative root mechanism exists. No unlock,
+  wipe, flash, exploit or reboot was performed. Root, Magisk, root ADB, app-data
+  migration and post-root stability are **NOT_RUN**. Retain the emulator.
+- **Next:** Obtain vendor confirmation of an applicable unlock process and a
+  verified exact-build recovery image, assess complete backup and restoration,
+  then request explicit action-time approval before any wipe, unlock or flash.
+  The existing phone, scrcpy and ADB remain connected in their non-root state.
+
 ## Cloud AVD migration investigation — 2026-10-31
+
+The current scripts separate into these scopes; no tests were removed or changed:
+
+| Scope | Existing coverage and boundary |
+| --- | --- |
+| Physical phone | Build/install, launcher, manual input, visual and audio checks, lifecycle and log collection can be repeated on the phone. One phone cannot establish the AVD or multi-device results. |
+| Isolated AVD | `android_evidence.py` enforces a job-owned API guest; `android_smoke.py` requires the dedicated 720x1280 emulator. `android_gate.py` orchestrates fresh CLEAN, LOAD, U110 and U100 runs; `watch_emulator.py`, `android_host.py` and the summarizer preserve diagnostics and isolate cleanup. |
+| Root and signed data | `android_upgrade.py` requires an isolated rooted userdebug guest for exact predecessor upgrades and save/fault fixtures; signed LOAD and CLEAN inspect non-debuggable private data with root. Debug `run-as` paths do not establish signed-gate parity. |
+| CI | The existing manual CI builds its own Linux SDK/AVD and retains hosted software-GPU diagnostics; regular CI runs source/build checks. Historical local Windows host-GPU acceptance remains a distinct environment. |
+
+Focused script and workflow searches in three other identified Android projects
+found no explicit emulator references; this is not a machine-wide dependency proof.
+The 30-cycle phone run verified both states on each cycle, roughly one minute;
+after an owner-performed USB unplug, ADB was observed absent and later present,
+and the task-owned Mobile MCP device server was restarted and verified with three
+more pause/resume cycles. A further 116-second sample had 24/24 successful ADB
+health probes. This is not an extended multi-hour stability test.
 
 - **PASS, bounded:** A user-level pinned Mobile MCP configuration was exercised
   in a new Codex session from a second Android project; device discovery, launch,
@@ -12,15 +51,20 @@
   one added README image in the current asset tree versus the published v1.1.1
   candidate source. This discrepancy is recorded, not suppressed; the added image
   is excluded by the Android export preset, but the strict check has not passed.
-- **NOT_RUN:** Manual cloud AVD migration probe and all associated signed gates;
-  the separate workflow is diagnostic and preserves current acceptance scripts.
-  Its output requires actual gate success, source identity, evidence and visual
-  review before any equivalence or release claim. Existing local AVD remains.
+- **FAIL:** Cloud CLEAN probe run 41097746223 booted an AVD and verified signed
+  APK bytes, but the action reset the AVD directory and the unchanged ownership
+  assertion stopped the gate before root or app testing. The separate diagnostic
+  workflow now links the action's AVD location to the job's isolated temp path;
+  run 41098165695 is **IN_PROGRESS**. Its result requires actual gate success,
+  source identity, evidence and visual review before any equivalence claim.
+  U110, U100 and LOAD are **NOT_RUN** for this migration; local AVD remains.
 - **BLOCKED:** Personal Actions billing API returned HTTP 404, so current account
   quota and actual charges cannot be verified from this credential. The repository
   is public and the observed Actions cache usage is zero. GitHub states standard
   hosted runners are free for public repositories; artifact storage has separate
-  limits and billing. No account-specific charge or remaining quota is claimed.
+  limits and billing. Repository API returned 143 unexpired artifacts totaling
+  7,281,172,650 compressed bytes at the time of inspection; this is not the billed
+  account-wide usage or a charge. No artifacts were deleted.
 
 ## Physical phone and native Codex retest — 2026-10-31
 

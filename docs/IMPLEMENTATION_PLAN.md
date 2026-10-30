@@ -1,5 +1,13 @@
 # Implementation board
 
+## Physical-device root investigation — 2026-10-31
+
+**BLOCKED:** The spare phone reports a locked bootloader. No verified unlock and
+exact-firmware recovery path was found. Two debug saves were copied and byte
+checked locally. No unlock, wipe, flash or root attempt was performed. Next:
+obtain model-and-build-specific vendor confirmation of unlock and recovery before
+requesting the owner's separate approval for any destructive action.
+
 ## Cloud AVD migration — 2026-10-31
 
 **IN PROGRESS:** A separate manually dispatched ReactiveCircus probe preserves
