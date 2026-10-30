@@ -7,6 +7,11 @@ on:
         type: choice
         options: [ROOT, CLEAN, LOAD, U110, U100]
         default: CLEAN
+      graphics_backend:
+        description: Emulator GPU backend for an independent diagnostic
+        type: choice
+        options: [swangle, swiftshader]
+        default: swangle
 permissions:
   contents: read
 jobs:
@@ -15,7 +20,7 @@ jobs:
     timeout-minutes: 45
     env:
       MOCHI_GATE: ${{ inputs.gate }}
-      MOCHI_EMULATOR_GPU: swangle
+      MOCHI_EMULATOR_GPU: ${{ inputs.graphics_backend }}
       MOCHI_STAGED_SOURCE_SHA: 920f39cfc29fc0d46b03a295f25f1197446a4027
       MOCHI_STAGED_APK_SHA256: 09cab2dee4bbcd03f478286fb378eebce59a5edc4b501ba583cad5fb426459f8
     steps:
@@ -77,14 +82,17 @@ jobs:
           ram-size: 2048M
           disk-size: 2048M
           disable-animations: false
-          emulator-options: -no-window -no-audio -no-boot-anim -no-snapshot -gpu swangle -accel on -memory 2048 -cores 2 -partition-size 2048 -camera-back none -camera-front none
+          emulator-options: -no-window -no-audio -no-boot-anim -no-snapshot -gpu ${{ inputs.graphics_backend }} -accel on -memory 2048 -cores 2 -partition-size 2048 -camera-back none -camera-front none
           pre-emulator-launch-script: |
             printf '\nhw.lcd.width=720\nhw.lcd.height=1280\nhw.lcd.density=320\nhw.sdCard=no\n' >> "$ANDROID_AVD_HOME/Mochi_CI_API34.avd/config.ini"
           script: |
             cp "$ANDROID_HOME/emulator/package.xml" .local/android-runtime/emulator-package.xml
             cp "$ANDROID_HOME/system-images/android-34/default/x86_64/package.xml" .local/android-runtime/system-image-package.xml
             adb devices -l
-            if [ "$MOCHI_GATE" = ROOT ]; then python3 scripts_tools/cloud_probe_root.py; else env PYTHONUNBUFFERED=1 timeout --signal=TERM --kill-after=30s 30m python3 scripts_tools/android_gate.py --gate "$MOCHI_GATE" --apk dist/MochiArcade.apk --release; fi
+            python3 scripts_tools/cloud_probe_emulator_pid.py
+            if [ "$MOCHI_GATE" = ROOT ]; then python3 scripts_tools/cloud_probe_root.py; else env MOCHI_EMULATOR_PID="$(cat .local/android-runtime/emulator.pid)" PYTHONUNBUFFERED=1 timeout --signal=TERM --kill-after=30s 30m python3 scripts_tools/android_gate.py --gate "$MOCHI_GATE" --apk dist/MochiArcade.apk --release; fi
+            python3 scripts_tools/android_host.py
+            python3 -c 'import json; assert json.load(open(".local/android-runtime/host-release.json"))["process_release"]["emulator"] == "TERMINATED"'
       - name: Preserve diagnostics and screenshots
         if: ${{ always() }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

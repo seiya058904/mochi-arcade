@@ -57,9 +57,26 @@ health probes. This is not an extended multi-hour stability test.
   APK bytes, but the action reset the AVD directory and the unchanged ownership
   assertion stopped the gate before root or app testing. The separate diagnostic
   workflow now links the action's AVD location to the job's isolated temp path;
-  run 41098165695 is **IN_PROGRESS**. Its result requires actual gate success,
-  source identity, evidence and visual review before any equivalence claim.
-  U110, U100 and LOAD are **NOT_RUN** for this migration; local AVD remains.
+  run 41098165695 completed **PASS automation** with the original signed APK on
+  an isolated API 34 x86_64 userdebug AVD and root, in 11m56s total. Its 102
+  screenshots were reviewed as contact sheets: game, pause/resume and settings
+  screens were visible; startup included the system fullscreen prompt. No blank
+  return was observed in those captures. The report's original visual status
+  remains pending; 2 fps samples from the 10-second startup recording show the
+  fullscreen prompt and home screen but do not establish frame-by-frame quality.
+  This review does not fix the failed source equivalence check.
+  The probe used emulator package 37.2.13 and image revision 4; the older CI
+  pins emulator 37.2.12. Its software renderer is not the Windows host GPU.
+  LOAD run 41099713661 also completed **PASS automation** on the original signed
+  APK; its 11 screenshots were reviewed as a contact sheet, including maximum
+  objects and restored scenes. Its initial home capture contains the system
+  fullscreen prompt. U100 run 41099724452 **FAIL**: its v1.0.0 predecessor
+  precheck returned an all-black Fruit Drop frame after backgrounding, with
+  `EGL_BAD_SURFACE`; the candidate upgrade did not run. U110 remains
+  **IN_PROGRESS**. The failed evidence is retained; local AVD remains.
+- **PASS, isolated root diagnostic:** Run 41099892058 verified the job-owned AVD,
+  API 34, x86_64 and userdebug, restarted `adbd` as root and observed UID 0. This
+  checks root capability on that disposable emulator, not on the physical phone.
 - **BLOCKED:** Personal Actions billing API returned HTTP 404, so current account
   quota and actual charges cannot be verified from this credential. The repository
   is public and the observed Actions cache usage is zero. GitHub states standard

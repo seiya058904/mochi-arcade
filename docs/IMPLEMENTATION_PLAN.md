@@ -10,13 +10,13 @@ requesting the owner's separate approval for any destructive action.
 
 ## Cloud AVD migration — 2026-10-31
 
-**IN PROGRESS:** A separate manually dispatched ReactiveCircus probe preserves
-the original signed gate code and published APK bytes. Strict source equivalence
-currently **FAILS** because the current asset tree has an additional README image;
-this probe cannot grant release acceptance. Next: run and inspect the CLEAN probe,
-including root, isolated AVD, renderer and visual evidence; run other signed
-gates only if conditions justify it. Keep the local emulator until equivalent
-coverage and reviewed results are actually established.
+**IN PROGRESS:** The isolated ReactiveCircus CLEAN and LOAD probes passed
+automation and their 102 and 11 screenshots were reviewed; strict source equivalence still **FAILS**
+because the current exported assets contain an additional README image. The
+independent root diagnostic passed. U100 **FAIL** reproduced the hosted black
+return/EGL problem before candidate installation; U110 is running. Next: inspect
+U110 and retained diagnostics, compare a distinct renderer without removing the
+failed result or weakening assertions, and resolve exact source equivalence.
 
 ## Physical phone final retest — 2026-10-31
 
