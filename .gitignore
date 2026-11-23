@@ -18,3 +18,4 @@ export_credentials.cfg
 __pycache__/
 docs/**/*.import
 assets/source/*.import
+.mcp.json
